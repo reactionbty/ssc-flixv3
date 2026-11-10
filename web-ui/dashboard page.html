@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#F8FAFC]" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SSC Flix — Student Dashboard</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#1D4ED8',
+              navy: '#1E3A8A',
+              bg: '#F8FAFC',
+              surface: '#FFFFFF',
+              border: '#E2E8F0',
+              text: '#0F172A',
+              muted: '#475569',
+              accent: '#F59E0B',
+              'blue-light': '#EFF6FF',
+            }
+          },
+          borderRadius: {
+            DEFAULT: '8px',
+            'lg': '8px',
+            'xl': '12px'
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #0F172A;
+      background-color: #F8FAFC;
+      -webkit-font-smoothing: antialiased;
+    }
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col md:flex-row antialiased text-[#0F172A] bg-[#F8FAFC]">
+<!-- ========================================================================= -->
+<!-- 1. DESKTOP SIDEBAR (Fixed 240px, Hidden on Mobile/Tablet < 768px)          -->
+<!-- ========================================================================= -->
+<aside class="hidden md:flex flex-col w-[240px] shrink-0 bg-white border-r border-[#E2E8F0] min-h-screen sticky top-0 z-30 select-none">
+<!-- Brand Logo Section -->
+<div class="h-14 flex items-center px-5 border-b border-[#E2E8F0]">
+<a class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] rounded-md" href="#dashboard">
+<img alt="SSC Flix Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/>
+</a>
+</div>
+<!-- Navigation List -->
+<nav aria-label="Main Navigation" class="flex-1 py-4 px-3 flex flex-col gap-1 overflow-y-auto">
+<!-- Group 1: Primary Flow -->
+<a aria-current="page" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-[#EFF6FF] text-[#1D4ED8] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#dashboard">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="9" rx="1" width="7" x="3" y="3"></rect>
+<rect height="5" rx="1" width="7" x="14" y="3"></rect>
+<rect height="9" rx="1" width="7" x="14" y="12"></rect>
+<rect height="5" rx="1" width="3" x="3" y="16"></rect>
+</svg>
+<span class="">Dashboard</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#mock-tests">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect>
+<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+<path d="m9 14 2 2 4-4"></path>
+</svg>
+<span class="">Mock Tests</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#pyqs">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+<line x1="16" x2="8" y1="13" y2="13"></line>
+<line x1="16" x2="8" y1="17" y2="17"></line>
+<line x1="10" x2="8" y1="9" y2="9"></line>
+</svg>
+<span class="">PYQs</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#chapter-tests">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+</svg>
+<span class="">Chapter Tests</span>
+</a>
+<!-- Subtle Divider 1 -->
+<hr class="my-2.5 border-[#E2E8F0]"/>
+<!-- Group 2: Student Test Archive -->
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#my-tests">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+<path d="M3 3v5h5"></path>
+<path d="M12 7v5l4 2"></path>
+</svg>
+<span class="">My Tests</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#bookmarks">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+</svg>
+<span class="">Bookmarks</span>
+</a>
+<!-- Subtle Divider 2 -->
+<hr class="my-2.5 border-[#E2E8F0]"/>
+<!-- Group 3: Settings & Identity -->
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#preferences">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="4" x2="20" y1="21" y2="21"></line>
+<line x1="4" x2="20" y1="14" y2="14"></line>
+<line x1="4" x2="20" y1="7" y2="7"></line>
+<circle cx="14" cy="21" r="2"></circle>
+<circle cx="8" cy="14" r="2"></circle>
+<circle cx="16" cy="7" r="2"></circle>
+</svg>
+<span class="">Preferences</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#profile">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+<span class="">Profile</span>
+</a>
+</nav>
+</aside>
+<!-- ========================================================================= -->
+<!-- 2. MAIN WORKSPACE CONTAINER                                               -->
+<!-- ========================================================================= -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- Compact 56px Header (Desktop & Mobile) -->
+<header class="h-14 bg-white border-b border-[#E2E8F0] sticky top-0 z-20 flex items-center justify-between px-4 sm:px-6 md:px-8">
+<!-- Left side of header -->
+<div class="flex items-center gap-3">
+<!-- Mobile Logo -->
+<div class="md:hidden flex items-center">
+<img alt="SSC Flix Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/>
+</div>
+<!-- Desktop Title & Target Exam chip -->
+<div class="hidden md:flex items-center gap-2.5">
+<h1 class="text-base font-bold text-[#0F172A]">Dashboard</h1>
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">
+<span class="">Target:</span>
+<span class="target-exam-text font-semibold">SSC CGL</span>
+<button class="text-xs underline font-medium hover:text-[#1E3A8A] ml-0.5 focus:outline-none cursor-pointer" onclick="openTargetExamModal()" title="Change Target Exam">Change</button>
+</div>
+</div>
+</div>
+<!-- Right side of header -->
+<div class="flex items-center gap-2.5">
+<!-- Mobile Target Chip -->
+<div class="md:hidden">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]" onclick="openTargetExamModal()">
+<span class="text-xs font-normal text-slate-600">Target:</span>
+<span class="target-exam-text">SSC CGL</span>
+<svg class="w-3.5 h-3.5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+</div>
+<!-- Profile Menu Trigger -->
+<div class="relative">
+<button aria-expanded="false" aria-label="Open student profile menu" class="touch-target flex items-center justify-center p-1 rounded-lg text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="profile-btn" onclick="toggleProfileMenu()" type="button">
+<div class="user-avatar-initials w-8 h-8 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center text-xs font-semibold ring-2 ring-blue-100">ST</div>
+</button>
+<!-- Profile Dropdown -->
+<div class="hidden absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-[#E2E8F0] py-2 z-50" id="profile-dropdown" role="menu">
+<div class="px-4 py-2 border-b border-[#E2E8F0]">
+<p class="text-xs text-[#64748B]">Signed in as</p>
+<p class="text-sm font-semibold text-[#0F172A]" id="user-display-name">Student</p>
+<p class="text-xs text-[#64748B] truncate hidden" id="user-display-email"></p>
+</div>
+<a class="block px-4 py-2 text-sm text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A]" href="#preferences" role="menuitem">Preferences</a>
+<a class="block px-4 py-2 text-sm text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A]" href="#profile" role="menuitem">Account Settings</a>
+</div>
+</div>
+</div>
+</header>
+<!-- Prototype Interactive Feedback Notice (Dynamic banner) -->
+<!-- Main Content Body -->
+<main class="flex-1 px-4 sm:px-6 md:px-8 py-5 max-w-[1240px] w-full mx-auto pb-24 md:pb-10">
+<!-- ========================================================================= -->
+<!-- 2. COMPACT WELCOME & TARGET HEADER                                        -->
+<!-- ========================================================================= -->
+<div class="mb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-[#E2E8F0]/70">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight" id="greeting-title">Welcome, Student</h2>
+</div>
+<p class="text-xs sm:text-sm text-[#475569] mt-0.5" id="greeting-sub">Here is your preparation overview for <span class="font-medium text-[#0F172A] target-exam-text">SSC CGL</span>.</p>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 3. TWO-COLUMN WORKSPACE LAYOUT (65/35 DESKTOP GRID)                       -->
+<!-- ========================================================================= -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+<!-- ======================================================================= -->
+<!-- LEFT COLUMN (65% / lg:col-span-8): Primary Learning Action & Practice   -->
+<!-- ======================================================================= -->
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-5">
+<!-- 3.A HERO CARD: CONTINUE LEARNING (RETURNING STATE - SHOWN ONLY IF ACTIVE ATTEMPT EXISTS) -->
+<div class="hidden relative bg-white border border-[#E2E8F0] rounded-lg p-4 sm:p-5 shadow-xs" id="hero-card-returning">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold bg-[#1D4ED8] text-white">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>In Progress
+            </span>
+<span class="text-xs font-medium text-[#475569] target-exam-text" id="in-progress-exam-tag">SSC CGL</span>
+<span class="text-xs text-[#64748B]" id="in-progress-category"></span>
+</div>
+<span class="text-xs font-medium text-[#64748B]">Saved automatically</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex-1">
+<h3 class="text-base sm:text-lg font-bold text-[#0F172A] leading-snug" id="in-progress-title">Mock Test</h3>
+<p class="text-xs sm:text-sm text-[#475569] mt-0.5" id="in-progress-sub"></p>
+<div class="mt-3 max-w-md">
+<div class="flex justify-between text-xs mb-1 font-medium text-[#475569]">
+<span class="">Progress: <strong class="text-[#0F172A]" id="in-progress-count">0 of 0 Questions Attempted</strong></span>
+<span class="text-[#1D4ED8] font-semibold" id="in-progress-percent">0%</span>
+</div>
+<div class="w-full bg-[#F1F5F9] rounded-full h-2">
+<div class="bg-[#1D4ED8] h-2 rounded-full transition-all duration-300" id="in-progress-bar" style="width: 0%"></div>
+</div>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-2">
+<button class="touch-target inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-sm font-semibold rounded-lg shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-2" id="in-progress-resume-btn">
+<span class="">Resume Test</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</button>
+</div>
+</div>
+</div>
+<!-- 3.A HERO CARD: RETURNING STUDENT WITHOUT ACTIVE ATTEMPT (FOCUSED PREP CARD) -->
+<div class="hidden relative bg-white border border-[#E2E8F0] rounded-lg p-5 shadow-xs" id="hero-card-returning-inactive">
+<div class="flex items-center gap-2 mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-[#1D4ED8]">
+              Continue Preparation
+            </span>
+<span class="text-xs text-[#475569]">Ready to Practice</span>
+</div>
+<h3 class="text-lg font-bold text-[#0F172A]">Pick up your practice</h3>
+<p class="text-sm text-[#475569] mt-1 max-w-xl">
+            You do not have any active test in progress. Start a new full-length mock or practice focused chapter-level drills.
+          </p>
+<div class="mt-4 flex flex-wrap gap-2.5">
+<button class="touch-target inline-flex items-center gap-2 px-4 py-2 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer">
+<span class="">Start New Mock Test</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</button>
+<button class="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-slate-50 text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer">
+<span class="">Practice Chapter Tests</span>
+</button>
+</div>
+</div>
+<!-- 3.A HERO CARD: NEW STUDENT / START PREP BANNER -->
+<div class="relative overflow-hidden bg-white border border-[#E2E8F0] rounded-lg p-5 shadow-xs" id="hero-card-new">
+<div class="flex items-center gap-2 mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-[#1D4ED8]">
+              Start Your Preparation
+            </span>
+<span class="text-xs text-[#475569]">First Step</span>
+</div>
+<h3 class="text-lg font-bold text-[#0F172A]">Start your preparation</h3>
+<p class="text-sm text-[#475569] mt-1 max-w-xl">
+            Choose a learning activity and begin preparing for your target examination. Take a diagnostic mock or solve previous year questions.
+          </p>
+<div class="mt-4 flex flex-wrap gap-2.5">
+<button class="touch-target inline-flex items-center gap-2 px-4 py-2 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer">
+<span class="">Take Diagnostic Mock Test</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</button>
+<button class="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-slate-50 text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer">
+<span class="">Practice Chapter Tests</span>
+</button>
+</div>
+</div>
+<!-- 3.B CORE PRACTICE ACTIVITIES (3-COLUMN MICRO-GRID) -->
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<h3 class="text-xs font-bold text-[#0F172A] uppercase tracking-wider text-slate-700">
+              Core Practice Activities
+            </h3>
+<span class="text-xs text-[#64748B]">Practice Modules</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<button class="group text-left p-3.5 sm:p-4 bg-white border border-[#E2E8F0] hover:border-[#1D4ED8] rounded-lg transition-all shadow-2xs hover:shadow-xs flex flex-col justify-between" type="button">
+<div>
+<div class="w-9 h-9 rounded-lg bg-blue-50 border border-blue-100 text-[#1D4ED8] flex items-center justify-center mb-3 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="m9 14 2 2 4-4"></path></svg>
+</div>
+<h4 class="text-sm font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">Mock Tests</h4>
+<p class="text-xs text-[#475569] mt-1 leading-relaxed">Full-length and sectional test papers configured to official exam pattern.</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#1D4ED8]">
+<span class="">Start Test</span>
+<svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</div>
+</button>
+<button class="group text-left p-3.5 sm:p-4 bg-white border border-[#E2E8F0] hover:border-[#1D4ED8] rounded-lg transition-all shadow-2xs hover:shadow-xs flex flex-col justify-between" type="button">
+<div>
+<div class="w-9 h-9 rounded-lg bg-blue-50 border border-blue-100 text-[#1D4ED8] flex items-center justify-center mb-3 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line></svg>
+</div>
+<h4 class="text-sm font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">PYQs Library</h4>
+<p class="text-xs text-[#475569] mt-1 leading-relaxed">Previous year question papers with detailed step-by-step solutions.</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#1D4ED8]">
+<span class="">Browse PYQs</span>
+<svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</div>
+</button>
+<button class="group text-left p-3.5 sm:p-4 bg-white border border-[#E2E8F0] hover:border-[#1D4ED8] rounded-lg transition-all shadow-2xs hover:shadow-xs flex flex-col justify-between" type="button">
+<div>
+<div class="w-9 h-9 rounded-lg bg-blue-50 border border-blue-100 text-[#1D4ED8] flex items-center justify-center mb-3 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<h4 class="text-sm font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">Chapter Tests</h4>
+<p class="text-xs text-[#475569] mt-1 leading-relaxed">Topic-level practice drills categorized by subject syllabus.</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#1D4ED8]">
+<span class="">Practice Chapters</span>
+<svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</div>
+</button>
+</div>
+</div>
+<!-- 3.C PERFORMANCE SNAPSHOT & SUBJECT ACCURACY (DATA-DRIVEN ONLY) -->
+<div class="hidden bg-white border border-[#E2E8F0] rounded-xl p-4 sm:p-5 shadow-2xs" id="performance-block-returning">
+<div class="flex items-center justify-between mb-3 pb-2 border-b border-[#F1F5F9]">
+<div>
+<h3 class="text-sm font-bold text-[#0F172A]">Subject-wise Accuracy &amp; Strengths</h3>
+<p class="text-xs text-[#64748B]">Subject-wise accuracy based on your evaluated test attempts and chapter drills.</p>
+</div>
+<a class="text-xs font-semibold text-[#1D4ED8] hover:underline" href="#my-tests">
+              Full Analytics →
+            </a>
+</div>
+<!-- Dynamic Subject Accuracy Container -->
+<div class="space-y-3" id="subject-accuracy-container">
+<!-- Populated safely via DOM APIs only if valid evaluated data exists -->
+</div>
+<!-- Actionable Recommendation Card (Shown ONLY if evidence-based recommendation exists) -->
+<div class="hidden mt-4 pt-3 border-t border-[#F1F5F9]" id="recommendation-card-wrapper">
+<div class="bg-amber-50/70 border border-amber-200/90 rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+<div class="flex items-start gap-2.5">
+<div class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
+                  !
+                </div>
+<div>
+<h4 class="text-xs font-bold text-[#0F172A]" id="recommendation-title">Recommended Next Action</h4>
+<p class="text-xs text-[#475569] mt-0.5" id="recommendation-desc"></p>
+</div>
+</div>
+<button class="shrink-0 text-xs font-semibold px-3 py-1.5 bg-[#1D4ED8] text-white hover:bg-[#1E3A8A] rounded-md transition-colors self-start sm:self-auto cursor-pointer" id="recommendation-btn" onclick="showPrototypeNotice('Opening Chapter Drills', event)">
+                Start Chapter Drill →
+              </button>
+</div>
+</div>
+</div>
+<!-- NEW STUDENT / NO EVALUATED DATA PLACEHOLDER FOR PERFORMANCE -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-6 text-center shadow-2xs" id="performance-block-new">
+<div class="w-10 h-10 rounded-full bg-blue-50 text-[#1D4ED8] mx-auto flex items-center justify-center mb-2.5">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"></path></svg>
+</div>
+<h4 class="text-sm font-bold text-[#0F172A]" id="performance-placeholder-title">Performance Analytics will unlock here</h4>
+<p class="text-xs text-[#64748B] max-w-sm mx-auto mt-1 mb-4" id="performance-placeholder-desc">Complete your first evaluated practice test or chapter drill to generate subject-wise accuracy insights.</p>
+<button class="text-xs font-semibold px-3 py-1.5 bg-[#1D4ED8] text-white rounded-md hover:bg-[#1E3A8A] transition-colors cursor-pointer" id="performance-placeholder-btn">Attempt 1st Test Now</button>
+</div>
+</div>
+<!-- ======================================================================= -->
+<!-- RIGHT COLUMN (35% / lg:col-span-4): Study Overview & Activity Stream    -->
+<!-- ======================================================================= -->
+<div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-5">
+<!-- 3.A STUDY OVERVIEW METRICS (DATA-DRIVEN) -->
+<div class="bg-white border border-[#E2E8F0] rounded-lg p-4 shadow-2xs">
+<div class="flex items-center justify-between mb-3 pb-2 border-b border-[#F1F5F9]">
+<h3 class="text-xs font-bold text-[#0F172A] uppercase tracking-wider text-slate-700">Study Overview</h3>
+<span class="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200" id="study-overview-status">New Account</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Tile 1: Tests Attempted / Started -->
+<div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+<span class="text-xs font-medium text-[#64748B]">Tests Attempted</span>
+<div class="text-lg font-bold text-[#0F172A] mt-0.5" id="metric-tests-val">0</div>
+<span class="text-xs text-slate-500 font-medium" id="metric-tests-sub">Started attempts</span>
+</div>
+<!-- Tile 2: Questions Attempted -->
+<div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+<span class="text-xs font-medium text-[#64748B]">Questions Attempted</span>
+<div class="text-lg font-bold text-[#0F172A] mt-0.5" id="metric-questions-val">0</div>
+<span class="text-xs text-slate-500 font-medium" id="metric-questions-sub">Attempted questions</span>
+</div>
+<!-- Tile 3: Average Accuracy -->
+<div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]"><div class="flex items-center justify-between"><span class="text-xs font-medium text-[#64748B]">Average Accuracy</span><span class="hidden text-xs font-semibold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded" id="metric-accuracy-partial">(Partial data)</span></div><div class="text-lg font-bold text-[#1D4ED8] mt-0.5" id="metric-accuracy-val">—</div><span class="text-xs text-slate-500 font-medium" id="metric-accuracy-sub">Across evaluated Qs</span></div>
+<!-- Tile 4: Average Score -->
+<div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+<span class="text-xs font-medium text-[#64748B]">Average Score</span>
+<div class="text-lg font-bold text-slate-800 mt-0.5" id="metric-score-val">—</div>
+<span class="text-xs text-slate-500 font-medium" id="metric-score-sub">Based on evaluated tests</span>
+</div>
+</div>
+</div>
+<!-- 3.B RECENT ACTIVITY FEED (DATA-DRIVEN) -->
+<div class="hidden bg-white border border-[#E2E8F0] rounded-xl p-4 shadow-2xs" id="recent-activity-container">
+<div class="flex items-center justify-between mb-3 pb-2 border-b border-[#F1F5F9]">
+<div>
+<h3 class="text-sm font-bold text-[#0F172A]">Recent Activity</h3>
+<p class="text-xs text-[#64748B]">Your recent tests and practice sessions</p>
+</div>
+<a class="text-xs font-semibold text-[#1D4ED8] hover:underline" href="#my-tests">
+              View All →
+            </a>
+</div>
+<!-- Dynamic Activity Item List -->
+<div class="divide-y divide-slate-100" id="recent-activity-list">
+<!-- Rendered safely via DOM -->
+</div>
+<div class="mt-3 pt-2 border-t border-slate-100 text-center" id="recent-activity-footer">
+<a class="text-xs font-semibold text-[#1D4ED8] hover:underline" href="#my-tests">
+              View all in My Tests →
+            </a>
+</div>
+</div>
+<!-- HONEST EMPTY STATE FOR RECENT ACTIVITY -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-6 text-center shadow-2xs" id="recent-activity-new">
+<div class="w-10 h-10 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center text-[#64748B] mx-auto mb-2.5">
+<svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+</div>
+<h4 class="text-sm font-semibold text-[#0F172A]">No recent activity yet</h4>
+<p class="text-xs text-[#475569] mt-1 mb-4">
+            Start your first mock test or chapter drill to track your progress here.
+          </p>
+<button class="touch-target inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer" type="button">
+<span class="">Start Test</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M5 12h14M12 5l7 7-7 7"></path>
+</svg>
+</button>
+</div>
+<!-- Target Exam Information Card (Neutral Fact-Based Wording) -->
+<div class="bg-white border border-[#E2E8F0] rounded-lg p-3.5 text-xs text-slate-700 shadow-2xs">
+<div class="flex items-center justify-between font-semibold mb-1 text-[#0F172A]">
+<span class="flex items-center gap-1.5">
+<svg class="w-4 h-4 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+<line x1="16" x2="16" y1="2" y2="6"></line>
+<line x1="8" x2="8" y1="2" y2="6"></line>
+<line x1="3" x2="21" y1="10" y2="10"></line>
+</svg>
+<span class="target-exam-text font-bold">SSC CGL</span>
+</span>
+</div>
+<p class="text-xs text-[#64748B] leading-relaxed mt-1" id="target-exam-card-description">Combined Graduate Level Examination (Tier I &amp; II) preparation workspace. Track your mock test attempts, practice previous year questions, and chapter drills.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Global Academic Footer (Clean, Unobtrusive) -->
+<footer class="mt-auto bg-white border-t border-[#E2E8F0] py-3.5 px-4 sm:px-6 md:px-8 text-xs text-[#64748B] flex flex-col sm:flex-row items-center justify-between gap-2.5">
+<div class="">
+      © 2026 SSC Flix. All rights reserved.
+    </div>
+<div class="flex items-center gap-4">
+<a class="hover:text-[#0F172A] hover:underline" href="#privacy" onclick="showPrototypeNotice('Opening Privacy Policy', event)">Privacy Policy</a>
+<a class="hover:text-[#0F172A] hover:underline" href="#terms" onclick="showPrototypeNotice('Opening Terms of Service', event)">Terms of Service</a>
+<a class="hover:text-[#0F172A] hover:underline" href="#help" onclick="showPrototypeNotice('Opening Help &amp; Support', event)">Help &amp; Support</a>
+</div>
+</footer>
+</div>
+<!-- ========================================================================= -->
+<!-- 7. MOBILE FIXED BOTTOM NAVIGATION (5 Items: Dashboard, Mock, PYQ, Ch, More)-->
+<!-- ========================================================================= -->
+<nav aria-label="Mobile Bottom Navigation" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-[#E2E8F0] z-40 flex items-center justify-around px-1 select-none pb-safe">
+<!-- Item 1: Dashboard (Active) -->
+<a aria-current="page" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#1D4ED8]" href="#dashboard">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="9" rx="1" width="7" x="3" y="3"></rect>
+<rect height="5" rx="1" width="7" x="14" y="3"></rect>
+<rect height="9" rx="1" width="7" x="14" y="12"></rect>
+<rect height="5" rx="1" width="3" x="3" y="16"></rect>
+</svg>
+<span class="text-xs font-semibold mt-1">Dashboard</span>
+</a>
+<!-- Item 2: Mock Tests -->
+<a class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#mock-tests">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect>
+<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+<path d="m9 14 2 2 4-4"></path>
+</svg>
+<span class="text-xs font-medium mt-1">Mock Tests</span>
+</a>
+<!-- Item 3: PYQs -->
+<a class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#pyqs">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+<line x1="16" x2="8" y1="13" y2="13"></line>
+</svg>
+<span class="text-xs font-medium mt-1">PYQs</span>
+</a>
+<!-- Item 4: Chapter Tests -->
+<a aria-label="Chapter Tests" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#chapter-tests">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+</svg>
+<span class="text-xs font-medium mt-1">Ch. Tests</span>
+</a>
+<!-- Item 5: More -->
+<button aria-expanded="false" aria-label="Open more options" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" id="more-nav-btn" onclick="toggleMobileMoreSheet()" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="1"></circle>
+<circle cx="19" cy="12" r="1"></circle>
+<circle cx="5" cy="12" r="1"></circle>
+</svg>
+<span class="text-xs font-medium mt-1">More</span>
+</button>
+</nav>
+<!-- ========================================================================= -->
+<!-- 8. MOBILE "MORE" BOTTOM SHEET                                             -->
+<!-- ========================================================================= -->
+<div class="hidden md:hidden fixed inset-0 bg-slate-900/40 z-50 transition-opacity" id="mobile-more-overlay" onclick="toggleMobileMoreSheet()"></div>
+<div class="hidden md:hidden fixed bottom-16 left-0 right-0 bg-white border-t border-[#E2E8F0] rounded-t-xl z-50 shadow-xl transition-transform max-w-lg mx-auto p-4" id="mobile-more-sheet">
+<div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+<h3 class="text-sm font-bold text-[#0F172A]">Additional Navigation</h3>
+<button aria-label="Close menu" class="touch-target p-1 text-[#64748B] hover:text-[#0F172A]" onclick="toggleMobileMoreSheet()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2.5 py-4">
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#my-tests" onclick="showPrototypeNotice('Opening My Tests', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+<path d="M3 3v5h5"></path>
+<path d="M12 7v5l4 2"></path>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">My Tests</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#bookmarks" onclick="showPrototypeNotice('Opening Bookmarks', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Bookmarks</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#preferences" onclick="showPrototypeNotice('Opening Preferences', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="4" x2="20" y1="21" y2="21"></line>
+<line x1="4" x2="20" y1="14" y2="14"></line>
+<line x1="4" x2="20" y1="7" y2="7"></line>
+<circle cx="14" cy="21" r="2"></circle>
+<circle cx="8" cy="14" r="2"></circle>
+<circle cx="16" cy="7" r="2"></circle>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Preferences</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#profile" onclick="showPrototypeNotice('Opening Profile', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Profile</span>
+</a>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 9. TARGET EXAM MODAL / DIALOG                                             -->
+<!-- ========================================================================= -->
+<div class="hidden fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4" id="target-modal-overlay">
+<div aria-modal="true" class="bg-white rounded-xl max-w-md w-full border border-[#E2E8F0] shadow-xl p-5" onclick="event.stopPropagation()" role="dialog">
+<div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+<div>
+<h3 class="text-base font-bold text-[#0F172A]">Choose Target Examination</h3>
+<p class="text-xs text-[#64748B]">Personalizes your mock papers, PYQs and syllabus drills</p>
+</div>
+<button aria-label="Close dialog" class="text-[#64748B] hover:text-[#0F172A] p-1 cursor-pointer" onclick="closeTargetExamModal()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+</button>
+</div>
+<!-- Exam List Options: 6 Official SSC Exams -->
+<div class="py-4 space-y-2" id="exam-options-container">
+<!-- Injected dynamically via DOM to match active state -->
+</div>
+<div class="pt-3 border-t border-[#E2E8F0] flex justify-end gap-2">
+<button class="px-3.5 py-1.5 text-xs font-semibold text-[#475569] hover:bg-slate-100 rounded-lg cursor-pointer" onclick="closeTargetExamModal()">Cancel</button>
+<button class="px-4 py-1.5 text-xs font-semibold bg-[#1D4ED8] text-white rounded-lg hover:bg-[#1E3A8A] cursor-pointer" onclick="applyTargetExamSelection()">Save Target</button>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 10. JAVASCRIPT LOGIC & STATE HANDLING (100% Data-Driven Adapter)           -->
+<!-- ========================================================================= -->
+<script>
+  // 1. Official Exam Configuration (Canonical IDs: cgl, chsl, cpo, mts, gd, steno)
+  const OFFICIAL_EXAMS = [
+    { id: 'cgl', code: 'SSC CGL', name: 'Combined Graduate Level Examination (Tier I & II)' },
+    { id: 'chsl', code: 'SSC CHSL', name: 'Combined Higher Secondary Level (10+2)' },
+    { id: 'cpo', code: 'SSC CPO', name: 'Central Police Organisation SI & ASI' },
+    { id: 'mts', code: 'SSC MTS', name: 'Multi-Tasking Staff & Havaldar' },
+    { id: 'gd', code: 'SSC GD', name: 'General Duty Constable (CAPFs, SSF, Rifleman)' },
+    { id: 'steno', code: 'SSC Stenographer', name: 'Grade C & D Examination' }
+  ];
+
+  // Helper: Normalize target exam identifier
+  function normalizeExamId(val) {
+    if (!val || typeof val !== 'string') return 'cgl';
+    const low = val.trim().toLowerCase();
+    if (low === 'stenographer' || low === 'steno') return 'steno';
+    if (low === 'cgl' || low.includes('cgl')) return 'cgl';
+    if (low === 'chsl' || low.includes('chsl')) return 'chsl';
+    if (low === 'cpo' || low.includes('cpo')) return 'cpo';
+    if (low === 'mts' || low.includes('mts')) return 'mts';
+    if (low === 'gd' || low.includes('gd')) return 'gd';
+    return OFFICIAL_EXAMS.some(e => e.id === low) ? low : 'cgl';
+  }
+
+  function getInitialTargetExam() {
+    const pref = window.SSCFlixState && window.SSCFlixState.studentPreferences && window.SSCFlixState.studentPreferences.targetExam;
+    return normalizeExamId(pref);
+  }
+
+  let currentTargetExamId = getInitialTargetExam();
+  let currentActiveAttemptId = null;
+
+  function getExamObject(examId) {
+    const id = normalizeExamId(examId);
+    return OFFICIAL_EXAMS.find(e => e.id === id) || OFFICIAL_EXAMS[0];
+  }
+
+  // Known subject keys mapping for SSC
+  const SUBJECT_METADATA = {
+    quantitative_aptitude: { label: 'Quantitative Aptitude' },
+    general_intelligence_reasoning: { label: 'General Intelligence & Reasoning' },
+    english_comprehension: { label: 'English Comprehension' },
+    general_awareness: { label: 'General Awareness' }
+  };
+
+  function normalizeSubjectKey(raw) {
+    if (!raw || typeof raw !== 'string') return null;
+    const s = raw.toLowerCase().replace(/[\s\-_&/]+/g, '_');
+    if (s.includes('quant') || s.includes('math') || s.includes('aptitude') || s.includes('numerical')) return 'quantitative_aptitude';
+    if (s.includes('reasoning') || s.includes('intelligence') || s.includes('gi') || s.includes('gir')) return 'general_intelligence_reasoning';
+    if (s.includes('english') || s.includes('comprehension') || s.includes('verbal')) return 'english_comprehension';
+    if (s.includes('awareness') || s.includes('general_knowledge') || s.includes('gk') || s.includes('ga') || s.includes('science')) return 'general_awareness';
+    return raw.trim();
+  }
+
+  function getSubjectDisplayLabel(key) {
+    if (SUBJECT_METADATA[key]) return SUBJECT_METADATA[key].label;
+    return key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  // Supported canonical attempt statuses
+  const RECOGNIZED_STATUSES = ['in_progress', 'completed', 'submitted', 'expired', 'abandoned', 'interrupted'];
+
+  // Central Resumability Validator
+  function isAttemptResumable(attempt) {
+    if (!attempt || typeof attempt !== 'object') return false;
+    const rawId = attempt.id !== undefined && attempt.id !== null ? String(attempt.id).trim() : '';
+    if (!rawId) return false;
+
+    const status = String(attempt.status || '').toLowerCase().trim();
+    if (status !== 'in_progress') return false;
+
+    const expiryField = attempt.expiresAt !== undefined ? attempt.expiresAt : attempt.expiry;
+    if (expiryField !== undefined && expiryField !== null && expiryField !== '') {
+      const expTime = new Date(expiryField).getTime();
+      if (isNaN(expTime)) return false; // parsing failed: treated as unknown validity -> not resumable
+      if (expTime <= Date.now()) return false; // expired
+    }
+
+    return true;
+  }
+
+  // 3. Robust Data-Driven Dashboard Data Adapter
+  function getStudentDashboardData() {
+    const state = window.SSCFlixState || {};
+    const profile = (state.studentProfile && typeof state.studentProfile === 'object') ? state.studentProfile : null;
+    const rawAttempts = Array.isArray(state.attempts) ? state.attempts : [];
+    const rawResponses = Array.isArray(state.responses) ? state.responses : [];
+    const rawRecent = Array.isArray(state.recentActivity) ? state.recentActivity : [];
+
+    // 3.1 Validate and deduplicate attempts by stable ID
+    const attemptsById = new Map();
+    rawAttempts.forEach(a => {
+      if (!a || typeof a !== 'object') return;
+      const rawId = a.id !== undefined && a.id !== null ? String(a.id).trim() : '';
+      if (!rawId) return; // require stable non-empty attempt ID
+
+      const status = String(a.status || '').toLowerCase().trim();
+      if (!RECOGNIZED_STATUSES.includes(status)) return; // must be recognized status
+
+      if (!attemptsById.has(rawId)) {
+        attemptsById.set(rawId, a);
+      }
+    });
+
+    const validAttempts = Array.from(attemptsById.values());
+
+    // Genuine started attempts count strictly deduplicated unique attempts
+    const startedAttemptsCount = validAttempts.length;
+
+    // Resumable active attempt check
+    const activeAttemptRaw = validAttempts.find(a => isAttemptResumable(a));
+    let activeAttempt = null;
+    if (activeAttemptRaw) {
+      const attempted = Number(activeAttemptRaw.questionsAttempted || (Array.isArray(activeAttemptRaw.responses) ? activeAttemptRaw.responses.length : 0)) || 0;
+      const total = Number(activeAttemptRaw.totalQuestions) || 0;
+      let pct = 0;
+      if (total > 0) {
+        pct = Math.max(0, Math.min(100, Math.round((attempted / total) * 100)));
+      }
+      activeAttempt = {
+        id: String(activeAttemptRaw.id).trim(),
+        title: activeAttemptRaw.title || 'Practice Test',
+        category: activeAttemptRaw.category || activeAttemptRaw.testType || '',
+        subTitle: activeAttemptRaw.subTitle || activeAttemptRaw.description || '',
+        questionsAttempted: attempted,
+        totalQuestions: total,
+        progressPct: pct
+      };
+    }
+
+    // 3.2 Canonical Response Deduplication
+    // Identity Hierarchy:
+    // 1. Prefer unique response record ID (`response.id` or `response.responseId`)
+    // 2. Otherwise combination of attempt ID and question ID (`attemptId + '::' + questionId`)
+    // Never use a generic 'global' identifier.
+    // Records without reliable identity are excluded from deduplication-sensitive calculations.
+    const responseMap = new Map();
+    let unidentifiableCount = 0;
+
+    function processResponseRecord(r, fallbackAttemptId) {
+      if (!r || typeof r !== 'object') return;
+      let uniqueKey = null;
+
+      const recordId = (r.id !== undefined && r.id !== null && String(r.id).trim() !== '') ? String(r.id).trim()
+        : (r.responseId !== undefined && r.responseId !== null && String(r.responseId).trim() !== '') ? String(r.responseId).trim()
+        : null;
+
+      if (recordId) {
+        uniqueKey = `id::${recordId}`;
+      } else {
+        const attId = (r.attemptId !== undefined && r.attemptId !== null && String(r.attemptId).trim() !== '')
+          ? String(r.attemptId).trim()
+          : (fallbackAttemptId ? String(fallbackAttemptId).trim() : null);
+
+        const qId = (r.questionId !== undefined && r.questionId !== null && String(r.questionId).trim() !== '')
+          ? String(r.questionId).trim()
+          : null;
+
+        if (attId && qId) {
+          uniqueKey = `${attId}::${qId}`;
+        }
+      }
+
+      if (uniqueKey) {
+        if (!responseMap.has(uniqueKey)) {
+          responseMap.set(uniqueKey, r);
+        }
+      } else {
+        unidentifiableCount++;
+      }
+    }
+
+    if (rawResponses.length > 0) {
+      rawResponses.forEach(r => processResponseRecord(r, null));
+    } else {
+      validAttempts.forEach(a => {
+        const aId = String(a.id).trim();
+        if (Array.isArray(a.evaluatedResponses)) {
+          a.evaluatedResponses.forEach(r => processResponseRecord(r, aId));
+        }
+      });
+    }
+
+    const deduplicatedResponses = Array.from(responseMap.values());
+
+    // 3.3 Questions Attempted
+    let uniqueQuestionsAttemptedCount = 0;
+    if (deduplicatedResponses.length > 0) {
+      const attemptedOnly = deduplicatedResponses.filter(r => {
+        if (r.status === 'attempted' || r.status === 'answered') return true;
+        if (r.selectedOption !== undefined && r.selectedOption !== null && r.selectedOption !== '') return true;
+        if (r.isEvaluated === true || typeof r.isCorrect === 'boolean') return true;
+        return false;
+      });
+      uniqueQuestionsAttemptedCount = attemptedOnly.length;
+    } else {
+      let sumAttemptedQs = 0;
+      validAttempts.forEach(a => {
+        if (typeof a.questionsAttempted === 'number' && !isNaN(a.questionsAttempted)) {
+          sumAttemptedQs += a.questionsAttempted;
+        } else if (Array.isArray(a.responses)) {
+          sumAttemptedQs += a.responses.length;
+        }
+      });
+      uniqueQuestionsAttemptedCount = sumAttemptedQs;
+    }
+
+    // 3.4 Average Accuracy: Strictly explicitly evaluated responses
+    const evaluatedResponses = deduplicatedResponses.filter(r => {
+      if (r.isEvaluated === true && typeof r.isCorrect === 'boolean') return true;
+      if (typeof r.isCorrect === 'boolean') return true;
+      return false;
+    });
+
+    let avgAccuracy = null;
+    if (evaluatedResponses.length > 0) {
+      const correctEvaluatedCount = evaluatedResponses.filter(r => r.isCorrect === true).length;
+      avgAccuracy = Math.round((correctEvaluatedCount / evaluatedResponses.length) * 100);
+    }
+
+    // 3.5 Average Score: Strictly validated criteria
+    // - Every included attempt is completed or submitted
+    // - Every included attempt has valid numeric score >= 0
+    // - Every included attempt has valid positive maxScore > 0
+    // - All included attempts share identical maxScore
+    // - Every score <= maxScore
+    let avgScore = null;
+    const completedAttempts = validAttempts.filter(a => {
+      const st = String(a.status || '').toLowerCase().trim();
+      return st === 'completed' || st === 'submitted';
+    });
+
+    if (completedAttempts.length > 0) {
+      let isScaleValid = true;
+      let sharedMaxScore = null;
+      let scoreSum = 0;
+
+      for (const a of completedAttempts) {
+        if (typeof a.score !== 'number' || isNaN(a.score) || a.score < 0) {
+          isScaleValid = false;
+          break;
+        }
+        if (typeof a.maxScore !== 'number' || isNaN(a.maxScore) || a.maxScore <= 0) {
+          isScaleValid = false;
+          break;
+        }
+        if (a.score > a.maxScore) {
+          isScaleValid = false;
+          break;
+        }
+        if (sharedMaxScore === null) {
+          sharedMaxScore = a.maxScore;
+        } else if (sharedMaxScore !== a.maxScore) {
+          isScaleValid = false;
+          break;
+        }
+        scoreSum += a.score;
+      }
+
+      if (isScaleValid && sharedMaxScore !== null) {
+        const mean = (scoreSum / completedAttempts.length).toFixed(1);
+        avgScore = `${mean} / ${sharedMaxScore}`;
+      }
+    }
+
+    // 3.6 Subject-wise Accuracy
+    const subjectMap = {};
+    evaluatedResponses.forEach(r => {
+      const rawSub = r.subject || r.subjectKey || r.section;
+      const key = normalizeSubjectKey(rawSub);
+      if (!key) return;
+      if (!subjectMap[key]) {
+        subjectMap[key] = { key: key, correct: 0, total: 0 };
+      }
+      subjectMap[key].total++;
+      if (r.isCorrect === true) {
+        subjectMap[key].correct++;
+      }
+    });
+
+    const subjectAccuracyList = Object.values(subjectMap)
+      .filter(s => s.total >= 3)
+      .map(s => {
+        const acc = Math.round((s.correct / s.total) * 100);
+        let tag = "Moderate";
+        let tagClass = "bg-amber-50 text-amber-800 border-amber-200";
+        let barClass = "bg-amber-500";
+        if (acc >= 75) {
+          tag = "Strong";
+          tagClass = "bg-emerald-50 text-emerald-700 border-emerald-200";
+          barClass = "bg-emerald-600";
+        } else if (acc >= 60) {
+          tag = "On Track";
+          tagClass = "bg-blue-50 text-[#1D4ED8] border-blue-200";
+          barClass = "bg-[#1D4ED8]";
+        } else {
+          tag = "Needs Focus";
+          tagClass = "bg-red-50 text-red-700 border-red-200";
+          barClass = "bg-red-500";
+        }
+        return {
+          key: s.key,
+          label: getSubjectDisplayLabel(s.key),
+          accuracy: acc,
+          correct: s.correct,
+          total: s.total,
+          tag: tag,
+          tagClass: tagClass,
+          barClass: barClass
+        };
+      });
+
+    let recommendation = null;
+    if (subjectAccuracyList.length > 0) {
+      const sortedByAcc = [...subjectAccuracyList].sort((a, b) => a.accuracy - b.accuracy);
+      if (sortedByAcc[0].accuracy < 60) {
+        recommendation = {
+          title: `Recommended Next Action: Drill ${sortedByAcc[0].label}`,
+          desc: `Evaluated performance shows accuracy of ${sortedByAcc[0].accuracy}% (${sortedByAcc[0].correct} / ${sortedByAcc[0].total} correct). Practice chapter drills to strengthen this topic.`,
+          ctaText: "Start Chapter Drill →",
+          subjectKey: sortedByAcc[0].key
+        };
+      }
+    }
+
+    // 3.7 Recent Activity Processing
+    const activityItems = [];
+    const seenAttemptIds = new Set();
+
+    // Map attempts first for canonical status and linking
+    validAttempts.forEach(att => {
+      const aId = String(att.id).trim();
+      seenAttemptIds.add(aId);
+
+      const rawStatus = String(att.status || '').toLowerCase().trim();
+      let statusDisplay = "Unknown";
+      if (rawStatus === 'in_progress') statusDisplay = "In Progress";
+      else if (rawStatus === 'completed') statusDisplay = "Completed";
+      else if (rawStatus === 'submitted') statusDisplay = "Submitted";
+      else if (rawStatus === 'expired') statusDisplay = "Expired";
+      else if (rawStatus === 'abandoned') statusDisplay = "Abandoned";
+      else if (rawStatus === 'interrupted') statusDisplay = "Interrupted";
+
+      let timeVal = null;
+      let timeDisplay = null;
+      const rawDate = att.completedAt || att.submittedAt || att.startedAt || att.timestamp;
+      if (rawDate) {
+        const parsed = new Date(rawDate);
+        if (!isNaN(parsed.getTime())) {
+          timeVal = parsed.getTime();
+          timeDisplay = parsed.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+      }
+
+      let detail = '';
+      if (rawStatus === 'in_progress') {
+        const qCount = att.questionsAttempted || 0;
+        const tCount = att.totalQuestions || 0;
+        detail = tCount ? `${qCount}/${tCount} Qs Attempted` : `${qCount} Qs Attempted`;
+      } else if (typeof att.score === 'number' && !isNaN(att.score)) {
+        detail = (typeof att.maxScore === 'number' && !isNaN(att.maxScore))
+          ? `Score: ${att.score}/${att.maxScore}`
+          : `Score: ${att.score}`;
+      }
+
+      // Action eligibility
+      let eligibleAction = null;
+      if (isAttemptResumable(att)) {
+        eligibleAction = { type: 'resume', label: 'Resume', attemptId: aId };
+      } else if (rawStatus === 'completed' || rawStatus === 'submitted') {
+        const hasResult = att.result !== undefined || (Array.isArray(att.evaluatedResponses) && att.evaluatedResponses.length > 0) || (typeof att.score === 'number' && !isNaN(att.score));
+        if (hasResult) {
+          eligibleAction = { type: 'view_result', label: 'View Result', attemptId: aId };
+        }
+      }
+
+      activityItems.push({
+        id: aId,
+        title: att.title || 'Practice Test',
+        status: statusDisplay,
+        rawStatus: rawStatus,
+        detail: detail,
+        timestamp: timeVal,
+        timeDisplay: timeDisplay,
+        action: eligibleAction
+      });
+    });
+
+    // Add standalone recentActivity if not already covered by attempt
+    if (rawRecent.length > 0) {
+      rawRecent.forEach(item => {
+        if (!item || typeof item !== 'object') return;
+        const itemId = item.id ? String(item.id).trim() : null;
+        if (itemId && seenAttemptIds.has(itemId)) return; // prevent duplicate
+
+        const rawStatus = String(item.status || (item.isPending ? 'in_progress' : '')).toLowerCase().trim();
+        let statusDisplay = "Unknown";
+        if (rawStatus === 'in_progress') statusDisplay = "In Progress";
+        else if (rawStatus === 'completed') statusDisplay = "Completed";
+        else if (rawStatus === 'submitted') statusDisplay = "Submitted";
+        else if (rawStatus === 'expired') statusDisplay = "Expired";
+        else if (rawStatus === 'abandoned') statusDisplay = "Abandoned";
+        else if (rawStatus === 'interrupted') statusDisplay = "Interrupted";
+
+        let timeVal = null;
+        let timeDisplay = null;
+        const rawDate = item.timestamp || item.date || item.time;
+        if (rawDate) {
+          const parsed = new Date(rawDate);
+          if (!isNaN(parsed.getTime())) {
+            timeVal = parsed.getTime();
+            timeDisplay = parsed.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+          }
+        }
+
+        // Resumable check
+        let eligibleAction = null;
+        const linkedAttempt = itemId ? attemptsById.get(itemId) : null;
+        if (linkedAttempt && isAttemptResumable(linkedAttempt)) {
+          eligibleAction = { type: 'resume', label: 'Resume', attemptId: itemId };
+        } else if (rawStatus === 'completed' || rawStatus === 'submitted') {
+          if (item.hasEvaluatedData === true || item.result !== undefined || (linkedAttempt && typeof linkedAttempt.score === 'number')) {
+            eligibleAction = { type: 'view_result', label: 'View Result', attemptId: itemId };
+          }
+        }
+
+        activityItems.push({
+          id: itemId || '',
+          title: item.title || 'Practice Test',
+          status: statusDisplay,
+          rawStatus: rawStatus,
+          detail: item.detail || '',
+          timestamp: timeVal,
+          timeDisplay: timeDisplay,
+          action: eligibleAction
+        });
+      });
+    }
+
+    // Sort newest first with valid timestamps
+    activityItems.sort((a, b) => {
+      const ta = typeof a.timestamp === 'number' ? a.timestamp : 0;
+      const tb = typeof b.timestamp === 'number' ? b.timestamp : 0;
+      return tb - ta;
+    });
+
+    const isReturning = startedAttemptsCount > 0 || activityItems.length > 0;
+
+    return {
+      profile: profile,
+      isReturning: isReturning,
+      activeAttempt: activeAttempt,
+      stats: {
+        testsAttempted: startedAttemptsCount,
+        questionsAttempted: uniqueQuestionsAttemptedCount,
+        avgAccuracy: avgAccuracy,
+        avgScore: avgScore
+      },
+      subjectAccuracy: subjectAccuracyList,
+      recommendation: recommendation,
+      recentActivity: activityItems.slice(0, 5)
+    };
+  }
+
+  // Safe initial derivation
+  function getInitials(name) {
+    if (typeof name !== 'string' || name.trim().length === 0) return "ST";
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return "ST";
+    if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+
+  function getFirstName(name) {
+    if (typeof name !== 'string' || name.trim().length === 0) return "Student";
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+    return parts[0] || "Student";
+  }
+
+  // Master Render Coordinator
+  function renderDashboard() {
+    const data = getStudentDashboardData();
+    renderStudentIdentity(data);
+    renderTargetExamIndicators();
+    renderDashboardView(data);
+  }
+
+  // Defensive profile rendering
+  function renderStudentIdentity(data) {
+    const profile = data.profile;
+    const isProfileValid = profile && typeof profile === 'object';
+    const hasName = isProfileValid && typeof profile.name === 'string' && profile.name.trim().length > 0;
+    const name = hasName ? profile.name.trim() : "Student";
+    const initials = hasName ? getInitials(name) : "ST";
+    const firstName = hasName ? getFirstName(name) : "Student";
+
+    const greetingTitle = document.getElementById('greeting-title');
+    if (greetingTitle) {
+      greetingTitle.textContent = data.isReturning
+        ? `Welcome back, ${firstName}`
+        : `Welcome, ${name}`;
+    }
+
+    const userNameEl = document.getElementById('user-display-name');
+    if (userNameEl) {
+      userNameEl.textContent = name;
+    }
+
+    const userEmailEl = document.getElementById('user-display-email');
+    if (userEmailEl) {
+      const hasEmail = isProfileValid && typeof profile.email === 'string' && profile.email.trim().length > 0;
+      if (hasEmail) {
+        userEmailEl.textContent = profile.email.trim();
+        userEmailEl.classList.remove('hidden');
+      } else {
+        userEmailEl.textContent = "";
+        userEmailEl.classList.add('hidden');
+      }
+    }
+
+    const avatarEls = document.querySelectorAll('.user-avatar-initials');
+    avatarEls.forEach(el => { el.textContent = initials; });
+  }
+
+  // Target exam indicators
+  function renderTargetExamIndicators() {
+    const examObj = getExamObject(currentTargetExamId);
+    const badges = document.querySelectorAll('.target-exam-text');
+    badges.forEach(b => {
+      b.textContent = examObj.code;
+    });
+
+    const greetingSub = document.getElementById('greeting-sub');
+    if (greetingSub) {
+      greetingSub.replaceChildren();
+      const txt1 = document.createTextNode("Here is your preparation overview for ");
+      const span = document.createElement('span');
+      span.className = "font-medium text-[#0F172A] target-exam-text";
+      span.textContent = examObj.code;
+      const txt2 = document.createTextNode(".");
+      greetingSub.appendChild(txt1);
+      greetingSub.appendChild(span);
+      greetingSub.appendChild(txt2);
+    }
+
+    const examCardDesc = document.getElementById('target-exam-card-description');
+    if (examCardDesc) {
+      examCardDesc.textContent = `${examObj.name} preparation workspace. Track your mock test attempts, practice previous year questions, and chapter drills.`;
+    }
+  }
+
+  // View presentation
+  function renderDashboardView(data) {
+    const heroReturningActive = document.getElementById('hero-card-returning');
+    const heroReturningInactive = document.getElementById('hero-card-returning-inactive');
+    const heroNew = document.getElementById('hero-card-new');
+
+    const perfReturning = document.getElementById('performance-block-returning');
+    const perfNew = document.getElementById('performance-block-new');
+    const perfPlaceholderTitle = document.getElementById('performance-placeholder-title');
+    const perfPlaceholderDesc = document.getElementById('performance-placeholder-desc');
+    const perfPlaceholderBtn = document.getElementById('performance-placeholder-btn');
+
+    const recentActivityContainer = document.getElementById('recent-activity-container');
+    const recentActivityNew = document.getElementById('recent-activity-new');
+    const studyStatus = document.getElementById('study-overview-status');
+
+    if (data.isReturning) {
+      if (studyStatus) {
+        studyStatus.textContent = "Active Prep";
+        studyStatus.className = "text-xs font-semibold text-[#1D4ED8] bg-[#EFF6FF] px-2 py-0.5 rounded border border-[#BFDBFE]";
+      }
+
+      if (data.activeAttempt) {
+        currentActiveAttemptId = data.activeAttempt.id;
+        if (heroReturningActive) heroReturningActive.classList.remove('hidden');
+        if (heroReturningInactive) heroReturningInactive.classList.add('hidden');
+        if (heroNew) heroNew.classList.add('hidden');
+
+        const examObj = getExamObject(currentTargetExamId);
+        const titleEl = document.getElementById('in-progress-title');
+        if (titleEl) titleEl.textContent = data.activeAttempt.title.startsWith("SSC") ? data.activeAttempt.title : `${examObj.code} ${data.activeAttempt.title}`;
+
+        const subEl = document.getElementById('in-progress-sub');
+        if (subEl) subEl.textContent = data.activeAttempt.subTitle || "Sectional and topic drills";
+
+        const catEl = document.getElementById('in-progress-category');
+        if (catEl) {
+          catEl.textContent = data.activeAttempt.category ? `• ${data.activeAttempt.category}` : '';
+        }
+
+        const countEl = document.getElementById('in-progress-count');
+        if (countEl) {
+          countEl.textContent = data.activeAttempt.totalQuestions > 0
+            ? `${data.activeAttempt.questionsAttempted} of ${data.activeAttempt.totalQuestions} Questions Attempted`
+            : `${data.activeAttempt.questionsAttempted} Questions Attempted`;
+        }
+
+        const pctEl = document.getElementById('in-progress-percent');
+        if (pctEl) pctEl.textContent = `${data.activeAttempt.progressPct}%`;
+
+        const barEl = document.getElementById('in-progress-bar');
+        if (barEl) barEl.style.width = `${data.activeAttempt.progressPct}%`;
+      } else {
+        currentActiveAttemptId = null;
+        if (heroReturningActive) heroReturningActive.classList.add('hidden');
+        if (heroReturningInactive) heroReturningInactive.classList.remove('hidden');
+        if (heroNew) heroNew.classList.add('hidden');
+      }
+
+      const mTests = document.getElementById('metric-tests-val');
+      if (mTests) mTests.textContent = String(data.stats.testsAttempted);
+
+      const mQuestions = document.getElementById('metric-questions-val');
+      if (mQuestions) mQuestions.textContent = String(data.stats.questionsAttempted);
+
+      const mAccuracy = document.getElementById('metric-accuracy-val');
+      if (mAccuracy) mAccuracy.textContent = data.stats.avgAccuracy !== null ? `${data.stats.avgAccuracy}%` : '—';
+
+      const mScore = document.getElementById('metric-score-val');
+      if (mScore) mScore.textContent = data.stats.avgScore !== null ? String(data.stats.avgScore) : '—';
+
+      if (data.subjectAccuracy && data.subjectAccuracy.length > 0) {
+        if (perfReturning) perfReturning.classList.remove('hidden');
+        if (perfNew) perfNew.classList.add('hidden');
+        renderSubjectAccuracy(data.subjectAccuracy, data.recommendation);
+      } else {
+        if (perfReturning) perfReturning.classList.add('hidden');
+        if (perfNew) perfNew.classList.remove('hidden');
+        if (perfPlaceholderTitle) perfPlaceholderTitle.textContent = "More evaluated questions needed";
+        if (perfPlaceholderDesc) perfPlaceholderDesc.textContent = "Subject-wise accuracy unlocks once at least 3 questions in a subject are evaluated.";
+        if (perfPlaceholderBtn) perfPlaceholderBtn.textContent = "Practice More Questions";
+      }
+
+      if (data.recentActivity && data.recentActivity.length > 0) {
+        if (recentActivityContainer) recentActivityContainer.classList.remove('hidden');
+        if (recentActivityNew) recentActivityNew.classList.add('hidden');
+        renderRecentActivityList(data.recentActivity);
+      } else {
+        if (recentActivityContainer) recentActivityContainer.classList.add('hidden');
+        if (recentActivityNew) recentActivityNew.classList.remove('hidden');
+      }
+
+    } else {
+      currentActiveAttemptId = null;
+      if (heroReturningActive) heroReturningActive.classList.add('hidden');
+      if (heroReturningInactive) heroReturningInactive.classList.add('hidden');
+      if (heroNew) heroNew.classList.remove('hidden');
+
+      if (perfReturning) perfReturning.classList.add('hidden');
+      if (perfNew) perfNew.classList.remove('hidden');
+      if (perfPlaceholderTitle) perfPlaceholderTitle.textContent = "Performance Analytics will unlock here";
+      if (perfPlaceholderDesc) perfPlaceholderDesc.textContent = "Complete your first evaluated practice test or chapter drill to generate subject-wise accuracy insights.";
+      if (perfPlaceholderBtn) perfPlaceholderBtn.textContent = "Attempt 1st Test Now";
+
+      if (recentActivityContainer) recentActivityContainer.classList.add('hidden');
+      if (recentActivityNew) recentActivityNew.classList.remove('hidden');
+
+      if (studyStatus) {
+        studyStatus.textContent = "New Account";
+        studyStatus.className = "text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200";
+      }
+
+      const mTests = document.getElementById('metric-tests-val');
+      if (mTests) mTests.textContent = "0";
+
+      const mQuestions = document.getElementById('metric-questions-val');
+      if (mQuestions) mQuestions.textContent = "0";
+
+      const mAccuracy = document.getElementById('metric-accuracy-val');
+      if (mAccuracy) mAccuracy.textContent = "—";
+
+      const mScore = document.getElementById('metric-score-val');
+      if (mScore) mScore.textContent = "—";
+    }
+  }
+
+  // Safe DOM Rendering for Subject Accuracy
+  function renderSubjectAccuracy(subjects, recommendation) {
+    const container = document.getElementById('subject-accuracy-container');
+    if (!container) return;
+    container.replaceChildren();
+
+    subjects.forEach(item => {
+      const itemWrapper = document.createElement('div');
+
+      const topRow = document.createElement('div');
+      topRow.className = "flex justify-between items-center text-xs mb-1";
+
+      const nameWrapper = document.createElement('span');
+      nameWrapper.className = "font-medium text-[#0F172A] flex items-center gap-1.5";
+      nameWrapper.textContent = item.label + " ";
+
+      const tagSpan = document.createElement('span');
+      tagSpan.className = `text-xs font-semibold px-1.5 py-0.5 rounded border ${item.tagClass}`;
+      tagSpan.textContent = item.tag;
+      nameWrapper.appendChild(tagSpan);
+
+      const scoreWrapper = document.createElement('span');
+      scoreWrapper.className = "font-semibold text-slate-800";
+      scoreWrapper.textContent = `${item.accuracy}% `;
+
+      const countSub = document.createElement('span');
+      countSub.className = "text-xs text-[#64748B] font-normal";
+      countSub.textContent = `(${item.correct} / ${item.total})`;
+      scoreWrapper.appendChild(countSub);
+
+      topRow.appendChild(nameWrapper);
+      topRow.appendChild(scoreWrapper);
+
+      const track = document.createElement('div');
+      track.className = "w-full bg-slate-100 rounded-full h-2 overflow-hidden";
+
+      const fill = document.createElement('div');
+      fill.className = `${item.barClass} h-2 rounded-full`;
+      fill.style.width = `${item.accuracy}%`;
+
+      track.appendChild(fill);
+      itemWrapper.appendChild(topRow);
+      itemWrapper.appendChild(track);
+
+      container.appendChild(itemWrapper);
+    });
+
+    const recWrapper = document.getElementById('recommendation-card-wrapper');
+    if (recWrapper) {
+      if (recommendation) {
+        recWrapper.classList.remove('hidden');
+        const recTitle = document.getElementById('recommendation-title');
+        if (recTitle) recTitle.textContent = recommendation.title;
+
+        const recDesc = document.getElementById('recommendation-desc');
+        if (recDesc) recDesc.textContent = recommendation.desc;
+
+        const recBtn = document.getElementById('recommendation-btn');
+        if (recBtn) {
+          recBtn.textContent = recommendation.ctaText;
+          recBtn.onclick = function(e) {
+            showPrototypeNotice(`Opening Chapter Drills for ${recommendation.subjectKey || 'Subject'}`, e);
+          };
+        }
+      } else {
+        recWrapper.classList.add('hidden');
+      }
+    }
+  }
+
+  // Safe DOM Rendering for Recent Activity
+  function renderRecentActivityList(activities) {
+    const list = document.getElementById('recent-activity-list');
+    if (!list) return;
+    list.replaceChildren();
+
+    const examObj = getExamObject(currentTargetExamId);
+
+    activities.forEach(act => {
+      const row = document.createElement('div');
+      row.className = "py-2.5 flex items-start justify-between gap-2.5";
+
+      const left = document.createElement('div');
+      left.className = "min-w-0";
+
+      const titleLine = document.createElement('div');
+      titleLine.className = "flex items-center gap-1.5";
+
+      const dot = document.createElement('span');
+      let dotColor = 'bg-slate-400';
+      if (act.rawStatus === 'in_progress') dotColor = 'bg-amber-500';
+      else if (act.rawStatus === 'completed' || act.rawStatus === 'submitted') dotColor = 'bg-emerald-500';
+      else if (act.rawStatus === 'expired' || act.rawStatus === 'abandoned') dotColor = 'bg-slate-400';
+      dot.className = `w-2 h-2 rounded-full ${dotColor}`;
+
+      const titleP = document.createElement('p');
+      titleP.className = "text-xs font-bold text-[#0F172A] truncate";
+      titleP.textContent = act.title.startsWith("SSC") ? act.title : `${examObj.code} ${act.title}`;
+
+      titleLine.appendChild(dot);
+      titleLine.appendChild(titleP);
+
+      const subP = document.createElement('p');
+      subP.className = "text-xs text-[#64748B] mt-0.5";
+
+      const metaParts = [];
+      if (act.status && act.status !== 'Unknown') {
+        metaParts.push(act.status);
+      }
+      if (act.detail) {
+        metaParts.push(act.detail);
+      }
+      if (act.timeDisplay) {
+        metaParts.push(act.timeDisplay);
+      }
+      subP.textContent = metaParts.join(' • ');
+
+      left.appendChild(titleLine);
+      left.appendChild(subP);
+      row.appendChild(left);
+
+      // Clean Action Presentation: only show if eligible
+      if (act.action && act.action.label) {
+        const btn = document.createElement('button');
+        if (act.action.type === 'resume') {
+          btn.className = "shrink-0 text-xs font-semibold px-2.5 py-1 bg-[#EFF6FF] text-[#1D4ED8] hover:bg-blue-100 rounded transition-colors cursor-pointer";
+        } else {
+          btn.className = "shrink-0 text-xs font-medium px-2 py-1 text-[#475569] hover:text-[#0F172A] hover:bg-slate-100 rounded transition-colors cursor-pointer";
+        }
+        btn.textContent = act.action.label;
+        btn.addEventListener('click', function(e) {
+          if (act.action.type === 'resume') {
+            showPrototypeNotice(`Resuming attempt: ${titleP.textContent}`, e);
+          } else if (act.action.type === 'view_result') {
+            showPrototypeNotice(`Opening Results for: ${titleP.textContent}`, e);
+          }
+        });
+        row.appendChild(btn);
+      }
+
+      list.appendChild(row);
+    });
+  }
+
+  // Resume active test handler
+  function resumeActiveTest(e) {
+    if (e) e.preventDefault();
+    if (currentActiveAttemptId) {
+      showPrototypeNotice(`Resuming active test (ID: ${currentActiveAttemptId}) in exam environment`, null);
+    } else {
+      showPrototypeNotice('No active attempt found to resume.', null);
+    }
+  }
+
+  // Target Exam Dialog Modal
+  function openTargetExamModal() {
+    const overlay = document.getElementById('target-modal-overlay');
+    const container = document.getElementById('exam-options-container');
+    if (!overlay || !container) return;
+
+    container.replaceChildren();
+
+    OFFICIAL_EXAMS.forEach(exam => {
+      const isSelected = (exam.id === currentTargetExamId);
+
+      const label = document.createElement('label');
+      label.className = `exam-option-label flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-colors ${
+        isSelected ? 'border-[#1D4ED8] bg-blue-50/50' : 'border-[#E2E8F0] hover:bg-slate-50'
+      }`;
+
+      const leftDiv = document.createElement('div');
+      leftDiv.className = "flex items-center gap-3";
+
+      const radio = document.createElement('input');
+      radio.type = "radio";
+      radio.name = "target-exam-option";
+      radio.value = exam.id;
+      radio.checked = isSelected;
+      radio.className = "text-[#1D4ED8] focus:ring-[#1D4ED8]";
+
+      const textDiv = document.createElement('div');
+      const titleDiv = document.createElement('div');
+      titleDiv.className = "text-sm font-bold text-[#0F172A]";
+      titleDiv.textContent = exam.code;
+
+      const descDiv = document.createElement('div');
+      descDiv.className = "text-xs text-[#64748B]";
+      descDiv.textContent = exam.name;
+
+      textDiv.appendChild(titleDiv);
+      textDiv.appendChild(descDiv);
+
+      leftDiv.appendChild(radio);
+      leftDiv.appendChild(textDiv);
+      label.appendChild(leftDiv);
+
+      if (isSelected) {
+        const badge = document.createElement('span');
+        badge.className = "text-xs font-semibold text-[#1D4ED8] bg-blue-100 px-2 py-0.5 rounded";
+        badge.textContent = "Active";
+        label.appendChild(badge);
+      }
+
+      label.addEventListener('click', function() {
+        radio.checked = true;
+      });
+
+      container.appendChild(label);
+    });
+
+    overlay.classList.remove('hidden');
+  }
+
+  function closeTargetExamModal() {
+    const overlay = document.getElementById('target-modal-overlay');
+    if (overlay) overlay.classList.add('hidden');
+  }
+
+  // Canonical Target Exam Save Handler
+  function applyTargetExamSelection() {
+    const selected = document.querySelector('input[name="target-exam-option"]:checked');
+    if (selected) {
+      const newExamId = normalizeExamId(selected.value);
+
+      // 1. Update window.SSCFlixState.studentPreferences.targetExam
+      window.SSCFlixState = window.SSCFlixState || {};
+      window.SSCFlixState.studentPreferences = window.SSCFlixState.studentPreferences || {};
+      window.SSCFlixState.studentPreferences.targetExam = newExamId;
+
+      // 2. Dispatch single canonical event
+      window.dispatchEvent(new CustomEvent('sscflix:statechange', {
+        detail: { type: 'targetExam', examId: newExamId }
+      }));
+
+      // 3. Close modal
+      closeTargetExamModal();
+    }
+  }
+
+  // Profile Dropdown Toggle
+  function toggleProfileMenu() {
+    const dropdown = document.getElementById('profile-dropdown');
+    const btn = document.getElementById('profile-btn');
+    if (!dropdown || !btn) return;
+    const isHidden = dropdown.classList.contains('hidden');
+    if (isHidden) {
+      dropdown.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+    } else {
+      dropdown.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  // Close dropdown on outside click
+  document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('profile-dropdown');
+    const btn = document.getElementById('profile-btn');
+    if (dropdown && btn && !btn.contains(event.target) && !dropdown.contains(event.target)) {
+      dropdown.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Mobile More Bottom Sheet Toggle
+  function toggleMobileMoreSheet() {
+    const sheet = document.getElementById('mobile-more-sheet');
+    const overlay = document.getElementById('mobile-more-overlay');
+    const btn = document.getElementById('more-nav-btn');
+    if (!sheet || !overlay || !btn) return;
+    const isHidden = sheet.classList.contains('hidden');
+    if (isHidden) {
+      sheet.classList.remove('hidden');
+      overlay.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+    } else {
+      sheet.classList.add('hidden');
+      overlay.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  // Feedback Notification Banner
+  function showPrototypeNotice(message, event) {
+    if (event) event.preventDefault();
+    const banner = document.getElementById('prototype-banner');
+    const bannerText = document.getElementById('prototype-banner-text');
+    if (!banner || !bannerText) return;
+
+    bannerText.replaceChildren();
+    bannerText.textContent = message;
+    banner.classList.remove('hidden');
+    banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function dismissPrototypeNotice() {
+    const banner = document.getElementById('prototype-banner');
+    if (banner) banner.classList.add('hidden');
+  }
+
+  // Canonical single state-change listener to avoid duplicate renders
+  function handleCanonicalStateChange(e) {
+    if (e && e.detail && e.detail.examId) {
+      currentTargetExamId = normalizeExamId(e.detail.examId);
+    } else if (window.SSCFlixState && window.SSCFlixState.studentPreferences && window.SSCFlixState.studentPreferences.targetExam) {
+      currentTargetExamId = normalizeExamId(window.SSCFlixState.studentPreferences.targetExam);
+    }
+    renderDashboard();
+  }
+
+  window.addEventListener('sscflix:statechange', handleCanonicalStateChange);
+
+  // Initial rendering on DOM load
+  document.addEventListener('DOMContentLoaded', function() {
+    renderDashboard();
+  });
+</script>
+</body></html>

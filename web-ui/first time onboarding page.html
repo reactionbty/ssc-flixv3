@@ -1,0 +1,459 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SSC Flix — First-Time Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#1D4ED8',
+              navy: '#1E3A8A',
+              accent: '#F59E0B'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            DEFAULT: '0.5rem',
+            lg: '0.5rem',
+            xl: '0.5rem'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#F8FAFC] font-sans text-[#0F172A] min-h-screen flex flex-col justify-between antialiased selection:bg-blue-100 selection:text-blue-900">
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur border-b border-[#E2E8F0]">
+<div class="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+<div class="flex items-center">
+<img alt="SSC Flix" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s">
+</div>
+<div>
+<span class="inline-flex items-center text-xs font-semibold tracking-wide uppercase text-[#475569] bg-[#F1F5F9] px-3 py-1 rounded-lg border border-[#E2E8F0]">
+          First-time setup
+        </span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="w-full pt-16 flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-10">
+<div class="w-full max-w-3xl my-6 sm:my-8">
+<!-- Onboarding Card Container -->
+<div class="bg-white border border-[#E2E8F0] shadow-sm rounded-lg p-6 sm:p-8 md:p-10 transition-all duration-300" id="onboarding-card">
+<!-- FORM VIEW -->
+<div class="space-y-8" id="form-container">
+<!-- Header Block -->
+<div>
+<span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#1D4ED8] bg-blue-50 px-2.5 py-1 rounded-lg mb-3 border border-blue-100">
+<span class="w-1.5 h-1.5 rounded-full bg-[#1D4ED8]"></span>
+              Account Setup
+            </span>
+<h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#0F172A]">
+              Let's set up your preparation
+            </h1>
+<p class="text-sm sm:text-base text-[#475569] mt-2">
+              Choose your target examination and preferred language to personalize your SSC Flix experience.
+            </p>
+</div>
+<!-- Section 1: Examination Selection -->
+<fieldset class="space-y-3.5">
+<legend class="sr-only" id="exam-group-label">Choose your primary target examination</legend>
+<div>
+<h2 class="text-lg font-semibold text-[#0F172A]">
+                Which exam are you preparing for?
+              </h2>
+<p class="text-sm text-[#475569] mt-0.5">
+                Choose your primary target examination. You can change this later in Preferences.
+              </p>
+</div>
+<!-- Examination Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4 pt-1">
+<!-- SSC CGL -->
+<label class="relative block cursor-pointer group">
+<input aria-describedby="exam-cgl-desc" class="sr-only peer" data-fullname="Combined Graduate Level" name="examination" type="radio" value="SSC CGL">
+<div class="h-full p-3 sm:p-5 rounded-lg bg-white border border-[#E2E8F0] transition-all duration-150 hover:border-slate-300 peer-focus-visible:ring-2 peer-focus-visible:ring-[#1D4ED8] peer-focus-visible:ring-offset-2 peer-checked:border-[#1D4ED8] peer-checked:bg-[#EFF6FF] peer-checked:shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="w-8 h-8 rounded-lg bg-slate-100 text-[#1D4ED8] flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[19px]">school</span>
+</div>
+<div class="check-icon hidden text-[#1D4ED8]">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</div>
+</div>
+<div class="mt-3">
+<span class="text-base font-semibold text-[#0F172A] block leading-tight">SSC CGL</span>
+<span class="text-xs sm:text-sm text-[#475569] block mt-1 leading-snug" id="exam-cgl-desc">Combined Graduate Level</span>
+</div>
+</div>
+</label>
+<!-- SSC CHSL -->
+<label class="relative block cursor-pointer group">
+<input aria-describedby="exam-chsl-desc" class="sr-only peer" data-fullname="Combined Higher Secondary Level" name="examination" type="radio" value="SSC CHSL">
+<div class="h-full p-3 sm:p-5 rounded-lg bg-white border border-[#E2E8F0] transition-all duration-150 hover:border-slate-300 peer-focus-visible:ring-2 peer-focus-visible:ring-[#1D4ED8] peer-focus-visible:ring-offset-2 peer-checked:border-[#1D4ED8] peer-checked:bg-[#EFF6FF] peer-checked:shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="w-8 h-8 rounded-lg bg-slate-100 text-[#1D4ED8] flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[19px]">history_edu</span>
+</div>
+<div class="check-icon hidden text-[#1D4ED8]">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</div>
+</div>
+<div class="mt-3">
+<span class="text-base font-semibold text-[#0F172A] block leading-tight">SSC CHSL</span>
+<span class="text-xs sm:text-sm text-[#475569] block mt-1 leading-snug" id="exam-chsl-desc">Combined Higher Secondary Level</span>
+</div>
+</div>
+</label>
+<!-- SSC CPO -->
+<label class="relative block cursor-pointer group">
+<input aria-describedby="exam-cpo-desc" class="sr-only peer" data-fullname="Central Police Organisation" name="examination" type="radio" value="SSC CPO">
+<div class="h-full p-3 sm:p-5 rounded-lg bg-white border border-[#E2E8F0] transition-all duration-150 hover:border-slate-300 peer-focus-visible:ring-2 peer-focus-visible:ring-[#1D4ED8] peer-focus-visible:ring-offset-2 peer-checked:border-[#1D4ED8] peer-checked:bg-[#EFF6FF] peer-checked:shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="w-8 h-8 rounded-lg bg-slate-100 text-[#1D4ED8] flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[19px]">verified_user</span>
+</div>
+<div class="check-icon hidden text-[#1D4ED8]">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</div>
+</div>
+<div class="mt-3">
+<span class="text-base font-semibold text-[#0F172A] block leading-tight">SSC CPO</span>
+<span class="text-xs sm:text-sm text-[#475569] block mt-1 leading-snug" id="exam-cpo-desc">Central Police Organisation</span>
+</div>
+</div>
+</label>
+<!-- SSC MTS -->
+<label class="relative block cursor-pointer group">
+<input aria-describedby="exam-mts-desc" class="sr-only peer" data-fullname="Multi-Tasking Staff" name="examination" type="radio" value="SSC MTS">
+<div class="h-full p-3 sm:p-5 rounded-lg bg-white border border-[#E2E8F0] transition-all duration-150 hover:border-slate-300 peer-focus-visible:ring-2 peer-focus-visible:ring-[#1D4ED8] peer-focus-visible:ring-offset-2 peer-checked:border-[#1D4ED8] peer-checked:bg-[#EFF6FF] peer-checked:shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="w-8 h-8 rounded-lg bg-slate-100 text-[#1D4ED8] flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[19px]">assignment</span>
+</div>
+<div class="check-icon hidden text-[#1D4ED8]">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</div>
+</div>
+<div class="mt-3">
+<span class="text-base font-semibold text-[#0F172A] block leading-tight">SSC MTS</span>
+<span class="text-xs sm:text-sm text-[#475569] block mt-1 leading-snug" id="exam-mts-desc">Multi-Tasking Staff</span>
+</div>
+</div>
+</label>
+<!-- SSC GD -->
+<label class="relative block cursor-pointer group">
+<input aria-describedby="exam-gd-desc" class="sr-only peer" data-fullname="General Duty" name="examination" type="radio" value="SSC GD">
+<div class="h-full p-3 sm:p-5 rounded-lg bg-white border border-[#E2E8F0] transition-all duration-150 hover:border-slate-300 peer-focus-visible:ring-2 peer-focus-visible:ring-[#1D4ED8] peer-focus-visible:ring-offset-2 peer-checked:border-[#1D4ED8] peer-checked:bg-[#EFF6FF] peer-checked:shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="w-8 h-8 rounded-lg bg-slate-100 text-[#1D4ED8] flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[19px]">shield</span>
+</div>
+<div class="check-icon hidden text-[#1D4ED8]">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</div>
+</div>
+<div class="mt-3">
+<span class="text-base font-semibold text-[#0F172A] block leading-tight">SSC GD</span>
+<span class="text-xs sm:text-sm text-[#475569] block mt-1 leading-snug" id="exam-gd-desc">General Duty</span>
+</div>
+</div>
+</label>
+<!-- SSC Stenographer -->
+<label class="relative block cursor-pointer group">
+<input aria-describedby="exam-steno-desc" class="sr-only peer" data-fullname="Grade C &amp; D Services" name="examination" type="radio" value="SSC Stenographer">
+<div class="h-full p-3 sm:p-5 rounded-lg bg-white border border-[#E2E8F0] transition-all duration-150 hover:border-slate-300 peer-focus-visible:ring-2 peer-focus-visible:ring-[#1D4ED8] peer-focus-visible:ring-offset-2 peer-checked:border-[#1D4ED8] peer-checked:bg-[#EFF6FF] peer-checked:shadow-sm">
+<div class="flex items-start justify-between gap-2">
+<div class="w-8 h-8 rounded-lg bg-slate-100 text-[#1D4ED8] flex items-center justify-center group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[19px]">edit_note</span>
+</div>
+<div class="check-icon hidden text-[#1D4ED8]">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</div>
+</div>
+<div class="mt-3">
+<span class="text-base font-semibold text-[#0F172A] block leading-tight">SSC Stenographer</span>
+<span class="text-xs sm:text-sm text-[#475569] block mt-1 leading-snug" id="exam-steno-desc">Grade C &amp; D Services</span>
+</div>
+</div>
+</label>
+</div>
+</fieldset>
+<!-- Section 2: Preferred Language Selection -->
+<fieldset class="space-y-3.5 pt-2">
+<legend class="sr-only" id="lang-group-label">Choose your preferred language</legend>
+<div>
+<h2 class="text-lg font-semibold text-[#0F172A]">
+                Choose your preferred language
+              </h2>
+<p class="text-sm text-[#475569] mt-0.5">
+                Select the language you prefer for your learning material and examination mock tests.
+              </p>
+</div>
+<!-- Language Grid -->
+<div class="grid grid-cols-2 gap-2.5 sm:gap-4 pt-1">
+<!-- English -->
+<label class="relative block cursor-pointer group">
+<input aria-describedby="lang-en-desc" class="sr-only peer" data-sub="Study material and mock tests in English" name="language" type="radio" value="English">
+<div class="h-full p-3 sm:p-4 rounded-lg bg-white border border-[#E2E8F0] transition-all duration-150 hover:border-slate-300 peer-focus-visible:ring-2 peer-focus-visible:ring-[#1D4ED8] peer-focus-visible:ring-offset-2 peer-checked:border-[#1D4ED8] peer-checked:bg-[#EFF6FF] peer-checked:shadow-sm flex items-start gap-2.5 sm:gap-3.5">
+<div class="w-8 h-8 rounded-lg bg-slate-100 flex-shrink-0 flex items-center justify-center text-[#1D4ED8] font-bold text-xs mt-0.5 group-hover:scale-105 transition-transform">
+                    EN
+                  </div>
+<div class="flex-1 min-w-0 pr-6">
+<span class="text-base font-semibold text-[#0F172A] block leading-snug">English</span>
+<p class="text-xs sm:text-sm text-[#475569] leading-snug mt-0.5" id="lang-en-desc">
+                      Study material and mock tests in English
+                    </p>
+</div>
+<div class="check-icon hidden text-[#1D4ED8] absolute top-4 right-4">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</div>
+</div>
+</label>
+<!-- Hindi -->
+<label class="relative block cursor-pointer group">
+<input aria-describedby="lang-hi-desc" class="sr-only peer" data-sub="अध्ययन सामग्री और मॉक टेस्ट हिंदी में" name="language" type="radio" value="हिंदी (Hindi)">
+<div class="h-full p-3 sm:p-4 rounded-lg bg-white border border-[#E2E8F0] transition-all duration-150 hover:border-slate-300 peer-focus-visible:ring-2 peer-focus-visible:ring-[#1D4ED8] peer-focus-visible:ring-offset-2 peer-checked:border-[#1D4ED8] peer-checked:bg-[#EFF6FF] peer-checked:shadow-sm flex items-start gap-2.5 sm:gap-3.5">
+<div class="w-8 h-8 rounded-lg bg-slate-100 flex-shrink-0 flex items-center justify-center text-[#1D4ED8] font-bold text-xs mt-0.5 group-hover:scale-105 transition-transform">
+                    हि
+                  </div>
+<div class="flex-1 min-w-0 pr-6">
+<span class="text-base font-semibold text-[#0F172A] block leading-snug">हिंदी (Hindi)</span>
+<p class="text-xs sm:text-sm text-[#475569] leading-snug mt-0.5" id="lang-hi-desc">
+                      अध्ययन सामग्री और मॉक टेस्ट हिंदी में
+                    </p>
+</div>
+<div class="check-icon hidden text-[#1D4ED8] absolute top-4 right-4">
+<span class="material-symbols-outlined text-[20px] font-bold">check_circle</span>
+</div>
+</div>
+</label>
+</div>
+</fieldset>
+<!-- Inline Validation Error Notice -->
+<div class="hidden flex items-start gap-3 p-3.5 rounded-lg bg-red-50 border border-red-200 text-red-900 text-sm" id="validation-error" role="alert">
+<span class="material-symbols-outlined text-[20px] flex-shrink-0 text-red-600 mt-0.5">error</span>
+<div class="leading-normal">
+<span class="font-semibold block">Incomplete selection</span>
+              Please select both a target examination and preferred language to proceed.
+            </div>
+</div>
+<!-- Actions -->
+<div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="order-2 sm:order-1 text-center sm:text-left">
+<p class="text-xs sm:text-sm text-[#475569] flex items-center justify-center sm:justify-start gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-slate-400">lock</span>
+                You can update these preferences anytime in account settings.
+              </p>
+</div>
+<button class="order-1 sm:order-2 w-full sm:w-auto h-11 px-7 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white font-semibold text-sm rounded-lg shadow-sm transition-colors duration-150 flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]" id="save-btn" type="button">
+<span id="btn-text" class="">Save &amp; Continue</span>
+<span class="material-symbols-outlined text-[18px]" id="btn-icon">arrow_forward</span>
+<svg class="hidden animate-spin h-5 w-5 text-white" fill="none" id="btn-spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- SUCCESS / PROTOTYPE VIEW (Hidden initially) -->
+<div class="hidden py-4 text-center space-y-6" id="success-view">
+<div class="w-14 h-14 mx-auto rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center text-[#1D4ED8]">
+<span class="material-symbols-outlined text-[32px] font-bold">check_circle</span>
+</div>
+<div>
+<span class="inline-block text-xs font-bold uppercase tracking-wider text-[#1D4ED8] bg-blue-50 px-2.5 py-1 rounded-lg mb-2 border border-blue-100">
+              Ready for Prep
+            </span>
+<h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#0F172A]">
+              Setup Complete!
+            </h2>
+<p class="text-sm sm:text-base text-[#475569] mt-1.5 max-w-md mx-auto">
+              Your preferences have been selected for this prototype preview.
+            </p>
+</div>
+<!-- Summary Overview Card -->
+<div class="max-w-md mx-auto bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg p-5 text-left space-y-4">
+<div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+<span class="text-xs font-bold uppercase tracking-wider text-[#475569]">Selected Preferences</span>
+<span class="text-xs font-semibold text-[#1D4ED8] bg-blue-50 px-2 py-0.5 rounded border border-blue-100">Preview</span>
+</div>
+<!-- Target Exam Summary -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-white border border-[#E2E8F0] flex items-center justify-center text-[#1D4ED8] flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">school</span>
+</div>
+<div>
+<p class="text-xs text-[#475569] leading-none">Primary Examination</p>
+<h3 class="text-base font-bold text-[#0F172A] mt-1" id="summary-exam">SSC CGL</h3>
+<p class="text-xs text-[#475569] mt-0.5" id="summary-exam-sub">Combined Graduate Level</p>
+</div>
+</div>
+<!-- Target Language Summary -->
+<div class="flex items-start gap-3 pt-1">
+<div class="w-8 h-8 rounded-lg bg-white border border-[#E2E8F0] flex items-center justify-center text-[#1D4ED8] flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">translate</span>
+</div>
+<div>
+<p class="text-xs text-[#475569] leading-none">Preferred Language</p>
+<h3 class="text-base font-bold text-[#0F172A] mt-1" id="summary-lang">English</h3>
+</div>
+</div>
+</div>
+<!-- Prototype Mode Notice Banner -->
+<div class="max-w-md mx-auto p-3.5 bg-amber-50 border border-amber-200 rounded-lg text-left flex items-start gap-2.5 text-amber-900">
+<span class="material-symbols-outlined text-[20px] text-amber-600 mt-0.5 flex-shrink-0">info</span>
+<p class="text-xs leading-relaxed">
+<strong>UI Prototype Mode:</strong> Your selections are displayed for this preview only. No account preferences have been saved to a backend.
+            </p>
+</div>
+<!-- CTAs -->
+<div class="pt-2 flex flex-col items-center gap-3">
+<div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
+<button class="w-full sm:w-auto h-11 px-5 rounded-lg border border-[#E2E8F0] bg-white hover:bg-slate-50 text-[#0F172A] font-semibold text-sm transition-colors cursor-pointer flex items-center justify-center gap-1.5" id="modify-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                Modify Preferences
+              </button>
+<button class="w-full sm:w-auto h-11 px-6 rounded-lg bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white font-semibold text-sm shadow-sm transition-colors cursor-pointer flex items-center justify-center gap-2" id="dashboard-btn" type="button">
+<span class="">Continue to Dashboard</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- Polite Inline Notice for Dashboard Navigation Prototype -->
+<div class="hidden max-w-md w-full p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-900 text-center leading-relaxed" id="dashboard-notice">
+              Dashboard navigation will be connected when the dashboard is implemented. Thank you for testing this prototype step!
+            </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-white border-t border-[#E2E8F0] py-4">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#475569]">
+<p class="text-center sm:text-left">© 2026 SSC Flix. All rights reserved.</p>
+<nav class="flex items-center gap-6">
+<a class="hover:text-[#0F172A] transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-[#0F172A] transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-[#0F172A] transition-colors" href="#">Help &amp; Support</a>
+</nav>
+</div>
+</footer>
+<script>
+    (function initOnboarding() {
+      const examInputs = document.querySelectorAll('input[name="examination"]');
+      const langInputs = document.querySelectorAll('input[name="language"]');
+      const validationError = document.getElementById('validation-error');
+      const saveBtn = document.getElementById('save-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.getElementById('btn-icon');
+      const btnSpinner = document.getElementById('btn-spinner');
+      const formContainer = document.getElementById('form-container');
+      const successView = document.getElementById('success-view');
+      const modifyBtn = document.getElementById('modify-btn');
+      const dashboardBtn = document.getElementById('dashboard-btn');
+      const dashboardNotice = document.getElementById('dashboard-notice');
+
+      const summaryExam = document.getElementById('summary-exam');
+      const summaryExamSub = document.getElementById('summary-exam-sub');
+      const summaryLang = document.getElementById('summary-lang');
+
+      function syncCheckVisuals() {
+        examInputs.forEach(input => {
+          const card = input.closest('label');
+          const checkIcon = card.querySelector('.check-icon');
+          if (checkIcon) {
+            if (input.checked) {
+              checkIcon.classList.remove('hidden');
+            } else {
+              checkIcon.classList.add('hidden');
+            }
+          }
+        });
+
+        langInputs.forEach(input => {
+          const card = input.closest('label');
+          const checkIcon = card.querySelector('.check-icon');
+          if (checkIcon) {
+            if (input.checked) {
+              checkIcon.classList.remove('hidden');
+            } else {
+              checkIcon.classList.add('hidden');
+            }
+          }
+        });
+
+        const selectedExam = document.querySelector('input[name="examination"]:checked');
+        const selectedLang = document.querySelector('input[name="language"]:checked');
+        if (selectedExam && selectedLang) {
+          validationError.classList.add('hidden');
+        }
+      }
+
+      examInputs.forEach(input => {
+        input.addEventListener('change', syncCheckVisuals);
+      });
+
+      langInputs.forEach(input => {
+        input.addEventListener('change', syncCheckVisuals);
+      });
+
+      saveBtn.addEventListener('click', () => {
+        const selectedExam = document.querySelector('input[name="examination"]:checked');
+        const selectedLang = document.querySelector('input[name="language"]:checked');
+
+        if (!selectedExam || !selectedLang) {
+          validationError.classList.remove('hidden');
+          validationError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          return;
+        }
+
+        validationError.classList.add('hidden');
+        saveBtn.disabled = true;
+        btnText.textContent = 'Saving Preferences...';
+        btnIcon.classList.add('hidden');
+        btnSpinner.classList.remove('hidden');
+
+        setTimeout(() => {
+          saveBtn.disabled = false;
+          btnText.textContent = 'Save & Continue';
+          btnIcon.classList.remove('hidden');
+          btnSpinner.classList.add('hidden');
+
+          summaryExam.textContent = selectedExam.value;
+          summaryExamSub.textContent = selectedExam.getAttribute('data-fullname') || '';
+          summaryLang.textContent = selectedLang.value;
+
+          formContainer.classList.add('hidden');
+          successView.classList.remove('hidden');
+          dashboardNotice.classList.add('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 500);
+      });
+
+      modifyBtn.addEventListener('click', () => {
+        successView.classList.add('hidden');
+        formContainer.classList.remove('hidden');
+        dashboardNotice.classList.add('hidden');
+        syncCheckVisuals();
+      });
+
+      dashboardBtn.addEventListener('click', () => {
+        dashboardNotice.classList.remove('hidden');
+        dashboardNotice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      // Initially ensure all visual checkmarks are hidden
+      syncCheckVisuals();
+    })();
+  </script>
+
+
+</body></html>

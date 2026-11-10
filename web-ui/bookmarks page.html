@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bookmarks - SSC Flix</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#1D4ED8',
+              navy: '#1E3A8A',
+              amber: '#F59E0B',
+              bg: '#F8FAFC',
+              surface: '#FFFFFF',
+              border: '#E2E8F0',
+              textPrimary: '#0F172A',
+              textSecondary: '#475569',
+              destructive: '#DC2626',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .safe-pb {
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+  </style>
+</head>
+<body class="bg-brand-bg text-brand-textPrimary antialiased min-h-screen flex flex-col">
+<!-- Fixed Top Header (56px) -->
+<header class="fixed top-0 left-0 right-0 h-14 bg-brand-surface border-b border-brand-border z-40 px-4 md:px-6 flex items-center justify-between">
+<div class="flex items-center gap-3 min-w-0">
+<a aria-label="SSC Flix Home" class="flex items-center flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-brand-blue rounded" data-nav-name="Home" href="#">
+<img alt="SSC Flix Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/>
+</a>
+<span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider bg-slate-100 text-brand-textSecondary border border-brand-border truncate">
+        CGL / CHSL PREP TIER-1 &amp; TIER-2
+      </span>
+</div>
+<div class="flex items-center gap-3">
+<button aria-label="User Profile" class="w-9 h-9 rounded-full bg-brand-blue text-white flex items-center justify-center font-semibold text-sm hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-blue" data-nav-name="Profile" id="header-profile-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</button>
+</div>
+</header>
+<!-- Persistent Desktop Sidebar (240px) -->
+<aside aria-label="Sidebar Navigation" class="hidden md:flex fixed left-0 top-14 bottom-0 w-60 bg-brand-surface border-r border-brand-border z-30 flex-col py-4 overflow-y-auto">
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="Dashboard" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="Mock Tests" href="#">
+<span class="material-symbols-outlined text-[20px]">quiz</span>
+<span>Mock Tests</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="PYQs" href="#">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+<span>PYQs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="Chapter Tests" href="#">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span>Chapter Tests</span>
+</a>
+<div class="my-2 border-t border-brand-border"></div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="My Tests" href="#">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+<span>My Tests</span>
+</a>
+<a aria-current="page" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-semibold bg-brand-blue text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+<span>Bookmarks</span>
+</a>
+<div class="my-2 border-t border-brand-border"></div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="Preferences" href="#">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span>Preferences</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="Profile" href="#">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+<span>Profile</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<div class="md:pl-60 w-full min-h-screen flex flex-col pt-14 pb-20 md:pb-10">
+<main class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6" id="main-content">
+<!-- Breadcrumb Bar -->
+<nav aria-label="Breadcrumbs" class="flex items-center gap-1.5 text-xs font-medium text-brand-textSecondary mb-4">
+<a class="hover:text-brand-blue transition-colors" data-nav-name="Dashboard" href="#">Dashboard</a>
+<span class="text-slate-400">/</span>
+<span class="text-brand-textPrimary font-semibold">Bookmarks</span>
+</nav>
+<!-- Page Header Card -->
+<div class="bg-brand-surface border border-brand-border rounded-lg p-5 sm:p-6 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-sm">
+<div class="space-y-1">
+<div class="flex items-center gap-3">
+<h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-brand-textPrimary">Bookmarks</h1>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-brand-blue border border-blue-200" id="header-count-badge">
+              6 Total
+            </span>
+</div>
+<p class="text-sm text-brand-textSecondary">
+            Your saved questions, ready for revision and practice.
+          </p>
+</div>
+<div class="flex-shrink-0">
+<button class="w-full sm:w-auto min-h-[44px] px-5 py-2.5 rounded-lg bg-brand-blue text-white text-sm font-semibold flex items-center justify-center gap-2 hover:bg-blue-700 active:scale-[0.99] transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2" id="practice-action-btn" type="button">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<span id="practice-btn-label">Practice Saved Questions (6)</span>
+</button>
+</div>
+</div>
+<!-- Filter Controls -->
+<div class="bg-brand-surface border border-brand-border rounded-lg p-4 sm:p-5 mb-6 shadow-sm">
+<!-- Desktop: 1 single row. Mobile: 2-column top, subject below, reset below. -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 items-end">
+<!-- Exam Filter -->
+<div class="col-span-1 flex flex-col gap-1">
+<label class="text-xs font-semibold text-brand-textSecondary uppercase tracking-wider" for="filter-exam">Exam</label>
+<div class="relative">
+<select class="w-full min-h-[44px] pl-3 pr-8 rounded-lg bg-slate-50 border border-brand-border text-sm text-brand-textPrimary font-medium focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue outline-none transition-colors appearance-none cursor-pointer" id="filter-exam">
+<option value="all">All Exams</option>
+<option value="SSC CGL">SSC CGL</option>
+<option value="SSC CHSL">SSC CHSL</option>
+<option value="SSC CPO">SSC CPO</option>
+<option value="SSC MTS">SSC MTS</option>
+<option value="SSC GD">SSC GD</option>
+<option value="SSC Stenographer">SSC Stenographer</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Source Filter (Mobile shares top row with Exam) -->
+<div class="col-span-1 md:order-3 flex flex-col gap-1">
+<label class="text-xs font-semibold text-brand-textSecondary uppercase tracking-wider" for="filter-source">Source</label>
+<div class="relative">
+<select class="w-full min-h-[44px] pl-3 pr-8 rounded-lg bg-slate-50 border border-brand-border text-sm text-brand-textPrimary font-medium focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue outline-none transition-colors appearance-none cursor-pointer" id="filter-source">
+<option value="all">All Sources</option>
+<option value="Mock Test">Mock Tests</option>
+<option value="PYQ Paper">PYQs</option>
+<option value="Chapter Test">Chapter Tests</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Subject / Chapter Filter (Mobile takes full width row) -->
+<div class="col-span-2 md:col-span-1 md:order-2 flex flex-col gap-1">
+<label class="text-xs font-semibold text-brand-textSecondary uppercase tracking-wider" for="filter-chapter">Subject &amp; Chapter</label>
+<div class="relative">
+<select class="w-full min-h-[44px] pl-3 pr-8 rounded-lg bg-slate-50 border border-brand-border text-sm text-brand-textPrimary font-medium focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue outline-none transition-colors appearance-none cursor-pointer" id="filter-chapter">
+<option value="all">All Subjects &amp; Chapters</option>
+<optgroup label="Quantitative Aptitude">
+<option value="Quantitative Aptitude - Arithmetic &amp; Percentages">Arithmetic &amp; Percentages</option>
+<option value="Quantitative Aptitude - Geometry &amp; Mensuration">Geometry &amp; Mensuration</option>
+</optgroup>
+<optgroup label="General Intelligence &amp; Reasoning">
+<option value="General Intelligence &amp; Reasoning - Syllogism &amp; Logic">Syllogism &amp; Logic</option>
+</optgroup>
+<optgroup label="General Awareness">
+<option value="General Awareness - Modern Indian History">Modern Indian History</option>
+</optgroup>
+<optgroup label="English Comprehension">
+<option value="English Comprehension - Sentence Correction">Sentence Correction</option>
+</optgroup>
+<optgroup label="Computer Knowledge">
+<option value="Computer Knowledge - Hardware &amp; Networking">Hardware &amp; Networking</option>
+</optgroup>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+<!-- Reset Filters Button -->
+<div class="col-span-2 md:col-span-1 md:order-4 flex items-end">
+<button class="w-full min-h-[44px] px-3 py-2 rounded-lg border border-brand-border bg-slate-50 hover:bg-slate-100 text-brand-textSecondary hover:text-brand-textPrimary text-sm font-semibold flex items-center justify-center gap-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue" id="reset-filters-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+<span>Reset Filters</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Results Count Info -->
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-center gap-2">
+<h2 class="text-base font-semibold text-brand-textPrimary" id="saved-questions-heading" tabindex="-1">Saved Questions</h2>
+<span class="text-xs text-brand-textSecondary" id="results-count-text">Showing 6 questions</span>
+</div>
+<span class="hidden text-xs font-semibold text-brand-blue bg-blue-50 px-2 py-0.5 rounded border border-blue-200" id="filtered-indicator">
+          Filtered View
+        </span>
+</div>
+<!-- Question Cards List Container -->
+<div class="space-y-4" id="questions-list-container">
+<!-- Rendered via JS -->
+</div>
+<!-- Empty State Container -->
+<div class="hidden bg-brand-surface border border-brand-border rounded-lg p-8 sm:p-12 text-center shadow-sm" id="empty-state-card">
+<div class="w-14 h-14 rounded-full bg-slate-100 text-brand-textSecondary mx-auto mb-4 flex items-center justify-center">
+<span class="material-symbols-outlined text-[30px]" id="empty-state-icon">bookmark_border</span>
+</div>
+<h3 class="text-lg font-bold text-brand-textPrimary mb-1" id="empty-state-title">No saved questions yet</h3>
+<p class="text-sm text-brand-textSecondary max-w-md mx-auto mb-6" id="empty-state-desc">
+          Questions you bookmark while studying will appear here for quick revision.
+        </p>
+<button class="min-h-[44px] px-6 py-2.5 rounded-lg bg-brand-blue text-white text-sm font-semibold hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue" id="empty-state-action-btn" type="button">
+          Explore Questions
+        </button>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (Fixed) -->
+<nav aria-label="Mobile Navigation" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-brand-surface border-t border-brand-border z-40 safe-pb flex items-center justify-around">
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-brand-textSecondary text-xs font-medium hover:text-brand-textPrimary" data-nav-name="Dashboard" href="#">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-brand-textSecondary text-xs font-medium hover:text-brand-textPrimary" data-nav-name="Mock Tests" href="#">
+<span class="material-symbols-outlined text-[22px]">quiz</span>
+<span>Mocks</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-brand-textSecondary text-xs font-medium hover:text-brand-textPrimary" data-nav-name="PYQs" href="#">
+<span class="material-symbols-outlined text-[22px]">history_edu</span>
+<span>PYQs</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-brand-textSecondary text-xs font-medium hover:text-brand-textPrimary" data-nav-name="Chapter Tests" href="#">
+<span class="material-symbols-outlined text-[22px]">menu_book</span>
+<span>Chapters</span>
+</a>
+<button aria-controls="more-sheet" aria-expanded="false" aria-haspopup="dialog" class="flex flex-col items-center justify-center flex-1 py-1 text-brand-blue text-xs font-semibold focus:outline-none" id="open-more-sheet-btn" type="button">
+<span class="material-symbols-outlined text-[22px]">more_horiz</span>
+<span>More</span>
+</button>
+</nav>
+<!-- Mobile "More" Bottom Sheet Drawer -->
+<div aria-labelledby="more-sheet-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="more-sheet" role="dialog">
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="more-sheet-backdrop"></div>
+<div class="fixed inset-x-0 bottom-0 z-10 safe-pb flex flex-col justify-end pointer-events-none">
+<div class="pointer-events-auto bg-brand-surface rounded-t-2xl border-t border-brand-border shadow-2xl p-5 transform translate-y-full transition-transform duration-300 max-h-[85vh] overflow-y-auto" id="more-sheet-panel">
+<div class="flex items-center justify-between pb-3 border-b border-brand-border mb-3">
+<div class="flex items-center gap-2">
+<span class="w-8 h-1 bg-slate-300 rounded-full mx-auto absolute top-2.5 left-1/2 -translate-x-1/2 sm:hidden"></span>
+<h3 class="text-base font-bold text-brand-textPrimary" id="more-sheet-title">Additional Navigation</h3>
+</div>
+<button aria-label="Close menu" class="w-11 h-11 rounded-lg flex items-center justify-center text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary focus:outline-none focus:ring-2 focus:ring-brand-blue" id="close-more-sheet-btn" type="button">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="My Tests" href="#">
+<span class="material-symbols-outlined text-[22px]">assignment</span>
+<span>My Tests</span>
+</a>
+<a aria-current="page" class="flex items-center justify-between px-3 py-3 rounded-lg text-sm font-semibold bg-brand-blue text-white transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[22px]">bookmark</span>
+<span>Bookmarks</span>
+</div>
+<span class="text-xs bg-white/20 text-white px-2 py-0.5 rounded-full" id="sheet-bookmark-count">6</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="Preferences" href="#">
+<span class="material-symbols-outlined text-[22px]">tune</span>
+<span>Preferences</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium text-brand-textSecondary hover:bg-slate-100 hover:text-brand-textPrimary transition-colors" data-nav-name="Profile" href="#">
+<span class="material-symbols-outlined text-[22px]">account_circle</span>
+<span>Profile</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+<!-- Question Details Modal -->
+<div aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="question-modal" role="dialog">
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="modal-backdrop"></div>
+<div class="fixed inset-0 z-10 overflow-y-auto flex items-center justify-center p-3 sm:p-6">
+<div class="w-full max-w-2xl bg-brand-surface rounded-lg border border-brand-border shadow-2xl transform scale-95 opacity-0 transition-all flex flex-col max-h-[90vh] overflow-hidden" id="modal-panel">
+<!-- Header -->
+<div class="px-5 py-4 border-b border-brand-border bg-slate-50 flex items-start justify-between gap-4">
+<div class="space-y-1.5">
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200" id="modal-exam-badge">SSC CGL</span>
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-slate-200 text-brand-textPrimary" id="modal-chapter-badge">Arithmetic &amp; Percentages</span>
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-200" id="modal-source-badge">Mock Test</span>
+</div>
+<h2 class="text-lg font-bold text-brand-textPrimary" id="modal-title">Question Details</h2>
+<p class="text-xs text-brand-textSecondary" id="modal-source-title">Tier-1 Full Length Mock 04</p>
+</div>
+<button aria-label="Close dialog" class="w-11 h-11 rounded-lg flex items-center justify-center text-brand-textSecondary hover:bg-slate-200 hover:text-brand-textPrimary focus:outline-none focus:ring-2 focus:ring-brand-blue flex-shrink-0" id="modal-close-btn" type="button">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<!-- Scrollable Body -->
+<div class="p-5 sm:p-6 overflow-y-auto space-y-6 flex-1 text-sm">
+<!-- Question Statement Card -->
+<div class="bg-slate-50 border border-brand-border rounded-lg p-4">
+<div class="flex items-center justify-between text-xs text-brand-textSecondary mb-2 font-mono">
+<span class="font-bold text-brand-blue" id="modal-qid">QID-CGL-2409</span>
+<span>Single Correct MCQ</span>
+</div>
+<p class="text-base text-brand-textPrimary font-medium leading-relaxed whitespace-pre-line" id="modal-question-statement">
+<!-- Content via textContent -->
+</p>
+</div>
+<!-- Options -->
+<div>
+<h3 class="text-xs font-semibold text-brand-textSecondary uppercase tracking-wider mb-2.5">Options &amp; Key</h3>
+<div class="space-y-2" id="modal-options-list">
+<!-- Options via JS -->
+</div>
+</div>
+<!-- Step-by-Step Explanation -->
+<div class="border border-brand-border rounded-lg p-4 bg-slate-50">
+<div class="flex items-center gap-2 text-brand-blue font-semibold text-sm mb-2">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+<span>Explanation</span>
+</div>
+<p class="text-brand-textSecondary leading-relaxed whitespace-pre-line text-sm" id="modal-explanation-body">
+<!-- Explanation via JS -->
+</p>
+</div>
+</div>
+<!-- Footer -->
+<div class="px-5 py-3 border-t border-brand-border bg-slate-50 flex items-center justify-between gap-3">
+<button class="min-h-[44px] px-4 py-2 rounded-lg text-brand-destructive hover:bg-red-50 border border-transparent hover:border-red-200 text-sm font-semibold flex items-center gap-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-destructive" id="modal-remove-bookmark-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_remove</span>
+<span>Remove Bookmark</span>
+</button>
+<button class="min-h-[44px] px-5 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-brand-textPrimary text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue" id="modal-dismiss-btn" type="button">
+            Close
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Remove Confirmation Dialog -->
+<div aria-describedby="confirm-desc" aria-labelledby="confirm-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="confirm-modal" role="alertdialog">
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="confirm-backdrop"></div>
+<div class="fixed inset-0 z-10 flex items-center justify-center p-4">
+<div class="w-full max-w-md bg-brand-surface rounded-lg border border-brand-border shadow-2xl p-6 transform scale-95 opacity-0 transition-all flex flex-col gap-4" id="confirm-panel">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-red-100 text-brand-destructive flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">delete</span>
+</div>
+<div>
+<h3 class="text-base font-bold text-brand-textPrimary" id="confirm-title">Remove this bookmark?</h3>
+<p class="text-xs text-brand-textSecondary font-mono mt-0.5" id="confirm-qid-tag">Target: QID-CGL-2409</p>
+</div>
+</div>
+<p class="text-sm text-brand-textSecondary" id="confirm-desc">
+          This question will be removed from your saved questions. The original question will remain available in its source.
+        </p>
+<div class="flex items-center justify-end gap-3 pt-2">
+<button class="min-h-[44px] px-4 py-2 rounded-lg border border-brand-border bg-slate-50 hover:bg-slate-100 text-brand-textPrimary text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue" id="confirm-cancel-btn" type="button">
+            Cancel
+          </button>
+<button class="min-h-[44px] px-5 py-2 rounded-lg bg-brand-destructive hover:bg-red-700 text-white text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-brand-destructive" id="confirm-execute-btn" type="button">
+            Remove
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Toast -->
+<div aria-live="polite" class="fixed bottom-20 md:bottom-8 right-4 md:right-8 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2.5 px-4 py-3 bg-brand-textPrimary text-white rounded-lg shadow-xl text-sm max-w-sm" id="toast" role="status">
+<span class="material-symbols-outlined text-[20px] text-brand-amber" id="toast-icon">info</span>
+<span id="toast-message">Notification</span>
+</div>
+<!-- Interactive State Engine -->
+<script>
+    (function () {
+      'use strict';
+
+      // Canonical In-Memory Data
+      let bookmarksData = [
+        {
+          questionId: "QID-CGL-2409",
+          exam: "SSC CGL",
+          subject: "Quantitative Aptitude",
+          chapter: "Quantitative Aptitude - Arithmetic & Percentages",
+          chapterShort: "Arithmetic & Percentages",
+          sourceType: "Mock Test",
+          sourceTitle: "Tier-1 Full Length Mock 04",
+          questionText: "A trader sells two articles at ₹4,800 each. On one, he gains 20% and on the other, he loses 20%. What is his overall gain or loss percentage in the complete transaction?",
+          options: [
+            "No gain, no loss (0%)",
+            "4% gain",
+            "4% loss",
+            "2.5% loss"
+          ],
+          correctOptionIndex: 2,
+          explanation: "When two articles are sold at the same selling price (SP) such that one yields a gain of x% and the other a loss of x%, the net result is always a loss given by:\n\nNet Loss % = (x / 10)² %\n= (20 / 10)² %\n= (2)² % = 4% Loss.\n\nAlternative check:\nCost price 1 = ₹4,800 / 1.2 = ₹4,000\nCost price 2 = ₹4,800 / 0.8 = ₹6,000\nTotal CP = ₹10,000 | Total SP = ₹9,600\nLoss = ₹400 on ₹10,000 = exactly 4%."
+        },
+        {
+          questionId: "QID-CHSL-3180",
+          exam: "SSC CHSL",
+          subject: "General Intelligence & Reasoning",
+          chapter: "General Intelligence & Reasoning - Syllogism & Logic",
+          chapterShort: "Syllogism & Logic",
+          sourceType: "PYQ Paper",
+          sourceTitle: "CHSL Tier-1 Shift 2 (2023)",
+          questionText: "Statements:\n1. All cats are dogs.\n2. Some dogs are birds.\n3. No bird is a reptile.\n\nConclusions:\nI. Some dogs are not reptiles.\nII. Some cats being birds is a possibility.\nIII. No cat is a reptile.",
+          options: [
+            "Only Conclusion I follows",
+            "Both Conclusions I and II follow",
+            "Only Conclusion II follows",
+            "Conclusions I, II, and III all follow"
+          ],
+          correctOptionIndex: 1,
+          explanation: "Analysis of conclusions:\n- Conclusion I: Some dogs are birds, and no bird is a reptile. Thus, the specific portion of dogs that are birds can never be reptiles. Therefore, 'Some dogs are not reptiles' is definitely TRUE.\n- Conclusion II: There is no direct negative relation between 'cats' and 'birds'. Hence, the possibility statement 'Some cats being birds is a possibility' is completely VALID.\n- Conclusion III: 'No cat is a reptile' is not necessarily true as there is no negative constraint directly given between cats and reptiles.\nHence, Conclusions I and II follow."
+        },
+        {
+          questionId: "QID-CPO-1092",
+          exam: "SSC CPO",
+          subject: "General Awareness",
+          chapter: "General Awareness - Modern Indian History",
+          chapterShort: "Modern Indian History",
+          sourceType: "PYQ Paper",
+          sourceTitle: "CPO Sub-Inspector Tier-1 2022",
+          questionText: "Who among the following presided over the historic Karachi Session of the Indian National Congress in 1931, where the Resolution on Fundamental Rights and the National Economic Programme was formally endorsed?",
+          options: [
+            "Jawaharlal Nehru",
+            "Sardar Vallabhbhai Patel",
+            "Subhash Chandra Bose",
+            "Dr. Rajendra Prasad"
+          ],
+          correctOptionIndex: 1,
+          explanation: "The historic Karachi Session of the Indian National Congress (March 1931) was presided over by Sardar Vallabhbhai Patel. The session adopted resolutions on Fundamental Rights and the National Economic Programme, originally drafted by Pandit Jawaharlal Nehru."
+        },
+        {
+          questionId: "QID-CGL-8422",
+          exam: "SSC CGL",
+          subject: "English Comprehension",
+          chapter: "English Comprehension - Sentence Correction",
+          chapterShort: "Sentence Correction",
+          sourceType: "Mock Test",
+          sourceTitle: "SSC CGL Tier-2 Advance Sectional Test 02",
+          questionText: "Identify the grammatically correct replacement for the bracketed portion:\n\n'Hardly had the invigilator [distributed the examination booklets when] the fire alarm sounded loudly across the campus hall.'",
+          options: [
+            "distributed the examination booklets then",
+            "distribute the examination booklets when",
+            "distributed the examination booklets when (No substitution required)",
+            "had distributed the examination booklets than"
+          ],
+          correctOptionIndex: 2,
+          explanation: "Correlative Conjunction Rule:\n'Hardly... when' and 'Scarcely... when' are paired together with past perfect inverted syntax.\n'No sooner... than' is paired with 'than'.\nHere, 'Hardly had + Subject + V3 (distributed) + Object + when' is strictly correct as given. Hence, No substitution required."
+        },
+        {
+          questionId: "QID-MTS-4419",
+          exam: "SSC MTS",
+          subject: "Computer Knowledge",
+          chapter: "Computer Knowledge - Hardware & Networking",
+          chapterShort: "Hardware & Networking",
+          sourceType: "Chapter Test",
+          sourceTitle: "Computer Fundamentals Diagnostic Drill",
+          questionText: "Which of the following layers of the Open Systems Interconnection (OSI) reference model is directly responsible for logical node-to-node addressing (IP Addressing) and packet routing across heterogeneous networks?",
+          options: [
+            "Data Link Layer (Layer 2)",
+            "Transport Layer (Layer 4)",
+            "Network Layer (Layer 3)",
+            "Session Layer (Layer 5)"
+          ],
+          correctOptionIndex: 2,
+          explanation: "The Network Layer (Layer 3) handles end-to-end packet delivery, logical addressing (IPv4/IPv6), subnetting, and optimal path routing via routers. Layer 2 governs physical MAC addressing and framing, while Layer 4 oversees segment reliability and port numbering."
+        },
+        {
+          questionId: "QID-CGL-5501",
+          exam: "SSC CGL",
+          subject: "Quantitative Aptitude",
+          chapter: "Quantitative Aptitude - Geometry & Mensuration",
+          chapterShort: "Geometry & Mensuration",
+          sourceType: "Chapter Test",
+          sourceTitle: "Circle Theorems Mastery Chapter Test",
+          questionText: "In a circle with centre O and radius 13 cm, a chord AB of length 24 cm is drawn. Another chord CD is parallel to AB and lies on the opposite side of the centre with a distance of 17 cm between chords AB and CD. What is the length of chord CD?",
+          options: [
+            "10 cm",
+            "12 cm",
+            "14 cm",
+            "16 cm"
+          ],
+          correctOptionIndex: 0,
+          explanation: "1. Perpendicular distance from centre O to chord AB:\nd1 = √(R² - (AB/2)²) = √(13² - 12²) = √(169 - 144) = √25 = 5 cm.\n\n2. Since chords lie on opposite sides of centre O, the total distance between them is d1 + d2 = 17 cm.\nThus, d2 = 17 - 5 = 12 cm.\n\n3. Half-length of chord CD = √(R² - d2²) = √(13² - 12²) = √25 = 5 cm.\nTherefore, total length of chord CD = 2 × 5 = 10 cm."
+        }
+      ];
+
+      // Filters State
+      let filterExamVal = "all";
+      let filterChapterVal = "all";
+      let filterSourceVal = "all";
+
+      // Track removal context
+      let pendingRemovalId = null;
+      let removalOrigin = null; // 'card' or 'modal'
+      let activeDetailQuestion = null;
+
+      // Elements
+      const questionsContainer = document.getElementById("questions-list-container");
+      const emptyStateCard = document.getElementById("empty-state-card");
+      const emptyStateIcon = document.getElementById("empty-state-icon");
+      const emptyStateTitle = document.getElementById("empty-state-title");
+      const emptyStateDesc = document.getElementById("empty-state-desc");
+      const emptyStateActionBtn = document.getElementById("empty-state-action-btn");
+      const resultsCountText = document.getElementById("results-count-text");
+      const filteredIndicator = document.getElementById("filtered-indicator");
+      const headerCountBadge = document.getElementById("header-count-badge");
+      const practiceActionBtn = document.getElementById("practice-action-btn");
+      const practiceBtnLabel = document.getElementById("practice-btn-label");
+      const sheetBookmarkCount = document.getElementById("sheet-bookmark-count");
+      const savedQuestionsHeading = document.getElementById("saved-questions-heading");
+
+      // Filter Inputs
+      const filterExam = document.getElementById("filter-exam");
+      const filterChapter = document.getElementById("filter-chapter");
+      const filterSource = document.getElementById("filter-source");
+      const resetFiltersBtn = document.getElementById("reset-filters-btn");
+
+      // Question Modal
+      const questionModal = document.getElementById("question-modal");
+      const modalBackdrop = document.getElementById("modal-backdrop");
+      const modalPanel = document.getElementById("modal-panel");
+      const modalCloseBtn = document.getElementById("modal-close-btn");
+      const modalDismissBtn = document.getElementById("modal-dismiss-btn");
+      const modalRemoveBookmarkBtn = document.getElementById("modal-remove-bookmark-btn");
+      const modalExamBadge = document.getElementById("modal-exam-badge");
+      const modalChapterBadge = document.getElementById("modal-chapter-badge");
+      const modalSourceBadge = document.getElementById("modal-source-badge");
+      const modalSourceTitle = document.getElementById("modal-source-title");
+      const modalQid = document.getElementById("modal-qid");
+      const modalQuestionStatement = document.getElementById("modal-question-statement");
+      const modalOptionsList = document.getElementById("modal-options-list");
+      const modalExplanationBody = document.getElementById("modal-explanation-body");
+
+      // Confirm Modal
+      const confirmModal = document.getElementById("confirm-modal");
+      const confirmBackdrop = document.getElementById("confirm-backdrop");
+      const confirmPanel = document.getElementById("confirm-panel");
+      const confirmCancelBtn = document.getElementById("confirm-cancel-btn");
+      const confirmExecuteBtn = document.getElementById("confirm-execute-btn");
+      const confirmQidTag = document.getElementById("confirm-qid-tag");
+
+      // Mobile More Sheet
+      const moreSheet = document.getElementById("more-sheet");
+      const moreSheetBackdrop = document.getElementById("more-sheet-backdrop");
+      const moreSheetPanel = document.getElementById("more-sheet-panel");
+      const openMoreSheetBtn = document.getElementById("open-more-sheet-btn");
+      const closeMoreSheetBtn = document.getElementById("close-more-sheet-btn");
+
+      // Toast
+      const toast = document.getElementById("toast");
+      const toastMessage = document.getElementById("toast-message");
+      const toastIcon = document.getElementById("toast-icon");
+      let toastTimer = null;
+
+      function showToast(msg, icon) {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastMessage.textContent = msg;
+        toastIcon.textContent = icon || "info";
+
+        toast.classList.remove("translate-y-12", "opacity-0", "pointer-events-none");
+        toast.classList.add("translate-y-0", "opacity-100");
+
+        toastTimer = setTimeout(() => {
+          toast.classList.remove("translate-y-0", "opacity-100");
+          toast.classList.add("translate-y-12", "opacity-0", "pointer-events-none");
+        }, 3600);
+      }
+
+      /* ============================================================
+         1. OverlayManager: Centralized stack & nested scroll lock
+         ============================================================ */
+      const OverlayManager = {
+        stack: [],
+        originalBodyOverflow: '',
+        isLocked: false,
+
+        push(entry) {
+          // entry: { id, element, returnTarget, closeHandler }
+          if (this.stack.length === 0 && !this.isLocked) {
+            this.originalBodyOverflow = document.body.style.overflow;
+            document.body.style.overflow = "hidden";
+            this.isLocked = true;
+          }
+          this.stack.push(entry);
+        },
+
+        pop() {
+          const removed = this.stack.pop();
+          if (this.stack.length === 0 && this.isLocked) {
+            document.body.style.overflow = this.originalBodyOverflow;
+            this.isLocked = false;
+          }
+          return removed;
+        },
+
+        top() {
+          return this.stack.length > 0 ? this.stack[this.stack.length - 1] : null;
+        },
+
+        find(id) {
+          return this.stack.find(item => item.id === id);
+        },
+
+        removeById(id) {
+          const idx = this.stack.findIndex(item => item.id === id);
+          if (idx !== -1) {
+            const removed = this.stack.splice(idx, 1)[0];
+            if (this.stack.length === 0 && this.isLocked) {
+              document.body.style.overflow = this.originalBodyOverflow;
+              this.isLocked = false;
+            }
+            return removed;
+          }
+          return null;
+        }
+      };
+
+      // Focus Trapping Helper restricted to currently active overlay
+      function trapFocus(container, event) {
+        if (event.key !== "Tab") return;
+        const focusable = container.querySelectorAll('button:not([disabled]), [href]:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey) {
+          if (document.activeElement === first || !container.contains(document.activeElement)) {
+            last.focus();
+            event.preventDefault();
+          }
+        } else {
+          if (document.activeElement === last || !container.contains(document.activeElement)) {
+            first.focus();
+            event.preventDefault();
+          }
+        }
+      }
+
+      // Filter Logic
+      function getFilteredQuestions() {
+        return bookmarksData.filter(item => {
+          const matchExam = (filterExamVal === "all" || item.exam === filterExamVal);
+          const matchChapter = (filterChapterVal === "all" || item.chapter === filterChapterVal);
+          const matchSource = (filterSourceVal === "all" || item.sourceType === filterSourceVal);
+          return matchExam && matchChapter && matchSource;
+        });
+      }
+
+      function updateHeaderAndCTA() {
+        const total = bookmarksData.length;
+        const filtered = getFilteredQuestions();
+        const isFiltered = (filterExamVal !== "all" || filterChapterVal !== "all" || filterSourceVal !== "all");
+
+        headerCountBadge.textContent = `${total} Total`;
+        sheetBookmarkCount.textContent = total;
+
+        if (isFiltered) {
+          filteredIndicator.classList.remove("hidden");
+        } else {
+          filteredIndicator.classList.add("hidden");
+        }
+
+        if (total === 0) {
+          practiceActionBtn.disabled = true;
+          practiceActionBtn.classList.add("opacity-50", "cursor-not-allowed");
+          practiceBtnLabel.textContent = "Practice Saved Questions (0)";
+        } else if (isFiltered) {
+          practiceActionBtn.disabled = (filtered.length === 0);
+          if (filtered.length === 0) {
+            practiceActionBtn.classList.add("opacity-50", "cursor-not-allowed");
+            practiceBtnLabel.textContent = "Practice Saved Questions (0)";
+          } else {
+            practiceActionBtn.classList.remove("opacity-50", "cursor-not-allowed");
+            practiceBtnLabel.textContent = `Practice Saved Questions (${filtered.length})`;
+          }
+        } else {
+          practiceActionBtn.disabled = false;
+          practiceActionBtn.classList.remove("opacity-50", "cursor-not-allowed");
+          practiceBtnLabel.textContent = `Practice Saved Questions (${total})`;
+        }
+      }
+
+      function renderQuestions() {
+        const filtered = getFilteredQuestions();
+        questionsContainer.replaceChildren();
+        updateHeaderAndCTA();
+
+        // 1. Overall Empty State
+        if (bookmarksData.length === 0) {
+          questionsContainer.classList.add("hidden");
+          emptyStateCard.classList.remove("hidden");
+          emptyStateIcon.textContent = "bookmark_border";
+          emptyStateTitle.textContent = "No saved questions yet";
+          emptyStateDesc.textContent = "Questions you bookmark while studying will appear here for quick revision.";
+          emptyStateActionBtn.textContent = "Explore Questions";
+          emptyStateActionBtn.onclick = function() {
+            showToast("Prototype only — exploring question catalogs is not connected yet.", "explore");
+          };
+          resultsCountText.textContent = "0 questions available";
+          return;
+        }
+
+        // 2. Filter-Specific Empty State
+        if (filtered.length === 0) {
+          questionsContainer.classList.add("hidden");
+          emptyStateCard.classList.remove("hidden");
+          emptyStateIcon.textContent = "filter_alt_off";
+          emptyStateTitle.textContent = "No matching questions";
+          emptyStateDesc.textContent = "Try changing your filters or reset them to see your saved questions.";
+          emptyStateActionBtn.textContent = "Reset Filters";
+          emptyStateActionBtn.onclick = resetFilters;
+          resultsCountText.textContent = "Showing 0 questions";
+          return;
+        }
+
+        // 3. Render Card List
+        emptyStateCard.classList.add("hidden");
+        questionsContainer.classList.remove("hidden");
+        resultsCountText.textContent = `Showing ${filtered.length} question${filtered.length === 1 ? '' : 's'}`;
+
+        filtered.forEach((q, index) => {
+          const card = document.createElement("div");
+          card.setAttribute("data-qid", q.questionId);
+          card.className = "bg-brand-surface border border-brand-border rounded-lg p-4 sm:p-5 shadow-sm hover:border-slate-300 transition-colors flex flex-col md:flex-row md:items-start justify-between gap-4";
+
+          // Left Details
+          const leftCol = document.createElement("div");
+          leftCol.className = "flex items-start gap-3.5 min-w-0 flex-1";
+
+          // Index sequence badge
+          const indexBadge = document.createElement("div");
+          indexBadge.className = "w-8 h-8 rounded-lg bg-slate-100 text-brand-textSecondary text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5 border border-slate-200";
+          indexBadge.textContent = `Q.${index + 1}`;
+          leftCol.appendChild(indexBadge);
+
+          // Content Box
+          const content = document.createElement("div");
+          content.className = "space-y-2 min-w-0 flex-1";
+
+          // Chips row
+          const chipRow = document.createElement("div");
+          chipRow.className = "flex flex-wrap items-center gap-1.5";
+
+          const examChip = document.createElement("span");
+          examChip.className = "px-2 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200";
+          examChip.textContent = q.exam;
+          chipRow.appendChild(examChip);
+
+          const chapterChip = document.createElement("span");
+          chapterChip.className = "px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-brand-textSecondary border border-slate-200";
+          chapterChip.textContent = q.chapterShort;
+          chipRow.appendChild(chapterChip);
+
+          const sourceChip = document.createElement("span");
+          sourceChip.className = "px-2 py-0.5 rounded text-xs font-semibold bg-amber-100 text-amber-900 border border-amber-200";
+          sourceChip.textContent = q.sourceType;
+          chipRow.appendChild(sourceChip);
+
+          content.appendChild(chipRow);
+
+          // Question Statement
+          const questionP = document.createElement("p");
+          questionP.className = "text-sm text-brand-textPrimary font-medium line-clamp-3 leading-relaxed";
+          questionP.textContent = q.questionText;
+          content.appendChild(questionP);
+
+          // Meta footer (QID & source test name)
+          const metaFooter = document.createElement("div");
+          metaFooter.className = "text-xs text-brand-textSecondary font-mono pt-0.5";
+          metaFooter.textContent = `${q.questionId} • ${q.sourceTitle}`;
+          content.appendChild(metaFooter);
+
+          leftCol.appendChild(content);
+          card.appendChild(leftCol);
+
+          // Actions Column
+          const actionsCol = document.createElement("div");
+          actionsCol.className = "flex items-center md:flex-col justify-end gap-2 flex-shrink-0 pt-2 md:pt-0";
+
+          // Open Question
+          const openBtn = document.createElement("button");
+          openBtn.type = "button";
+          openBtn.className = "min-h-[44px] px-3.5 py-2 rounded-lg bg-blue-50 text-brand-blue hover:bg-brand-blue hover:text-white border border-blue-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue card-open-btn";
+          
+          const openIcon = document.createElement("span");
+          openIcon.className = "material-symbols-outlined text-[18px]";
+          openIcon.textContent = "visibility";
+          openBtn.appendChild(openIcon);
+
+          const openTxt = document.createElement("span");
+          openTxt.textContent = "Open Question";
+          openBtn.appendChild(openTxt);
+
+          openBtn.addEventListener("click", () => {
+            openDetailModal(q, openBtn);
+          });
+          actionsCol.appendChild(openBtn);
+
+          // Remove Bookmark
+          const removeBtn = document.createElement("button");
+          removeBtn.type = "button";
+          removeBtn.className = "min-h-[44px] px-3 py-2 rounded-lg text-brand-textSecondary hover:text-brand-destructive hover:bg-red-50 text-xs font-medium flex items-center justify-center gap-1 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-destructive card-remove-btn";
+          removeBtn.setAttribute("aria-label", `Remove bookmark ${q.questionId}`);
+
+          const removeIcon = document.createElement("span");
+          removeIcon.className = "material-symbols-outlined text-[18px]";
+          removeIcon.textContent = "bookmark_remove";
+          removeBtn.appendChild(removeIcon);
+
+          const removeTxt = document.createElement("span");
+          removeTxt.textContent = "Remove";
+          removeBtn.appendChild(removeTxt);
+
+          removeBtn.addEventListener("click", () => {
+            openConfirmDialog(q.questionId, removeBtn, 'card');
+          });
+          actionsCol.appendChild(removeBtn);
+
+          card.appendChild(actionsCol);
+          questionsContainer.appendChild(card);
+        });
+      }
+
+      /* ============================================================
+         3. Dynamic Options Rendering & Alphabet Generation
+         ============================================================ */
+      function getAlphabeticalLabel(index) {
+        let label = '';
+        let num = index;
+        while (num >= 0) {
+          label = String.fromCharCode((num % 26) + 65) + label;
+          num = Math.floor(num / 26) - 1;
+        }
+        return label;
+      }
+
+      function renderModalOptions(q) {
+        modalOptionsList.replaceChildren();
+
+        if (!q || !Array.isArray(q.options)) {
+          const emptyNotice = document.createElement("div");
+          emptyNotice.className = "p-3 rounded-lg border border-brand-border bg-slate-50 text-xs text-brand-textSecondary italic";
+          emptyNotice.textContent = "Options not available for this question.";
+          modalOptionsList.appendChild(emptyNotice);
+          return;
+        }
+
+        const validOptions = [];
+        q.options.forEach((opt, idx) => {
+          if (typeof opt === 'string' && opt.trim() !== '') {
+            validOptions.push({
+              originalIndex: idx,
+              text: opt.trim()
+            });
+          }
+        });
+
+        if (validOptions.length === 0) {
+          const emptyNotice = document.createElement("div");
+          emptyNotice.className = "p-3 rounded-lg border border-brand-border bg-slate-50 text-xs text-brand-textSecondary italic";
+          emptyNotice.textContent = "Options not available for this question.";
+          modalOptionsList.appendChild(emptyNotice);
+          return;
+        }
+
+        const isCorrectKeyProvided = (
+          typeof q.correctOptionIndex === 'number' &&
+          Number.isInteger(q.correctOptionIndex) &&
+          q.correctOptionIndex >= 0 &&
+          q.correctOptionIndex < q.options.length
+        );
+
+        const hasValidCorrectOption = isCorrectKeyProvided && validOptions.some(opt => opt.originalIndex === q.correctOptionIndex);
+
+        validOptions.forEach((optObj, displayIdx) => {
+          const isCorrect = hasValidCorrectOption && (optObj.originalIndex === q.correctOptionIndex);
+          const letterLabel = getAlphabeticalLabel(displayIdx);
+
+          const row = document.createElement("div");
+          row.className = `p-3 rounded-lg border text-sm flex items-center justify-between gap-3 ${
+            isCorrect 
+              ? "bg-blue-50 border-brand-blue text-brand-textPrimary font-medium" 
+              : "bg-white border-brand-border text-brand-textSecondary"
+          }`;
+
+          const left = document.createElement("div");
+          left.className = "flex items-center gap-3 min-w-0";
+
+          const badge = document.createElement("span");
+          badge.className = `w-6 h-6 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+            isCorrect ? "bg-brand-blue text-white" : "bg-slate-100 text-brand-textSecondary"
+          }`;
+          badge.textContent = letterLabel;
+          left.appendChild(badge);
+
+          const optSpan = document.createElement("span");
+          optSpan.className = "leading-relaxed";
+          optSpan.textContent = optObj.text;
+          left.appendChild(optSpan);
+
+          row.appendChild(left);
+
+          if (isCorrect) {
+            const keyTag = document.createElement("div");
+            keyTag.className = "flex items-center gap-1 text-brand-blue text-xs font-semibold flex-shrink-0";
+            
+            const chk = document.createElement("span");
+            chk.className = "material-symbols-outlined text-[16px]";
+            chk.textContent = "check_circle";
+            keyTag.appendChild(chk);
+
+            const txt = document.createElement("span");
+            txt.textContent = "Correct Key";
+            keyTag.appendChild(txt);
+
+            row.appendChild(keyTag);
+          }
+
+          modalOptionsList.appendChild(row);
+        });
+
+        if (!hasValidCorrectOption) {
+          const notice = document.createElement("div");
+          notice.className = "pt-1 text-xs text-brand-textSecondary italic";
+          notice.textContent = "Answer key not available for this question.";
+          modalOptionsList.appendChild(notice);
+        }
+      }
+
+      /* ============================================================
+         Details Modal
+         ============================================================ */
+      function openDetailModal(q, returnTargetBtn) {
+        activeDetailQuestion = q;
+        modalExamBadge.textContent = q.exam || "SSC";
+        modalChapterBadge.textContent = q.chapterShort || q.subject || "General";
+        modalSourceBadge.textContent = q.sourceType || "Practice";
+        modalSourceTitle.textContent = q.sourceTitle || "Question Test";
+        modalQid.textContent = q.questionId;
+        modalQuestionStatement.textContent = q.questionText || "";
+        modalExplanationBody.textContent = q.explanation || "Explanation not available.";
+
+        renderModalOptions(q);
+
+        OverlayManager.push({
+          id: 'question-modal',
+          element: modalPanel,
+          returnTarget: returnTargetBtn || null,
+          closeHandler: closeDetailModal
+        });
+
+        questionModal.classList.remove("hidden");
+        requestAnimationFrame(() => {
+          modalBackdrop.classList.remove("opacity-0");
+          modalPanel.classList.remove("scale-95", "opacity-0");
+          modalPanel.classList.add("scale-100", "opacity-100");
+          modalCloseBtn.focus();
+        });
+      }
+
+      function closeDetailModal(targetFocusOverride) {
+        modalBackdrop.classList.add("opacity-0");
+        modalPanel.classList.remove("scale-100", "opacity-100");
+        modalPanel.classList.add("scale-95", "opacity-0");
+        
+        const overlayData = OverlayManager.removeById('question-modal');
+
+        setTimeout(() => {
+          questionModal.classList.add("hidden");
+          activeDetailQuestion = null;
+
+          if (targetFocusOverride && document.body.contains(targetFocusOverride)) {
+            targetFocusOverride.focus();
+          } else if (overlayData && overlayData.returnTarget && document.body.contains(overlayData.returnTarget)) {
+            overlayData.returnTarget.focus();
+          }
+        }, 180);
+      }
+
+      /* ============================================================
+         Removal Confirmation Dialog (Handles nested and card origin)
+         ============================================================ */
+      function openConfirmDialog(qId, returnTargetBtn, origin) {
+        pendingRemovalId = qId;
+        removalOrigin = origin; // 'modal' or 'card'
+        confirmQidTag.textContent = `Target: ${qId}`;
+
+        OverlayManager.push({
+          id: 'confirm-modal',
+          element: confirmPanel,
+          returnTarget: returnTargetBtn || null,
+          closeHandler: closeConfirmDialog
+        });
+
+        confirmModal.classList.remove("hidden");
+        requestAnimationFrame(() => {
+          confirmBackdrop.classList.remove("opacity-0");
+          confirmPanel.classList.remove("scale-95", "opacity-0");
+          confirmPanel.classList.add("scale-100", "opacity-100");
+          confirmCancelBtn.focus();
+        });
+      }
+
+      function closeConfirmDialog() {
+        confirmBackdrop.classList.add("opacity-0");
+        confirmPanel.classList.remove("scale-100", "opacity-100");
+        confirmPanel.classList.add("scale-95", "opacity-0");
+
+        const overlayData = OverlayManager.removeById('confirm-modal');
+
+        setTimeout(() => {
+          confirmModal.classList.add("hidden");
+          pendingRemovalId = null;
+          removalOrigin = null;
+
+          // Return focus to its designated return target (e.g. modal's Remove button or card's Remove button)
+          if (overlayData && overlayData.returnTarget && document.body.contains(overlayData.returnTarget)) {
+            overlayData.returnTarget.focus();
+          }
+        }, 180);
+      }
+
+      function executeRemoval() {
+        if (!pendingRemovalId) return;
+        const targetQid = pendingRemovalId;
+        const wasFromModal = (removalOrigin === 'modal');
+
+        // Locate card and index before deletion to determine focus handoff
+        const remainingBefore = getFilteredQuestions();
+        const removedIndex = remainingBefore.findIndex(q => q.questionId === targetQid);
+
+        // Update dataset
+        bookmarksData = bookmarksData.filter(item => item.questionId !== targetQid);
+
+        // Close confirmation overlay
+        confirmBackdrop.classList.add("opacity-0");
+        confirmPanel.classList.remove("scale-100", "opacity-100");
+        confirmPanel.classList.add("scale-95", "opacity-0");
+        OverlayManager.removeById('confirm-modal');
+        confirmModal.classList.add("hidden");
+        pendingRemovalId = null;
+        removalOrigin = null;
+
+        // If removed from details modal, close question modal as well
+        if (wasFromModal || (activeDetailQuestion && activeDetailQuestion.questionId === targetQid)) {
+          modalBackdrop.classList.add("opacity-0");
+          modalPanel.classList.remove("scale-100", "opacity-100");
+          modalPanel.classList.add("scale-95", "opacity-0");
+          OverlayManager.removeById('question-modal');
+          questionModal.classList.add("hidden");
+          activeDetailQuestion = null;
+        }
+
+        // Re-render
+        renderQuestions();
+
+        // Safe focus destination resolution
+        setTimeout(() => {
+          const remainingAfter = getFilteredQuestions();
+          if (remainingAfter.length > 0) {
+            const nextIdx = Math.min(removedIndex >= 0 ? removedIndex : 0, remainingAfter.length - 1);
+            const targetQ = remainingAfter[nextIdx];
+            const targetCard = questionsContainer.querySelector(`[data-qid="${targetQ.questionId}"]`);
+            if (targetCard) {
+              const openBtn = targetCard.querySelector('.card-open-btn');
+              if (openBtn) {
+                openBtn.focus();
+              } else {
+                targetCard.focus();
+              }
+            } else {
+              savedQuestionsHeading.focus();
+            }
+          } else {
+            // No cards left
+            savedQuestionsHeading.focus();
+          }
+        }, 50);
+
+        showToast(`Question ${targetQid} removed from bookmarks`, "bookmark_remove");
+      }
+
+      /* ============================================================
+         Mobile "More" Sheet
+         ============================================================ */
+      function openMoreSheet() {
+        openMoreSheetBtn.setAttribute("aria-expanded", "true");
+
+        OverlayManager.push({
+          id: 'more-sheet',
+          element: moreSheetPanel,
+          returnTarget: openMoreSheetBtn,
+          closeHandler: closeMoreSheet
+        });
+
+        moreSheet.classList.remove("hidden");
+        requestAnimationFrame(() => {
+          moreSheetBackdrop.classList.remove("opacity-0");
+          moreSheetPanel.classList.remove("translate-y-full");
+          moreSheetPanel.classList.add("translate-y-0");
+          closeMoreSheetBtn.focus();
+        });
+      }
+
+      function closeMoreSheet() {
+        openMoreSheetBtn.setAttribute("aria-expanded", "false");
+        moreSheetBackdrop.classList.add("opacity-0");
+        moreSheetPanel.classList.remove("translate-y-0");
+        moreSheetPanel.classList.add("translate-y-full");
+
+        const overlayData = OverlayManager.removeById('more-sheet');
+
+        setTimeout(() => {
+          moreSheet.classList.add("hidden");
+          if (overlayData && overlayData.returnTarget && document.body.contains(overlayData.returnTarget)) {
+            overlayData.returnTarget.focus();
+          }
+        }, 220);
+      }
+
+      /* ============================================================
+         Filters
+         ============================================================ */
+      function resetFilters() {
+        filterExamVal = "all";
+        filterChapterVal = "all";
+        filterSourceVal = "all";
+
+        filterExam.value = "all";
+        filterChapter.value = "all";
+        filterSource.value = "all";
+
+        renderQuestions();
+        showToast("Filters reset to default view", "refresh");
+      }
+
+      filterExam.addEventListener("change", (e) => {
+        filterExamVal = e.target.value;
+        renderQuestions();
+      });
+
+      filterChapter.addEventListener("change", (e) => {
+        filterChapterVal = e.target.value;
+        renderQuestions();
+      });
+
+      filterSource.addEventListener("change", (e) => {
+        filterSourceVal = e.target.value;
+        renderQuestions();
+      });
+
+      resetFiltersBtn.addEventListener("click", resetFilters);
+
+      // Practice Action Click
+      practiceActionBtn.addEventListener("click", () => {
+        const count = getFilteredQuestions().length;
+        if (count === 0) return;
+        showToast("Prototype only — Practice Mode is not connected yet.", "info");
+      });
+
+      // Details Modal events
+      modalCloseBtn.addEventListener("click", () => closeDetailModal());
+      modalDismissBtn.addEventListener("click", () => closeDetailModal());
+      modalBackdrop.addEventListener("click", () => closeDetailModal());
+      modalRemoveBookmarkBtn.addEventListener("click", () => {
+        if (activeDetailQuestion) {
+          openConfirmDialog(activeDetailQuestion.questionId, modalRemoveBookmarkBtn, 'modal');
+        }
+      });
+
+      // Confirm events
+      confirmCancelBtn.addEventListener("click", closeConfirmDialog);
+      confirmBackdrop.addEventListener("click", closeConfirmDialog);
+      confirmExecuteBtn.addEventListener("click", executeRemoval);
+
+      // Mobile More Sheet events
+      openMoreSheetBtn.addEventListener("click", openMoreSheet);
+      closeMoreSheetBtn.addEventListener("click", closeMoreSheet);
+      moreSheetBackdrop.addEventListener("click", closeMoreSheet);
+
+      /* ============================================================
+         Global Keydown: Topmost overlay escape & focus trap
+         ============================================================ */
+      window.addEventListener("keydown", (e) => {
+        const topOverlay = OverlayManager.top();
+        if (!topOverlay) return;
+
+        if (e.key === "Escape") {
+          e.preventDefault();
+          if (typeof topOverlay.closeHandler === "function") {
+            topOverlay.closeHandler();
+          }
+          return;
+        }
+
+        // Trap focus inside topmost overlay element
+        if (topOverlay.element) {
+          trapFocus(topOverlay.element, e);
+        }
+      });
+
+      /* ============================================================
+         5. Placeholder navigation links & profile button intercept
+         ============================================================ */
+      document.addEventListener("click", (e) => {
+        const link = e.target.closest('a[href="#"], button[data-nav-name]');
+        if (!link) return;
+
+        // If it's an active bookmark link, allow default (or prevent page jump if #)
+        if (link.getAttribute("aria-current") === "page") {
+          e.preventDefault();
+          return;
+        }
+
+        const navName = link.getAttribute("data-nav-name");
+        if (navName) {
+          e.preventDefault();
+          showToast(`Prototype only — ${navName} is not connected yet.`, "info");
+          return;
+        }
+
+        // Default # prevent jump
+        if (link.getAttribute("href") === "#") {
+          e.preventDefault();
+        }
+      });
+
+      // Initialize
+      renderQuestions();
+    })();
+  </script>
+</body></html>

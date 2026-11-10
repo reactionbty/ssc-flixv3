@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#F8FAFC]" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>SSC Flix — Mock Tests</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              blue: '#1D4ED8',
+              navy: '#1E3A8A',
+              bg: '#F8FAFC',
+              surface: '#FFFFFF',
+              border: '#E2E8F0',
+              text: '#0F172A',
+              muted: '#475569',
+              accent: '#F59E0B',
+              'blue-light': '#EFF6FF',
+            }
+          },
+          borderRadius: {
+            DEFAULT: '8px',
+            'lg': '8px',
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #0F172A;
+      background-color: #F8FAFC;
+      -webkit-font-smoothing: antialiased;
+    }
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  </style>
+<meta content="web_dashboard" name="shell-type"/>
+</head>
+<body class="min-h-full flex flex-col md:flex-row antialiased text-[#0F172A] bg-[#F8FAFC]">
+<!-- ========================================================================= -->
+<!-- 1. DESKTOP SIDEBAR (Fixed 240px width, sticky, matching system specs)       -->
+<!-- ========================================================================= -->
+<aside class="hidden md:flex flex-col w-[240px] shrink-0 bg-white border-r border-[#E2E8F0] min-h-screen sticky top-0 z-30 select-none">
+<!-- Brand Logo Section (56px) -->
+<div class="h-14 flex items-center px-5 border-b border-[#E2E8F0]">
+<a aria-label="SSC Flix Dashboard" class="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] rounded-md" href="#dashboard">
+<img alt="SSC Flix Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/>
+</a>
+</div>
+<!-- Navigation List: Dashboard, Mock Tests (active), PYQs, Chapter Tests, My Tests, Bookmarks, Preferences -->
+<nav aria-label="Main Navigation" class="flex-1 py-4 px-3 flex flex-col gap-1 overflow-y-auto">
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#dashboard" onclick="showPrototypeNotice('Dashboard', event)">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="9" rx="1" width="7" x="3" y="3"></rect>
+<rect height="5" rx="1" width="7" x="14" y="3"></rect>
+<rect height="9" rx="1" width="7" x="14" y="12"></rect>
+<rect height="5" rx="1" width="7" x="3" y="16"></rect>
+</svg>
+<span>Dashboard</span>
+</a>
+<a aria-current="page" class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-[#EFF6FF] text-[#1D4ED8] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#mock-tests">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect>
+<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+<path d="m9 14 2 2 4-4"></path>
+</svg>
+<span>Mock Tests</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#pyqs" onclick="showPrototypeNotice('Previous Year Questions', event)">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+<line x1="16" x2="8" y1="13" y2="13"></line>
+<line x1="16" x2="8" y1="17" y2="17"></line>
+<line x1="10" x2="8" y1="9" y2="9"></line>
+</svg>
+<span>PYQs</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#chapter-tests" onclick="showPrototypeNotice('Chapter Tests', event)">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+</svg>
+<span>Chapter Tests</span>
+</a>
+<hr class="my-3 border-[#E2E8F0]"/>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#my-tests" onclick="showPrototypeNotice('My Tests', event)">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+<path d="M3 3v5h5"></path>
+<path d="M12 7v5l4 2"></path>
+</svg>
+<span>My Tests</span>
+</a>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#bookmarks" onclick="showPrototypeNotice('Bookmarks', event)">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+</svg>
+<span>Bookmarks</span>
+</a>
+<hr class="my-3 border-[#E2E8F0]"/>
+<a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" href="#preferences" onclick="showPrototypeNotice('Preferences', event)">
+<svg aria-hidden="true" class="w-5 h-5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="4" x2="20" y1="21" y2="21"></line>
+<line x1="4" x2="20" y1="14" y2="14"></line>
+<line x1="4" x2="20" y1="7" y2="7"></line>
+<circle cx="14" cy="21" r="2"></circle>
+<circle cx="8" cy="14" r="2"></circle>
+<circle cx="16" cy="7" r="2"></circle>
+</svg>
+<span>Preferences</span>
+</a>
+</nav>
+</aside>
+<!-- ========================================================================= -->
+<!-- 2. MAIN WORKSPACE CONTAINER                                               -->
+<!-- ========================================================================= -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- Header (56px) -->
+<header class="h-14 bg-white border-b border-[#E2E8F0] sticky top-0 z-20 flex items-center justify-between px-4 sm:px-6 md:px-8">
+<div class="flex items-center gap-3">
+<!-- Mobile Logo -->
+<div class="md:hidden flex items-center">
+<img alt="SSC Flix Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/>
+</div>
+<!-- Target indicator (driven by unified state) -->
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">
+            Target: <span class="target-exam-text font-semibold">SSC CGL</span>
+</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<!-- Profile Menu Trigger -->
+<div class="relative">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Open student profile menu" class="touch-target flex items-center justify-center p-1.5 rounded-lg text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="profile-btn" onclick="toggleProfileMenu()" type="button">
+<div class="w-8 h-8 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center text-xs font-semibold">
+              ST
+            </div>
+</button>
+<!-- Profile Dropdown -->
+<div class="hidden absolute right-0 mt-2 w-52 bg-white rounded-lg shadow-lg border border-[#E2E8F0] py-2 z-50" id="profile-dropdown" role="menu">
+<div class="px-4 py-2 border-b border-[#E2E8F0]">
+<p class="text-xs text-[#64748B]">Signed in as</p>
+<p class="text-sm font-semibold text-[#0F172A]">Student account</p>
+</div>
+<a class="block px-4 py-2 text-sm text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A]" href="#preferences" onclick="showPrototypeNotice('Preferences', event)" role="menuitem">Preferences</a>
+<a class="block px-4 py-2 text-sm text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A]" href="#account" onclick="showPrototypeNotice('Account Settings', event)" role="menuitem">Account Settings</a>
+<hr class="my-1 border-[#E2E8F0]"/>
+<a class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50" href="#signout" onclick="showPrototypeNotice('Sign Out', event)" role="menuitem">Sign Out</a>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Body -->
+<main class="flex-1 px-4 sm:px-6 md:px-8 py-6 max-w-[1200px] w-full mx-auto pb-24 md:pb-12">
+<div class="flex flex-col w-full">
+<!-- Prototype Notice Banner -->
+<div class="hidden mb-6 bg-[#EFF6FF] border border-[#BFDBFE] rounded-lg p-4 transition-all duration-200" id="prototype-banner">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[#1D4ED8] shrink-0">info</span>
+<div>
+<p class="text-sm font-semibold text-[#0F172A]" id="prototype-banner-text">This destination is not connected in the current Mock Tests preview.</p>
+</div>
+</div>
+<button aria-label="Dismiss banner" class="text-[#475569] hover:text-[#0F172A] p-1 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="dismissPrototypeNotice()" type="button">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+</div>
+<!-- Page Introduction -->
+<section class="mb-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#E2E8F0]">
+<div>
+<h1 class="text-2xl font-bold text-[#0F172A] tracking-tight">Mock Tests</h1>
+<p class="text-sm text-[#475569] mt-1">
+                Practice with full-length and sectional tests for your selected exam.
+              </p>
+</div>
+</div>
+</section>
+<!-- Exam & Tier Filter Section -->
+<section class="bg-white rounded-lg border border-[#E2E8F0] p-4 sm:p-5 mb-6 shadow-sm">
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#64748B]">Select Examination</span>
+</div>
+<div aria-label="Select examination" class="flex items-center gap-2 overflow-x-auto pb-1" id="exam-pills-container" role="group">
+<!-- Injected via JavaScript dynamically -->
+</div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[#E2E8F0]">
+<div class="flex flex-col sm:flex-row sm:items-center gap-3">
+<div class="flex items-center gap-2">
+<label class="text-xs font-semibold text-[#475569] shrink-0" for="filter-tier-select">Tier / Paper:</label>
+<div class="relative min-w-[200px] sm:min-w-[260px]">
+<select class="w-full bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] text-xs sm:text-sm rounded-lg px-3 py-2 appearance-none focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] cursor-pointer pr-9" id="filter-tier-select">
+<!-- Dynamically populated per exam -->
+</select>
+<span class="material-symbols-outlined text-lg text-[#64748B] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+<span class="text-xs text-[#64748B]" id="exam-full-name-hint">Combined Graduate Level Examination</span>
+</div>
+<button class="text-xs text-[#1D4ED8] font-semibold hover:underline inline-flex items-center gap-1 self-start sm:self-center focus:outline-none" id="reset-exam-filters-btn" onclick="resetToDefaultExam()" type="button">
+<span class="material-symbols-outlined text-sm">restart_alt</span>
+<span>Reset Exam Filter</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Category & Search Bar -->
+<section class="mb-6 space-y-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<!-- Segmented Category Tabs -->
+<div aria-label="Test type tabs" class="inline-flex flex-wrap sm:flex-nowrap p-1 bg-white border border-[#E2E8F0] rounded-lg w-full sm:w-auto shadow-sm gap-1" role="tablist">
+<button aria-selected="true" class="touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all bg-[#1D4ED8] text-white shadow-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="tab-full" onclick="handleCategoryChange('full')" role="tab" type="button">
+<span class="material-symbols-outlined text-lg">assignment</span>
+<span>Full-Length Tests</span>
+<span class="ml-1 px-1.5 py-0.5 rounded-full text-xs bg-white text-[#1D4ED8] font-bold" id="badge-full-count">8</span>
+</button>
+<button aria-selected="false" class="touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="tab-sectional" onclick="handleCategoryChange('sectional')" role="tab" type="button">
+<span class="material-symbols-outlined text-lg">pie_chart</span>
+<span>Sectional Tests</span>
+<span class="ml-1 px-1.5 py-0.5 rounded-full text-xs bg-[#F8FAFC] text-[#475569] font-bold border border-[#E2E8F0]" id="badge-sectional-count">12</span>
+</button>
+</div>
+<!-- Search Box -->
+<div class="flex items-center gap-2.5 w-full sm:w-auto">
+<div class="relative flex-1 sm:w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-lg pointer-events-none">search</span>
+<input aria-label="Search mock tests by title or code" class="w-full pl-9 pr-3 py-2 bg-white border border-[#E2E8F0] rounded-lg text-sm text-[#0F172A] placeholder:text-[#64748B] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="test-search-input" oninput="handleSearch(this.value)" placeholder="Search by test title or code..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Status Filter Chips -->
+<div class="flex flex-wrap items-center gap-2 pt-1 text-[#475569]">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#64748B]">Status:</span>
+<button class="status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-[#1D4ED8] text-white transition-all font-semibold focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" data-status="all" id="chip-all" onclick="handleStatusChange('all')" type="button">
+              All Tests (<span id="count-status-all">8</span>)
+            </button>
+<button class="status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-all font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" data-status="available" id="chip-available" onclick="handleStatusChange('available')" type="button">
+              Available (<span id="count-status-available">5</span>)
+            </button>
+<button class="status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-all font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" data-status="attempted" id="chip-attempted" onclick="handleStatusChange('attempted')" type="button">
+              Attempted (<span id="count-status-attempted">2</span>)
+            </button>
+<button class="status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-all font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" data-status="upcoming" id="chip-upcoming" onclick="handleStatusChange('upcoming')" type="button">
+              Upcoming (<span id="count-status-upcoming">1</span>)
+            </button>
+</div>
+</section>
+<!-- Tests Listing Feed -->
+<section aria-live="polite" class="space-y-3" id="tests-container">
+<!-- Dynamically populated via safe DOM construction -->
+</section>
+<!-- Empty State Display -->
+<div class="hidden my-8 py-16 px-6 bg-white border border-[#E2E8F0] rounded-lg shadow-sm text-center flex-col items-center justify-center" id="empty-state">
+<div class="w-12 h-12 rounded-full bg-[#EFF6FF] text-[#1D4ED8] flex items-center justify-center mx-auto mb-3">
+<span class="material-symbols-outlined text-2xl">content_paste_off</span>
+</div>
+<h3 class="text-base font-semibold text-[#0F172A] mb-1" id="empty-state-title">No Tests Available</h3>
+<p class="text-xs text-[#475569] max-w-md mb-4 mx-auto leading-relaxed" id="empty-state-desc">
+            No mock tests are currently available for this examination.
+          </p>
+<div class="flex items-center justify-center gap-2.5">
+<button class="touch-target px-4 py-2 bg-[#1D4ED8] text-white rounded-lg text-xs font-semibold hover:bg-[#1E3A8A] transition-colors shadow-sm inline-flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="empty-state-primary-btn" type="button">
+<span class="material-symbols-outlined text-base">swap_horiz</span>
+<span id="empty-state-btn-text">Switch to SSC CGL</span>
+</button>
+<button class="hidden touch-target px-3.5 py-2 bg-white border border-[#E2E8F0] text-[#475569] hover:bg-[#F8FAFC] rounded-lg text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="empty-state-secondary-btn" onclick="clearSearchAndStatusFilters()" type="button">
+              Clear Filters
+            </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Global Academic Footer -->
+<footer class="mt-auto bg-white border-t border-[#E2E8F0] pt-4 pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] md:pb-6 px-4 sm:px-6 md:px-8 text-xs text-[#64748B] flex flex-col sm:flex-row items-center justify-between gap-3">
+<div>
+        © 2026 SSC Flix. All rights reserved.
+      </div>
+<div class="flex items-center gap-4">
+<a class="hover:text-[#0F172A] hover:underline" href="#privacy" onclick="showPrototypeNotice('Privacy Policy', event)">Privacy Policy</a>
+<a class="hover:text-[#0F172A] hover:underline" href="#terms" onclick="showPrototypeNotice('Terms of Service', event)">Terms of Service</a>
+<a class="hover:text-[#0F172A] hover:underline" href="#help" onclick="showPrototypeNotice('Help &amp; Support', event)">Help &amp; Support</a>
+</div>
+</footer>
+</div>
+<!-- ========================================================================= -->
+<!-- 3. MOBILE FIXED BOTTOM NAVIGATION (5 Items)                               -->
+<!-- ========================================================================= -->
+<nav aria-label="Mobile Bottom Navigation" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#E2E8F0] z-40 flex items-center justify-around px-2 select-none" style="padding-bottom: env(safe-area-inset-bottom, 0px); height: calc(4rem + env(safe-area-inset-bottom, 0px));">
+<a class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#dashboard" onclick="showPrototypeNotice('Dashboard', event)">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="9" rx="1" width="7" x="3" y="3"></rect>
+<rect height="5" rx="1" width="7" x="14" y="3"></rect>
+<rect height="9" rx="1" width="7" x="14" y="12"></rect>
+<rect height="5" rx="1" width="7" x="3" y="16"></rect>
+</svg>
+<span class="text-xs font-medium mt-1">Dashboard</span>
+</a>
+<a aria-current="page" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#1D4ED8]" href="#mock-tests">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect>
+<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+<path d="m9 14 2 2 4-4"></path>
+</svg>
+<span class="text-xs font-semibold mt-1">Mock Tests</span>
+</a>
+<a class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#pyqs" onclick="showPrototypeNotice('Previous Year Questions', event)">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+<line x1="16" x2="8" y1="13" y2="13"></line>
+</svg>
+<span class="text-xs font-medium mt-1">PYQs</span>
+</a>
+<a aria-label="Chapter Tests" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#chapter-tests" onclick="showPrototypeNotice('Chapter Tests', event)">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+</svg>
+<span class="text-xs font-medium mt-1">Ch. Tests</span>
+</a>
+<button aria-expanded="false" aria-label="Open more options" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" id="more-nav-btn" onclick="toggleMobileMoreSheet()" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="1"></circle>
+<circle cx="19" cy="12" r="1"></circle>
+<circle cx="5" cy="12" r="1"></circle>
+</svg>
+<span class="text-xs font-medium mt-1">More</span>
+</button>
+</nav>
+<!-- ========================================================================= -->
+<!-- 4. MODALS & OVERLAYS                                                      -->
+<!-- ========================================================================= -->
+<!-- Mobile "More" Bottom Sheet -->
+<div class="hidden md:hidden fixed inset-0 bg-slate-900/40 z-50 transition-opacity" id="mobile-more-overlay" onclick="toggleMobileMoreSheet()"></div>
+<div aria-labelledby="more-menu-heading" aria-modal="true" class="hidden md:hidden fixed left-0 right-0 bg-white border-t border-[#E2E8F0] rounded-t-xl z-50 shadow-xl transition-transform max-w-lg mx-auto p-4" id="mobile-more-sheet" role="dialog" style="bottom: calc(4rem + env(safe-area-inset-bottom, 0px));">
+<div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+<h3 class="text-sm font-bold text-[#0F172A]" id="more-menu-heading">Additional Navigation</h3>
+<button aria-label="Close menu" class="touch-target p-1 text-[#64748B] hover:text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] rounded" onclick="toggleMobileMoreSheet()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2.5 py-4">
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#my-tests" onclick="showPrototypeNotice('My Tests', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+<path d="M3 3v5h5"></path>
+<path d="M12 7v5l4 2"></path>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">My Tests</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#bookmarks" onclick="showPrototypeNotice('Bookmarks', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Bookmarks</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#preferences" onclick="showPrototypeNotice('Preferences', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="4" x2="20" y1="21" y2="21"></line>
+<line x1="4" x2="20" y1="14" y2="14"></line>
+<line x1="4" x2="20" y1="7" y2="7"></line>
+<circle cx="14" cy="21" r="2"></circle>
+<circle cx="8" cy="14" r="2"></circle>
+<circle cx="16" cy="7" r="2"></circle>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Preferences</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#signout" onclick="showPrototypeNotice('Sign Out', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+<polyline points="16 17 21 12 16 7"></polyline>
+<line x1="21" x2="9" y1="12" y2="12"></line>
+</svg>
+<span class="text-xs font-semibold text-red-600">Sign Out</span>
+</a>
+</div>
+</div>
+<!-- Test Details Modal -->
+<div aria-labelledby="modal-test-title" aria-modal="true" class="modal-dialog hidden fixed inset-0 z-50 overflow-y-auto" id="test-modal" role="dialog">
+<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeTestModal()"></div>
+<div class="min-h-full flex items-center justify-center p-4">
+<div class="relative bg-white border border-[#E2E8F0] rounded-lg max-w-2xl w-full p-6 shadow-xl z-10 space-y-5 max-h-[85vh] overflow-y-auto">
+<div class="flex items-start justify-between gap-4 pb-3 border-b border-[#E2E8F0]">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-[#EFF6FF] text-[#1D4ED8]" id="modal-exam-category">Full-Length</span>
+<span class="text-xs text-[#64748B] font-mono" id="modal-exam-code">SSC-CGL-FL-01</span>
+</div>
+<h3 class="text-lg font-bold text-[#0F172A]" id="modal-test-title">SSC CGL Full Mock 01</h3>
+</div>
+<button aria-label="Close modal" class="touch-target text-[#64748B] hover:text-[#0F172A] p-1.5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeTestModal()" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[#F8FAFC] border border-[#E2E8F0] p-3.5 rounded-lg">
+<div>
+<p class="text-xs uppercase text-[#64748B]">Duration</p>
+<p class="text-sm font-bold text-[#0F172A] mt-0.5" id="modal-test-duration">60 mins</p>
+</div>
+<div>
+<p class="text-xs uppercase text-[#64748B]">Questions</p>
+<p class="text-sm font-bold text-[#0F172A] mt-0.5" id="modal-test-questions">100 Qs</p>
+</div>
+<div>
+<p class="text-xs uppercase text-[#64748B]">Max Marks</p>
+<p class="text-sm font-bold text-[#0F172A] mt-0.5" id="modal-test-marks">200 Marks</p>
+</div>
+<div>
+<p class="text-xs uppercase text-[#64748B]">Marking</p>
+<p class="text-sm font-bold text-red-600 mt-0.5" id="modal-test-marking">+2.0, -0.50</p>
+</div>
+</div>
+<div class="space-y-2.5">
+<h4 class="text-sm font-semibold text-[#0F172A]">Curriculum &amp; Section Distribution</h4>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="modal-sections-container">
+<!-- Dynamic section rows injected safely via DOM construction -->
+</div>
+</div>
+<div class="p-3.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg space-y-1">
+<div class="flex items-center gap-1.5 text-[#0F172A] text-xs font-semibold">
+<span class="material-symbols-outlined text-sm text-[#1D4ED8]">help_outline</span>
+<span>Test Guidelines</span>
+</div>
+<p class="text-xs text-[#475569] leading-relaxed" id="modal-test-instructions">
+            Sample full-length practice test.
+          </p>
+</div>
+<div class="flex items-center justify-end gap-3 pt-2">
+<button class="touch-target px-4 py-2 rounded-lg text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeTestModal()" type="button">
+            Cancel
+          </button>
+<button class="touch-target px-5 py-2.5 bg-[#1D4ED8] text-white hover:bg-[#1E3A8A] rounded-lg text-xs font-semibold shadow-sm flex items-center gap-1.5 transition-all focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="modal-confirm-btn" onclick="confirmAndLaunchTest()" type="button">
+<span class="material-symbols-outlined text-base">rocket_launch</span>
+<span id="modal-confirm-label">Confirm &amp; Start Test</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- View Result Summary Modal -->
+<div aria-labelledby="result-modal-title" aria-modal="true" class="modal-dialog hidden fixed inset-0 z-50 overflow-y-auto" id="result-modal" role="dialog">
+<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeResultModal()"></div>
+<div class="min-h-full flex items-center justify-center p-4">
+<div class="relative bg-white border border-[#E2E8F0] rounded-lg max-w-md w-full p-6 shadow-xl z-10 space-y-4 max-h-[85vh] overflow-y-auto text-left">
+<div class="flex items-start justify-between pb-2 border-b border-[#E2E8F0]">
+<div>
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-[#EFF6FF] text-[#1D4ED8]">Demo / Sample Score</span>
+<h3 class="text-base font-bold text-[#0F172A] mt-1" id="result-modal-title">SSC CGL Full Mock 02</h3>
+</div>
+<button aria-label="Close dialog" class="touch-target text-[#64748B] hover:text-[#0F172A] p-1.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeResultModal()" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-lg text-center">
+<div>
+<p class="text-xs text-[#64748B]">Score Achieved</p>
+<p class="text-lg font-bold text-[#1D4ED8]" id="result-modal-score">138.50 / 200</p>
+</div>
+<div>
+<p class="text-xs text-[#64748B]">Est. Accuracy</p>
+<p class="text-lg font-bold text-[#0F172A]" id="result-modal-accuracy">82%</p>
+</div>
+</div>
+<div class="p-3 bg-[#EFF6FF] border border-[#BFDBFE] rounded-lg">
+<p class="text-xs text-[#1E3A8A] leading-relaxed">
+            Completed in prototype preview. Full CBT analytics, detailed question breakdown, and comparative metrics will be available when the test engine connects.
+          </p>
+</div>
+<div class="flex items-center justify-end gap-2 pt-2">
+<button class="touch-target px-4 py-2 bg-[#1D4ED8] text-white rounded-lg text-xs font-semibold hover:bg-[#1E3A8A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeResultModal()" type="button">
+            Close Summary
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Prototype Launch Notice Overlay -->
+<div aria-labelledby="cbt-notice-title" aria-modal="true" class="modal-dialog hidden fixed inset-0 z-50 overflow-y-auto" id="cbt-notice-dialog" role="alertdialog">
+<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm" onclick="closeCbtDialog()"></div>
+<div class="min-h-full flex items-center justify-center p-4">
+<div class="relative bg-white border border-[#E2E8F0] rounded-lg max-w-md w-full p-6 shadow-xl z-10 space-y-4 text-center">
+<div class="w-12 h-12 rounded-full bg-[#EFF6FF] text-[#1D4ED8] flex items-center justify-center mx-auto">
+<span class="material-symbols-outlined text-2xl">info</span>
+</div>
+<h3 class="text-base font-bold text-[#0F172A]" id="cbt-notice-title">Prototype Preview Notice</h3>
+<p class="text-xs text-[#475569] leading-relaxed">
+          The CBT test interface is not connected in this preview. No test session has started.
+        </p>
+<div class="pt-2">
+<button class="touch-target w-full py-2.5 bg-[#1D4ED8] text-white rounded-lg text-xs font-semibold shadow-sm hover:bg-[#1E3A8A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeCbtDialog()" type="button">
+            Return to Tests
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 5. UNIFIED ARCHITECTURE & JAVASCRIPT LOGIC                                -->
+<!-- ========================================================================= -->
+<script>
+    /* ==========================================================================
+       1. DATA CONFIGURATION & SOURCE OF TRUTH
+       ========================================================================== */
+    const EXAM_CONFIGS = {
+      cgl: {
+        id: 'cgl',
+        label: 'SSC CGL',
+        fullName: 'Combined Graduate Level Examination',
+        tiers: [
+          { id: 'all', name: 'All Tiers' },
+          { id: 'tier-1', name: 'Tier-I (Computer Based Examination)' },
+          { id: 'tier-2', name: 'Tier-II (Mains Examination)' }
+        ]
+      },
+      chsl: {
+        id: 'chsl',
+        label: 'SSC CHSL',
+        fullName: 'Combined Higher Secondary Level (10+2)',
+        tiers: [
+          { id: 'all', name: 'All Tiers' },
+          { id: 'tier-1', name: 'Tier-I (CBE)' },
+          { id: 'tier-2', name: 'Tier-II' }
+        ]
+      },
+      cpo: {
+        id: 'cpo',
+        label: 'SSC CPO',
+        fullName: 'Central Police Organisation (SI)',
+        tiers: [
+          { id: 'all', name: 'All Papers' },
+          { id: 'paper-1', name: 'Paper-I (CBE)' },
+          { id: 'paper-2', name: 'Paper-II (English Language)' }
+        ]
+      },
+      mts: {
+        id: 'mts',
+        label: 'SSC MTS',
+        fullName: 'Multi-Tasking Staff & Havaldar',
+        tiers: [
+          { id: 'all', name: 'All Sessions' },
+          { id: 'session-cbe', name: 'Session-I & II (CBE)' }
+        ]
+      },
+      gd: {
+        id: 'gd',
+        label: 'SSC GD',
+        fullName: 'General Duty Constables (CAPFs/SSF/Rifleman)',
+        tiers: [
+          { id: 'cbe', name: 'Computer Based Examination (CBE)' }
+        ]
+      },
+      steno: {
+        id: 'steno',
+        label: 'SSC Steno',
+        fullName: 'Stenographer Grade C & D Examination',
+        tiers: [
+          { id: 'cbe', name: 'Grade C & D (CBE)' }
+        ]
+      }
+    };
+
+    // Realistic curated test dataset strictly assigned to SSC CGL Tier-1 without unused attemptsCount
+    const mockTestsData = [
+      {
+        id: 'cgl-full-01',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'full',
+        code: 'SSC-CGL-FL-01',
+        title: 'SSC CGL Full Mock 01',
+        targetExam: 'SSC CGL',
+        duration: '60 mins',
+        questions: 100,
+        maxMarks: 200,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample full-length practice test.',
+        sections: [
+          { name: 'General Intelligence & Reasoning', questions: 25, marks: 50 },
+          { name: 'General Awareness', questions: 25, marks: 50 },
+          { name: 'Quantitative Aptitude', questions: 25, marks: 50 },
+          { name: 'English Comprehension', questions: 25, marks: 50 }
+        ]
+      },
+      {
+        id: 'cgl-full-02',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'full',
+        code: 'SSC-CGL-FL-02',
+        title: 'SSC CGL Full Mock 02',
+        targetExam: 'SSC CGL',
+        duration: '60 mins',
+        questions: 100,
+        maxMarks: 200,
+        markingScheme: '+2.0, -0.50',
+        status: 'attempted',
+        userScore: '138.50',
+        userAccuracy: '82%',
+        availabilityDesc: 'Attempted on 12 Mar 2026',
+        instructions: 'Sample full-length practice test.',
+        sections: [
+          { name: 'General Intelligence & Reasoning', questions: 25, marks: 50 },
+          { name: 'General Awareness', questions: 25, marks: 50 },
+          { name: 'Quantitative Aptitude', questions: 25, marks: 50 },
+          { name: 'English Comprehension', questions: 25, marks: 50 }
+        ]
+      },
+      {
+        id: 'cgl-full-03',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'full',
+        code: 'SSC-CGL-FL-03',
+        title: 'SSC CGL Full Mock 03',
+        targetExam: 'SSC CGL',
+        duration: '60 mins',
+        questions: 100,
+        maxMarks: 200,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample full-length practice test.',
+        sections: [
+          { name: 'General Intelligence & Reasoning', questions: 25, marks: 50 },
+          { name: 'General Awareness', questions: 25, marks: 50 },
+          { name: 'Quantitative Aptitude', questions: 25, marks: 50 },
+          { name: 'English Comprehension', questions: 25, marks: 50 }
+        ]
+      },
+      {
+        id: 'cgl-full-04',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'full',
+        code: 'SSC-CGL-FL-04',
+        title: 'SSC CGL Full Mock 04',
+        targetExam: 'SSC CGL',
+        duration: '60 mins',
+        questions: 100,
+        maxMarks: 200,
+        markingScheme: '+2.0, -0.50',
+        status: 'upcoming',
+        availabilityDesc: 'Coming Soon',
+        instructions: 'Sample full-length practice test.',
+        sections: [
+          { name: 'General Intelligence & Reasoning', questions: 25, marks: 50 },
+          { name: 'General Awareness', questions: 25, marks: 50 },
+          { name: 'Quantitative Aptitude', questions: 25, marks: 50 },
+          { name: 'English Comprehension', questions: 25, marks: 50 }
+        ]
+      },
+      {
+        id: 'cgl-full-05',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'full',
+        code: 'SSC-CGL-FL-05',
+        title: 'SSC CGL Full Mock 05',
+        targetExam: 'SSC CGL',
+        duration: '60 mins',
+        questions: 100,
+        maxMarks: 200,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample full-length practice test.',
+        sections: [
+          { name: 'General Intelligence & Reasoning', questions: 25, marks: 50 },
+          { name: 'General Awareness', questions: 25, marks: 50 },
+          { name: 'Quantitative Aptitude', questions: 25, marks: 50 },
+          { name: 'English Comprehension', questions: 25, marks: 50 }
+        ]
+      },
+      {
+        id: 'cgl-full-06',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'full',
+        code: 'SSC-CGL-FL-06',
+        title: 'SSC CGL Full Mock 06',
+        targetExam: 'SSC CGL',
+        duration: '60 mins',
+        questions: 100,
+        maxMarks: 200,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample full-length practice test.',
+        sections: [
+          { name: 'General Intelligence & Reasoning', questions: 25, marks: 50 },
+          { name: 'General Awareness', questions: 25, marks: 50 },
+          { name: 'Quantitative Aptitude', questions: 25, marks: 50 },
+          { name: 'English Comprehension', questions: 25, marks: 50 }
+        ]
+      },
+      {
+        id: 'cgl-full-07',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'full',
+        code: 'SSC-CGL-FL-07',
+        title: 'SSC CGL Full Mock 07',
+        targetExam: 'SSC CGL',
+        duration: '60 mins',
+        questions: 100,
+        maxMarks: 200,
+        markingScheme: '+2.0, -0.50',
+        status: 'attempted',
+        userScore: '142.00',
+        userAccuracy: '86%',
+        availabilityDesc: 'Attempted on 04 Mar 2026',
+        instructions: 'Sample full-length practice test.',
+        sections: [
+          { name: 'General Intelligence & Reasoning', questions: 25, marks: 50 },
+          { name: 'General Awareness', questions: 25, marks: 50 },
+          { name: 'Quantitative Aptitude', questions: 25, marks: 50 },
+          { name: 'English Comprehension', questions: 25, marks: 50 }
+        ]
+      },
+      {
+        id: 'cgl-full-08',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'full',
+        code: 'SSC-CGL-FL-08',
+        title: 'SSC CGL Full Mock 08',
+        targetExam: 'SSC CGL',
+        duration: '60 mins',
+        questions: 100,
+        maxMarks: 200,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample full-length practice test.',
+        sections: [
+          { name: 'General Intelligence & Reasoning', questions: 25, marks: 50 },
+          { name: 'General Awareness', questions: 25, marks: 50 },
+          { name: 'Quantitative Aptitude', questions: 25, marks: 50 },
+          { name: 'English Comprehension', questions: 25, marks: 50 }
+        ]
+      },
+      // Sectional Tests (12 items)
+      {
+        id: 'sec-gi-01',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-REAS-01',
+        title: 'General Intelligence — Syllogism & Blood Relations',
+        targetExam: 'SSC CGL',
+        duration: '15 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'General Intelligence & Reasoning', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-gi-02',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-REAS-02',
+        title: 'General Intelligence — Non-Verbal & Pattern Folding',
+        targetExam: 'SSC CGL',
+        duration: '15 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'attempted',
+        userScore: '46.00',
+        userAccuracy: '92%',
+        availabilityDesc: 'Attempted on 10 Mar 2026',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'General Intelligence & Reasoning', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-qa-01',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-QUANT-01',
+        title: 'Quantitative Aptitude — Geometry & Mensuration',
+        targetExam: 'SSC CGL',
+        duration: '20 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'Quantitative Aptitude', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-qa-02',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-QUANT-02',
+        title: 'Quantitative Aptitude — Arithmetic Word Problems & DI',
+        targetExam: 'SSC CGL',
+        duration: '20 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'Quantitative Aptitude', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-ga-01',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-GK-01',
+        title: 'General Awareness — Modern Indian History',
+        targetExam: 'SSC CGL',
+        duration: '10 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'attempted',
+        userScore: '34.50',
+        userAccuracy: '76%',
+        availabilityDesc: 'Attempted on 08 Mar 2026',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'General Awareness & History', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-ga-02',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-GK-02',
+        title: 'General Awareness — Indian Polity & Constitution',
+        targetExam: 'SSC CGL',
+        duration: '10 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'Indian Polity & Constitution', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-eng-01',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-ENG-01',
+        title: 'English Comprehension — Cloze Test & Reading Passages',
+        targetExam: 'SSC CGL',
+        duration: '15 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'English Comprehension', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-eng-02',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-ENG-02',
+        title: 'English Comprehension — Spotting Errors & Voice',
+        targetExam: 'SSC CGL',
+        duration: '15 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'English Grammar & Vocabulary', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-qa-03',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-QUANT-03',
+        title: 'Quantitative Aptitude — Trigonometry & Heights',
+        targetExam: 'SSC CGL',
+        duration: '20 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'upcoming',
+        availabilityDesc: 'Coming Soon',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'Quantitative Aptitude', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-ga-03',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-GK-03',
+        title: 'General Awareness — Current Affairs Capsule',
+        targetExam: 'SSC CGL',
+        duration: '10 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'Current Affairs', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-gi-03',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-REAS-03',
+        title: 'General Intelligence — Coding-Decoding & Analogy',
+        targetExam: 'SSC CGL',
+        duration: '15 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'General Intelligence & Reasoning', questions: 25, marks: 50 }]
+      },
+      {
+        id: 'sec-eng-03',
+        examId: 'cgl',
+        tierId: 'tier-1',
+        category: 'sectional',
+        code: 'SEC-ENG-03',
+        title: 'English Comprehension — Idioms & One-Word Substitutes',
+        targetExam: 'SSC CGL',
+        duration: '15 mins',
+        questions: 25,
+        maxMarks: 50,
+        markingScheme: '+2.0, -0.50',
+        status: 'available',
+        availabilityDesc: 'Available Now',
+        instructions: 'Sample sectional practice test.',
+        sections: [{ name: 'English Vocabulary', questions: 25, marks: 50 }]
+      }
+    ];
+
+    /* ==========================================================================
+       2. INITIAL STATE & SHARED PREFERENCE INTEGRATION
+       ========================================================================== */
+    function getInitialExamKey() {
+      try {
+        const pref = window.SSCFlixState?.studentPreferences?.targetExam;
+        if (pref) {
+          const lower = String(pref).toLowerCase();
+          for (const key of Object.keys(EXAM_CONFIGS)) {
+            if (key === lower || EXAM_CONFIGS[key].label.toLowerCase() === lower) {
+              return key;
+            }
+          }
+        }
+      } catch (e) {
+        // Fallback gracefully
+      }
+      return 'cgl';
+    }
+
+    const state = {
+      selectedExam: getInitialExamKey(),
+      selectedTier: 'all',
+      category: 'full',
+      get activeCategory() { return this.category; },
+      set activeCategory(val) { this.category = val; },
+      status: 'all',
+      get activeStatus() { return this.status; },
+      set activeStatus(val) { this.status = val; },
+      searchQuery: '',
+      modalTest: null
+    };
+
+    let lastFocusedElement = null;
+    let lastActiveCardTrigger = null;
+
+    function syncSharedStudentPreference(examKey) {
+      try {
+        const examLabel = EXAM_CONFIGS[examKey] ? EXAM_CONFIGS[examKey].label : 'SSC CGL';
+        window.SSCFlixState = window.SSCFlixState || {};
+        window.SSCFlixState.studentPreferences = window.SSCFlixState.studentPreferences || {};
+        window.SSCFlixState.studentPreferences.targetExam = examLabel;
+      } catch (e) {
+        // Shared state update
+      }
+    }
+
+    /* ==========================================================================
+       3. CORE CONTROLLERS & DATA FLOW
+       ========================================================================== */
+    function renderExamPills() {
+      const container = document.getElementById('exam-pills-container');
+      if (!container) return;
+
+      container.replaceChildren();
+      const examKeys = Object.keys(EXAM_CONFIGS);
+
+      examKeys.forEach(key => {
+        const exam = EXAM_CONFIGS[key];
+        const isSelected = exam.id === state.selectedExam;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('role', 'button');
+        btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+        btn.setAttribute('data-exam', exam.id);
+
+        btn.className = `touch-target exam-pill px-4 py-2 rounded-lg text-xs sm:text-sm transition-all flex items-center gap-1.5 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] ${
+          isSelected
+            ? 'bg-[#1D4ED8] text-white shadow-sm font-semibold'
+            : 'bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] font-medium'
+        }`;
+
+        const span = document.createElement('span');
+        span.textContent = exam.label;
+        btn.appendChild(span);
+
+        btn.addEventListener('click', () => {
+          handleExamSelect(exam.id);
+        });
+
+        container.appendChild(btn);
+      });
+    }
+
+    function renderTierOptions() {
+      const tierSelect = document.getElementById('filter-tier-select');
+      const hintEl = document.getElementById('exam-full-name-hint');
+      const currentConfig = EXAM_CONFIGS[state.selectedExam] || EXAM_CONFIGS.cgl;
+
+      if (hintEl) hintEl.textContent = currentConfig.fullName;
+      if (!tierSelect) return;
+
+      tierSelect.replaceChildren();
+      currentConfig.tiers.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.name;
+        if (t.id === state.selectedTier) {
+          opt.selected = true;
+        }
+        tierSelect.appendChild(opt);
+      });
+    }
+
+    function updateHeaderIndicator() {
+      const examName = EXAM_CONFIGS[state.selectedExam] ? EXAM_CONFIGS[state.selectedExam].label : 'SSC CGL';
+      document.querySelectorAll('.target-exam-text').forEach(el => {
+        el.textContent = examName;
+      });
+    }
+
+    function updateCategoryUI() {
+      const tabFull = document.getElementById('tab-full');
+      const tabSectional = document.getElementById('tab-sectional');
+
+      if (!tabFull || !tabSectional) return;
+
+      if (state.category === 'full') {
+        tabFull.className = 'touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all bg-[#1D4ED8] text-white shadow-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        tabFull.setAttribute('aria-selected', 'true');
+
+        tabSectional.className = 'touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        tabSectional.setAttribute('aria-selected', 'false');
+      } else {
+        tabSectional.className = 'touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all bg-[#1D4ED8] text-white shadow-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        tabSectional.setAttribute('aria-selected', 'true');
+
+        tabFull.className = 'touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        tabFull.setAttribute('aria-selected', 'false');
+      }
+    }
+
+    function updateStatusChipsUI() {
+      document.querySelectorAll('.status-filter-chip').forEach(chip => {
+        const s = chip.getAttribute('data-status');
+        if (s === state.status) {
+          chip.className = 'status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-[#1D4ED8] text-white transition-all font-semibold focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        } else {
+          chip.className = 'status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-all font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        }
+      });
+    }
+
+    function updateComputedCounts() {
+      const baseExamTierTests = mockTestsData.filter(t => {
+        const matchesExam = t.examId === state.selectedExam;
+        const matchesTier = (state.selectedTier === 'all' || t.tierId === state.selectedTier);
+        return matchesExam && matchesTier;
+      });
+
+      const fullCount = baseExamTierTests.filter(t => t.category === 'full').length;
+      const sectionalCount = baseExamTierTests.filter(t => t.category === 'sectional').length;
+
+      const badgeFull = document.getElementById('badge-full-count');
+      const badgeSec = document.getElementById('badge-sectional-count');
+      if (badgeFull) badgeFull.textContent = fullCount;
+      if (badgeSec) badgeSec.textContent = sectionalCount;
+
+      const catTests = baseExamTierTests.filter(t => t.category === state.category);
+      const allCount = catTests.length;
+      const availCount = catTests.filter(t => t.status === 'available').length;
+      const attemptCount = catTests.filter(t => t.status === 'attempted').length;
+      const upcomingCount = catTests.filter(t => t.status === 'upcoming').length;
+
+      const countAll = document.getElementById('count-status-all');
+      const countAvail = document.getElementById('count-status-available');
+      const countAttempt = document.getElementById('count-status-attempted');
+      const countUpcoming = document.getElementById('count-status-upcoming');
+
+      if (countAll) countAll.textContent = allCount;
+      if (countAvail) countAvail.textContent = availCount;
+      if (countAttempt) countAttempt.textContent = attemptCount;
+      if (countUpcoming) countUpcoming.textContent = upcomingCount;
+    }
+
+    /* SAFE DOM CREATION FOR TEST CARD STATUS BADGE */
+    function createSafeStatusBadge(test) {
+      const badge = document.createElement('span');
+
+      if (test.status === 'available') {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]';
+        const dot = document.createElement('span');
+        dot.className = 'w-1.5 h-1.5 rounded-full bg-[#1D4ED8]';
+        badge.appendChild(dot);
+        badge.appendChild(document.createTextNode('Available'));
+      } else if (test.status === 'attempted') {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#F8FAFC] text-[#0F172A] border border-[#E2E8F0]';
+        const icon = document.createElement('span');
+        icon.className = 'material-symbols-outlined text-xs text-[#1D4ED8]';
+        icon.textContent = 'check_circle';
+        badge.appendChild(icon);
+        const textSpan = document.createElement('span');
+        textSpan.textContent = `Score: ${test.userScore} (Demo Data)`;
+        badge.appendChild(textSpan);
+      } else {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#F8FAFC] text-[#F59E0B] border border-[#E2E8F0]';
+        const icon = document.createElement('span');
+        icon.className = 'material-symbols-outlined text-xs';
+        icon.textContent = 'schedule';
+        badge.appendChild(icon);
+        badge.appendChild(document.createTextNode('Upcoming'));
+      }
+      return badge;
+    }
+
+    /* SAFE DOM CREATION FOR TEST ACTION BUTTONS */
+    function createSafeCardActionButtons(test) {
+      const actionsWrapper = document.createElement('div');
+      actionsWrapper.className = 'flex items-center gap-2 w-full md:w-auto justify-end';
+
+      if (test.status === 'available') {
+        const viewBtn = document.createElement('button');
+        viewBtn.type = 'button';
+        viewBtn.className = 'touch-target px-3.5 py-2 bg-white border border-[#E2E8F0] hover:bg-[#F8FAFC] text-[#0F172A] rounded-lg text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        viewBtn.textContent = 'View Details';
+        viewBtn.addEventListener('click', (e) => openDetailsModal(test.id, e.currentTarget));
+
+        const startBtn = document.createElement('button');
+        startBtn.type = 'button';
+        startBtn.className = 'touch-target px-4 py-2 bg-[#1D4ED8] text-white hover:bg-[#1E3A8A] rounded-lg text-xs font-semibold transition-colors shadow-sm flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        const startText = document.createElement('span');
+        startText.textContent = 'Start Test';
+        const arrow = document.createElement('span');
+        arrow.className = 'material-symbols-outlined text-sm';
+        arrow.textContent = 'arrow_forward';
+        startBtn.appendChild(startText);
+        startBtn.appendChild(arrow);
+        startBtn.addEventListener('click', (e) => openDetailsModal(test.id, e.currentTarget));
+
+        actionsWrapper.appendChild(viewBtn);
+        actionsWrapper.appendChild(startBtn);
+      } else if (test.status === 'attempted') {
+        const resultBtn = document.createElement('button');
+        resultBtn.type = 'button';
+        resultBtn.className = 'touch-target px-3.5 py-2 bg-white border border-[#E2E8F0] hover:bg-[#F8FAFC] text-[#0F172A] rounded-lg text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        resultBtn.textContent = 'View Result';
+        resultBtn.addEventListener('click', (e) => openResultModal(test.id, e.currentTarget));
+
+        const reattemptBtn = document.createElement('button');
+        reattemptBtn.type = 'button';
+        reattemptBtn.className = 'touch-target px-4 py-2 bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE] hover:bg-[#DBEAFE] rounded-lg text-xs font-semibold transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        const refreshIcon = document.createElement('span');
+        refreshIcon.className = 'material-symbols-outlined text-sm';
+        refreshIcon.textContent = 'refresh';
+        const reattemptText = document.createElement('span');
+        reattemptText.textContent = 'Reattempt';
+        reattemptBtn.appendChild(refreshIcon);
+        reattemptBtn.appendChild(reattemptText);
+        reattemptBtn.addEventListener('click', (e) => openDetailsModal(test.id, e.currentTarget));
+
+        actionsWrapper.appendChild(resultBtn);
+        actionsWrapper.appendChild(reattemptBtn);
+      } else {
+        const viewBtn = document.createElement('button');
+        viewBtn.type = 'button';
+        viewBtn.className = 'touch-target px-3.5 py-2 bg-white border border-[#E2E8F0] hover:bg-[#F8FAFC] text-[#0F172A] rounded-lg text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        viewBtn.textContent = 'View Details';
+        viewBtn.addEventListener('click', (e) => openDetailsModal(test.id, e.currentTarget));
+
+        const schedBtn = document.createElement('button');
+        schedBtn.type = 'button';
+        schedBtn.disabled = true;
+        schedBtn.className = 'touch-target px-4 py-2 bg-[#F8FAFC] border border-[#E2E8F0] text-[#64748B] rounded-lg text-xs font-semibold opacity-75 cursor-not-allowed flex items-center gap-1.5';
+        const lockIcon = document.createElement('span');
+        lockIcon.className = 'material-symbols-outlined text-sm';
+        lockIcon.textContent = 'lock';
+        const schedText = document.createElement('span');
+        schedText.textContent = 'Scheduled';
+        schedBtn.appendChild(lockIcon);
+        schedBtn.appendChild(schedText);
+
+        actionsWrapper.appendChild(viewBtn);
+        actionsWrapper.appendChild(schedBtn);
+      }
+
+      return actionsWrapper;
+    }
+
+    /* SAFE DOM CARD CREATION (NO INNERHTML INTERPOLATION) */
+    function createSafeTestCard(test) {
+      const card = document.createElement('article');
+      card.className = 'bg-white border border-[#E2E8F0] rounded-lg p-4 sm:p-5 shadow-sm hover:shadow transition-all flex flex-col md:flex-row md:items-center justify-between gap-4';
+
+      const mainContent = document.createElement('div');
+      mainContent.className = 'space-y-2 flex-1 min-w-0';
+
+      // Meta row: badge, code, bullet, availability description
+      const metaRow = document.createElement('div');
+      metaRow.className = 'flex flex-wrap items-center gap-2';
+      metaRow.appendChild(createSafeStatusBadge(test));
+
+      const codeSpan = document.createElement('span');
+      codeSpan.className = 'text-xs font-mono text-[#64748B]';
+      codeSpan.textContent = test.code;
+      metaRow.appendChild(codeSpan);
+
+      const bulletSpan = document.createElement('span');
+      bulletSpan.className = 'text-[#E2E8F0] text-xs';
+      bulletSpan.textContent = '•';
+      metaRow.appendChild(bulletSpan);
+
+      const descSpan = document.createElement('span');
+      descSpan.className = 'text-xs text-[#475569]';
+      descSpan.textContent = test.availabilityDesc;
+      metaRow.appendChild(descSpan);
+
+      mainContent.appendChild(metaRow);
+
+      // Title row
+      const titleWrapper = document.createElement('div');
+      const titleBtn = document.createElement('button');
+      titleBtn.type = 'button';
+      titleBtn.className = 'text-left font-semibold text-slate-900 text-base hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-2 rounded';
+      titleBtn.textContent = test.title;
+      titleBtn.addEventListener('click', (e) => openDetailsModal(test.id, e.currentTarget));
+      titleWrapper.appendChild(titleBtn);
+      mainContent.appendChild(titleWrapper);
+
+      // Specs row
+      const specsRow = document.createElement('div');
+      specsRow.className = 'flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-[#475569]';
+
+      // Duration spec
+      const durItem = document.createElement('span');
+      durItem.className = 'flex items-center gap-1';
+      const durIcon = document.createElement('span');
+      durIcon.className = 'material-symbols-outlined text-sm text-[#64748B]';
+      durIcon.textContent = 'timer';
+      const durText = document.createElement('span');
+      durText.className = 'font-semibold text-[#0F172A]';
+      durText.textContent = test.duration;
+      durItem.appendChild(durIcon);
+      durItem.appendChild(durText);
+      specsRow.appendChild(durItem);
+
+      // Questions spec
+      const qsItem = document.createElement('span');
+      qsItem.className = 'flex items-center gap-1';
+      const qsIcon = document.createElement('span');
+      qsIcon.className = 'material-symbols-outlined text-sm text-[#64748B]';
+      qsIcon.textContent = 'help_outline';
+      const qsText = document.createElement('span');
+      qsText.className = 'font-semibold text-[#0F172A]';
+      qsText.textContent = `${test.questions} Questions`;
+      qsItem.appendChild(qsIcon);
+      qsItem.appendChild(qsText);
+      specsRow.appendChild(qsItem);
+
+      // Marks spec
+      const marksItem = document.createElement('span');
+      marksItem.className = 'flex items-center gap-1';
+      const marksIcon = document.createElement('span');
+      marksIcon.className = 'material-symbols-outlined text-sm text-[#64748B]';
+      marksIcon.textContent = 'award_star';
+      const marksText = document.createElement('span');
+      marksText.className = 'font-semibold text-[#0F172A]';
+      marksText.textContent = `${test.maxMarks} Marks`;
+      marksItem.appendChild(marksIcon);
+      marksItem.appendChild(marksText);
+      specsRow.appendChild(marksItem);
+
+      // Scheme spec
+      const schemeItem = document.createElement('span');
+      schemeItem.className = 'flex items-center gap-1 text-red-600 font-medium';
+      const schemeText = document.createElement('span');
+      schemeText.textContent = `Scheme: ${test.markingScheme}`;
+      schemeItem.appendChild(schemeText);
+      specsRow.appendChild(schemeItem);
+
+      mainContent.appendChild(specsRow);
+      card.appendChild(mainContent);
+
+      // Actions right block
+      const actionsBlock = document.createElement('div');
+      actionsBlock.className = 'shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-[#E2E8F0]';
+      actionsBlock.appendChild(createSafeCardActionButtons(test));
+      card.appendChild(actionsBlock);
+
+      return card;
+    }
+
+    function renderTestList() {
+      const container = document.getElementById('tests-container');
+      const emptyState = document.getElementById('empty-state');
+      if (!container || !emptyState) return;
+
+      // Filter pipeline: Exam -> Tier -> Category -> Status -> Search
+      let filtered = mockTestsData.filter(t => {
+        const matchesExam = t.examId === state.selectedExam;
+        const matchesTier = (state.selectedTier === 'all' || t.tierId === state.selectedTier);
+        const matchesCat = t.category === state.activeCategory;
+        return matchesExam && matchesTier && matchesCat;
+      });
+
+      if (state.activeStatus !== 'all') {
+        filtered = filtered.filter(t => t.status === state.activeStatus);
+      }
+
+      if (state.searchQuery) {
+        filtered = filtered.filter(t =>
+          t.title.toLowerCase().includes(state.searchQuery) ||
+          t.code.toLowerCase().includes(state.searchQuery)
+        );
+      }
+
+      if (filtered.length === 0) {
+        container.replaceChildren();
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+
+        const titleEl = document.getElementById('empty-state-title');
+        const descEl = document.getElementById('empty-state-desc');
+        const btnText = document.getElementById('empty-state-btn-text');
+        const primaryBtn = document.getElementById('empty-state-primary-btn');
+        const secondaryBtn = document.getElementById('empty-state-secondary-btn');
+
+        // 4-tier empty-state detection hierarchy
+        const examTests = mockTestsData.filter(t => t.examId === state.selectedExam);
+        const examTierTests = mockTestsData.filter(t => t.examId === state.selectedExam && (state.selectedTier === 'all' || t.tierId === state.selectedTier));
+        const examTierCatTests = mockTestsData.filter(t => t.examId === state.selectedExam && (state.selectedTier === 'all' || t.tierId === state.selectedTier) && t.category === state.activeCategory);
+
+        if (examTests.length === 0) {
+          // Priority 1 (Exam level)
+          titleEl.textContent = 'No Tests Available';
+          descEl.textContent = 'No mock tests are currently available for this examination.';
+          btnText.textContent = 'Switch to SSC CGL';
+          primaryBtn.classList.remove('hidden');
+          primaryBtn.onclick = () => {
+            state.selectedExam = 'cgl';
+            syncSharedStudentPreference('cgl');
+            const tiers = EXAM_CONFIGS.cgl.tiers;
+            const hasAll = tiers.some(t => t.id === 'all');
+            state.selectedTier = hasAll ? 'all' : (tiers[0] ? tiers[0].id : 'all');
+            state.searchQuery = '';
+            state.activeStatus = 'all';
+            const searchInput = document.getElementById('test-search-input');
+            if (searchInput) searchInput.value = '';
+            renderExamPills();
+            renderTierOptions();
+            updateHeaderIndicator();
+            updateCategoryUI();
+            updateStatusChipsUI();
+            updateComputedCounts();
+            renderTestList();
+          };
+          if (secondaryBtn) secondaryBtn.classList.add('hidden');
+        } else if (examTierTests.length === 0) {
+          // Priority 2 (Tier / Paper level)
+          titleEl.textContent = 'No Tests for Selected Tier / Paper';
+          descEl.textContent = 'No mock tests are currently available for this Tier / Paper.';
+          btnText.textContent = 'View All Tiers & Papers';
+          primaryBtn.classList.remove('hidden');
+          primaryBtn.onclick = () => {
+            const currentConfig = EXAM_CONFIGS[state.selectedExam] || EXAM_CONFIGS.cgl;
+            const hasAll = currentConfig.tiers.some(t => t.id === 'all');
+            state.selectedTier = hasAll ? 'all' : (currentConfig.tiers[0] ? currentConfig.tiers[0].id : 'all');
+            state.searchQuery = '';
+            state.activeStatus = 'all';
+            const searchInput = document.getElementById('test-search-input');
+            if (searchInput) searchInput.value = '';
+            const tierSelect = document.getElementById('filter-tier-select');
+            if (tierSelect) tierSelect.value = state.selectedTier;
+            updateStatusChipsUI();
+            updateComputedCounts();
+            renderTestList();
+          };
+          if (secondaryBtn) secondaryBtn.classList.add('hidden');
+        } else if (examTierCatTests.length === 0) {
+          // Priority 3 (Category level)
+          const otherCat = state.activeCategory === 'full' ? 'sectional' : 'full';
+          const otherCatCount = mockTestsData.filter(t => t.examId === state.selectedExam && (state.selectedTier === 'all' || t.tierId === state.selectedTier) && t.category === otherCat).length;
+
+          titleEl.textContent = state.activeCategory === 'full' ? 'No Full-Length Tests' : 'No Sectional Tests';
+          descEl.textContent = state.activeCategory === 'full' ? 'No Full-Length tests are currently available for this selection.' : 'No Sectional tests are currently available for this selection.';
+
+          if (otherCatCount > 0) {
+            primaryBtn.classList.remove('hidden');
+            btnText.textContent = otherCat === 'full' ? 'Switch to Full-Length Tests' : 'Switch to Sectional Tests';
+            primaryBtn.onclick = () => {
+              state.activeCategory = otherCat;
+              state.searchQuery = '';
+              state.activeStatus = 'all';
+              const searchInput = document.getElementById('test-search-input');
+              if (searchInput) searchInput.value = '';
+              updateCategoryUI();
+              updateStatusChipsUI();
+              updateComputedCounts();
+              renderTestList();
+            };
+          } else {
+            const currentConfig = EXAM_CONFIGS[state.selectedExam] || EXAM_CONFIGS.cgl;
+            const hasAllTierOption = currentConfig.tiers.some(t => t.id === 'all');
+            const sameCatAllTiersCount = mockTestsData.filter(t => t.examId === state.selectedExam && t.category === state.activeCategory).length;
+            const canExpandToAllTiers = hasAllTierOption && state.selectedTier !== 'all' && sameCatAllTiersCount > 0;
+
+            if (canExpandToAllTiers) {
+              primaryBtn.classList.remove('hidden');
+              btnText.textContent = 'View All Tiers & Papers';
+              primaryBtn.onclick = () => {
+                state.selectedTier = 'all';
+                state.searchQuery = '';
+                state.activeStatus = 'all';
+                const searchInput = document.getElementById('test-search-input');
+                if (searchInput) searchInput.value = '';
+                const tierSelect = document.getElementById('filter-tier-select');
+                if (tierSelect) tierSelect.value = state.selectedTier;
+                updateStatusChipsUI();
+                updateComputedCounts();
+                renderTestList();
+              };
+            } else {
+              primaryBtn.classList.add('hidden');
+            }
+          }
+          if (secondaryBtn) secondaryBtn.classList.add('hidden');
+        } else {
+          // Priority 4 (Filter / Search level)
+          titleEl.textContent = 'No Matching Tests';
+          descEl.textContent = 'No tests match your current filters.';
+          btnText.textContent = 'Clear Filters';
+          primaryBtn.classList.remove('hidden');
+          primaryBtn.onclick = () => {
+            const searchInput = document.getElementById('test-search-input');
+            if (searchInput) searchInput.value = '';
+            state.searchQuery = '';
+            state.activeStatus = 'all';
+            updateStatusChipsUI();
+            renderTestList();
+          };
+          if (secondaryBtn) secondaryBtn.classList.add('hidden');
+        }
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      emptyState.classList.remove('flex');
+      container.replaceChildren();
+
+      filtered.forEach(test => {
+        container.appendChild(createSafeTestCard(test));
+      });
+    }
+
+    /* ==========================================================================
+       4. USER EVENT HANDLERS & STATE MUTATORS
+       ========================================================================== */
+    function handleExamSelect(examId) {
+      if (!EXAM_CONFIGS[examId]) return;
+
+      // Fix same-examination click: ignore identical selection completely
+      if (state.selectedExam === examId) {
+        return;
+      }
+
+      state.selectedExam = examId;
+      syncSharedStudentPreference(examId);
+
+      // Reset tier to default for new exam
+      const tiers = EXAM_CONFIGS[examId].tiers;
+      const hasAll = tiers.some(t => t.id === 'all');
+      state.selectedTier = hasAll ? 'all' : (tiers[0] ? tiers[0].id : 'all');
+      
+      // Reset search query and status filter to 'All'
+      state.activeStatus = 'all';
+      state.searchQuery = '';
+      const searchInput = document.getElementById('test-search-input');
+      if (searchInput) searchInput.value = '';
+
+      renderExamPills();
+      renderTierOptions();
+      updateHeaderIndicator();
+      updateStatusChipsUI();
+      updateComputedCounts();
+      renderTestList();
+    }
+
+    function handleTierSelect(tierId) {
+      state.selectedTier = tierId;
+      const tierSelect = document.getElementById('filter-tier-select');
+      if (tierSelect && tierSelect.value !== tierId) {
+        tierSelect.value = tierId;
+      }
+      updateComputedCounts();
+      renderTestList();
+    }
+
+    function handleCategoryChange(cat) {
+      state.activeCategory = cat;
+      state.activeStatus = 'all';
+      updateCategoryUI();
+      updateStatusChipsUI();
+      updateComputedCounts();
+      renderTestList();
+    }
+
+    function handleStatusChange(status) {
+      state.activeStatus = status;
+      updateStatusChipsUI();
+      renderTestList();
+    }
+
+    function handleSearch(val) {
+      state.searchQuery = (val || '').trim().toLowerCase();
+      renderTestList();
+    }
+
+    function resetToDefaultExam() {
+      state.selectedExam = 'cgl';
+      syncSharedStudentPreference('cgl');
+      state.selectedTier = 'all';
+      state.activeStatus = 'all';
+      state.searchQuery = '';
+      state.activeCategory = 'full';
+
+      const searchInput = document.getElementById('test-search-input');
+      if (searchInput) searchInput.value = '';
+
+      renderExamPills();
+      renderTierOptions();
+      updateHeaderIndicator();
+      updateCategoryUI();
+      updateStatusChipsUI();
+      updateComputedCounts();
+      renderTestList();
+    }
+
+    function clearSearchAndStatusFilters() {
+      state.activeStatus = 'all';
+      state.searchQuery = '';
+      const searchInput = document.getElementById('test-search-input');
+      if (searchInput) searchInput.value = '';
+      updateStatusChipsUI();
+      renderTestList();
+    }
+
+    /* ==========================================================================
+       5. ACCESSIBLE MODALS & DIALOGS
+       ========================================================================== */
+    function getFocusableElements(container) {
+      return Array.from(container.querySelectorAll(
+        'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      ));
+    }
+
+    function isAnyOverlayOpen() {
+      const openDialogs = document.querySelectorAll('.fixed:not(.hidden)[role="dialog"], .fixed:not(.hidden)[role="alertdialog"]');
+      const mobileOverlayOpen = !document.getElementById('mobile-more-overlay')?.classList.contains('hidden');
+      return openDialogs.length > 0 || mobileOverlayOpen;
+    }
+
+    function openModalElement(modalId, triggerEl = null) {
+      if (triggerEl) {
+        lastFocusedElement = triggerEl;
+      } else if (document.activeElement && document.body.contains(document.activeElement)) {
+        lastFocusedElement = document.activeElement;
+      }
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+
+      const focusables = getFocusableElements(modal);
+      if (focusables.length > 0) {
+        setTimeout(() => focusables[0].focus(), 50);
+      }
+    }
+
+    function closeModalElement(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('hidden');
+      }
+
+      // Safe scroll lock restoration: only remove overflow-hidden if no other overlay/dialog is visible
+      if (!isAnyOverlayOpen()) {
+        document.body.classList.remove('overflow-hidden');
+      }
+
+      const restoreEl = lastActiveCardTrigger || lastFocusedElement;
+      if (restoreEl && typeof restoreEl.focus === 'function' && document.body.contains(restoreEl)) {
+        restoreEl.focus();
+      }
+    }
+
+    function openDetailsModal(testId, triggerEl = null) {
+      const test = mockTestsData.find(t => t.id === testId);
+      if (!test) return;
+
+      if (triggerEl) lastActiveCardTrigger = triggerEl;
+      state.modalTest = test;
+
+      document.getElementById('modal-test-title').textContent = test.title;
+      document.getElementById('modal-exam-code').textContent = test.code;
+      document.getElementById('modal-exam-category').textContent = test.category === 'full' ? 'Full-Length Test' : 'Sectional Drill';
+      document.getElementById('modal-test-duration').textContent = test.duration;
+      document.getElementById('modal-test-questions').textContent = `${test.questions} Qs`;
+      document.getElementById('modal-test-marks').textContent = `${test.maxMarks} Marks`;
+      document.getElementById('modal-test-marking').textContent = test.markingScheme;
+      document.getElementById('modal-test-instructions').textContent = test.instructions;
+
+      // Safe DOM construction for section rows
+      const sectionsContainer = document.getElementById('modal-sections-container');
+      sectionsContainer.replaceChildren();
+
+      (test.sections || []).forEach(sec => {
+        const secRow = document.createElement('div');
+        secRow.className = 'flex items-center justify-between p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]';
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'text-xs font-medium text-[#0F172A]';
+        nameSpan.textContent = sec.name;
+
+        const countSpan = document.createElement('span');
+        countSpan.className = 'text-xs font-bold text-[#1D4ED8]';
+        countSpan.textContent = `${sec.questions} Qs • ${sec.marks} M`;
+
+        secRow.appendChild(nameSpan);
+        secRow.appendChild(countSpan);
+        sectionsContainer.appendChild(secRow);
+      });
+
+      const confirmBtn = document.getElementById('modal-confirm-btn');
+      const confirmLabel = document.getElementById('modal-confirm-label');
+
+      if (test.status === 'upcoming') {
+        confirmBtn.disabled = true;
+        confirmBtn.className = 'touch-target px-5 py-2.5 bg-[#F8FAFC] border border-[#E2E8F0] text-[#64748B] rounded-lg text-xs font-semibold opacity-60 cursor-not-allowed flex items-center gap-1.5';
+        confirmLabel.textContent = 'Scheduled Test';
+      } else {
+        confirmBtn.disabled = false;
+        confirmBtn.className = 'touch-target px-5 py-2.5 bg-[#1D4ED8] text-white hover:bg-[#1E3A8A] rounded-lg text-xs font-semibold shadow-sm flex items-center gap-1.5 transition-all focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
+        confirmLabel.textContent = test.status === 'attempted' ? 'Confirm & Reattempt' : 'Confirm & Start Test';
+      }
+
+      openModalElement('test-modal', triggerEl);
+    }
+
+    function closeTestModal() {
+      closeModalElement('test-modal');
+    }
+
+    function openResultModal(testId, triggerEl = null) {
+      const test = mockTestsData.find(t => t.id === testId);
+      if (!test) return;
+
+      if (triggerEl) lastActiveCardTrigger = triggerEl;
+      document.getElementById('result-modal-title').textContent = test.title;
+      document.getElementById('result-modal-score').textContent = `${test.userScore} / ${test.maxMarks}`;
+      document.getElementById('result-modal-accuracy').textContent = test.userAccuracy || '82%';
+
+      openModalElement('result-modal', triggerEl);
+    }
+
+    function closeResultModal() {
+      closeModalElement('result-modal');
+    }
+
+    function confirmAndLaunchTest() {
+      closeTestModal();
+      openModalElement('cbt-notice-dialog', lastActiveCardTrigger);
+    }
+
+    function closeCbtDialog() {
+      closeModalElement('cbt-notice-dialog');
+    }
+
+    function toggleProfileMenu() {
+      const dropdown = document.getElementById('profile-dropdown');
+      const btn = document.getElementById('profile-btn');
+      if (!dropdown || !btn) return;
+      const isHidden = dropdown.classList.contains('hidden');
+      if (isHidden) {
+        dropdown.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        dropdown.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    function toggleMobileMoreSheet() {
+      const sheet = document.getElementById('mobile-more-sheet');
+      const overlay = document.getElementById('mobile-more-overlay');
+      const btn = document.getElementById('more-nav-btn');
+      if (!sheet || !overlay) return;
+
+      const isHidden = sheet.classList.contains('hidden');
+      if (isHidden) {
+        lastFocusedElement = document.activeElement;
+        sheet.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('overflow-hidden');
+        const focusables = getFocusableElements(sheet);
+        if (focusables.length > 0) setTimeout(() => focusables[0].focus(), 50);
+      } else {
+        sheet.classList.add('hidden');
+        overlay.classList.add('hidden');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+
+        if (!isAnyOverlayOpen()) {
+          document.body.classList.remove('overflow-hidden');
+        }
+
+        const restoreTarget = btn || lastFocusedElement;
+        if (restoreTarget && typeof restoreTarget.focus === 'function' && document.body.contains(restoreTarget)) {
+          restoreTarget.focus();
+        }
+      }
+    }
+
+    function showPrototypeNotice(destination, event) {
+      if (event) event.preventDefault();
+      const banner = document.getElementById('prototype-banner');
+      const bannerText = document.getElementById('prototype-banner-text');
+      if (bannerText) bannerText.textContent = `The destination "${destination}" is not connected in the current Mock Tests preview.`;
+      if (banner) {
+        banner.classList.remove('hidden');
+        banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function dismissPrototypeNotice() {
+      const banner = document.getElementById('prototype-banner');
+      if (banner) banner.classList.add('hidden');
+    }
+
+    /* ==========================================================================
+       6. GLOBAL KEYBOARD & CLICK LISTENERS
+       ========================================================================== */
+    document.addEventListener('keydown', (e) => {
+      const openModals = Array.from(document.querySelectorAll('#test-modal:not(.hidden), #result-modal:not(.hidden), #cbt-notice-dialog:not(.hidden), #mobile-more-sheet:not(.hidden)'));
+      if (openModals.length === 0) return;
+
+      const currentModal = openModals[openModals.length - 1];
+
+      if (e.key === 'Escape') {
+        if (currentModal.id === 'test-modal') closeTestModal();
+        else if (currentModal.id === 'result-modal') closeResultModal();
+        else if (currentModal.id === 'cbt-notice-dialog') closeCbtDialog();
+        else if (currentModal.id === 'mobile-more-sheet') toggleMobileMoreSheet();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        const focusables = getFocusableElements(currentModal);
+        if (focusables.length === 0) {
+          e.preventDefault();
+          return;
+        }
+        const firstFocusable = focusables[0];
+        const lastFocusable = focusables[focusables.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstFocusable) {
+            e.preventDefault();
+            lastFocusable.focus();
+          }
+        } else {
+          if (document.activeElement === lastFocusable) {
+            e.preventDefault();
+            firstFocusable.focus();
+          }
+        }
+      }
+    });
+
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('profile-dropdown');
+      const btn = document.getElementById('profile-btn');
+      if (dropdown && btn && !btn.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* ==========================================================================
+       7. INITIALIZATION
+       ========================================================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+      syncSharedStudentPreference(state.selectedExam);
+      renderExamPills();
+      renderTierOptions();
+      updateHeaderIndicator();
+      updateCategoryUI();
+      updateStatusChipsUI();
+      updateComputedCounts();
+      renderTestList();
+
+      const tierSelect = document.getElementById('filter-tier-select');
+      if (tierSelect) {
+        tierSelect.addEventListener('change', (e) => {
+          handleTierSelect(e.target.value);
+        });
+      }
+    });
+  </script>
+</body></html>

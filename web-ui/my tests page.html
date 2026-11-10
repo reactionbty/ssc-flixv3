@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<title>My Tests — SSC Flix</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1D4ED8",
+            "primary-navy": "#1E3A8A",
+            "amber-accent": "#F59E0B",
+            "background": "#F8FAFC",
+            "surface": "#FFFFFF",
+            "surface-container-lowest": "#FFFFFF",
+            "border-ui": "#E2E8F0",
+            "on-surface": "#0F172A",
+            "on-surface-variant": "#475569",
+            "error": "#BA1A1A",
+            "error-container": "#FEE2E2",
+            "on-error-container": "#991B1B"
+          },
+          borderRadius: {
+            DEFAULT: "8px",
+            lg: "8px",
+            xl: "12px",
+            "2xl": "16px",
+            full: "9999px"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            "code-tabular": ["Inter", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+<!-- Desktop Sidebar (240px fixed) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-[240px] bg-surface flex-col z-50 border-r border-[#E2E8F0] shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+<!-- Brand / Logo Header -->
+<div class="h-14 flex items-center px-4 gap-2.5 bg-surface border-b border-[#E2E8F0]">
+<img alt="SSC Flix Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/>
+<span class="text-base font-bold text-on-surface tracking-tight">SSC Flix</span>
+</div>
+<div class="px-3 pt-3 pb-1">
+<div class="px-2 py-1 text-xs uppercase tracking-wider text-on-surface-variant font-semibold">Aspirant Portal</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 px-3 flex flex-col gap-1 overflow-y-auto pb-4">
+<a class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-on-surface-variant hover:bg-slate-100 hover:text-on-surface transition-colors text-sm font-medium" data-path="dashboard" href="#" onclick="showPrototypeToast('Dashboard Navigation', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[20px] mr-3 text-slate-500">space_dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-on-surface-variant hover:bg-slate-100 hover:text-on-surface transition-colors text-sm font-medium" data-path="mock-tests" href="#" onclick="showPrototypeToast('Mock Tests', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[20px] mr-3 text-slate-500">quiz</span>
+<span>Mock Tests</span>
+</a>
+<a class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-on-surface-variant hover:bg-slate-100 hover:text-on-surface transition-colors text-sm font-medium" data-path="pyqs" href="#" onclick="showPrototypeToast('PYQs Section', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[20px] mr-3 text-slate-500">history_edu</span>
+<span>PYQs</span>
+</a>
+<a class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-on-surface-variant hover:bg-slate-100 hover:text-on-surface transition-colors text-sm font-medium" data-path="chapter-tests" href="#" onclick="showPrototypeToast('Chapter Tests', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[20px] mr-3 text-slate-500">menu_book</span>
+<span>Chapter Tests</span>
+</a>
+<!-- Divider -->
+<div class="my-2 border-t border-[#E2E8F0]"></div>
+<!-- ACTIVE: My Tests -->
+<a aria-current="page" class="flex items-center min-h-[44px] px-3 py-2 rounded-lg bg-blue-50 text-[#1D4ED8] font-semibold" data-path="my-tests" href="#">
+<span class="material-symbols-outlined text-[20px] mr-3 text-[#1D4ED8]">fact_check</span>
+<span>My Tests</span>
+</a>
+<a class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-on-surface-variant hover:bg-slate-100 hover:text-on-surface transition-colors text-sm font-medium" data-path="bookmarks" href="#" onclick="showPrototypeToast('Bookmarks', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[20px] mr-3 text-slate-500">bookmark</span>
+<span>Bookmarks</span>
+</a>
+<!-- Divider -->
+<div class="my-2 border-t border-[#E2E8F0]"></div>
+<a class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-on-surface-variant hover:bg-slate-100 hover:text-on-surface transition-colors text-sm font-medium" data-path="preferences" href="#" onclick="showPrototypeToast('Preferences', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[20px] mr-3 text-slate-500">tune</span>
+<span>Preferences</span>
+</a>
+<a class="flex items-center min-h-[44px] px-3 py-2 rounded-lg text-on-surface-variant hover:bg-slate-100 hover:text-on-surface transition-colors text-sm font-medium" data-path="profile" href="#" onclick="showPrototypeToast('Profile', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[20px] mr-3 text-slate-500">badge</span>
+<span>Profile</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Shell -->
+<div class="md:pl-[240px]">
+<!-- Top Header Bar (56px) -->
+<header class="fixed top-0 left-0 md:left-[240px] right-0 h-14 bg-surface/95 backdrop-blur-md border-b border-[#E2E8F0] z-40 px-4 lg:px-8 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Mobile Logo and Name -->
+<div class="flex items-center gap-2 md:hidden">
+<img alt="SSC Flix Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/>
+<span class="font-bold text-base text-on-surface">SSC Flix</span>
+</div>
+<!-- Desktop Breadcrumb Badge -->
+<div class="hidden md:flex items-center gap-2 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-[18px] text-[#1D4ED8]">verified</span>
+<span class="uppercase tracking-wider font-semibold text-[#1D4ED8]">CGL / CHSL Prep Tier-1 &amp; Tier-2</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Notifications" class="min-w-[44px] min-h-[44px] rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" onclick="showPrototypeToast('Notifications', 'Prototype only — this action is not connected yet.');" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button aria-label="Global Search" class="min-w-[44px] min-h-[44px] rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" onclick="document.getElementById('searchInput').focus();" type="button">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</button>
+<div class="w-9 h-9 rounded-full bg-[#1D4ED8] text-white flex items-center justify-center text-xs font-semibold ml-1">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+</header>
+<!-- Main Workspace with explicit header spacing so 56px fixed bar never clips breadcrumbs -->
+<main class="relative pt-[72px] pb-24 md:pb-12 px-4 lg:px-8 w-full max-w-7xl mx-auto" style="padding-top: 4.5rem;">
+<div class="flex flex-col w-full">
+<!-- Breadcrumb & Top Header Title -->
+<div class="flex flex-col gap-1 mb-4 mt-1">
+<div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+<a class="hover:text-[#1D4ED8] transition-colors" href="#" onclick="showPrototypeToast('Dashboard', 'Prototype only — this action is not connected yet.'); return false;">Dashboard</a>
+<span class="material-symbols-outlined text-[14px] text-slate-400">chevron_right</span>
+<span class="text-on-surface font-semibold">My Tests</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mt-1">
+<div>
+<h1 class="text-2xl font-bold text-on-surface tracking-tight">My Tests</h1>
+<p class="text-sm text-on-surface-variant mt-0.5">Manage your test attempts and continue where you left off.</p>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 border border-[#E2E8F0] rounded-lg self-start md:self-auto text-slate-600 text-xs">
+<span class="w-2 h-2 rounded-full bg-[#1D4ED8]"></span>
+<span>Demonstration Records • Non-Production Workspace</span>
+</div>
+</div>
+</div>
+<!-- Status Filter Navigation Pills (min 44px touch targets) -->
+<div aria-label="Filter test attempts by state" class="flex items-center gap-2 overflow-x-auto pb-1 mb-4" role="tablist">
+<button aria-selected="true" class="status-tab flex items-center gap-2 px-4 min-h-[44px] rounded-lg text-sm font-semibold transition-colors whitespace-nowrap bg-[#1D4ED8] text-white shadow-sm" data-filter="all" id="tab-all" role="tab" type="button">
+<span>All Attempts</span>
+<span class="px-2 py-0.5 rounded-full bg-white/20 text-white font-mono text-xs" id="count-all">6</span>
+</button>
+<button aria-selected="false" class="status-tab flex items-center gap-2 px-4 min-h-[44px] rounded-lg text-sm font-medium transition-colors whitespace-nowrap bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-[#E2E8F0]" data-filter="in_progress" id="tab-in_progress" role="tab" type="button">
+<span>In Progress</span>
+<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-mono text-xs" id="count-inprogress">1</span>
+</button>
+<button aria-selected="false" class="status-tab flex items-center gap-2 px-4 min-h-[44px] rounded-lg text-sm font-medium transition-colors whitespace-nowrap bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-[#E2E8F0]" data-filter="completed" id="tab-completed" role="tab" type="button">
+<span>Completed</span>
+<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-mono text-xs" id="count-completed">4</span>
+</button>
+<button aria-selected="false" class="status-tab flex items-center gap-2 px-4 min-h-[44px] rounded-lg text-sm font-medium transition-colors whitespace-nowrap bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-[#E2E8F0]" data-filter="expired" id="tab-expired" role="tab" type="button">
+<span>Expired / Interrupted</span>
+<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-mono text-xs" id="count-expired">1</span>
+</button>
+</div>
+<!-- Compound Filter & Search Toolbar (min 44px high inputs & buttons) -->
+<div class="bg-white p-3 sm:p-4 rounded-lg border border-[#E2E8F0] shadow-sm mb-4 flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[20px] pointer-events-none">search</span>
+<input class="w-full min-h-[44px] pl-10 pr-4 bg-slate-50 border border-[#E2E8F0] rounded-lg text-on-surface placeholder:text-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#1D4ED8] transition-colors" id="searchInput" placeholder="Search by test name, tier, or source..." type="text"/>
+</div>
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+<!-- Source Filter Select -->
+<div class="relative w-full sm:w-auto">
+<label class="sr-only" for="sourceFilter">Filter by Source</label>
+<div class="flex items-center gap-1.5 px-3 min-h-[44px] bg-slate-50 border border-[#E2E8F0] rounded-lg text-on-surface text-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-500">category</span>
+<select class="bg-transparent text-sm text-on-surface focus:outline-none cursor-pointer pr-3 min-h-[44px]" id="sourceFilter">
+<option value="all">All Sources</option>
+<option value="Mock Test">Mock Test</option>
+<option value="Sectional Test">Sectional Test</option>
+<option value="PYQ Paper">PYQ Paper</option>
+<option value="Chapter Test">Chapter Test</option>
+</select>
+</div>
+</div>
+<!-- Sort Toggle Select -->
+<div class="relative w-full sm:w-auto">
+<label class="sr-only" for="sortFilter">Sort attempts</label>
+<div class="flex items-center gap-1.5 px-3 min-h-[44px] bg-slate-50 border border-[#E2E8F0] rounded-lg text-on-surface text-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-500">sort</span>
+<select class="bg-transparent text-sm text-on-surface focus:outline-none cursor-pointer pr-3 min-h-[44px]" id="sortFilter">
+<option value="recent">Most Recent</option>
+<option value="oldest">Oldest First</option>
+<option value="score_desc">Score: High to Low</option>
+</select>
+</div>
+</div>
+<!-- Quick Reset Button (min 44px) -->
+<button class="min-h-[44px] px-4 rounded-lg bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 transition-colors flex items-center justify-center text-sm font-medium gap-1.5" id="resetBtn" title="Reset all applied filters" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+<span class="hidden sm:inline">Reset</span>
+</button>
+</div>
+</div>
+<!-- Live Result Count Label -->
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-baseline gap-2">
+<h2 class="text-base font-bold text-on-surface tracking-tight">Your Attempts</h2>
+<span class="text-xs text-on-surface-variant font-mono" id="result-count-label">Showing 6 attempts</span>
+</div>
+</div>
+<!-- Container for Attempt Cards (Built safely via DOM nodes) -->
+<div class="flex flex-col gap-3" id="attemptsContainer"></div>
+<!-- Contextual Empty State Container -->
+<div class="hidden flex-col items-center justify-center py-16 px-4 text-center bg-white border border-[#E2E8F0] rounded-lg shadow-sm mt-2" id="emptyState">
+<div class="w-14 h-14 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500 mb-3" id="emptyStateIconWrap">
+<span class="material-symbols-outlined text-[32px]" id="emptyStateIcon">quiz</span>
+</div>
+<h3 class="text-base font-bold text-on-surface" id="emptyStateTitle">No matching attempts</h3>
+<p class="text-sm text-on-surface-variant max-w-md mt-1" id="emptyStateDesc">No test attempts match the filters you've applied. Try adjusting your query or resetting.</p>
+<div class="mt-4 flex gap-2" id="emptyStateActionContainer">
+<button class="min-h-[44px] px-5 rounded-lg bg-[#1D4ED8] text-white font-medium text-sm hover:bg-[#1E3A8A] transition-colors" id="emptyStateActionBtn" onclick="resetFilters()" type="button">Clear Filters</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (5 Canonical Destinations, min 44px touch targets) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-[#E2E8F0] z-50 px-1 pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] pt-1 shadow-lg">
+<nav aria-label="Mobile navigation bar" class="h-14 flex items-center justify-around">
+<a class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px]" data-path="dashboard" href="#" onclick="showPrototypeToast('Dashboard', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[22px]">space_dashboard</span>
+<span class="text-xs font-medium mt-0.5">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px]" data-path="mock-tests" href="#" onclick="showPrototypeToast('Mock Tests', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[22px]">quiz</span>
+<span class="text-xs font-medium mt-0.5">Mock Tests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px]" data-path="pyqs" href="#" onclick="showPrototypeToast('PYQs', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[22px]">history_edu</span>
+<span class="text-xs font-medium mt-0.5">PYQs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px]" data-path="chapter-tests" href="#" onclick="showPrototypeToast('Chapter Tests', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[22px]">menu_book</span>
+<span class="text-xs font-medium mt-0.5">Chapters</span>
+</a>
+<button aria-controls="more-menu-sheet" aria-expanded="false" aria-label="Open more navigation items" class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px] cursor-pointer" id="mobileMoreTrigger" type="button">
+<span class="material-symbols-outlined text-[22px]">apps</span>
+<span class="text-xs font-medium mt-0.5">More</span>
+</button>
+</nav>
+</div>
+<!-- Mobile "More" Bottom Sheet Dialog with Focus Trap -->
+<div aria-hidden="true" aria-label="More navigation menu" aria-modal="true" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 hidden transition-opacity" id="more-menu-sheet" role="dialog">
+<div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl p-4 sm:p-6 shadow-2xl max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
+<div class="w-12 h-1 bg-slate-300 rounded-full mx-auto mb-4"></div>
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-[#E2E8F0]">
+<h3 class="text-base font-bold text-on-surface" id="moreSheetTitle">Aspirant Navigation</h3>
+<button aria-label="Close navigation sheet" class="min-w-[44px] min-h-[44px] rounded-lg flex items-center justify-center text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors" id="closeMoreSheetBtn" type="button">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2.5 mb-2">
+<!-- Active link: My Tests -->
+<a class="min-h-[48px] p-3 rounded-lg bg-blue-50 border border-blue-200 text-[#1D4ED8] flex flex-col gap-1 shadow-sm" href="#" onclick="closeMoreSheet(); return false;">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#1D4ED8]">fact_check</span>
+<span class="text-sm font-bold">My Tests</span>
+</div>
+<span class="text-xs text-[#1D4ED8]">Active Attempt Vault</span>
+</a>
+<a class="min-h-[48px] p-3 rounded-lg bg-slate-50 border border-[#E2E8F0] text-slate-800 hover:bg-slate-100 flex flex-col gap-1 transition-colors" href="#" onclick="closeMoreSheet(); showPrototypeToast('Bookmarks Vault', 'Prototype only — this action is not connected yet.'); return false;">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#1D4ED8]">bookmark</span>
+<span class="text-sm font-semibold">Bookmarks</span>
+</div>
+<span class="text-xs text-slate-500">Flagged Questions</span>
+</a>
+<a class="min-h-[48px] p-3 rounded-lg bg-slate-50 border border-[#E2E8F0] text-slate-800 hover:bg-slate-100 flex flex-col gap-1 transition-colors" href="#" onclick="closeMoreSheet(); showPrototypeToast('Preferences', 'Prototype only — this action is not connected yet.'); return false;">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#1D4ED8]">tune</span>
+<span class="text-sm font-semibold">Preferences</span>
+</div>
+<span class="text-xs text-slate-500">Study Settings</span>
+</a>
+<a class="min-h-[48px] p-3 rounded-lg bg-slate-50 border border-[#E2E8F0] text-slate-800 hover:bg-slate-100 flex flex-col gap-1 transition-colors" href="#" onclick="closeMoreSheet(); showPrototypeToast('Candidate Profile', 'Prototype only — this action is not connected yet.'); return false;">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#1D4ED8]">badge</span>
+<span class="text-sm font-semibold">Profile</span>
+</div>
+<span class="text-xs text-slate-500">Candidate ID &amp; Target</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Prototype Toast Notification -->
+<div aria-live="polite" class="fixed bottom-6 right-6 md:right-10 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none max-w-sm w-full" id="toastNotification">
+<div class="bg-slate-900 text-white px-4 py-3 rounded-lg shadow-xl flex items-start gap-3 border border-slate-700 pointer-events-auto">
+<span class="material-symbols-outlined text-blue-400 mt-0.5 text-[20px]" id="toastIcon">info</span>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white" id="toastTitle">Prototype Action</p>
+<p class="text-xs text-slate-300 mt-0.5" id="toastMessage">Prototype only — this action is not connected yet.</p>
+</div>
+<button aria-label="Dismiss notification" class="pointer-events-auto text-slate-400 hover:text-white p-1 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0" onclick="hideToast()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<!-- Application Logic -->
+<script>
+    // Canonical Attempt Data Model with permissions and synchronized timestamps
+    const nowTime = Date.now();
+    const att2CompletedMs = nowTime - 3 * 60 * 60 * 1000;
+    const att2DurationSeconds = 3252; // 54m 12s
+    const att2StartedMs = att2CompletedMs - att2DurationSeconds * 1000;
+
+    const att3CompletedMs = nowTime - 25 * 60 * 60 * 1000;
+    const att3DurationSeconds = 1125; // 18m 45s
+    const att3StartedMs = att3CompletedMs - att3DurationSeconds * 1000;
+
+    const attemptsData = [
+      {
+        id: "ATT-001",
+        title: "SSC CGL Full Mock 03",
+        tier: "Tier-1 Simulation",
+        source: "Mock Test",
+        status: "in_progress",
+        // Dynamically generated: started 22 minutes ago
+        startedAt: new Date(Date.now() - 22 * 60 * 1000).toISOString(),
+        answered: 42,
+        totalQs: 100,
+        timeRemaining: "38 mins remaining",
+        score: null,
+        maxScore: 200,
+        accuracy: null,
+        correct: null,
+        incorrect: null,
+        unattempted: null,
+        resultAvailable: false,
+        reviewAvailable: false,
+        resumeAllowed: true,
+        reattemptAllowed: false
+      },
+      {
+        id: "ATT-002",
+        title: "SSC CGL Full Mock 01",
+        tier: "Tier-1 Simulation",
+        source: "Mock Test",
+        status: "completed",
+        startedAt: new Date(att2StartedMs).toISOString(),
+        completedAt: new Date(att2CompletedMs).toISOString(),
+        duration: "54m 12s",
+        score: 139.50,
+        maxScore: 200,
+        accuracy: 81.3,
+        correct: 74,
+        incorrect: 17,
+        unattempted: 9,
+        resultAvailable: true,
+        reviewAvailable: true,
+        resumeAllowed: false,
+        reattemptAllowed: true
+      },
+      {
+        id: "ATT-003",
+        title: "Quantitative Aptitude: Arithmetic Speed Sprint",
+        tier: "Sectional Speed Drill",
+        source: "Sectional Test",
+        status: "completed",
+        startedAt: new Date(att3StartedMs).toISOString(),
+        completedAt: new Date(att3CompletedMs).toISOString(),
+        duration: "18m 45s / 20m",
+        score: 42.00,
+        maxScore: 50,
+        accuracy: 91.3,
+        correct: 21,
+        incorrect: 2,
+        unattempted: 2,
+        resultAvailable: true,
+        reviewAvailable: true,
+        resumeAllowed: false,
+        reattemptAllowed: true
+      },
+      {
+        id: "ATT-004",
+        title: "SSC CGL 2024 Tier-1 Shift 1 Paper",
+        tier: "Previous Year Paper",
+        source: "PYQ Paper",
+        status: "completed",
+        startedAt: "2024-10-05T10:48:40+05:30",
+        completedAt: "2024-10-05T11:45:00+05:30", // Differs by exactly 56m 20s (3380 seconds)
+        duration: "56m 20s",
+        score: 146.00,
+        maxScore: 200,
+        accuracy: 84.6,
+        correct: 77,
+        incorrect: 14,
+        unattempted: 9,
+        resultAvailable: true,
+        reviewAvailable: true,
+        resumeAllowed: false,
+        reattemptAllowed: true
+      },
+      {
+        id: "ATT-005",
+        title: "Reasoning: Coding & Logical Venn Diagrams",
+        tier: "Topic Precision Drill",
+        source: "Chapter Test",
+        status: "expired",
+        startedAt: "2024-10-02T14:00:00+05:30",
+        completedAt: "2024-10-02T14:45:00+05:30",
+        interruptionReason: "Session locked. Standard timer reached 00:00 without explicit submission.",
+        duration: "Session Interrupted",
+        score: null,
+        maxScore: 50,
+        accuracy: null,
+        correct: null,
+        incorrect: null,
+        unattempted: null,
+        resultAvailable: false,
+        reviewAvailable: false,
+        resumeAllowed: false,
+        reattemptAllowed: true
+      },
+      {
+        id: "ATT-006",
+        title: "SSC CGL Full Mock 02",
+        tier: "Tier-1 Simulation",
+        source: "Mock Test",
+        status: "completed",
+        startedAt: "2024-03-12T09:02:00+05:30",
+        completedAt: "2024-03-12T10:00:00+05:30", // Differs by exactly 58m 00s (3480 seconds)
+        duration: "58m 00s",
+        score: 138.50,
+        maxScore: 200,
+        accuracy: 79.5,
+        correct: 72,
+        incorrect: 19,
+        unattempted: 9,
+        resultAvailable: true,
+        reviewAvailable: true,
+        resumeAllowed: false,
+        reattemptAllowed: true
+      }
+    ];
+
+    let currentStatusFilter = 'all';
+    let currentSourceFilter = 'all';
+    let currentSearchQuery = '';
+    let currentSort = 'recent';
+
+    // Dynamic relative date handling with Asia/Kolkata timezone awareness
+    function formatAttemptDate(dateStr) {
+      if (!dateStr) return '';
+      const targetDate = new Date(dateStr);
+      if (isNaN(targetDate.getTime())) return dateStr;
+
+      const timeZone = 'Asia/Kolkata';
+
+      // Format parts in Asia/Kolkata
+      const optionsDate = { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' };
+      const optionsTime = { timeZone, hour: '2-digit', minute: '2-digit', hour12: true };
+
+      const now = new Date();
+      const todayStr = new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+
+      const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+      const yesterdayStr = new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(yesterday);
+
+      const targetDateStr = new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(targetDate);
+      const targetTimeStr = new Intl.DateTimeFormat('en-US', optionsTime).format(targetDate);
+
+      if (targetDateStr === todayStr) {
+        return `Today, ${targetTimeStr}`;
+      } else if (targetDateStr === yesterdayStr) {
+        return `Yesterday, ${targetTimeStr}`;
+      } else {
+        const dFmt = new Intl.DateTimeFormat('en-GB', { timeZone, day: '2-digit', month: 'short', year: 'numeric' });
+        return dFmt.format(targetDate);
+      }
+    }
+
+    // Safely update badge counts for filter tabs
+    function updateCounts() {
+      const total = attemptsData.length;
+      const inProgress = attemptsData.filter(a => a.status === 'in_progress').length;
+      const completed = attemptsData.filter(a => a.status === 'completed').length;
+      const expired = attemptsData.filter(a => a.status === 'expired').length;
+
+      const badgeAll = document.getElementById('count-all');
+      if (badgeAll) badgeAll.textContent = total;
+
+      const badgeInProgress = document.getElementById('count-inprogress');
+      if (badgeInProgress) badgeInProgress.textContent = inProgress;
+
+      const badgeCompleted = document.getElementById('count-completed');
+      if (badgeCompleted) badgeCompleted.textContent = completed;
+
+      const badgeExpired = document.getElementById('count-expired');
+      if (badgeExpired) badgeExpired.textContent = expired;
+    }
+
+    // Filter and sort attempt records
+    function getFilteredAttempts() {
+      return attemptsData.filter(item => {
+        if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) {
+          return false;
+        }
+        if (currentSourceFilter !== 'all' && item.source !== currentSourceFilter) {
+          return false;
+        }
+        if (currentSearchQuery.trim() !== '') {
+          const query = currentSearchQuery.toLowerCase();
+          const titleMatch = (item.title || '').toLowerCase().includes(query);
+          const tierMatch = (item.tier || '').toLowerCase().includes(query);
+          const sourceMatch = (item.source || '').toLowerCase().includes(query);
+          if (!titleMatch && !tierMatch && !sourceMatch) return false;
+        }
+        return true;
+      }).sort((a, b) => {
+        if (currentSort === 'recent') {
+          const dateB = new Date(b.completedAt || b.startedAt).getTime();
+          const dateA = new Date(a.completedAt || a.startedAt).getTime();
+          return dateB - dateA;
+        } else if (currentSort === 'oldest') {
+          const dateA = new Date(a.completedAt || a.startedAt).getTime();
+          const dateB = new Date(b.completedAt || b.startedAt).getTime();
+          return dateA - dateB;
+        } else if (currentSort === 'score_desc') {
+          // Records without evaluated scores sink to the bottom
+          const scoreA = (a.score !== null && a.score !== undefined) ? a.score : -9999;
+          const scoreB = (b.score !== null && b.score !== undefined) ? b.score : -9999;
+          return scoreB - scoreA;
+        }
+        return 0;
+      });
+    }
+
+    // Safe DOM rendering for attempt cards without unsafe innerHTML interpolation
+    function renderAttempts() {
+      const container = document.getElementById('attemptsContainer');
+      const emptyState = document.getElementById('emptyState');
+      const resultCountLabel = document.getElementById('result-count-label');
+
+      if (!container || !emptyState) return;
+
+      const list = getFilteredAttempts();
+
+      if (resultCountLabel) {
+        resultCountLabel.textContent = `Showing ${list.length} ${list.length === 1 ? 'attempt' : 'attempts'}`;
+      }
+
+      // Empty State Handling
+      if (list.length === 0) {
+        container.replaceChildren();
+        container.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+
+        const titleElem = document.getElementById('emptyStateTitle');
+        const descElem = document.getElementById('emptyStateDesc');
+        const iconElem = document.getElementById('emptyStateIcon');
+        const actionBtn = document.getElementById('emptyStateActionBtn');
+
+        if (attemptsData.length === 0) {
+          if (iconElem) iconElem.textContent = 'quiz';
+          if (titleElem) titleElem.textContent = 'No attempts yet';
+          if (descElem) descElem.textContent = 'Tests you start or complete will appear here.';
+          if (actionBtn) {
+            actionBtn.textContent = 'Explore Mock Tests';
+            actionBtn.onclick = () => showPrototypeToast('Mock Tests', 'Prototype only — this action is not connected yet.');
+          }
+        } else if (currentStatusFilter === 'in_progress') {
+          if (iconElem) iconElem.textContent = 'pending_actions';
+          if (titleElem) titleElem.textContent = 'No tests in progress';
+          if (descElem) descElem.textContent = "You don't have any active test sessions at the moment.";
+          if (actionBtn) {
+            actionBtn.textContent = 'Clear Filters';
+            actionBtn.onclick = resetFilters;
+          }
+        } else {
+          if (iconElem) iconElem.textContent = 'search_off';
+          if (titleElem) titleElem.textContent = 'No matching attempts';
+          if (descElem) descElem.textContent = 'No test attempts match your selected search and filters.';
+          if (actionBtn) {
+            actionBtn.textContent = 'Clear Filters';
+            actionBtn.onclick = resetFilters;
+          }
+        }
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      emptyState.classList.remove('flex');
+      container.classList.remove('hidden');
+      container.replaceChildren();
+
+      // Build each card via document.createElement & textContent
+      list.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "bg-white p-4 lg:p-5 rounded-lg border border-[#E2E8F0] shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4 transition-all";
+
+        // LEFT INFO BLOCK
+        const leftCol = document.createElement('div');
+        leftCol.className = "flex-1 min-w-0";
+
+        const tagRow = document.createElement('div');
+        tagRow.className = "flex flex-wrap items-center gap-2 mb-1.5";
+
+        // Status badge
+        const statusBadge = document.createElement('span');
+        if (item.status === 'in_progress') {
+          statusBadge.className = "px-2.5 py-1 rounded-full text-xs bg-amber-50 text-[#F59E0B] border border-amber-200 font-semibold flex items-center gap-1.5";
+          const dot = document.createElement('span');
+          dot.className = "w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse";
+          statusBadge.appendChild(dot);
+          const txt = document.createTextNode("In Progress");
+          statusBadge.appendChild(txt);
+        } else if (item.status === 'completed') {
+          statusBadge.className = "px-2.5 py-1 rounded-full text-xs bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold flex items-center gap-1";
+          const icon = document.createElement('span');
+          icon.className = "material-symbols-outlined text-[16px]";
+          icon.textContent = "check_circle";
+          statusBadge.appendChild(icon);
+          const txt = document.createTextNode("Completed");
+          statusBadge.appendChild(txt);
+        } else {
+          statusBadge.className = "px-2.5 py-1 rounded-full text-xs bg-rose-50 text-rose-700 border border-rose-200 font-semibold flex items-center gap-1";
+          const icon = document.createElement('span');
+          icon.className = "material-symbols-outlined text-[16px]";
+          icon.textContent = "timer_off";
+          statusBadge.appendChild(icon);
+          const txt = document.createTextNode("Expired / Interrupted");
+          statusBadge.appendChild(txt);
+        }
+        tagRow.appendChild(statusBadge);
+
+        // Source badge
+        const sourceBadge = document.createElement('span');
+        sourceBadge.className = "px-2.5 py-1 rounded-full text-xs bg-slate-100 text-slate-700 font-medium";
+        sourceBadge.textContent = item.source;
+        tagRow.appendChild(sourceBadge);
+
+        // Tier text
+        const tierText = document.createElement('span');
+        tierText.className = "text-xs text-slate-500";
+        tierText.textContent = `• ${item.tier}`;
+        tagRow.appendChild(tierText);
+
+        leftCol.appendChild(tagRow);
+
+        // Card Title (Safe textContent)
+        const titleH3 = document.createElement('h3');
+        titleH3.className = "text-base font-bold text-on-surface tracking-tight truncate";
+        titleH3.textContent = item.title;
+        leftCol.appendChild(titleH3);
+
+        // Meta timestamps row
+        const metaRow = document.createElement('div');
+        metaRow.className = "flex flex-wrap items-center gap-4 mt-1.5 text-slate-500 text-xs";
+
+        if (item.status === 'in_progress') {
+          const startedWrap = document.createElement('span');
+          startedWrap.className = "flex items-center gap-1";
+          const startIcon = document.createElement('span');
+          startIcon.className = "material-symbols-outlined text-[16px]";
+          startIcon.textContent = "play_circle";
+          const startLabel = document.createElement('span');
+          startLabel.textContent = `Started: ${formatAttemptDate(item.startedAt)}`;
+          startedWrap.append(startIcon, startLabel);
+
+          const timeWrap = document.createElement('span');
+          timeWrap.className = "flex items-center gap-1 text-[#F59E0B] font-semibold";
+          const timeIcon = document.createElement('span');
+          timeIcon.className = "material-symbols-outlined text-[16px]";
+          timeIcon.textContent = "alarm";
+          const timeLabel = document.createElement('span');
+          timeLabel.textContent = item.timeRemaining;
+          timeWrap.append(timeIcon, timeLabel);
+
+          metaRow.append(startedWrap, timeWrap);
+        } else if (item.status === 'completed') {
+          const submittedWrap = document.createElement('span');
+          submittedWrap.className = "flex items-center gap-1";
+          const submitIcon = document.createElement('span');
+          submitIcon.className = "material-symbols-outlined text-[16px]";
+          submitIcon.textContent = "calendar_today";
+          const submitLabel = document.createElement('span');
+          submitLabel.textContent = `Submitted: ${formatAttemptDate(item.completedAt)}`;
+          submittedWrap.append(submitIcon, submitLabel);
+
+          const durationWrap = document.createElement('span');
+          durationWrap.className = "flex items-center gap-1";
+          const durationIcon = document.createElement('span');
+          durationIcon.className = "material-symbols-outlined text-[16px]";
+          durationIcon.textContent = "timelapse";
+          const durationLabel = document.createElement('span');
+          durationLabel.textContent = `Duration: ${item.duration}`;
+          durationWrap.append(durationIcon, durationLabel);
+
+          metaRow.append(submittedWrap, durationWrap);
+        } else {
+          // Expired
+          const loggedWrap = document.createElement('span');
+          loggedWrap.className = "flex items-center gap-1";
+          const loggedIcon = document.createElement('span');
+          loggedIcon.className = "material-symbols-outlined text-[16px]";
+          loggedIcon.textContent = "history";
+          const loggedLabel = document.createElement('span');
+          loggedLabel.textContent = `Session Logged: ${formatAttemptDate(item.completedAt || item.startedAt)}`;
+          loggedWrap.append(loggedIcon, loggedLabel);
+
+          const reasonWrap = document.createElement('span');
+          reasonWrap.className = "text-rose-600 font-medium flex items-center gap-1";
+          const reasonIcon = document.createElement('span');
+          reasonIcon.className = "material-symbols-outlined text-[16px]";
+          reasonIcon.textContent = "info";
+          const reasonLabel = document.createElement('span');
+          reasonLabel.textContent = item.interruptionReason || "Attempt ended before normal completion.";
+          reasonWrap.append(reasonIcon, reasonLabel);
+
+          metaRow.append(loggedWrap, reasonWrap);
+        }
+
+        leftCol.appendChild(metaRow);
+        card.appendChild(leftCol);
+
+        // MIDDLE METRICS OR NOTICE BLOCK
+        if (item.status === 'in_progress') {
+          const middleWrap = document.createElement('div');
+          middleWrap.className = "w-full lg:w-64 flex flex-col justify-center bg-slate-50 border border-[#E2E8F0] p-3 rounded-lg";
+
+          // Clamped calculation for answered and totalQs
+          const rawTotal = item.totalQs && item.totalQs > 0 ? item.totalQs : 0;
+          const clampedAnswered = Math.max(0, item.answered || 0);
+          const clampedPercentage = rawTotal > 0 ? Math.max(0, Math.min(100, Math.round((clampedAnswered / rawTotal) * 100))) : 0;
+          const clampedUnanswered = rawTotal > 0 ? Math.max(0, rawTotal - clampedAnswered) : 0;
+
+          const gaugeHeader = document.createElement('div');
+          gaugeHeader.className = "flex items-center justify-between text-xs mb-1.5";
+          const gTitle = document.createElement('span');
+          gTitle.className = "text-slate-600 font-medium";
+          gTitle.textContent = "Question Progress";
+          const gCount = document.createElement('span');
+          gCount.className = "font-mono font-bold text-slate-800";
+          gCount.textContent = `${clampedAnswered} / ${rawTotal} answered`;
+          gaugeHeader.append(gTitle, gCount);
+
+          const barBg = document.createElement('div');
+          barBg.className = "w-full h-2 rounded-full bg-slate-200 overflow-hidden";
+          const barFill = document.createElement('div');
+          barFill.className = "h-full bg-[#1D4ED8] rounded-full transition-all duration-500";
+          barFill.style.width = `${clampedPercentage}%`;
+          barBg.appendChild(barFill);
+
+          const gaugeFooter = document.createElement('div');
+          gaugeFooter.className = "mt-1.5 flex justify-between items-center text-slate-500 text-xs";
+          const gCompleted = document.createElement('span');
+          gCompleted.textContent = `Completed: ${clampedPercentage}%`;
+          const gRemaining = document.createElement('span');
+          gRemaining.textContent = `${clampedUnanswered} unanswered`;
+          gaugeFooter.append(gCompleted, gRemaining);
+
+          middleWrap.append(gaugeHeader, barBg, gaugeFooter);
+          card.appendChild(middleWrap);
+        } else if (item.status === 'completed') {
+          const middleWrap = document.createElement('div');
+          middleWrap.className = "flex items-center gap-4 bg-slate-50 border border-[#E2E8F0] px-4 py-3 rounded-lg";
+
+          // Score
+          const scoreBox = document.createElement('div');
+          const scoreTitle = document.createElement('div');
+          scoreTitle.className = "text-xs uppercase tracking-wider text-slate-500 font-medium";
+          scoreTitle.textContent = "Score";
+          const scoreValWrap = document.createElement('div');
+          scoreValWrap.className = "flex items-baseline gap-1 mt-0.5";
+          const scoreVal = document.createElement('span');
+          scoreVal.className = "font-mono text-lg text-[#1D4ED8] font-bold";
+          scoreVal.textContent = item.score !== null ? item.score.toFixed(2) : '--';
+          const maxVal = document.createElement('span');
+          maxVal.className = "text-xs text-slate-400";
+          maxVal.textContent = `/ ${item.maxScore !== null ? item.maxScore.toFixed(0) : '--'}`;
+          scoreValWrap.append(scoreVal, maxVal);
+          scoreBox.append(scoreTitle, scoreValWrap);
+
+          const divider1 = document.createElement('div');
+          divider1.className = "w-px h-8 bg-[#E2E8F0]";
+
+          // Accuracy
+          const accBox = document.createElement('div');
+          const accTitle = document.createElement('div');
+          accTitle.className = "text-xs uppercase tracking-wider text-slate-500 font-medium";
+          accTitle.textContent = "Accuracy";
+          const accValWrap = document.createElement('div');
+          accValWrap.className = "mt-0.5 flex items-center gap-1";
+          const accVal = document.createElement('span');
+          accVal.className = "font-mono text-sm font-bold text-slate-800";
+          accVal.textContent = item.accuracy !== null ? `${item.accuracy}%` : '--';
+          const accIcon = document.createElement('span');
+          accIcon.className = "material-symbols-outlined text-[16px] text-[#1D4ED8]";
+          accIcon.textContent = "trending_up";
+          accValWrap.append(accVal, accIcon);
+          accBox.append(accTitle, accValWrap);
+
+          // Breakdown
+          const divider2 = document.createElement('div');
+          divider2.className = "hidden sm:block w-px h-8 bg-[#E2E8F0]";
+          const breakBox = document.createElement('div');
+          breakBox.className = "hidden sm:block";
+          const breakTitle = document.createElement('div');
+          breakTitle.className = "text-xs uppercase tracking-wider text-slate-500 font-medium";
+          breakTitle.textContent = "Breakdown";
+          const breakValWrap = document.createElement('div');
+          breakValWrap.className = "mt-0.5 text-xs text-slate-600 flex gap-2 font-mono";
+          const correctSpan = document.createElement('span');
+          correctSpan.className = "text-[#1D4ED8] font-semibold";
+          correctSpan.textContent = `${item.correct}C`;
+          const incSpan = document.createElement('span');
+          incSpan.className = "text-rose-600 font-semibold";
+          incSpan.textContent = `${item.incorrect}I`;
+          const unSpan = document.createElement('span');
+          unSpan.className = "text-slate-400 font-semibold";
+          unSpan.textContent = `${item.unattempted}U`;
+          breakValWrap.append(correctSpan, incSpan, unSpan);
+          breakBox.append(breakTitle, breakValWrap);
+
+          middleWrap.append(scoreBox, divider1, accBox, divider2, breakBox);
+          card.appendChild(middleWrap);
+        } else {
+          // Expired notice
+          const noticeWrap = document.createElement('div');
+          noticeWrap.className = "w-full lg:w-64 bg-slate-50 border border-[#E2E8F0] p-3 rounded-lg text-slate-600 text-xs flex items-center gap-2";
+          const lockIcon = document.createElement('span');
+          lockIcon.className = "material-symbols-outlined text-slate-400 text-[20px] shrink-0";
+          lockIcon.textContent = "lock_clock";
+          const noticeText = document.createElement('span');
+          noticeText.className = "text-xs leading-tight";
+          noticeText.textContent = item.interruptionReason || "Attempt ended before normal completion.";
+          noticeWrap.append(lockIcon, noticeText);
+          card.appendChild(noticeWrap);
+        }
+
+        // RIGHT ACTION BUTTONS CONTAINER (min 44px height)
+        const actionsWrap = document.createElement('div');
+        actionsWrap.className = "flex flex-wrap sm:flex-nowrap items-center gap-2 self-stretch lg:self-auto justify-end";
+
+        if (item.status === 'in_progress') {
+          if (item.resumeAllowed) {
+            const resumeBtn = document.createElement('button');
+            resumeBtn.type = "button";
+            resumeBtn.className = "min-h-[44px] px-5 rounded-lg bg-[#1D4ED8] text-white hover:bg-[#1E3A8A] font-medium text-sm transition-colors flex items-center justify-center gap-1.5 shadow-sm min-w-[130px]";
+            const rIcon = document.createElement('span');
+            rIcon.className = "material-symbols-outlined text-[18px]";
+            rIcon.textContent = "play_arrow";
+            const rLabel = document.createElement('span');
+            rLabel.textContent = "Resume Test";
+            resumeBtn.append(rIcon, rLabel);
+            resumeBtn.addEventListener('click', () => resumeTest(item.id, item.title));
+            actionsWrap.appendChild(resumeBtn);
+          }
+        } else if (item.status === 'completed') {
+          if (item.resultAvailable) {
+            const viewResultBtn = document.createElement('button');
+            viewResultBtn.type = "button";
+            viewResultBtn.className = "flex-1 sm:flex-none min-h-[44px] px-4 rounded-lg bg-[#1D4ED8] text-white hover:bg-[#1E3A8A] font-medium text-sm transition-colors flex items-center justify-center gap-1.5 shadow-sm";
+            const vrIcon = document.createElement('span');
+            vrIcon.className = "material-symbols-outlined text-[18px]";
+            vrIcon.textContent = "insights";
+            const vrLabel = document.createElement('span');
+            vrLabel.textContent = "View Result";
+            viewResultBtn.append(vrIcon, vrLabel);
+            viewResultBtn.addEventListener('click', () => viewResult(item.id, item.title));
+            actionsWrap.appendChild(viewResultBtn);
+          }
+
+          if (item.reviewAvailable) {
+            const reviewBtn = document.createElement('button');
+            reviewBtn.type = "button";
+            reviewBtn.className = "flex-1 sm:flex-none min-h-[44px] px-4 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 font-medium text-sm transition-colors flex items-center justify-center gap-1.5";
+            const revIcon = document.createElement('span');
+            revIcon.className = "material-symbols-outlined text-[18px]";
+            revIcon.textContent = "visibility";
+            const revLabel = document.createElement('span');
+            revLabel.textContent = "Review Answers";
+            reviewBtn.append(revIcon, revLabel);
+            reviewBtn.addEventListener('click', () => reviewAnswers(item.id, item.title));
+            actionsWrap.appendChild(reviewBtn);
+          }
+
+          if (item.reattemptAllowed) {
+            const reattemptBtn = document.createElement('button');
+            reattemptBtn.type = "button";
+            reattemptBtn.title = "Reattempt test";
+            reattemptBtn.className = "min-w-[44px] min-h-[44px] px-3 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 transition-colors flex items-center justify-center";
+            const reIcon = document.createElement('span');
+            reIcon.className = "material-symbols-outlined text-[18px]";
+            reIcon.textContent = "restart_alt";
+            reattemptBtn.appendChild(reIcon);
+            reattemptBtn.addEventListener('click', () => reattemptTest(item.id, item.title));
+            actionsWrap.appendChild(reattemptBtn);
+          }
+        } else {
+          // Expired
+          const detailsBtn = document.createElement('button');
+          detailsBtn.type = "button";
+          detailsBtn.className = "min-h-[44px] px-4 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 font-medium text-sm transition-colors flex items-center justify-center gap-1.5";
+          const dIcon = document.createElement('span');
+          dIcon.className = "material-symbols-outlined text-[18px]";
+          dIcon.textContent = "info";
+          const dLabel = document.createElement('span');
+          dLabel.textContent = "View Details";
+          detailsBtn.append(dIcon, dLabel);
+          detailsBtn.addEventListener('click', () => viewExpiredDetails(item.id, item.title));
+          actionsWrap.appendChild(detailsBtn);
+
+          if (item.reattemptAllowed) {
+            const retakeBtn = document.createElement('button');
+            retakeBtn.type = "button";
+            retakeBtn.className = "min-h-[44px] px-4 rounded-lg bg-[#1D4ED8] text-white hover:bg-[#1E3A8A] font-medium text-sm transition-colors flex items-center justify-center gap-1.5 shadow-sm";
+            const retIcon = document.createElement('span');
+            retIcon.className = "material-symbols-outlined text-[18px]";
+            retIcon.textContent = "refresh";
+            const retLabel = document.createElement('span');
+            retLabel.textContent = "Retake";
+            retakeBtn.append(retIcon, retLabel);
+            retakeBtn.addEventListener('click', () => reattemptTest(item.id, item.title));
+            actionsWrap.appendChild(retakeBtn);
+          }
+        }
+
+        card.appendChild(actionsWrap);
+        container.appendChild(card);
+      });
+    }
+
+    // Set up filter buttons, search input, and sort toggles
+    function setupEventListeners() {
+      const tabs = document.querySelectorAll('.status-tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.setAttribute('aria-selected', 'false');
+            t.classList.remove('bg-[#1D4ED8]', 'text-white', 'shadow-sm');
+            t.classList.add('bg-white', 'text-slate-600', 'border', 'border-[#E2E8F0]');
+            const badge = t.querySelector('span:last-child');
+            if (badge) {
+              badge.classList.remove('bg-white/20', 'text-white');
+              badge.classList.add('bg-slate-100', 'text-slate-700');
+            }
+          });
+
+          tab.setAttribute('aria-selected', 'true');
+          tab.classList.remove('bg-white', 'text-slate-600', 'border', 'border-[#E2E8F0]');
+          tab.classList.add('bg-[#1D4ED8]', 'text-white', 'shadow-sm');
+          const activeBadge = tab.querySelector('span:last-child');
+          if (activeBadge) {
+            activeBadge.classList.remove('bg-slate-100', 'text-slate-700');
+            activeBadge.classList.add('bg-white/20', 'text-white');
+          }
+
+          currentStatusFilter = tab.getAttribute('data-filter') || 'all';
+          renderAttempts();
+        });
+      });
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentSearchQuery = e.target.value;
+          renderAttempts();
+        });
+      }
+
+      const sourceFilter = document.getElementById('sourceFilter');
+      if (sourceFilter) {
+        sourceFilter.addEventListener('change', (e) => {
+          currentSourceFilter = e.target.value;
+          renderAttempts();
+        });
+      }
+
+      const sortFilter = document.getElementById('sortFilter');
+      if (sortFilter) {
+        sortFilter.addEventListener('change', (e) => {
+          currentSort = e.target.value;
+          renderAttempts();
+        });
+      }
+
+      const resetBtn = document.getElementById('resetBtn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', resetFilters);
+      }
+
+      const mobileMoreTrigger = document.getElementById('mobileMoreTrigger');
+      const closeMoreSheetBtn = document.getElementById('closeMoreSheetBtn');
+      const moreSheet = document.getElementById('more-menu-sheet');
+
+      if (mobileMoreTrigger) {
+        mobileMoreTrigger.addEventListener('click', openMoreSheet);
+      }
+      if (closeMoreSheetBtn) {
+        closeMoreSheetBtn.addEventListener('click', closeMoreSheet);
+      }
+      if (moreSheet) {
+        moreSheet.addEventListener('click', (e) => {
+          if (e.target === moreSheet) {
+            closeMoreSheet();
+          }
+        });
+      }
+
+      // Sheet keyboard navigation: Escape and Focus Trap
+      document.addEventListener('keydown', handleKeydownAccessibility);
+    }
+
+    // Reset all applied filters to default state
+    function resetFilters() {
+      currentStatusFilter = 'all';
+      currentSourceFilter = 'all';
+      currentSearchQuery = '';
+      currentSort = 'recent';
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) searchInput.value = '';
+
+      const sourceFilter = document.getElementById('sourceFilter');
+      if (sourceFilter) sourceFilter.value = 'all';
+
+      const sortFilter = document.getElementById('sortFilter');
+      if (sortFilter) sortFilter.value = 'recent';
+
+      const tabs = document.querySelectorAll('.status-tab');
+      tabs.forEach(t => {
+        t.setAttribute('aria-selected', 'false');
+        t.classList.remove('bg-[#1D4ED8]', 'text-white', 'shadow-sm');
+        t.classList.add('bg-white', 'text-slate-600', 'border', 'border-[#E2E8F0]');
+        const badge = t.querySelector('span:last-child');
+        if (badge) {
+          badge.classList.remove('bg-white/20', 'text-white');
+          badge.classList.add('bg-slate-100', 'text-slate-700');
+        }
+      });
+
+      const allTab = document.getElementById('tab-all');
+      if (allTab) {
+        allTab.setAttribute('aria-selected', 'true');
+        allTab.classList.remove('bg-white', 'text-slate-600', 'border', 'border-[#E2E8F0]');
+        allTab.classList.add('bg-[#1D4ED8]', 'text-white', 'shadow-sm');
+        const badge = allTab.querySelector('span:last-child');
+        if (badge) {
+          badge.classList.remove('bg-slate-100', 'text-slate-700');
+          badge.classList.add('bg-white/20', 'text-white');
+        }
+      }
+
+      renderAttempts();
+      showPrototypeToast('Filters Reset', 'Displaying all test attempts.');
+    }
+
+    // Mobile "More" Sheet accessibility with focus trapping & preserved body scroll restoration
+    let previousActiveElement = null;
+    let originalBodyOverflow = null;
+
+    function openMoreSheet() {
+      const sheet = document.getElementById('more-menu-sheet');
+      const trigger = document.getElementById('mobileMoreTrigger');
+      if (!sheet) return;
+
+      // Only capture original overflow when opening from closed state
+      if (sheet.classList.contains('hidden')) {
+        originalBodyOverflow = document.body.style.overflow;
+      }
+
+      previousActiveElement = document.activeElement;
+      sheet.classList.remove('hidden');
+      sheet.setAttribute('aria-hidden', 'false');
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+
+      const closeBtn = document.getElementById('closeMoreSheetBtn');
+      if (closeBtn) {
+        setTimeout(() => closeBtn.focus(), 50);
+      }
+    }
+
+    function closeMoreSheet() {
+      const sheet = document.getElementById('more-menu-sheet');
+      const trigger = document.getElementById('mobileMoreTrigger');
+      if (!sheet) return;
+
+      sheet.classList.add('hidden');
+      sheet.setAttribute('aria-hidden', 'true');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      
+      // Restore original body overflow
+      if (originalBodyOverflow !== null) {
+        document.body.style.overflow = originalBodyOverflow;
+        originalBodyOverflow = null;
+      } else {
+        document.body.style.overflow = '';
+      }
+
+      if (trigger) {
+        trigger.focus();
+      } else if (previousActiveElement && typeof previousActiveElement.focus === 'function') {
+        previousActiveElement.focus();
+      }
+    }
+
+    function handleKeydownAccessibility(e) {
+      const sheet = document.getElementById('more-menu-sheet');
+      if (!sheet || sheet.classList.contains('hidden')) return;
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeMoreSheet();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        // Focus trap inside bottom sheet
+        const focusableElements = sheet.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+    }
+
+    // Prototype Actions with honest descriptive copy
+    function resumeTest(id, title) {
+      showPrototypeToast("Resume Test", "Prototype only — session restoration is not connected yet.");
+    }
+
+    function viewResult(id, title) {
+      showPrototypeToast("View Result", "Prototype only — result viewing is not connected yet.");
+    }
+
+    function reviewAnswers(id, title) {
+      showPrototypeToast("Review Answers", "Prototype only — answer review is not connected yet.");
+    }
+
+    function reattemptTest(id, title) {
+      showPrototypeToast("Reattempt / Retake", "Prototype only — creating a new attempt is not connected yet.");
+    }
+
+    function viewExpiredDetails(id, title) {
+      showPrototypeToast("View Details", "Prototype only — attempt details are not connected yet.");
+    }
+
+    // Toast notification handler
+    let toastTimeout = null;
+    function showPrototypeToast(title, message) {
+      const toast = document.getElementById('toastNotification');
+      const titleElem = document.getElementById('toastTitle');
+      const msgElem = document.getElementById('toastMessage');
+
+      if (!toast) return;
+
+      if (titleElem) titleElem.textContent = title;
+      if (msgElem) msgElem.textContent = message;
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        hideToast();
+      }, 4000);
+    }
+
+    function hideToast() {
+      const toast = document.getElementById('toastNotification');
+      if (!toast) return;
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-24', 'opacity-0');
+    }
+
+    // Initialize Page
+    function initPage() {
+      updateCounts();
+      renderAttempts();
+      setupEventListeners();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+  </script>
+</body></html>

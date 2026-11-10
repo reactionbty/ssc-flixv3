@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        overscroll-behavior-y: none;
+      }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary-container": "#cad3ff",
+            "on-surface": "#131b2e",
+            "surface-container": "#eaedff",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-tint": "#2151da",
+            "background": "#faf8ff",
+            "primary": "#0037b0",
+            "surface-container-highest": "#dae2fd",
+            "secondary-fixed": "#cce5ff",
+            "primary-fixed-dim": "#b7c4ff",
+            "on-error": "#ffffff",
+            "on-secondary": "#ffffff",
+            "inverse-primary": "#b7c4ff",
+            "tertiary-container": "#825100",
+            "primary-container": "#1d4ed8",
+            "tertiary-fixed": "#ffddb8",
+            "on-tertiary-fixed": "#2a1700",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed-dim": "#93ccff",
+            "on-primary-fixed": "#001551",
+            "surface-variant": "#dae2fd",
+            "inverse-surface": "#283044",
+            "on-secondary-fixed": "#001d31",
+            "surface-bright": "#faf8ff",
+            "outline": "#747686",
+            "on-error-container": "#93000a",
+            "error-container": "#ffdad6",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#dce1ff",
+            "outline-variant": "#c4c5d7",
+            "secondary-container": "#5bb8fe",
+            "tertiary": "#623c00",
+            "surface": "#faf8ff",
+            "on-tertiary-container": "#ffcb8f",
+            "on-primary-fixed-variant": "#0039b5",
+            "surface-container-high": "#e2e7ff",
+            "tertiary-fixed-dim": "#ffb95f",
+            "on-secondary-container": "#00476e",
+            "surface-dim": "#d2d9f4",
+            "secondary": "#006398",
+            "inverse-on-surface": "#eef0ff",
+            "on-background": "#131b2e",
+            "on-surface-variant": "#434655",
+            "on-secondary-fixed-variant": "#004b73",
+            "on-tertiary-fixed-variant": "#653e00"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          spacing: {
+            "gutter-desktop": "1.5rem",
+            "space-lg": "1rem",
+            "margin": "1rem",
+            "margin-desktop": "2rem",
+            "gutter": "1rem",
+            "space-md": "0.75rem",
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-sm": "0.5rem"
+          },
+          fontFamily: {
+            "body-md": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "display-lg": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "label-lg": ["Inter", "sans-serif"],
+            "code-tabular": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"]
+          },
+          fontSize: {
+            "body-sm": ["0.875rem", { lineHeight: "1.25rem", fontWeight: "400" }],
+            "body-md": ["1rem", { lineHeight: "1.5rem", fontWeight: "400" }],
+            "body-lg": ["1.0625rem", { lineHeight: "1.625rem", fontWeight: "400" }],
+            "label-sm": ["0.75rem", { lineHeight: "0.875rem", letterSpacing: "0.025em", fontWeight: "500" }],
+            "label-md": ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.02em", fontWeight: "600" }],
+            "label-lg": ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0.01em", fontWeight: "600" }],
+            "headline-sm": ["1.125rem", { lineHeight: "1.5rem", fontWeight: "600" }],
+            "headline-md": ["1.25rem", { lineHeight: "1.75rem", letterSpacing: "-0.01em", fontWeight: "600" }],
+            "headline-lg": ["1.5rem", { lineHeight: "2rem", letterSpacing: "-0.015em", fontWeight: "600" }],
+            "display-lg": ["2.25rem", { lineHeight: "2.75rem", letterSpacing: "-0.025em", fontWeight: "700" }],
+            "code-tabular": ["0.875rem", { lineHeight: "1.25rem", fontWeight: "600" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background dark:bg-slate-950 font-body-md text-on-surface dark:text-slate-100 antialiased min-h-screen transition-colors duration-200">
+<!-- Top App Bar (56px) -->
+<header class="fixed top-0 left-0 right-0 h-14 bg-surface-container-lowest dark:bg-slate-900 border-b border-surface-container-highest/60 dark:border-slate-800 z-50">
+<div class="h-14 w-full px-4 md:px-gutter-desktop flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<img alt="SSC Flix wordmark and emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/>
+<span class="font-headline-sm text-headline-sm tracking-tight text-on-surface dark:text-white uppercase font-bold">SSC Flix</span>
+<span class="hidden md:inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container-high dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 font-label-sm text-label-sm uppercase tracking-wider">Exam Portal</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center pl-space-xs">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs" id="header-avatar" title="Student Profile">
+            SN
+          </div>
+</div>
+</div>
+</div>
+</header>
+<!-- Desktop Fixed Sidebar (240px wide, hidden on mobile) -->
+<aside class="hidden md:flex fixed left-0 top-14 bottom-0 w-60 bg-surface-container-lowest dark:bg-slate-900 z-40 flex-col border-r border-surface-container-highest/60 dark:border-slate-800">
+<div class="px-space-lg pt-space-lg pb-space-xs">
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline dark:text-slate-400">Core Navigation</p>
+</div>
+<nav class="flex-1 px-space-md py-space-xs flex flex-col gap-1 overflow-y-auto">
+<a class="flex items-center gap-space-md px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-on-surface-variant dark:text-slate-300 hover:bg-surface-container dark:hover:bg-slate-800 hover:text-on-surface dark:hover:text-white transition-all" data-path="dashboard" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-space-md px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-on-surface-variant dark:text-slate-300 hover:bg-surface-container dark:hover:bg-slate-800 hover:text-on-surface dark:hover:text-white transition-all" data-path="mock-tests" href="#">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+<span>Mock Tests</span>
+</a>
+<a class="flex items-center gap-space-md px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-on-surface-variant dark:text-slate-300 hover:bg-surface-container dark:hover:bg-slate-800 hover:text-on-surface dark:hover:text-white transition-all" data-path="pyqs" href="#">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+<span>PYQs</span>
+</a>
+<a class="flex items-center gap-space-md px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-on-surface-variant dark:text-slate-300 hover:bg-surface-container dark:hover:bg-slate-800 hover:text-on-surface dark:hover:text-white transition-all" data-path="chapter-tests" href="#">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span>Chapter Tests</span>
+</a>
+<div class="my-space-xs h-px bg-surface-container-highest dark:bg-slate-800"></div>
+<div class="px-space-md pt-space-xs pb-1">
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline dark:text-slate-400">My Workspace</p>
+</div>
+<a class="flex items-center gap-space-md px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-on-surface-variant dark:text-slate-300 hover:bg-surface-container dark:hover:bg-slate-800 hover:text-on-surface dark:hover:text-white transition-all" data-path="my-tests" href="#">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+<span>My Tests</span>
+</a>
+<a class="flex items-center gap-space-md px-space-md py-2.5 rounded-xl font-label-lg text-label-lg text-on-surface-variant dark:text-slate-300 hover:bg-surface-container dark:hover:bg-slate-800 hover:text-on-surface dark:hover:text-white transition-all" data-path="bookmarks" href="#">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+<span>Bookmarks</span>
+</a>
+<div class="my-space-xs h-px bg-surface-container-highest dark:bg-slate-800"></div>
+<div class="px-space-md pt-space-xs pb-1">
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-outline dark:text-slate-400">System</p>
+</div>
+<a aria-current="page" class="flex items-center gap-space-md px-space-md py-2.5 transition-all bg-primary-container text-on-primary font-label-lg rounded-xl shadow-[0_2px_4px_rgba(29,78,216,0.2)]" data-path="preferences-and-account" href="#">
+<span class="material-symbols-outlined text-[20px]">manage_accounts</span>
+<span>Preferences &amp; Account</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Wrapper: Zero left padding on mobile, pl-60 on desktop -->
+<div class="pl-0 md:pl-60 w-full overflow-x-hidden min-h-screen">
+<main class="w-full pt-14 pb-24 md:pb-12 bg-background dark:bg-slate-950 min-h-screen transition-colors duration-200">
+<!-- Interactive Toast Notifications -->
+<div class="fixed top-16 right-4 z-50 flex flex-col gap-space-xs pointer-events-none transition-all duration-300" id="toast-container"></div>
+<!-- Centered Settings Form Container (Max 840px, safe edge margins) -->
+<div class="w-full max-w-[840px] mx-auto px-4 sm:px-6 md:px-margin-desktop py-6 md:py-8 flex flex-col gap-6 md:gap-space-xl">
+<!-- Header & Breadcrumbs & Preview Badge -->
+<header class="flex flex-col gap-2">
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant dark:text-slate-400">
+<a class="hover:text-primary-container dark:hover:text-blue-400 transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[14px] text-outline dark:text-slate-500">chevron_right</span>
+<span class="text-on-surface dark:text-slate-200 font-semibold">Preferences &amp; Account</span>
+</nav>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface dark:text-white font-bold tracking-tight">Preferences &amp; Account</h1>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-slate-300 mt-0.5">Customize your examination study defaults and account profile.</p>
+</div>
+<!-- Small unobtrusive preview banner -->
+<div class="inline-flex items-center gap-1.5 self-start sm:self-auto px-3 py-1 rounded-full bg-surface-container dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 text-xs font-medium border border-surface-container-highest dark:border-slate-700">
+<span class="w-2 h-2 rounded-full bg-primary-container shrink-0"></span>
+<span>Preview mode — preference changes are not saved.</span>
+</div>
+</div>
+</header>
+<!-- SECTION 1: Profile -->
+<section aria-labelledby="profile-heading" class="bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl p-5 md:p-space-lg shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-5 transition-colors">
+<div class="flex items-center gap-4 min-w-0">
+<div class="w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xl shrink-0 shadow-sm" id="display-profile-avatar">
+              SN
+            </div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold truncate" id="profile-heading">Student Name</h2>
+<span class="px-2 py-0.5 rounded bg-surface-container-high dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 font-label-sm text-label-sm uppercase tracking-wider font-medium">Sample Profile</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400 truncate mt-0.5" id="profile-email">student@example.com</p>
+</div>
+</div>
+<button class="w-full md:w-auto min-h-[44px] px-space-lg py-2 rounded-xl bg-surface-container dark:bg-slate-800 hover:bg-surface-container-high dark:hover:bg-slate-700 text-on-surface dark:text-white font-label-lg text-label-lg flex items-center justify-center gap-space-xs transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container" id="btn-open-edit-profile" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span>Edit Profile</span>
+</button>
+</section>
+<!-- SECTION 2: Study Preferences -->
+<section aria-labelledby="study-heading" class="bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl p-5 md:p-space-lg shadow-sm flex flex-col gap-6 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-surface-container-highest/40 dark:border-slate-800">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold" id="study-heading">Study Preferences</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Configure target exam stream and default question paper language.</p>
+</div>
+<span class="material-symbols-outlined text-outline dark:text-slate-500 text-[24px]">school</span>
+</div>
+<!-- Target Examination -->
+<div class="flex flex-col gap-2">
+<div>
+<label class="font-label-lg text-label-lg text-on-surface dark:text-slate-200 font-semibold block">Choose your target SSC examination.</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Adapts your default mock papers and chapter tests throughout the portal.</p>
+</div>
+<div aria-label="Target SSC Examination" class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1" id="target-exam-grid" role="radiogroup">
+<!-- SSC CGL (Selected by default) -->
+<button aria-checked="true" class="exam-pill active text-left p-3.5 rounded-xl border-2 border-primary-container bg-surface-container-low dark:bg-slate-800/80 text-on-surface dark:text-white transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC CGL" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-primary-container dark:text-blue-400">SSC CGL</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-primary-container dark:text-blue-400" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Combined Graduate Level</span>
+</button>
+<!-- SSC CHSL -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC CHSL" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC CHSL</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Higher Secondary (10+2)</span>
+</button>
+<!-- SSC CPO -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC CPO" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC CPO</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Central Police Org</span>
+</button>
+<!-- SSC MTS -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC MTS" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC MTS</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Multi-Tasking Staff</span>
+</button>
+<!-- SSC GD -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC GD" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC GD</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">General Duty Constables</span>
+</button>
+<!-- SSC Stenographer -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC Stenographer" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC Steno</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Grade C &amp; D Exam</span>
+</button>
+</div>
+</div>
+<!-- Language Preference -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+<div class="flex flex-col">
+<label class="font-label-lg text-label-lg text-on-surface dark:text-slate-200 font-semibold">Choose your preferred language.</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">This is an interface preference; individual mock questions provide dual-language support where available.</p>
+</div>
+<div class="inline-flex p-1 bg-surface-container dark:bg-slate-800 rounded-xl shrink-0 self-start sm:self-auto border border-surface-container-highest dark:border-slate-700" id="language-segmented" role="tablist">
+<button aria-selected="true" class="lang-tab px-space-lg py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-space-xs bg-surface-container-lowest dark:bg-slate-900 text-primary-container dark:text-blue-400 shadow-sm font-bold focus:outline-none" data-lang="en" role="tab" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>English</span>
+</button>
+<button aria-selected="false" class="lang-tab px-space-lg py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-space-xs text-on-surface-variant dark:text-slate-400 hover:text-on-surface dark:hover:text-white focus:outline-none" data-lang="hi" role="tab" type="button">
+<span>हिन्दी (Hindi)</span>
+</button>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Appearance -->
+<section aria-labelledby="appearance-heading" class="bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl p-5 md:p-space-lg shadow-sm flex flex-col gap-4 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-surface-container-highest/40 dark:border-slate-800">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold" id="appearance-heading">Appearance</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Configure visual display style calibrated for sustained study sessions.</p>
+</div>
+<span class="material-symbols-outlined text-outline dark:text-slate-500 text-[24px]">palette</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+<div class="flex flex-col">
+<label class="font-label-lg text-label-lg text-on-surface dark:text-slate-200 font-semibold">Theme Mode</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Select light or dark mode to customize contrast across the application shell.</p>
+</div>
+<div aria-label="Theme Mode" class="inline-flex p-1 bg-surface-container dark:bg-slate-800 rounded-xl shrink-0 self-start sm:self-auto border border-surface-container-highest dark:border-slate-700" id="theme-segmented" role="radiogroup">
+<button aria-checked="true" class="theme-tab px-4 py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-2 bg-surface-container-lowest dark:bg-slate-900 text-primary-container dark:text-blue-400 shadow-sm font-bold focus:outline-none" data-theme="light" role="radio" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+<span>Light</span>
+</button>
+<button aria-checked="false" class="theme-tab px-4 py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-2 text-on-surface-variant dark:text-slate-400 hover:text-on-surface dark:hover:text-white focus:outline-none" data-theme="dark" role="radio" type="button">
+<span class="material-symbols-outlined text-[18px]">dark_mode</span>
+<span>Dark</span>
+</button>
+</div>
+</div>
+</section>
+<!-- SECTION 4: Account Security -->
+<section aria-labelledby="security-heading" class="bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl p-5 md:p-space-lg shadow-sm flex flex-col gap-6 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-surface-container-highest/40 dark:border-slate-800">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold" id="security-heading">Account Security</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Manage credentials and authenticated sessions.</p>
+</div>
+<span class="material-symbols-outlined text-outline dark:text-slate-500 text-[24px]">security</span>
+</div>
+<!-- Change Password Row -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface dark:text-slate-200 font-semibold">Account Password</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Manage password authentication credentials for student login.</p>
+</div>
+<button class="min-h-[44px] px-space-lg py-2 rounded-xl bg-surface-container dark:bg-slate-800 hover:bg-surface-container-high dark:hover:bg-slate-700 text-on-surface dark:text-white font-label-lg text-label-lg flex items-center justify-center gap-space-xs transition-colors self-start sm:self-auto focus:outline-none focus:ring-2 focus:ring-primary-container" id="btn-open-password-info" type="button">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Change Password</span>
+</button>
+</div>
+<!-- Destructive Sign Out Area -->
+<div class="pt-2">
+<div class="p-4 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error text-[22px] shrink-0 mt-0.5">logout</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-error font-semibold">Session Management</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-300">Sign out of active sessions on this browser.</p>
+</div>
+</div>
+<button class="min-h-[44px] px-space-lg py-2 rounded-xl bg-red-600 text-white hover:bg-red-700 font-label-lg text-label-lg flex items-center justify-center gap-space-xs transition-colors self-start sm:self-auto focus:outline-none focus:ring-2 focus:ring-red-500" id="btn-open-signout-info" type="button">
+<span class="material-symbols-outlined text-[18px]">power_settings_new</span>
+<span>Sign Out</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (Visible only on < md screens, with safe area padding) -->
+<nav aria-label="Mobile Navigation" class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest dark:bg-slate-900 z-40 border-t border-surface-container-highest dark:border-slate-800 px-2 py-1 shadow-lg pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+<div class="flex items-center justify-around">
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-on-surface-variant dark:text-slate-400 hover:text-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-label-sm text-[12px] mt-0.5">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-on-surface-variant dark:text-slate-400 hover:text-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+<span class="font-label-sm text-[12px] mt-0.5">Mocks</span>
+</a>
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-on-surface-variant dark:text-slate-400 hover:text-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+<span class="font-label-sm text-[12px] mt-0.5">PYQs</span>
+</a>
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-on-surface-variant dark:text-slate-400 hover:text-primary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="font-label-sm text-[12px] mt-0.5">Chapters</span>
+</a>
+<button aria-label="Open More options menu" class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-primary-container dark:text-blue-400 font-semibold transition-colors focus:outline-none" id="btn-open-mobile-more" type="button">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+<span class="font-label-sm text-[12px] mt-0.5">More</span>
+</button>
+</div>
+</nav>
+<!-- Mobile "More" Slide-Over Drawer -->
+<div aria-labelledby="mobile-more-title" aria-modal="true" class="fixed inset-0 z-50 hidden md:hidden" id="drawer-mobile-more" role="dialog">
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm transition-opacity" data-close-drawer="drawer-mobile-more"></div>
+<div class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest dark:bg-slate-900 rounded-t-2xl p-5 flex flex-col gap-4 z-10 shadow-2xl max-h-[85vh] overflow-y-auto pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+<div class="w-12 h-1 bg-surface-container-highest dark:bg-slate-700 rounded-full self-center -mt-1"></div>
+<div class="flex items-center justify-between pb-2 border-b border-surface-container-highest dark:border-slate-800">
+<h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold" id="mobile-more-title">Workspace &amp; System</h3>
+<button aria-label="Close menu" class="w-8 h-8 rounded-full hover:bg-surface-container dark:hover:bg-slate-800 flex items-center justify-center text-on-surface-variant dark:text-slate-400" data-close-drawer="drawer-mobile-more" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-space-md px-space-md py-3 rounded-xl hover:bg-surface-container dark:hover:bg-slate-800 text-on-surface-variant dark:text-slate-300 transition-colors min-h-[44px]" href="#">
+<span class="material-symbols-outlined text-[22px]">fact_check</span>
+<span class="font-label-lg text-label-lg">My Tests</span>
+</a>
+<a class="flex items-center gap-space-md px-space-md py-3 rounded-xl hover:bg-surface-container dark:hover:bg-slate-800 text-on-surface-variant dark:text-slate-300 transition-colors min-h-[44px]" href="#">
+<span class="material-symbols-outlined text-[22px]">bookmark</span>
+<span class="font-label-lg text-label-lg">Bookmarks</span>
+</a>
+<a aria-current="page" class="flex items-center gap-space-md px-space-md py-3 rounded-xl bg-surface-container-low dark:bg-slate-800 text-primary-container dark:text-blue-400 font-bold min-h-[44px]" href="#">
+<span class="material-symbols-outlined text-[22px]">manage_accounts</span>
+<span class="font-label-lg text-label-lg">Preferences &amp; Account (Current)</span>
+</a>
+</div>
+</div>
+</div>
+<!-- MODAL 1: Edit Profile (Pure local preview update, no false backend sync) -->
+<div aria-labelledby="modal-edit-profile-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="modal-edit-profile" role="dialog">
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm transition-opacity" data-close-modal="modal-edit-profile"></div>
+<div class="fixed inset-0 z-10 overflow-y-auto flex items-center justify-center p-4">
+<div class="relative w-full max-w-lg bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl shadow-xl p-6 flex flex-col gap-5 text-on-surface dark:text-white">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[24px]">account_circle</span>
+<h3 class="font-headline-md text-headline-md font-bold" id="modal-edit-profile-title">Edit Profile</h3>
+</div>
+<button aria-label="Close dialog" class="w-8 h-8 rounded-full hover:bg-surface-container dark:hover:bg-slate-800 flex items-center justify-center text-on-surface-variant dark:text-slate-400" data-close-modal="modal-edit-profile" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="flex flex-col gap-4" id="form-edit-profile" onsubmit="event.preventDefault(); window.saveProfileChanges();">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md font-semibold" for="input-profile-name">Full Name</label>
+<input class="min-h-[44px] px-3.5 rounded-xl bg-surface-container-low dark:bg-slate-800 text-on-surface dark:text-white border border-surface-container-highest dark:border-slate-700 font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container" id="input-profile-name" required="" type="text" value="Student Name"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md font-semibold" for="input-profile-email">Email Address</label>
+<input class="min-h-[44px] px-3.5 rounded-xl bg-surface-container-low dark:bg-slate-800 text-on-surface dark:text-white border border-surface-container-highest dark:border-slate-700 font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container" id="input-profile-email" required="" type="email" value="student@example.com"/>
+</div>
+<div class="flex items-center justify-end gap-3 pt-3">
+<button class="min-h-[44px] px-space-lg py-2 rounded-xl bg-surface-container dark:bg-slate-800 hover:bg-surface-container-high dark:hover:bg-slate-700 font-label-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container" id="btn-cancel-edit-profile" type="button">
+              Cancel
+            </button>
+<button class="min-h-[44px] px-space-lg py-2 rounded-xl bg-primary-container text-on-primary hover:bg-primary font-label-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary" type="submit">
+              Save Changes
+            </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- MODAL 2: Change Password Informative Dialog (Authentication not connected) -->
+<div aria-labelledby="modal-password-info-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="modal-password-info" role="dialog">
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm transition-opacity" data-close-modal="modal-password-info"></div>
+<div class="fixed inset-0 z-10 overflow-y-auto flex items-center justify-center p-4">
+<div class="relative w-full max-w-md bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl shadow-xl p-6 flex flex-col gap-4 text-center items-center">
+<div class="w-12 h-12 rounded-full bg-surface-container dark:bg-slate-800 text-primary-container dark:text-blue-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">lock_reset</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<h3 class="font-headline-md text-headline-md text-on-surface dark:text-white font-bold" id="modal-password-info-title">Password Management sound Unavailable</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-300">Password management is unavailable in this standalone preview because authentication services are not connected.</p>
+</div>
+<div class="w-full pt-2">
+<button class="w-full min-h-[44px] px-space-lg py-2 rounded-xl bg-primary-container text-on-primary hover:bg-primary font-label-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-close-modal="modal-password-info" type="button">
+            Understood
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL 3: Sign Out Informative Dialog (Authentication not connected) -->
+<div aria-labelledby="modal-signout-info-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="modal-signout-info" role="dialog">
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm transition-opacity" data-close-modal="modal-signout-info"></div>
+<div class="fixed inset-0 z-10 overflow-y-auto flex items-center justify-center p-4">
+<div class="relative w-full max-w-md bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl shadow-xl p-6 flex flex-col gap-4 text-center items-center">
+<div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-950 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">logout</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<h3 class="font-headline-md text-headline-md text-on-surface dark:text-white font-bold" id="modal-signout-info-title">Sign Out Unavailable</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-300">Sign-out requires an active authentication service and is unavailable in preview mode.</p>
+</div>
+<div class="w-full pt-2">
+<button class="w-full min-h-[44px] px-space-lg py-2 rounded-xl bg-surface-container dark:bg-slate-800 hover:bg-surface-container-high dark:hover:bg-slate-700 text-on-surface dark:text-white font-label-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container" data-close-modal="modal-signout-info" type="button">
+            Close
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Logic Scripts -->
+<script>
+    (function initPreferencesApp() {
+      function removeToast(toast) {
+        if (!toast) return;
+        toast.classList.add('opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }
+
+      // Safe DOM toast notification helper
+      window.showToast = function(message) {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+        const toast = document.createElement('div');
+        toast.className = 'pointer-events-auto flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface-container-lowest dark:bg-slate-900 shadow-lg text-on-surface dark:text-white text-body-sm font-body-sm border border-surface-container-highest dark:border-slate-700 transition-all duration-300 transform translate-y-2 opacity-0';
+
+        var icon = document.createElement("span");
+        icon.className = "material-symbols-outlined text-[18px] text-primary-container dark:text-blue-400";
+        icon.textContent = "check_circle";
+
+        var msg = document.createElement("span");
+        msg.textContent = message;
+
+        var btn = document.createElement("button");
+        btn.setAttribute("type", "button");
+        btn.setAttribute("aria-label", "Dismiss notification");
+        btn.className = "ml-2 text-outline dark:text-slate-400 hover:text-on-surface dark:hover:text-white text-xs font-semibold px-1";
+        btn.textContent = "✕";
+        btn.addEventListener("click", function() {
+          removeToast(toast);
+        });
+
+        toast.appendChild(icon);
+        toast.appendChild(msg);
+        toast.appendChild(btn);
+
+        container.appendChild(toast);
+        
+        requestAnimationFrame(() => {
+          toast.classList.remove('translate-y-2', 'opacity-0');
+        });
+
+        setTimeout(() => {
+          removeToast(toast);
+        }, 3500);
+      };
+
+      // Active dialog reference & focus restoration
+      let activeTriggerElement = null;
+      let activeDialog = null;
+
+      window.openModal = function(modalId, triggerElement) {
+        if (activeDialog) {
+          window.closeModal(activeDialog.id);
+        }
+        activeTriggerElement = triggerElement || document.activeElement;
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          activeDialog = modal;
+          modal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+
+          // Trap focus & focus initial element
+          const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+          if (focusable.length) {
+            focusable[0].focus();
+          }
+        }
+      };
+
+      window.closeModal = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.add('hidden');
+          if (activeDialog === modal) {
+            activeDialog = null;
+          }
+          document.body.style.overflow = '';
+          if (activeTriggerElement && typeof activeTriggerElement.focus === 'function') {
+            activeTriggerElement.focus();
+            activeTriggerElement = null;
+          }
+        }
+      };
+
+      // Modal keyboard focus trap & Escape handler
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && activeDialog) {
+          window.closeModal(activeDialog.id);
+          return;
+        }
+
+        if (e.key === 'Tab' && activeDialog) {
+          const focusables = activeDialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+          if (focusables.length === 0) return;
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              last.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === last) {
+              first.focus();
+              e.preventDefault();
+            }
+          }
+        }
+      });
+
+      // Close modal triggers
+      document.querySelectorAll('[data-close-modal]').forEach(el => {
+        el.addEventListener('click', () => {
+          const modalId = el.getAttribute('data-close-modal');
+          window.closeModal(modalId);
+        });
+      });
+
+      // Mobile Drawer setup
+      const mobileMoreBtn = document.getElementById('btn-open-mobile-more');
+      const drawerMobile = document.getElementById('drawer-mobile-more');
+      if (mobileMoreBtn && drawerMobile) {
+        mobileMoreBtn.addEventListener('click', (e) => window.openModal('drawer-mobile-more', e.currentTarget));
+        drawerMobile.querySelectorAll('[data-close-drawer]').forEach(el => {
+          el.addEventListener('click', () => window.closeModal('drawer-mobile-more'));
+        });
+      }
+
+      // Dialog Triggers
+      const btnEditProfile = document.getElementById('btn-open-edit-profile');
+      if (btnEditProfile) {
+        btnEditProfile.addEventListener('click', (e) => window.openModal('modal-edit-profile', e.currentTarget));
+      }
+
+      const btnPasswordInfo = document.getElementById('btn-open-password-info');
+      if (btnPasswordInfo) {
+        btnPasswordInfo.addEventListener('click', (e) => window.openModal('modal-password-info', e.currentTarget));
+      }
+
+      const btnSignoutInfo = document.getElementById('btn-open-signout-info');
+      if (btnSignoutInfo) {
+        btnSignoutInfo.addEventListener('click', (e) => window.openModal('modal-signout-info', e.currentTarget));
+      }
+
+      // Profile editing (Preview update locally only)
+      let savedName = "Student Name";
+      let savedEmail = "student@example.com";
+
+      const btnCancelEdit = document.getElementById('btn-cancel-edit-profile');
+      if (btnCancelEdit) {
+        btnCancelEdit.addEventListener('click', () => {
+          const inputName = document.getElementById('input-profile-name');
+          const inputEmail = document.getElementById('input-profile-email');
+          if (inputName) inputName.value = savedName;
+          if (inputEmail) inputEmail.value = savedEmail;
+          window.closeModal('modal-edit-profile');
+        });
+      }
+
+      window.saveProfileChanges = function() {
+        const inputName = document.getElementById('input-profile-name');
+        const inputEmail = document.getElementById('input-profile-email');
+        if (inputName && inputEmail) {
+          savedName = inputName.value.trim() || "Student Name";
+          savedEmail = inputEmail.value.trim() || "student@example.com";
+          
+          const profileHeading = document.getElementById('profile-heading');
+          const profileEmail = document.getElementById('profile-email');
+          const avatarEl = document.getElementById('display-profile-avatar');
+          const headerAvatar = document.getElementById('header-avatar');
+
+          if (profileHeading) profileHeading.textContent = savedName;
+          if (profileEmail) profileEmail.textContent = savedEmail;
+
+          // Generate initials
+          const initials = savedName.split(' ').map(p => p[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'SN';
+          if (avatarEl) avatarEl.textContent = initials;
+          if (headerAvatar) headerAvatar.textContent = initials;
+
+          window.closeModal('modal-edit-profile');
+          window.showToast("Profile updated in local preview");
+        }
+      };
+
+      // Target Exam Radio Selection
+      const examButtons = document.querySelectorAll('#target-exam-grid .exam-pill');
+      examButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          examButtons.forEach(b => {
+            b.setAttribute('aria-checked', 'false');
+            b.classList.remove('border-2', 'border-primary-container', 'bg-surface-container-low', 'dark:bg-slate-800/80');
+            b.classList.add('border', 'border-surface-container-highest', 'dark:border-slate-700', 'bg-surface-container-lowest', 'dark:bg-slate-900');
+            const title = b.querySelector('.font-bold');
+            if (title) {
+              title.classList.remove('text-primary-container', 'dark:text-blue-400');
+              title.classList.add('text-on-surface', 'dark:text-slate-200');
+            }
+            const icon = b.querySelector('.radio-indicator');
+            if (icon) {
+              icon.textContent = 'radio_button_unchecked';
+              icon.classList.remove('text-primary-container', 'dark:text-blue-400');
+              icon.classList.add('text-outline', 'dark:text-slate-500');
+              icon.style.fontVariationSettings = '';
+            }
+          });
+
+          btn.setAttribute('aria-checked', 'true');
+          btn.classList.remove('border', 'border-surface-container-highest', 'dark:border-slate-700', 'bg-surface-container-lowest', 'dark:bg-slate-900');
+          btn.classList.add('border-2', 'border-primary-container', 'bg-surface-container-low', 'dark:bg-slate-800/80');
+          
+          const activeTitle = btn.querySelector('.font-bold');
+          if (activeTitle) {
+            activeTitle.classList.add('text-primary-container', 'dark:text-blue-400');
+            activeTitle.classList.remove('text-on-surface', 'dark:text-slate-200');
+          }
+
+          const activeIcon = btn.querySelector('.radio-indicator');
+          if (activeIcon) {
+            activeIcon.textContent = 'check_circle';
+            activeIcon.classList.add('text-primary-container', 'dark:text-blue-400');
+            activeIcon.classList.remove('text-outline', 'dark:text-slate-500');
+            activeIcon.style.fontVariationSettings = "'FILL' 1";
+          }
+
+          window.showToast(`Target examination set to ${btn.getAttribute('data-exam')}`);
+        });
+      });
+
+      // Language Switcher
+      const langTabs = document.querySelectorAll('#language-segmented .lang-tab');
+      langTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          langTabs.forEach(t => {
+            t.setAttribute('aria-selected', 'false');
+            t.className = 'lang-tab px-space-lg py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-space-xs text-on-surface-variant dark:text-slate-400 hover:text-on-surface dark:hover:text-white focus:outline-none';
+            const icon = t.querySelector('.material-symbols-outlined');
+            if (icon) icon.remove();
+          });
+
+          tab.setAttribute('aria-selected', 'true');
+          tab.className = 'lang-tab px-space-lg py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-space-xs bg-surface-container-lowest dark:bg-slate-900 text-primary-container dark:text-blue-400 shadow-sm font-bold focus:outline-none';
+          
+          const checkIcon = document.createElement('span');
+          checkIcon.className = 'material-symbols-outlined text-[18px]';
+          checkIcon.textContent = 'check';
+          tab.prepend(checkIcon);
+
+          const langName = tab.getAttribute('data-lang') === 'hi' ? 'Hindi' : 'English';
+          window.showToast(`Default language: ${langName}`);
+        });
+      });
+
+      // Genuine Light/Dark Theme Mode Toggle
+      const themeButtons = document.querySelectorAll('#theme-segmented .theme-tab');
+      themeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          themeButtons.forEach(b => {
+            b.setAttribute('aria-checked', 'false');
+            b.className = 'theme-tab px-4 py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-2 text-on-surface-variant dark:text-slate-400 hover:text-on-surface dark:hover:text-white focus:outline-none';
+            const icon = b.querySelector('.material-symbols-outlined');
+            if (icon) icon.style.fontVariationSettings = '';
+          });
+
+          btn.setAttribute('aria-checked', 'true');
+          btn.className = 'theme-tab px-4 py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-2 bg-surface-container-lowest dark:bg-slate-900 text-primary-container dark:text-blue-400 shadow-sm font-bold focus:outline-none';
+          const activeIcon = btn.querySelector('.material-symbols-outlined');
+          if (activeIcon) activeIcon.style.fontVariationSettings = "'FILL' 1";
+
+          const chosen = btn.getAttribute('data-theme');
+          if (chosen === 'dark') {
+            document.documentElement.classList.add('dark');
+            window.showToast('Dark mode enabled');
+          } else {
+            document.documentElement.classList.remove('dark');
+            window.showToast('Light mode enabled');
+          }
+        });
+      });
+    })();
+  </script>
+</body></html>

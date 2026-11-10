@@ -184,6 +184,22 @@
     }
 
 </style>
+<style>
+  #test-type-switch { background-color: #EAE8F2; }
+  #test-type-switch .test-type-tab[aria-selected="false"] { color: #38354F; }
+  body.shared-dark-mode #test-type-switch { background-color: #29263A !important; }
+  body.shared-dark-mode #test-type-switch .test-type-tab[aria-selected="false"] { color: #D6D1E8 !important; }
+  body.shared-dark-mode #filter-subject-select {
+    background-color: #171B2A !important;
+    border-color: #3A3654 !important;
+    color: #E6E3F1 !important;
+  }
+  body.shared-dark-mode #filter-tier-select {
+    background-color: #0F1B2D !important;
+    border-color: #34465F !important;
+    color: #E5EDF8 !important;
+  }
+</style>
 </head>
 <body class="min-h-full flex flex-col md:flex-row antialiased text-[#0F172A] bg-[#F8FAFC]">
 <!-- ========================================================================= -->
@@ -401,77 +417,47 @@
 </div>
 </div>
 </section>
-<!-- Exam & Tier Filter Section -->
-<section class="bg-white rounded-lg border border-[#E2E8F0] p-4 sm:p-5 mb-6 shadow-sm">
-<div class="flex flex-col gap-4">
-<div class="flex flex-col gap-2">
-<div class="flex items-center justify-between">
-<span class="text-xs font-semibold uppercase tracking-wider text-[#64748B]">Select Examination</span>
-</div>
-<div aria-label="Select examination" class="flex items-center gap-2 overflow-x-auto pb-1" id="exam-pills-container" role="group">
-<!-- Injected via JavaScript dynamically -->
-</div>
-</div>
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[#E2E8F0]">
-<div class="flex flex-col sm:flex-row sm:items-center gap-3">
-<div class="flex items-center gap-2">
-<label class="text-xs font-semibold text-[#475569] shrink-0" for="filter-tier-select">Tier / Paper:</label>
-<div class="relative min-w-[200px] sm:min-w-[260px]">
-<select class="w-full bg-[#F8FAFC] border border-[#E2E8F0] text-[#0F172A] text-xs sm:text-sm rounded-lg px-3 py-2 appearance-none focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] cursor-pointer pr-9" id="filter-tier-select">
-<!-- Dynamically populated per exam -->
-</select>
-<span class="material-symbols-outlined text-lg text-[#64748B] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
-</div>
-</div>
-<span class="text-xs text-[#64748B]" id="exam-full-name-hint">Combined Graduate Level Examination</span>
-</div>
-<button class="text-xs text-[#1D4ED8] font-semibold hover:underline inline-flex items-center gap-1 self-start sm:self-center focus:outline-none" id="reset-exam-filters-btn" onclick="resetToDefaultExam()" type="button">
-<span class="material-symbols-outlined text-sm">restart_alt</span>
-<span>Reset Exam Filter</span>
-</button>
-</div>
-</div>
+<!-- Tier / Paper Filter -->
+<section class="mb-4">
+  <div class="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3 rounded-xl border border-[#E2E8F0] bg-white px-3.5 py-3 sm:px-4">
+    <label class="shrink-0 text-xs sm:text-sm font-medium text-[#334155]" for="filter-tier-select">Tier / Paper:</label>
+    <div class="relative w-full sm:w-[260px]">
+      <select class="w-full h-10 appearance-none rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-3 pr-9 text-sm text-[#0F172A] outline-none transition-colors focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#DBEAFE] cursor-pointer" id="filter-tier-select">
+        <!-- Dynamically populated for the selected exam -->
+      </select>
+      <svg aria-hidden="true" class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </div>
+  </div>
 </section>
-<!-- Category & Search Bar -->
-<section class="mb-6 space-y-4">
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-<!-- Segmented Category Tabs -->
-<div aria-label="Test type tabs" class="inline-flex flex-wrap sm:flex-nowrap p-1 bg-white border border-[#E2E8F0] rounded-lg w-full sm:w-auto shadow-sm gap-1" role="tablist">
-<button aria-selected="true" class="touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all bg-[#1D4ED8] text-white shadow-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="tab-full" onclick="handleCategoryChange('full')" role="tab" type="button">
-<span class="material-symbols-outlined text-lg">assignment</span>
-<span>Full-Length Tests</span>
-<span class="ml-1 px-1.5 py-0.5 rounded-full text-xs bg-white text-[#1D4ED8] font-bold" id="badge-full-count">8</span>
-</button>
-<button aria-selected="false" class="touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="tab-sectional" onclick="handleCategoryChange('sectional')" role="tab" type="button">
-<span class="material-symbols-outlined text-lg">pie_chart</span>
-<span>Sectional Tests</span>
-<span class="ml-1 px-1.5 py-0.5 rounded-full text-xs bg-[#F8FAFC] text-[#475569] font-bold border border-[#E2E8F0]" id="badge-sectional-count">12</span>
-</button>
-</div>
-<!-- Search Box -->
-<div class="flex items-center gap-2.5 w-full sm:w-auto">
-<div class="relative flex-1 sm:w-72">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] text-lg pointer-events-none">search</span>
-<input aria-label="Search mock tests by title or code" class="w-full pl-9 pr-3 py-2 bg-white border border-[#E2E8F0] rounded-lg text-sm text-[#0F172A] placeholder:text-[#64748B] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="test-search-input" oninput="handleSearch(this.value)" placeholder="Search by test title or code..." type="text"/>
-</div>
-</div>
-</div>
-<!-- Status Filter Chips -->
-<div class="flex flex-wrap items-center gap-2 pt-1 text-[#475569]">
-<span class="text-xs font-semibold uppercase tracking-wider text-[#64748B]">Status:</span>
-<button class="status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-[#1D4ED8] text-white transition-all font-semibold focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" data-status="all" id="chip-all" onclick="handleStatusChange('all')" type="button">
-              All Tests (<span id="count-status-all">8</span>)
-            </button>
-<button class="status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-all font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" data-status="available" id="chip-available" onclick="handleStatusChange('available')" type="button">
-              Available (<span id="count-status-available">5</span>)
-            </button>
-<button class="status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-all font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" data-status="attempted" id="chip-attempted" onclick="handleStatusChange('attempted')" type="button">
-              Attempted (<span id="count-status-attempted">2</span>)
-            </button>
-<button class="status-filter-chip touch-target px-3 py-1.5 rounded-lg text-xs bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-all font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" data-status="upcoming" id="chip-upcoming" onclick="handleStatusChange('upcoming')" type="button">
-              Upcoming (<span id="count-status-upcoming">1</span>)
-            </button>
-</div>
+
+<!-- Test Type & Subject Filters -->
+<section class="mb-6">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div aria-label="Test type" class="inline-flex items-center gap-1 rounded-xl bg-[#EAE8F2] p-1.5" id="test-type-switch" role="tablist">
+      <button aria-selected="true" class="test-type-tab min-h-9 rounded-lg px-3.5 sm:px-4 text-xs sm:text-sm font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]" id="tab-full" onclick="handleCategoryChange('full')" role="tab" type="button">
+        Full Mock
+      </button>
+      <button aria-selected="false" class="test-type-tab min-h-9 rounded-lg px-3.5 sm:px-4 text-xs sm:text-sm font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]" id="tab-sectional" onclick="handleCategoryChange('sectional')" role="tab" type="button">
+        Sectional
+      </button>
+    </div>
+
+    <div class="relative w-full min-w-[170px] flex-1 sm:flex-initial sm:w-[236px] sm:max-w-[236px]">
+      <label class="sr-only" for="filter-subject-select">Filter sectional tests by subject</label>
+      <select class="h-11 w-full appearance-none rounded-xl border border-[#DCD7EC] bg-[#F4F2FA] px-4 pr-10 text-sm text-[#302D49] outline-none transition-colors focus:border-[#A59BCB] focus:ring-2 focus:ring-[#E8E3F5] disabled:cursor-not-allowed disabled:opacity-60" id="filter-subject-select" aria-label="Filter by subject">
+        <option value="all">All Subjects</option>
+        <option value="reasoning">General Intelligence &amp; Reasoning</option>
+        <option value="awareness">General Awareness</option>
+        <option value="quantitative">Quantitative Aptitude</option>
+        <option value="english">English</option>
+      </select>
+      <svg aria-hidden="true" class="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#69647F]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </div>
+  </div>
 </section>
 <!-- Tests Listing Feed -->
 <section aria-live="polite" class="space-y-3" id="tests-container">
@@ -1188,7 +1174,8 @@
        ========================================================================== */
     function getInitialExamKey() {
       try {
-        const pref = window.SSCFlixState?.studentPreferences?.targetExam;
+        const storedExam = localStorage.getItem('sscflix-target-exam');
+        const pref = storedExam || window.SSCFlixState?.studentPreferences?.targetExam;
         if (pref) {
           const lower = String(pref).toLowerCase();
           for (const key of Object.keys(EXAM_CONFIGS)) {
@@ -1198,7 +1185,13 @@
           }
         }
       } catch (e) {
-        // Fallback gracefully
+        const pref = window.SSCFlixState?.studentPreferences?.targetExam;
+        if (pref) {
+          const lower = String(pref).toLowerCase();
+          for (const key of Object.keys(EXAM_CONFIGS)) {
+            if (key === lower || EXAM_CONFIGS[key].label.toLowerCase() === lower) return key;
+          }
+        }
       }
       return 'cgl';
     }
@@ -1207,6 +1200,7 @@
       selectedExam: getInitialExamKey(),
       selectedTier: 'all',
       category: 'full',
+      selectedSubject: 'all',
       get activeCategory() { return this.category; },
       set activeCategory(val) { this.category = val; },
       status: 'all',
@@ -1298,22 +1292,48 @@
     function updateCategoryUI() {
       const tabFull = document.getElementById('tab-full');
       const tabSectional = document.getElementById('tab-sectional');
-
       if (!tabFull || !tabSectional) return;
 
-      if (state.category === 'full') {
-        tabFull.className = 'touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all bg-[#1D4ED8] text-white shadow-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
-        tabFull.setAttribute('aria-selected', 'true');
+      const activeClass = 'test-type-tab min-h-9 rounded-lg px-3.5 sm:px-4 text-xs sm:text-sm font-semibold transition-all bg-[#6750E8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]';
+      const inactiveClass = 'test-type-tab min-h-9 rounded-lg px-3.5 sm:px-4 text-xs sm:text-sm font-semibold transition-all text-[#38354F] hover:bg-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]';
 
-        tabSectional.className = 'touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
-        tabSectional.setAttribute('aria-selected', 'false');
-      } else {
-        tabSectional.className = 'touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all bg-[#1D4ED8] text-white shadow-sm font-semibold focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
-        tabSectional.setAttribute('aria-selected', 'true');
+      const fullIsActive = state.category === 'full';
+      tabFull.className = fullIsActive ? activeClass : inactiveClass;
+      tabSectional.className = fullIsActive ? inactiveClass : activeClass;
+      tabFull.setAttribute('aria-selected', String(fullIsActive));
+      tabSectional.setAttribute('aria-selected', String(!fullIsActive));
+    }
 
-        tabFull.className = 'touch-target flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] font-medium focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]';
-        tabFull.setAttribute('aria-selected', 'false');
-      }
+    function updateSubjectFilterUI() {
+      const subjectSelect = document.getElementById('filter-subject-select');
+      if (!subjectSelect) return;
+
+      const isAvailable = state.category === 'sectional';
+      subjectSelect.disabled = !isAvailable;
+      subjectSelect.value = state.selectedSubject;
+      subjectSelect.title = isAvailable ? 'Filter sectional tests by subject' : 'Subject filtering is available for sectional tests';
+    }
+
+    function handleSubjectChange(subjectId) {
+      state.selectedSubject = subjectId || 'all';
+      renderTestList();
+    }
+
+    function testMatchesSelectedSubject(test) {
+      if (state.selectedSubject === 'all') return true;
+      const sectionNames = Array.isArray(test.sections)
+        ? test.sections.map(section => String(section.name || '').toLowerCase())
+        : [];
+
+      const aliases = {
+        reasoning: ['general intelligence', 'reasoning'],
+        awareness: ['general awareness', 'history', 'polity', 'current affairs'],
+        quantitative: ['quantitative aptitude'],
+        english: ['english']
+      };
+
+      const searchTerms = aliases[state.selectedSubject] || [];
+      return searchTerms.some(term => sectionNames.some(name => name.includes(term)));
     }
 
     function updateStatusChipsUI() {
@@ -1575,7 +1595,8 @@
         const matchesExam = t.examId === state.selectedExam;
         const matchesTier = (state.selectedTier === 'all' || t.tierId === state.selectedTier);
         const matchesCat = t.category === state.activeCategory;
-        return matchesExam && matchesTier && matchesCat;
+        const matchesSubject = state.activeCategory !== 'sectional' || testMatchesSelectedSubject(t);
+        return matchesExam && matchesTier && matchesCat && matchesSubject;
       });
 
       if (state.activeStatus !== 'all') {
@@ -1604,6 +1625,7 @@
         const examTests = mockTestsData.filter(t => t.examId === state.selectedExam);
         const examTierTests = mockTestsData.filter(t => t.examId === state.selectedExam && (state.selectedTier === 'all' || t.tierId === state.selectedTier));
         const examTierCatTests = mockTestsData.filter(t => t.examId === state.selectedExam && (state.selectedTier === 'all' || t.tierId === state.selectedTier) && t.category === state.activeCategory);
+        const examTierCatSubjectTests = examTierCatTests.filter(t => state.activeCategory !== 'sectional' || testMatchesSelectedSubject(t));
 
         if (examTests.length === 0) {
           // Priority 1 (Exam level)
@@ -1648,6 +1670,18 @@
             if (tierSelect) tierSelect.value = state.selectedTier;
             updateStatusChipsUI();
             updateComputedCounts();
+            renderTestList();
+          };
+          if (secondaryBtn) secondaryBtn.classList.add('hidden');
+        } else if (examTierCatTests.length > 0 && examTierCatSubjectTests.length === 0) {
+          titleEl.textContent = 'No Tests for This Subject';
+          descEl.textContent = 'There are no sectional tests for the selected subject and Tier / Paper.';
+          btnText.textContent = 'Show All Subjects';
+          primaryBtn.classList.remove('hidden');
+          primaryBtn.onclick = () => {
+            state.selectedSubject = 'all';
+            const subjectSelect = document.getElementById('filter-subject-select');
+            if (subjectSelect) subjectSelect.value = 'all';
             renderTestList();
           };
           if (secondaryBtn) secondaryBtn.classList.add('hidden');
@@ -1773,7 +1807,9 @@
     function handleCategoryChange(cat) {
       state.activeCategory = cat;
       state.activeStatus = 'all';
+      state.selectedSubject = 'all';
       updateCategoryUI();
+      updateSubjectFilterUI();
       updateStatusChipsUI();
       updateComputedCounts();
       renderTestList();
@@ -1797,6 +1833,11 @@
       state.activeStatus = 'all';
       state.searchQuery = '';
       state.activeCategory = 'full';
+      state.selectedSubject = 'all';
+
+      const subjectSelect = document.getElementById('filter-subject-select');
+      if (subjectSelect) subjectSelect.value = 'all';
+      updateSubjectFilterUI();
 
       const searchInput = document.getElementById('test-search-input');
       if (searchInput) searchInput.value = '';
@@ -1813,8 +1854,12 @@
     function clearSearchAndStatusFilters() {
       state.activeStatus = 'all';
       state.searchQuery = '';
+      state.selectedSubject = 'all';
+      const subjectSelect = document.getElementById('filter-subject-select');
+      if (subjectSelect) subjectSelect.value = 'all';
       const searchInput = document.getElementById('test-search-input');
       if (searchInput) searchInput.value = '';
+      updateSubjectFilterUI();
       updateStatusChipsUI();
       renderTestList();
     }
@@ -2065,10 +2110,10 @@
        ========================================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       syncSharedStudentPreference(state.selectedExam);
-      renderExamPills();
       renderTierOptions();
       updateHeaderIndicator();
       updateCategoryUI();
+      updateSubjectFilterUI();
       updateStatusChipsUI();
       updateComputedCounts();
       renderTestList();
@@ -2079,6 +2124,35 @@
           handleTierSelect(e.target.value);
         });
       }
+
+      const subjectSelect = document.getElementById('filter-subject-select');
+      if (subjectSelect) {
+        subjectSelect.addEventListener('change', (e) => handleSubjectChange(e.target.value));
+      }
+
+      // The shared header search replaces the former page-level search box.
+      document.querySelectorAll('#shared-shell-search-desktop-input, #shared-shell-search-mobile-input').forEach(input => {
+        input.addEventListener('input', (e) => handleSearch(e.target.value));
+      });
+    });
+
+    // Keep this page in sync with the target exam selected in the shared header.
+    window.addEventListener('sscflix:statechange', (event) => {
+      const nextExam = event.detail && event.detail.examId;
+      if (!nextExam || !EXAM_CONFIGS[nextExam] || nextExam === state.selectedExam) return;
+
+      state.selectedExam = nextExam;
+      const tiers = EXAM_CONFIGS[nextExam].tiers;
+      state.selectedTier = tiers.some(tier => tier.id === 'all') ? 'all' : (tiers[0] ? tiers[0].id : 'all');
+      state.activeStatus = 'all';
+      state.searchQuery = '';
+      state.selectedSubject = 'all';
+
+      renderTierOptions();
+      updateHeaderIndicator();
+      updateSubjectFilterUI();
+      updateComputedCounts();
+      renderTestList();
     });
   </script>
 

@@ -185,14 +185,16 @@
 
 </style>
 <style>
-  #test-type-switch { background-color: #EAE8F2; }
-  #test-type-switch .test-type-tab[aria-selected="false"] { color: #38354F; }
-  body.shared-dark-mode #test-type-switch { background-color: #29263A !important; }
-  body.shared-dark-mode #test-type-switch .test-type-tab[aria-selected="false"] { color: #D6D1E8 !important; }
+  #test-type-switch { background-color: #F1F5F9; }
+  #test-type-switch .test-type-tab[aria-selected="false"] { color: #475569; }
+  #test-type-switch .test-type-tab[aria-selected="true"] { background-color: #1D4ED8; color: #FFFFFF; }
+  body.shared-dark-mode #test-type-switch { background-color: #1E293B !important; }
+  body.shared-dark-mode #test-type-switch .test-type-tab[aria-selected="false"] { color: #CBD5E1 !important; }
+  body.shared-dark-mode #test-type-switch .test-type-tab[aria-selected="true"] { background-color: #2563EB !important; color: #FFFFFF !important; }
   body.shared-dark-mode #filter-subject-select {
-    background-color: #171B2A !important;
-    border-color: #3A3654 !important;
-    color: #E6E3F1 !important;
+    background-color: #0F1B2D !important;
+    border-color: #34465F !important;
+    color: #E5EDF8 !important;
   }
   body.shared-dark-mode #filter-tier-select {
     background-color: #0F1B2D !important;
@@ -434,26 +436,26 @@
 
 <!-- Test Type & Subject Filters -->
 <section class="mb-6">
-  <div class="flex flex-wrap items-center justify-between gap-3">
-    <div aria-label="Test type" class="inline-flex items-center gap-1 rounded-xl bg-[#EAE8F2] p-1.5" id="test-type-switch" role="tablist">
-      <button aria-selected="true" class="test-type-tab min-h-9 rounded-lg px-3.5 sm:px-4 text-xs sm:text-sm font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]" id="tab-full" onclick="handleCategoryChange('full')" role="tab" type="button">
+  <div class="flex flex-wrap items-center gap-2.5">
+    <div aria-label="Test type" class="inline-flex items-center gap-1 rounded-xl bg-[#F1F5F9] p-1" id="test-type-switch" role="tablist">
+      <button aria-selected="true" class="test-type-tab min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="tab-full" onclick="handleCategoryChange('full')" role="tab" type="button">
         Full Mock
       </button>
-      <button aria-selected="false" class="test-type-tab min-h-9 rounded-lg px-3.5 sm:px-4 text-xs sm:text-sm font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]" id="tab-sectional" onclick="handleCategoryChange('sectional')" role="tab" type="button">
+      <button aria-selected="false" class="test-type-tab min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="tab-sectional" onclick="handleCategoryChange('sectional')" role="tab" type="button">
         Sectional
       </button>
     </div>
 
-    <div class="relative w-full min-w-[170px] flex-1 sm:flex-initial sm:w-[236px] sm:max-w-[236px]">
+    <div class="relative hidden w-full min-w-[170px] sm:w-[236px] sm:max-w-[236px]" id="subject-filter-wrapper">
       <label class="sr-only" for="filter-subject-select">Filter sectional tests by subject</label>
-      <select class="h-11 w-full appearance-none rounded-xl border border-[#DCD7EC] bg-[#F4F2FA] px-4 pr-10 text-sm text-[#302D49] outline-none transition-colors focus:border-[#A59BCB] focus:ring-2 focus:ring-[#E8E3F5] disabled:cursor-not-allowed disabled:opacity-60" id="filter-subject-select" aria-label="Filter by subject">
+      <select class="h-11 w-full appearance-none rounded-xl border border-[#CBD5E1] bg-white px-4 pr-10 text-sm font-medium text-[#334155] outline-none transition-colors hover:border-[#94A3B8] focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#DBEAFE]" id="filter-subject-select" aria-label="Filter by subject">
         <option value="all">All Subjects</option>
         <option value="reasoning">General Intelligence &amp; Reasoning</option>
         <option value="awareness">General Awareness</option>
         <option value="quantitative">Quantitative Aptitude</option>
         <option value="english">English</option>
       </select>
-      <svg aria-hidden="true" class="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#69647F]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+      <svg aria-hidden="true" class="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
         <path d="m6 9 6 6 6-6"></path>
       </svg>
     </div>
@@ -1294,8 +1296,8 @@
       const tabSectional = document.getElementById('tab-sectional');
       if (!tabFull || !tabSectional) return;
 
-      const activeClass = 'test-type-tab min-h-9 rounded-lg px-3.5 sm:px-4 text-xs sm:text-sm font-semibold transition-all bg-[#6750E8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]';
-      const inactiveClass = 'test-type-tab min-h-9 rounded-lg px-3.5 sm:px-4 text-xs sm:text-sm font-semibold transition-all text-[#38354F] hover:bg-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]';
+      const activeClass = 'test-type-tab min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
+      const inactiveClass = 'test-type-tab min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
 
       const fullIsActive = state.category === 'full';
       tabFull.className = fullIsActive ? activeClass : inactiveClass;
@@ -1309,9 +1311,11 @@
       if (!subjectSelect) return;
 
       const isAvailable = state.category === 'sectional';
+      const subjectWrapper = document.getElementById('subject-filter-wrapper');
+      if (subjectWrapper) subjectWrapper.classList.toggle('hidden', !isAvailable);
       subjectSelect.disabled = !isAvailable;
       subjectSelect.value = state.selectedSubject;
-      subjectSelect.title = isAvailable ? 'Filter sectional tests by subject' : 'Subject filtering is available for sectional tests';
+      subjectSelect.title = 'Filter sectional tests by subject';
     }
 
     function handleSubjectChange(subjectId) {

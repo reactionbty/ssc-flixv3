@@ -1742,8 +1742,13 @@
           primaryBtn.onclick = () => {
             const searchInput = document.getElementById('test-search-input');
             if (searchInput) searchInput.value = '';
+            clearSharedSearchInputs();
             state.searchQuery = '';
             state.activeStatus = 'all';
+            state.selectedSubject = 'all';
+            const subjectSelect = document.getElementById('filter-subject-select');
+            if (subjectSelect) subjectSelect.value = 'all';
+            updateSubjectFilterUI();
             updateStatusChipsUI();
             renderTestList();
           };
@@ -1824,6 +1829,12 @@
     function handleSearch(val) {
       state.searchQuery = (val || '').trim().toLowerCase();
       renderTestList();
+    }
+
+    function clearSharedSearchInputs() {
+      document.querySelectorAll('#shared-shell-search-desktop-input, #shared-shell-search-mobile-input').forEach(input => {
+        input.value = '';
+      });
     }
 
     function resetToDefaultExam() {
@@ -2147,6 +2158,7 @@
       state.activeStatus = 'all';
       state.searchQuery = '';
       state.selectedSubject = 'all';
+      clearSharedSearchInputs();
 
       renderTierOptions();
       updateHeaderIndicator();

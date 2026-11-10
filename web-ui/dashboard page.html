@@ -57,6 +57,69 @@
       background: #CBD5E1;
       border-radius: 4px;
     }
+
+    /* Dashboard light and dark appearance */
+    html.dashboard-dark { background-color: #0B1220 !important; color-scheme: dark; }
+    body.dark-mode {
+      color: #E2E8F0 !important;
+      background-color: #0B1220 !important;
+      color-scheme: dark;
+    }
+    body.dark-mode [class~="bg-white"] { background-color: #111C2E !important; }
+    body.dark-mode [class~="bg-[#F8FAFC]"],
+    body.dark-mode [class~="bg-slate-50"],
+    body.dark-mode [class~="bg-slate-50/50"] { background-color: #0F1B2D !important; }
+    body.dark-mode [class~="bg-[#F1F5F9]"],
+    body.dark-mode [class~="bg-slate-100"] { background-color: #1E293B !important; }
+    body.dark-mode [class~="bg-[#EFF6FF]"],
+    body.dark-mode [class~="bg-blue-50"],
+    body.dark-mode [class~="bg-blue-50/50"],
+    body.dark-mode [class~="bg-blue-50/60"],
+    body.dark-mode [class~="bg-blue-100"] { background-color: #172B46 !important; }
+    body.dark-mode [class~="text-[#0F172A]"],
+    body.dark-mode [class~="text-slate-900"],
+    body.dark-mode [class~="text-slate-800"] { color: #E5EDF8 !important; }
+    body.dark-mode [class~="text-[#475569]"],
+    body.dark-mode [class~="text-slate-700"] { color: #B8C5D8 !important; }
+    body.dark-mode [class~="text-[#64748B]"],
+    body.dark-mode [class~="text-slate-600"],
+    body.dark-mode [class~="text-slate-500"] { color: #91A1B8 !important; }
+    body.dark-mode [class~="text-[#1D4ED8]"],
+    body.dark-mode [class~="text-blue-700"],
+    body.dark-mode [class~="text-blue-800"] { color: #93C5FD !important; }
+    body.dark-mode [class~="border-[#E2E8F0]"],
+    body.dark-mode [class~="border-[#CBD5E1]"],
+    body.dark-mode [class~="border-slate-100"],
+    body.dark-mode [class~="border-slate-200"],
+    body.dark-mode [class~="border-[#E2E8F0]/70"] { border-color: #2A3A50 !important; }
+    body.dark-mode [class~="border-blue-100"],
+    body.dark-mode [class~="border-[#BFDBFE]"] { border-color: #294766 !important; }
+    body.dark-mode hr { border-color: #2A3A50 !important; }
+    body.dark-mode .nav-item:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.dark-mode .nav-item:not([aria-current="page"]):hover {
+      background-color: #1E293B !important;
+      color: #F8FAFC !important;
+    }
+    body.dark-mode .nav-item[aria-current="page"] {
+      background-color: #172B46 !important;
+      color: #93C5FD !important;
+    }
+    body.dark-mode #theme-toggle-btn {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E2E8F0 !important;
+    }
+    body.dark-mode #theme-toggle-btn:hover { background-color: #1E293B !important; }
+    body.dark-mode input,
+    body.dark-mode select,
+    body.dark-mode textarea {
+      background-color: #0F1B2D !important;
+      color: #E5EDF8 !important;
+      border-color: #34465F !important;
+    }
+    body.dark-mode input::placeholder,
+    body.dark-mode textarea::placeholder { color: #71839B !important; }
+    body.dark-mode .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
   </style>
 </head>
 <body class="min-h-full flex flex-col md:flex-row antialiased text-[#0F172A] bg-[#F8FAFC]">
@@ -160,25 +223,29 @@
 <img alt="SSC Flix Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/>
 </div>
 <!-- Desktop Title & Target Exam chip -->
-<div class="hidden md:flex items-center gap-2.5">
-<h1 class="text-base font-bold text-[#0F172A]">Dashboard</h1>
-<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]">
-<span class="">Target:</span>
-<span class="target-exam-text font-semibold">SSC CGL</span>
-<button class="text-xs underline font-medium hover:text-[#1E3A8A] ml-0.5 focus:outline-none cursor-pointer" onclick="openTargetExamModal()" title="Change Target Exam">Change</button>
-</div>
+<div class="hidden md:flex items-center">
+<button aria-label="Change target examination" class="inline-flex items-center gap-2.5 min-h-[40px] px-3.5 rounded-lg bg-white border border-[#CBD5E1] hover:border-[#94A3B8] hover:bg-[#F8FAFC] text-left transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-1 cursor-pointer" onclick="openTargetExamModal()" title="Change target examination" type="button">
+<span class="text-[11px] font-medium text-[#64748B]">Target exam</span>
+<span class="target-exam-text text-sm font-semibold text-[#0F172A]">SSC CGL</span>
+<svg aria-hidden="true" class="w-4 h-4 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
 </div>
 </div>
 <!-- Right side of header -->
 <div class="flex items-center gap-2.5">
 <!-- Mobile Target Chip -->
 <div class="md:hidden">
-<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]" onclick="openTargetExamModal()">
-<span class="text-xs font-normal text-slate-600">Target:</span>
+<button aria-label="Change target examination" class="inline-flex items-center gap-2 min-h-[40px] px-3 rounded-lg bg-white border border-[#CBD5E1] hover:border-[#94A3B8] hover:bg-[#F8FAFC] text-xs font-semibold text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] cursor-pointer" onclick="openTargetExamModal()" title="Change target examination" type="button">
+<span class="text-[11px] font-medium text-[#64748B]">Target</span>
 <span class="target-exam-text">SSC CGL</span>
-<svg class="w-3.5 h-3.5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+<svg aria-hidden="true" class="w-3.5 h-3.5 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
 </button>
 </div>
+<!-- Appearance Toggle -->
+<button aria-label="Switch to dark mode" aria-pressed="false" class="touch-target flex items-center justify-center w-10 h-10 rounded-lg border border-[#E2E8F0] bg-white text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-1" id="theme-toggle-btn" onclick="toggleDashboardTheme()" title="Switch to dark mode" type="button">
+<svg aria-hidden="true" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" id="theme-moon-icon"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"></path></svg>
+<svg aria-hidden="true" class="hidden w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" id="theme-sun-icon"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+</button>
 <!-- Profile Menu Trigger -->
 <div class="relative">
 <button aria-expanded="false" aria-label="Open student profile menu" class="touch-target flex items-center justify-center p-1 rounded-lg text-[#475569] hover:text-[#0F172A] hover:bg-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="profile-btn" onclick="toggleProfileMenu()" type="button">
@@ -1536,6 +1603,50 @@
     }
   }
 
+  // Dashboard Appearance Toggle
+  function applyDashboardTheme(theme, persist) {
+    const isDark = theme === 'dark';
+    document.body.classList.toggle('dark-mode', isDark);
+    document.documentElement.classList.toggle('dashboard-dark', isDark);
+
+    const toggle = document.getElementById('theme-toggle-btn');
+    const moonIcon = document.getElementById('theme-moon-icon');
+    const sunIcon = document.getElementById('theme-sun-icon');
+
+    if (toggle) {
+      const nextLabel = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+      toggle.setAttribute('aria-label', nextLabel);
+      toggle.setAttribute('title', nextLabel);
+      toggle.setAttribute('aria-pressed', String(isDark));
+    }
+    if (moonIcon) moonIcon.classList.toggle('hidden', isDark);
+    if (sunIcon) sunIcon.classList.toggle('hidden', !isDark);
+
+    if (persist) {
+      try {
+        localStorage.setItem('sscflix-dashboard-theme', isDark ? 'dark' : 'light');
+      } catch (error) {
+        // Keep the selected appearance for the current page if storage is unavailable.
+      }
+    }
+  }
+
+  function toggleDashboardTheme() {
+    const isDark = document.body.classList.contains('dark-mode');
+    applyDashboardTheme(isDark ? 'light' : 'dark', true);
+  }
+
+  function initializeDashboardTheme() {
+    let savedTheme = 'light';
+    try {
+      const storedTheme = localStorage.getItem('sscflix-dashboard-theme');
+      if (storedTheme === 'dark' || storedTheme === 'light') savedTheme = storedTheme;
+    } catch (error) {
+      // Use the default light theme if browser storage is unavailable.
+    }
+    applyDashboardTheme(savedTheme, false);
+  }
+
   // Profile Dropdown Toggle
   function toggleProfileMenu() {
     const dropdown = document.getElementById('profile-dropdown');
@@ -1611,6 +1722,7 @@
 
   // Initial rendering on DOM load
   document.addEventListener('DOMContentLoaded', function() {
+    initializeDashboardTheme();
     renderDashboard();
   });
 </script>

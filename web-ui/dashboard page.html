@@ -134,6 +134,19 @@
       border-color: #2A3A50 !important;
       color: #E5EDF8 !important;
     }
+    body.dark-mode #dashboard-search-desktop,
+    body.dark-mode #dashboard-search-mobile {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.dark-mode #dashboard-search-desktop-input,
+    body.dark-mode #dashboard-search-mobile-input {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: #E5EDF8 !important;
+    }
+    body.dark-mode #dashboard-search-desktop svg,
+    body.dark-mode #dashboard-search-mobile svg { color: #91A1B8 !important; }
     body.dark-mode #theme-toggle-btn {
       background-color: #111C2E !important;
       border-color: #2A3A50 !important;
@@ -299,9 +312,17 @@
 <!-- Right side of header -->
 <div class="flex items-center gap-1.5 md:gap-2.5 shrink-0">
 
+<!-- Desktop Search -->
+<div class="hidden lg:flex relative w-[220px] xl:w-[280px]" id="dashboard-search-desktop" role="search">
+  <svg aria-hidden="true" class="absolute left-3.5 top-1/2 -translate-y-1/2 h-[18px] w-[18px] text-[#475569]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+    <circle cx="11" cy="11" r="7"></circle>
+    <path d="m20 20-4-4"></path>
+  </svg>
+  <input aria-label="Search mocks, PYQs and topics" autocomplete="off" class="h-11 w-full rounded-xl border border-[#DDD8EC] bg-[#F4F2FA] pl-10 pr-3 text-sm text-[#37334D] placeholder:text-[#77728F] outline-none transition-colors focus:border-[#A5A0C8] focus:ring-2 focus:ring-[#E9E6F4]" id="dashboard-search-desktop-input" placeholder="Search mocks, PYQs, reasoning..." type="search"/>
+</div>
 <!-- Appearance Toggle -->
-<button aria-label="Switch to dark mode" aria-pressed="false" class="touch-target flex items-center justify-center w-10 h-10 shrink-0 rounded-full border border-[#E2E8F0] bg-white text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-1" id="theme-toggle-btn" onclick="toggleDashboardTheme()" title="Switch to dark mode" type="button">
-<svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" id="theme-moon-icon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.463.402.807a6.5 6.5 0 0 0 8.268 8.268c.344-.215.829-.003.803.397Z"></path></svg>
+<button aria-label="Switch to dark mode" aria-pressed="false" class="touch-target flex items-center justify-center w-12 h-11 shrink-0 rounded-xl border border-[#E2E8F0] bg-white text-[#37334D] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-1" id="theme-toggle-btn" onclick="toggleDashboardTheme()" title="Switch to dark mode" type="button">
+<svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" id="theme-moon-icon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
 <svg aria-hidden="true" class="hidden w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" id="theme-sun-icon"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
 </button>
 <!-- Profile Menu Trigger -->
@@ -310,11 +331,20 @@
 <div class="user-avatar-initials w-8 h-8 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center text-xs font-semibold ring-2 ring-blue-100">ST</div>
 </button>
 <!-- Profile Dropdown -->
-<div class="hidden absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-[#E2E8F0] py-2 z-50" id="profile-dropdown" role="menu">
+<div class="hidden absolute right-0 mt-2 w-72 max-w-[calc(100vw-1.5rem)] bg-white rounded-lg shadow-lg border border-[#E2E8F0] py-2 z-50" id="profile-dropdown" role="menu">
 <div class="px-4 py-2 border-b border-[#E2E8F0]">
 <p class="text-xs text-[#64748B]">Signed in as</p>
 <p class="text-sm font-semibold text-[#0F172A]" id="user-display-name">Student</p>
 <p class="text-xs text-[#64748B] truncate hidden" id="user-display-email"></p>
+<div class="lg:hidden border-b border-[#E2E8F0] p-3">
+  <div class="relative" id="dashboard-search-mobile" role="search">
+    <svg aria-hidden="true" class="absolute left-3.5 top-1/2 -translate-y-1/2 h-[18px] w-[18px] text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+      <circle cx="11" cy="11" r="7"></circle>
+      <path d="m20 20-4-4"></path>
+    </svg>
+    <input aria-label="Search mocks, PYQs and topics" autocomplete="off" class="h-11 w-full rounded-xl border border-[#DDD8EC] bg-[#F4F2FA] pl-10 pr-3 text-sm text-[#37334D] placeholder:text-[#77728F] outline-none transition-colors focus:border-[#A5A0C8] focus:ring-2 focus:ring-[#E9E6F4]" id="dashboard-search-mobile-input" placeholder="Search mocks, PYQs, reasoning..." type="search"/>
+  </div>
+</div>
 </div>
 <a class="block px-4 py-2 text-sm text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A]" href="#preferences" role="menuitem">Preferences</a>
 <a class="block px-4 py-2 text-sm text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A]" href="#profile" role="menuitem">Account Settings</a>

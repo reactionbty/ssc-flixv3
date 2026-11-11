@@ -431,6 +431,16 @@
           summaryExamSub.textContent = selectedExam.getAttribute('data-fullname') || '';
           summaryLang.textContent = selectedLang.value;
 
+          // Persist the onboarding choices for the separate dashboard HTML page.
+          const examCode = selectedExam.value.toLowerCase().replace(/^ssc\s*/, '').replace('stenographer', 'steno');
+          try {
+            localStorage.setItem('sscflix-target-exam', examCode);
+            localStorage.setItem('sscflix-language', selectedLang.value);
+            localStorage.setItem('sscflix-onboarding-complete', 'true');
+          } catch (error) {
+            // Navigation still works when storage is unavailable.
+          }
+
           formContainer.classList.add('hidden');
           successView.classList.remove('hidden');
           dashboardNotice.classList.add('hidden');
@@ -446,8 +456,17 @@
       });
 
       dashboardBtn.addEventListener('click', () => {
-        dashboardNotice.classList.remove('hidden');
-        dashboardNotice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        const selectedExam = document.querySelector('input[name="examination"]:checked');
+        const selectedLang = document.querySelector('input[name="language"]:checked');
+        if (selectedExam && selectedLang) {
+          const examCode = selectedExam.value.toLowerCase().replace(/^ssc\s*/, '').replace('stenographer', 'steno');
+          try {
+            localStorage.setItem('sscflix-target-exam', examCode);
+            localStorage.setItem('sscflix-language', selectedLang.value);
+            localStorage.setItem('sscflix-onboarding-complete', 'true');
+          } catch (error) {}
+        }
+        window.location.href = './dashboard%20page.html';
       });
 
       // Initially ensure all visual checkmarks are hidden

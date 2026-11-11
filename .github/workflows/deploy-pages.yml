@@ -28,7 +28,6 @@ jobs:
 
       - name: Prepare static website
         run: |
-          cp "web-ui/welcome-page.html" "web-ui/index.html"
           touch "web-ui/.nojekyll"
 
       - name: Configure GitHub Pages

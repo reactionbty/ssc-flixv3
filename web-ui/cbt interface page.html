@@ -411,7 +411,7 @@
           Restart Demo
         </button>
 <button class="w-full touch-target px-4 py-2.5 text-xs sm:text-sm font-medium rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500" id="btn-back-to-catalog" type="button">
-          Close Preview
+          View Result &amp; Answer Review
         </button>
 </div>
 </div>
@@ -821,6 +821,29 @@
     /**
      * RUNTIME STATE
      */
+    // Use the selected catalogue test when this page is opened from Mock Tests or My Tests.
+    let activePreviewContext = null;
+    try {
+      activePreviewContext = JSON.parse(localStorage.getItem('sscflix-active-test-preview') || 'null');
+    } catch (error) {
+      activePreviewContext = null;
+    }
+
+    if (activePreviewContext && typeof activePreviewContext === 'object') {
+      if (activePreviewContext.testId) testConfig.testId = String(activePreviewContext.testId);
+      if (activePreviewContext.title) testConfig.title = String(activePreviewContext.title);
+      if (activePreviewContext.category) testConfig.category = String(activePreviewContext.category);
+      if (Number.isFinite(Number(activePreviewContext.durationMinutes)) && Number(activePreviewContext.durationMinutes) > 0) {
+        testConfig.durationMinutes = Number(activePreviewContext.durationMinutes);
+      }
+      try {
+        const storedLanguage = localStorage.getItem('sscflix-language');
+        if (storedLanguage && /hindi/i.test(storedLanguage) && testConfig.supportedLanguages.includes('hi')) {
+          testConfig.preferredLanguage = 'hi';
+        }
+      } catch (error) {}
+    }
+
     const initialLang = (testConfig.supportedLanguages && testConfig.supportedLanguages.includes(testConfig.preferredLanguage))
       ? testConfig.preferredLanguage 
       : 'en';
@@ -1606,6 +1629,26 @@
       document.getElementById("done-attempted").textContent = `${totalAttempted} of ${runtime.questions.size} Questions`;
       document.getElementById("done-reviewed").textContent = `${totalReviewed} Questions`;
 
+      const completionSummary = {
+        testId: testConfig.testId,
+        title: testConfig.title,
+        category: testConfig.category,
+        examId: activePreviewContext?.examId || 'cgl',
+        mode: activePreviewContext?.mode || 'test',
+        durationMinutes: testConfig.durationMinutes || 60,
+        questions: runtime.questions.size,
+        attempted: totalAttempted,
+        reviewed: totalReviewed,
+        submittedAt: new Date().toISOString(),
+        source: activePreviewContext?.source || 'cbt-demo',
+        evaluationData: 'demo'
+      };
+      try {
+        localStorage.setItem('sscflix-last-cbt-submission', JSON.stringify(completionSummary));
+      } catch (error) {
+        // The completion modal still works without local storage.
+      }
+
       modalSubmitted.classList.remove("hidden");
       if (activeModalTrapCleanup) activeModalTrapCleanup();
       activeModalTrapCleanup = setupFocusTrap(submittedDialogBox);
@@ -1735,7 +1778,9 @@
       // Final modal restart & close preview
       btnRestartDemo.addEventListener("click", restartDemoSession);
       btnRestartDemoFromLocked.addEventListener("click", restartDemoSession);
-      btnBackCatalog.addEventListener("click", handleClosePreview);
+      btnBackCatalog.addEventListener("click", () => {
+        window.location.href = './test%20resut%20and%20ans%20review.html';
+      });
 
       // Escape key handler respecting STRICT lockdown
       document.addEventListener("keydown", (e) => {

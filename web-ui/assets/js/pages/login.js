@@ -1,5 +1,5 @@
-// Page script 1 for login
-(function () {
+// login page script 1
+(function(){
 
     function togglePasswordVisibility() {
       const pwdInput = document.getElementById('password');
@@ -142,9 +142,8 @@
       }, 750);
     }
   
-
-if (typeof togglePasswordVisibility === 'function') window["togglePasswordVisibility"] = togglePasswordVisibility;
-if (typeof clearFieldValidation === 'function') window["clearFieldValidation"] = clearFieldValidation;
-if (typeof setFieldInvalid === 'function') window["setFieldInvalid"] = setFieldInvalid;
-if (typeof handleSignInSubmit === 'function') window["handleSignInSubmit"] = handleSignInSubmit;
+if(typeof togglePasswordVisibility==='function')window["togglePasswordVisibility"]=togglePasswordVisibility;
+if(typeof clearFieldValidation==='function')window["clearFieldValidation"]=clearFieldValidation;
+if(typeof setFieldInvalid==='function')window["setFieldInvalid"]=setFieldInvalid;
+if(typeof handleSignInSubmit==='function')window["handleSignInSubmit"]=handleSignInSubmit;
 })();

@@ -1,0 +1,517 @@
+<style data-route-style>
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #0F172A;
+      background-color: #F8FAFC;
+      -webkit-font-smoothing: antialiased;
+    }
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  
+
+
+/* Dashboard light and dark appearance */
+    html.dashboard-dark { background-color: #0B1220 !important; color-scheme: dark; }
+    body.shared-dark-mode {
+      color: #E2E8F0 !important;
+      background-color: #0B1220 !important;
+      color-scheme: dark;
+    }
+    body.shared-dark-mode [class~="bg-white"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="bg-[#F8FAFC]"],
+    body.shared-dark-mode [class~="bg-slate-50"],
+    body.shared-dark-mode [class~="bg-slate-50/50"] { background-color: #0F1B2D !important; }
+    body.shared-dark-mode [class~="bg-[#F1F5F9]"],
+    body.shared-dark-mode [class~="bg-slate-100"] { background-color: #1E293B !important; }
+    body.shared-dark-mode [class~="bg-[#EFF6FF]"],
+    body.shared-dark-mode [class~="bg-blue-50"],
+    body.shared-dark-mode [class~="bg-blue-50/50"],
+    body.shared-dark-mode [class~="bg-blue-50/60"],
+    body.shared-dark-mode [class~="bg-blue-100"] { background-color: #172B46 !important; }
+    body.shared-dark-mode [class~="text-[#0F172A]"],
+    body.shared-dark-mode [class~="text-slate-900"],
+    body.shared-dark-mode [class~="text-slate-800"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-[#475569]"],
+    body.shared-dark-mode [class~="text-slate-700"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="text-[#64748B]"],
+    body.shared-dark-mode [class~="text-slate-600"],
+    body.shared-dark-mode [class~="text-slate-500"] { color: #91A1B8 !important; }
+    body.shared-dark-mode [class~="text-[#1D4ED8]"],
+    body.shared-dark-mode [class~="text-blue-700"],
+    body.shared-dark-mode [class~="text-blue-800"] { color: #93C5FD !important; }
+    body.shared-dark-mode [class~="border-[#E2E8F0]"],
+    body.shared-dark-mode [class~="border-[#CBD5E1]"],
+    body.shared-dark-mode [class~="border-slate-100"],
+    body.shared-dark-mode [class~="border-slate-200"],
+    body.shared-dark-mode [class~="border-[#E2E8F0]/70"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="border-blue-100"],
+    body.shared-dark-mode [class~="border-[#BFDBFE]"] { border-color: #294766 !important; }
+    body.shared-dark-mode hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]):hover {
+      background-color: #1E293B !important;
+      color: #F8FAFC !important;
+    }
+    body.shared-dark-mode .nav-item[aria-current="page"] {
+      background-color: #172B46 !important;
+      color: #93C5FD !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card {
+      background-color: #241F3C !important;
+      border-color: #51427E !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card h3 { color: #F0EAFE !important; }
+    body.shared-dark-mode #sidebar-pro-card p { color: #C4B9E8 !important; }
+    body.shared-dark-mode #sidebar-pro-card button { color: #C4B5FD !important; }
+    body.shared-dark-mode #sidebar-pro-card > div:first-child {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #C4B5FD !important;
+    }
+    body.shared-dark-mode #sidebar-account-row { border-color: #2A3A50 !important; }
+    body.shared-dark-mode #sidebar-account-row #sidebar-user-name { color: #E5EDF8 !important; }
+    body.shared-dark-mode #sidebar-account-row .sidebar-avatar-initials {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #DDD6FE !important;
+    }
+    body.shared-dark-mode #sidebar-account-row button {
+      background-color: #342B22 !important;
+      border-color: #7C6330 !important;
+      color: #F4D58D !important;
+    }
+    body.shared-dark-mode .dashboard-mobile-brand { color: #93C5FD !important; }
+    body.shared-dark-mode header button[aria-label="Change target examination"] {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop,
+    body.shared-dark-mode #dashboard-search-mobile {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop-input,
+    body.shared-dark-mode #dashboard-search-mobile-input {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop svg,
+    body.shared-dark-mode #dashboard-search-mobile svg { color: #91A1B8 !important; }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E2E8F0 !important;
+    }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn:hover { background-color: #1E293B !important; }
+    body.shared-dark-mode input,
+    body.shared-dark-mode select,
+    body.shared-dark-mode textarea {
+      background-color: #0F1B2D !important;
+      color: #E5EDF8 !important;
+      border-color: #34465F !important;
+    }
+    body.shared-dark-mode input::placeholder,
+    body.shared-dark-mode textarea::placeholder { color: #71839B !important; }
+    body.shared-dark-mode .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+  
+    body.shared-dark-mode .shared-app-header,
+    body.shared-dark-mode .shared-app-sidebar,
+    body.shared-dark-mode #shared-shell-profile-dropdown,
+    body.shared-dark-mode .shared-target-modal-panel {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode .shared-app-sidebar nav a:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .shared-app-sidebar nav a[aria-current="page"] { background-color: #172B46 !important; color: #93C5FD !important; }
+    body.shared-dark-mode .shared-app-sidebar hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#0F172A]"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#64748B]"] { color: #91A1B8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="border-[#E2E8F0]"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="bg-brand-bg"] { background-color: #0B1220 !important; }
+    body.shared-dark-mode [class~="bg-brand-surface"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="text-brand-textPrimary"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-brand-textSecondary"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="border-brand-border"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-app-header input {
+      background-color: #0F1B2D !important;
+      border-color: #34465F !important;
+      color: #E5EDF8 !important;
+    }
+
+
+
+
+  #test-type-switch { background-color: #F1F5F9; }
+  #test-type-switch .test-type-tab[aria-selected="false"] { color: #475569; }
+  #test-type-switch .test-type-tab[aria-selected="true"] { background-color: #1D4ED8; color: #FFFFFF; }
+  body.shared-dark-mode #test-type-switch { background-color: #1E293B !important; }
+  body.shared-dark-mode #test-type-switch .test-type-tab[aria-selected="false"] { color: #CBD5E1 !important; }
+  body.shared-dark-mode #test-type-switch .test-type-tab[aria-selected="true"] { background-color: #2563EB !important; color: #FFFFFF !important; }
+  body.shared-dark-mode #filter-subject-select {
+    background-color: #0F1B2D !important;
+    border-color: #34465F !important;
+    color: #E5EDF8 !important;
+  }
+  body.shared-dark-mode #test-type-switch { background-color: #1E293B !important; }
+  body.shared-dark-mode #filter-tier-select {
+    background-color: #0F1B2D !important;
+    border-color: #34465F !important;
+    color: #E5EDF8 !important;
+  }
+
+
+
+  #assessment-mode-switch { background-color: #F1F5F9; border-color: #E2E8F0; }
+  #assessment-mode-switch .assessment-mode-option[aria-pressed="false"] { color: #475569; }
+  #assessment-mode-switch .assessment-mode-option[aria-pressed="true"] { background-color: #1D4ED8; color: #FFFFFF; }
+  body.shared-dark-mode #assessment-mode-switch { background-color: #1E293B !important; border-color: #334155 !important; }
+  body.shared-dark-mode #assessment-mode-switch .assessment-mode-option[aria-pressed="false"] { color: #CBD5E1 !important; }
+  body.shared-dark-mode #assessment-mode-switch .assessment-mode-option[aria-pressed="true"] { background-color: #2563EB !important; color: #FFFFFF !important; }
+  body.shared-dark-mode #attempted-filter-btn[aria-pressed="false"] { background-color: #111C2E !important; border-color: #2A3A50 !important; color: #B8C5D8 !important; }
+  body.shared-dark-mode #attempted-filter-btn[aria-pressed="true"] { background-color: #172B46 !important; border-color: #3B82F6 !important; color: #93C5FD !important; }
+
+</style>
+<div data-spa-view="mock-tests" data-body-class="min-h-full flex flex-col md:flex-row antialiased text-[#0F172A] bg-[#F8FAFC]" data-html-class="h-full bg-[#F8FAFC]">
+<!-- ========================================================================= -->
+<!-- 1. DESKTOP SIDEBAR (Fixed 240px width, sticky, matching system specs)       -->
+<!-- ========================================================================= -->
+<div id="app-sidebar-slot"></div>
+<!-- ========================================================================= -->
+<!-- 2. MAIN WORKSPACE CONTAINER                                               -->
+<!-- ========================================================================= -->
+<div class="flex-1 flex flex-col min-w-0 md:ml-[240px]">
+<!-- Header (56px) -->
+
+<!-- Main Content Body -->
+<div id="app-header-slot"></div>
+<main class="flex-1 px-4 sm:px-6 md:px-8 py-6 max-w-[1200px] w-full mx-auto pb-24 md:pb-12">
+<div class="flex flex-col w-full">
+<!-- Prototype Notice Banner -->
+<div class="hidden mb-6 bg-[#EFF6FF] border border-[#BFDBFE] rounded-lg p-4 transition-all duration-200" id="prototype-banner">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-[#1D4ED8] shrink-0">info</span>
+<div>
+<p class="text-sm font-semibold text-[#0F172A]" id="prototype-banner-text">This destination is not connected in the current Mock Tests preview.</p>
+</div>
+</div>
+<button aria-label="Dismiss banner" class="text-[#475569] hover:text-[#0F172A] p-1 rounded transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="dismissPrototypeNotice()" type="button">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+</div>
+<!-- Page Introduction -->
+<section class="mb-4 sm:mb-6">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 pb-2.5 sm:pb-3 border-b border-[#E2E8F0]">
+    <div>
+      <h1 class="text-2xl font-bold text-[#0F172A] tracking-tight">Mock Tests</h1>
+      <p class="text-sm text-[#475569] mt-1">Practice with full-length and sectional tests for your selected exam.</p>
+    </div>
+    <div aria-label="Assessment mode" class="inline-flex w-fit items-center gap-0.5 rounded-lg border border-[#E2E8F0] bg-[#F1F5F9] p-1" id="assessment-mode-switch" role="group">
+      <button aria-pressed="true" class="assessment-mode-option min-h-8 sm:min-h-9 rounded-md px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="mode-test" onclick="handleAssessmentModeChange('test')" type="button">Test Mode</button>
+      <button aria-pressed="false" class="assessment-mode-option min-h-8 sm:min-h-9 rounded-md px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="mode-study" onclick="handleAssessmentModeChange('study')" type="button">Study Mode</button>
+    </div>
+  </div>
+</section>
+<!-- Test Type, Tier, Subject & Attempted Filters -->
+<section class="mt-1 sm:mt-0 mb-4 sm:mb-6">
+  <div class="flex w-full flex-col gap-2.5 rounded-xl border border-[#E2E8F0] bg-white p-2.5 sm:flex-row sm:items-center sm:gap-3 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
+    <div class="flex min-w-0 flex-col items-stretch gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+      <div aria-label="Test type" class="inline-flex w-full items-center gap-0.5 rounded-xl bg-[#F1F5F9] p-1 sm:w-auto" id="test-type-switch" role="tablist">
+        <button aria-selected="true" class="test-type-tab min-h-9 sm:min-h-9 flex-1 sm:flex-none rounded-lg px-3 sm:px-4 text-xs sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="tab-full" onclick="handleCategoryChange('full')" role="tab" type="button">Full Mock</button>
+        <button aria-selected="false" class="test-type-tab min-h-9 sm:min-h-9 flex-1 sm:flex-none rounded-lg px-3 sm:px-4 text-xs sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="tab-sectional" onclick="handleCategoryChange('sectional')" role="tab" type="button">Sectional</button>
+      </div>
+
+      <div class="relative hidden w-full sm:w-[236px] sm:max-w-[236px] sm:flex-none" id="subject-filter-wrapper">
+        <label class="sr-only" for="filter-subject-select">Filter sectional tests by subject</label>
+        <select class="h-9 sm:h-10 w-full appearance-none rounded-lg sm:rounded-xl border border-[#CBD5E1] bg-white px-3.5 sm:px-4 pr-10 text-[11px] sm:text-sm font-medium text-[#334155] outline-none transition-colors hover:border-[#94A3B8] focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#DBEAFE]" id="filter-subject-select" aria-label="Filter by subject">
+          <option value="all">All Subjects</option>
+          <option value="reasoning">General Intelligence &amp; Reasoning</option>
+          <option value="awareness">General Awareness</option>
+          <option value="quantitative">Quantitative Aptitude</option>
+          <option value="english">English</option>
+        </select>
+        <svg aria-hidden="true" class="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </div>
+    </div>
+
+    <div class="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-2 sm:ml-auto sm:flex sm:w-auto sm:shrink-0">
+      <div class="relative min-w-0 w-full sm:w-[190px] sm:shrink-0">
+        <label class="sr-only" for="filter-tier-select">Filter by Tier or Paper</label>
+        <select aria-label="Filter by Tier or Paper" class="h-10 sm:h-10 w-full appearance-none rounded-lg border border-[#CBD5E1] bg-[#F8FAFC] sm:bg-white px-3 pr-7 text-xs sm:text-sm font-medium text-[#334155] outline-none transition-colors hover:border-[#94A3B8] focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#DBEAFE] cursor-pointer" id="filter-tier-select">
+          <!-- Dynamically populated for the selected exam -->
+        </select>
+        <svg aria-hidden="true" class="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </div>
+      <button aria-pressed="false" class="inline-flex min-h-10 shrink-0 items-center justify-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl border border-[#CBD5E1] bg-white px-3 sm:px-3.5 text-xs sm:text-sm font-semibold text-[#475569] hover:border-[#94A3B8] hover:bg-[#F8FAFC] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="attempted-filter-btn" onclick="toggleAttemptedFilter()" type="button">
+      <span class="material-symbols-outlined text-sm sm:text-base">check_circle</span>
+      <span>Attempted</span>
+      <span class="rounded-md bg-[#F1F5F9] px-1.5 py-0.5 text-[10px] sm:text-[11px] font-bold text-[#475569]" id="attempted-filter-count">0</span>
+      </button>
+    </div>
+  </div>
+</section>
+<!-- Tests Listing Feed -->
+<section aria-live="polite" class="space-y-3" id="tests-container">
+<!-- Dynamically populated via safe DOM construction -->
+</section>
+<!-- Empty State Display -->
+<div class="hidden my-8 py-16 px-6 bg-white border border-[#E2E8F0] rounded-lg shadow-sm text-center flex-col items-center justify-center" id="empty-state">
+<div class="w-12 h-12 rounded-full bg-[#EFF6FF] text-[#1D4ED8] flex items-center justify-center mx-auto mb-3">
+<span class="material-symbols-outlined text-2xl">content_paste_off</span>
+</div>
+<h3 class="text-base font-semibold text-[#0F172A] mb-1" id="empty-state-title">No Tests Available</h3>
+<p class="text-xs text-[#475569] max-w-md mb-4 mx-auto leading-relaxed" id="empty-state-desc">
+            No mock tests are currently available for this examination.
+          </p>
+<div class="flex items-center justify-center gap-2.5">
+<button class="touch-target px-4 py-2 bg-[#1D4ED8] text-white rounded-lg text-xs font-semibold hover:bg-[#1E3A8A] transition-colors shadow-sm inline-flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="empty-state-primary-btn" type="button">
+<span class="material-symbols-outlined text-base">swap_horiz</span>
+<span id="empty-state-btn-text">Switch to SSC CGL</span>
+</button>
+<button class="hidden touch-target px-3.5 py-2 bg-white border border-[#E2E8F0] text-[#475569] hover:bg-[#F8FAFC] rounded-lg text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="empty-state-secondary-btn" onclick="clearSearchAndStatusFilters()" type="button">
+              Clear Filters
+            </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Global Academic Footer -->
+<footer class="mt-auto bg-white border-t border-[#E2E8F0] pt-4 pb-[calc(5.5rem+env(safe-area-inset-bottom,0px))] md:pb-6 px-4 sm:px-6 md:px-8 text-xs text-[#64748B] flex flex-col sm:flex-row items-center justify-between gap-3">
+<div>
+        © 2026 SSC Flix. All rights reserved.
+      </div>
+<div class="flex items-center gap-4">
+<a class="hover:text-[#0F172A] hover:underline" href="#/site-info#privacy">Privacy Policy</a>
+<a class="hover:text-[#0F172A] hover:underline" href="#/site-info#terms">Terms of Service</a>
+<a class="hover:text-[#0F172A] hover:underline" href="#/site-info#help">Help &amp; Support</a>
+</div>
+</footer>
+</div>
+<!-- ========================================================================= -->
+<!-- 3. MOBILE FIXED BOTTOM NAVIGATION (5 Items)                               -->
+<!-- ========================================================================= -->
+<nav aria-label="Mobile Bottom Navigation" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#E2E8F0] z-40 flex items-center justify-around px-2 select-none" style="padding-bottom: env(safe-area-inset-bottom, 0px); height: calc(4rem + env(safe-area-inset-bottom, 0px));">
+<a class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#/dashboard"Dashboard', event)">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="9" rx="1" width="7" x="3" y="3"></rect>
+<rect height="5" rx="1" width="7" x="14" y="3"></rect>
+<rect height="9" rx="1" width="7" x="14" y="12"></rect>
+<rect height="5" rx="1" width="7" x="3" y="16"></rect>
+</svg>
+<span class="text-xs font-medium mt-1">Dashboard</span>
+</a>
+<a aria-current="page" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#1D4ED8]" href="#/mock-tests">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect>
+<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+<path d="m9 14 2 2 4-4"></path>
+</svg>
+<span class="text-xs font-semibold mt-1">Mock Tests</span>
+</a>
+<a class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#/pyqs"Previous Year Questions', event)">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+<line x1="16" x2="8" y1="13" y2="13"></line>
+</svg>
+<span class="text-xs font-medium mt-1">PYQs</span>
+</a>
+<a aria-label="Chapter Tests" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#/chapter-tests"Chapter Tests', event)">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+</svg>
+<span class="text-xs font-medium mt-1">Ch. Tests</span>
+</a>
+<button aria-expanded="false" aria-label="Open more options" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" id="more-nav-btn" onclick="toggleMobileMoreSheet()" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="1"></circle>
+<circle cx="19" cy="12" r="1"></circle>
+<circle cx="5" cy="12" r="1"></circle>
+</svg>
+<span class="text-xs font-medium mt-1">More</span>
+</button>
+</nav>
+<!-- ========================================================================= -->
+<!-- 4. MODALS & OVERLAYS                                                      -->
+<!-- ========================================================================= -->
+<!-- Mobile "More" Bottom Sheet -->
+<div class="hidden md:hidden fixed inset-0 bg-slate-900/40 z-50 transition-opacity" id="mobile-more-overlay" onclick="toggleMobileMoreSheet()"></div>
+<div aria-labelledby="more-menu-heading" aria-modal="true" class="hidden md:hidden fixed left-0 right-0 bg-white border-t border-[#E2E8F0] rounded-t-xl z-50 shadow-xl transition-transform max-w-lg mx-auto p-4" id="mobile-more-sheet" role="dialog" style="bottom: calc(4rem + env(safe-area-inset-bottom, 0px));">
+<div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+<h3 class="text-sm font-bold text-[#0F172A]" id="more-menu-heading">Additional Navigation</h3>
+<button aria-label="Close menu" class="touch-target p-1 text-[#64748B] hover:text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] rounded" onclick="toggleMobileMoreSheet()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2.5 py-4">
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#/my-tests"My Tests', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+<path d="M3 3v5h5"></path>
+<path d="M12 7v5l4 2"></path>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">My Tests</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#/bookmarks"Bookmarks', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Bookmarks</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#/preferences"Preferences', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="4" x2="20" y1="21" y2="21"></line>
+<line x1="4" x2="20" y1="14" y2="14"></line>
+<line x1="4" x2="20" y1="7" y2="7"></line>
+<circle cx="14" cy="21" r="2"></circle>
+<circle cx="8" cy="14" r="2"></circle>
+<circle cx="16" cy="7" r="2"></circle>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Preferences</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#/welcome"Sign Out', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+<polyline points="16 17 21 12 16 7"></polyline>
+<line x1="21" x2="9" y1="12" y2="12"></line>
+</svg>
+<span class="text-xs font-semibold text-red-600">Sign Out</span>
+</a>
+</div>
+</div>
+<!-- Test Details Modal -->
+<div aria-labelledby="modal-test-title" aria-modal="true" class="modal-dialog hidden fixed inset-0 z-50 overflow-y-auto" id="test-modal" role="dialog">
+<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeTestModal()"></div>
+<div class="min-h-full flex items-center justify-center p-4">
+<div class="relative bg-white border border-[#E2E8F0] rounded-lg max-w-2xl w-full p-6 shadow-xl z-10 space-y-5 max-h-[85vh] overflow-y-auto">
+<div class="flex items-start justify-between gap-4 pb-3 border-b border-[#E2E8F0]">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-[#EFF6FF] text-[#1D4ED8]" id="modal-exam-category">Full-Length</span>
+<span class="text-xs text-[#64748B] font-mono" id="modal-exam-code">SSC-CGL-FL-01</span>
+</div>
+<h3 class="text-lg font-bold text-[#0F172A]" id="modal-test-title">SSC CGL Full Mock 01</h3>
+</div>
+<button aria-label="Close modal" class="touch-target text-[#64748B] hover:text-[#0F172A] p-1.5 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeTestModal()" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[#F8FAFC] border border-[#E2E8F0] p-3.5 rounded-lg">
+<div>
+<p class="text-xs uppercase text-[#64748B]">Duration</p>
+<p class="text-sm font-bold text-[#0F172A] mt-0.5" id="modal-test-duration">60 mins</p>
+</div>
+<div>
+<p class="text-xs uppercase text-[#64748B]">Questions</p>
+<p class="text-sm font-bold text-[#0F172A] mt-0.5" id="modal-test-questions">100 Qs</p>
+</div>
+<div>
+<p class="text-xs uppercase text-[#64748B]">Max Marks</p>
+<p class="text-sm font-bold text-[#0F172A] mt-0.5" id="modal-test-marks">200 Marks</p>
+</div>
+<div>
+<p class="text-xs uppercase text-[#64748B]">Marking</p>
+<p class="text-sm font-bold text-red-600 mt-0.5" id="modal-test-marking">+2.0, -0.50</p>
+</div>
+</div>
+<div class="space-y-2.5">
+<h4 class="text-sm font-semibold text-[#0F172A]">Curriculum &amp; Section Distribution</h4>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="modal-sections-container">
+<!-- Dynamic section rows injected safely via DOM construction -->
+</div>
+</div>
+<div class="p-3.5 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg space-y-1">
+<div class="flex items-center gap-1.5 text-[#0F172A] text-xs font-semibold">
+<span class="material-symbols-outlined text-sm text-[#1D4ED8]">help_outline</span>
+<span>Test Guidelines</span>
+</div>
+<p class="text-xs text-[#475569] leading-relaxed" id="modal-test-instructions">
+            Sample full-length practice test.
+          </p>
+</div>
+<div class="flex items-center justify-end gap-3 pt-2">
+<button class="touch-target px-4 py-2 rounded-lg text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A] text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeTestModal()" type="button">
+            Cancel
+          </button>
+<button class="touch-target px-5 py-2.5 bg-[#1D4ED8] text-white hover:bg-[#1E3A8A] rounded-lg text-xs font-semibold shadow-sm flex items-center gap-1.5 transition-all focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="modal-confirm-btn" onclick="confirmAndLaunchTest()" type="button">
+<span class="material-symbols-outlined text-base">rocket_launch</span>
+<span id="modal-confirm-label">Confirm &amp; Start Test</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- View Result Summary Modal -->
+<div aria-labelledby="result-modal-title" aria-modal="true" class="modal-dialog hidden fixed inset-0 z-50 overflow-y-auto" id="result-modal" role="dialog">
+<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeResultModal()"></div>
+<div class="min-h-full flex items-center justify-center p-4">
+<div class="relative bg-white border border-[#E2E8F0] rounded-lg max-w-md w-full p-6 shadow-xl z-10 space-y-4 max-h-[85vh] overflow-y-auto text-left">
+<div class="flex items-start justify-between pb-2 border-b border-[#E2E8F0]">
+<div>
+<span class="px-2 py-0.5 rounded text-xs font-semibold bg-[#EFF6FF] text-[#1D4ED8]">Demo / Sample Score</span>
+<h3 class="text-base font-bold text-[#0F172A] mt-1" id="result-modal-title">SSC CGL Full Mock 02</h3>
+</div>
+<button aria-label="Close dialog" class="touch-target text-[#64748B] hover:text-[#0F172A] p-1.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeResultModal()" type="button">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 bg-[#F8FAFC] border border-[#E2E8F0] p-3 rounded-lg text-center">
+<div>
+<p class="text-xs text-[#64748B]">Score Achieved</p>
+<p class="text-lg font-bold text-[#1D4ED8]" id="result-modal-score">138.50 / 200</p>
+</div>
+<div>
+<p class="text-xs text-[#64748B]">Est. Accuracy</p>
+<p class="text-lg font-bold text-[#0F172A]" id="result-modal-accuracy">82%</p>
+</div>
+</div>
+<div class="p-3 bg-[#EFF6FF] border border-[#BFDBFE] rounded-lg">
+<p class="text-xs text-[#1E3A8A] leading-relaxed">
+            Completed in prototype preview. Full CBT analytics, detailed question breakdown, and comparative metrics will be available when the test engine connects.
+          </p>
+</div>
+<div class="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 pt-2">
+<button class="touch-target px-4 py-2 bg-white border border-[#CBD5E1] text-[#475569] rounded-lg text-xs font-semibold hover:bg-[#F8FAFC] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeResultModal()" type="button">Close Summary</button>
+<button class="touch-target px-4 py-2 bg-[#1D4ED8] text-white rounded-lg text-xs font-semibold hover:bg-[#1E3A8A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="openFullResultReview()" type="button">Open Full Result &amp; Review</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Prototype Launch Notice Overlay -->
+<div aria-labelledby="cbt-notice-title" aria-modal="true" class="modal-dialog hidden fixed inset-0 z-50 overflow-y-auto" id="cbt-notice-dialog" role="alertdialog">
+<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm" onclick="closeCbtDialog()"></div>
+<div class="min-h-full flex items-center justify-center p-4">
+<div class="relative bg-white border border-[#E2E8F0] rounded-lg max-w-md w-full p-6 shadow-xl z-10 space-y-4 text-center">
+<div class="w-12 h-12 rounded-full bg-[#EFF6FF] text-[#1D4ED8] flex items-center justify-center mx-auto">
+<span class="material-symbols-outlined text-2xl">info</span>
+</div>
+<h3 class="text-base font-bold text-[#0F172A]" id="cbt-notice-title">Prototype Preview Notice</h3>
+<p class="text-xs text-[#475569] leading-relaxed">
+          Selected mode: <strong id="cbt-notice-mode-label" class="font-semibold text-[#0F172A]">Test Mode</strong>. The CBT test interface is not connected in this preview, so no test session has started.
+        </p>
+<div class="pt-2">
+<button class="touch-target w-full py-2.5 bg-[#1D4ED8] text-white rounded-lg text-xs font-semibold shadow-sm hover:bg-[#1E3A8A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeCbtDialog()" type="button">
+            Return to Tests
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 5. UNIFIED ARCHITECTURE & JAVASCRIPT LOGIC                                -->
+<!-- ========================================================================= -->
+</div>

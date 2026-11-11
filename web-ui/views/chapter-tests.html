@@ -1,0 +1,338 @@
+<style data-route-style>
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .safe-pb {
+      padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  
+
+
+/* Dashboard light and dark appearance */
+    html.dashboard-dark { background-color: #0B1220 !important; color-scheme: dark; }
+    body.shared-dark-mode {
+      color: #E2E8F0 !important;
+      background-color: #0B1220 !important;
+      color-scheme: dark;
+    }
+    body.shared-dark-mode [class~="bg-white"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="bg-[#F8FAFC]"],
+    body.shared-dark-mode [class~="bg-slate-50"],
+    body.shared-dark-mode [class~="bg-slate-50/50"] { background-color: #0F1B2D !important; }
+    body.shared-dark-mode [class~="bg-[#F1F5F9]"],
+    body.shared-dark-mode [class~="bg-slate-100"] { background-color: #1E293B !important; }
+    body.shared-dark-mode [class~="bg-[#EFF6FF]"],
+    body.shared-dark-mode [class~="bg-blue-50"],
+    body.shared-dark-mode [class~="bg-blue-50/50"],
+    body.shared-dark-mode [class~="bg-blue-50/60"],
+    body.shared-dark-mode [class~="bg-blue-100"] { background-color: #172B46 !important; }
+    body.shared-dark-mode [class~="text-[#0F172A]"],
+    body.shared-dark-mode [class~="text-slate-900"],
+    body.shared-dark-mode [class~="text-slate-800"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-[#475569]"],
+    body.shared-dark-mode [class~="text-slate-700"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="text-[#64748B]"],
+    body.shared-dark-mode [class~="text-slate-600"],
+    body.shared-dark-mode [class~="text-slate-500"] { color: #91A1B8 !important; }
+    body.shared-dark-mode [class~="text-[#1D4ED8]"],
+    body.shared-dark-mode [class~="text-blue-700"],
+    body.shared-dark-mode [class~="text-blue-800"] { color: #93C5FD !important; }
+    body.shared-dark-mode [class~="border-[#E2E8F0]"],
+    body.shared-dark-mode [class~="border-[#CBD5E1]"],
+    body.shared-dark-mode [class~="border-slate-100"],
+    body.shared-dark-mode [class~="border-slate-200"],
+    body.shared-dark-mode [class~="border-[#E2E8F0]/70"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="border-blue-100"],
+    body.shared-dark-mode [class~="border-[#BFDBFE]"] { border-color: #294766 !important; }
+    body.shared-dark-mode hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]):hover {
+      background-color: #1E293B !important;
+      color: #F8FAFC !important;
+    }
+    body.shared-dark-mode .nav-item[aria-current="page"] {
+      background-color: #172B46 !important;
+      color: #93C5FD !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card {
+      background-color: #241F3C !important;
+      border-color: #51427E !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card h3 { color: #F0EAFE !important; }
+    body.shared-dark-mode #sidebar-pro-card p { color: #C4B9E8 !important; }
+    body.shared-dark-mode #sidebar-pro-card button { color: #C4B5FD !important; }
+    body.shared-dark-mode #sidebar-pro-card > div:first-child {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #C4B5FD !important;
+    }
+    body.shared-dark-mode #sidebar-account-row { border-color: #2A3A50 !important; }
+    body.shared-dark-mode #sidebar-account-row #sidebar-user-name { color: #E5EDF8 !important; }
+    body.shared-dark-mode #sidebar-account-row .sidebar-avatar-initials {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #DDD6FE !important;
+    }
+    body.shared-dark-mode #sidebar-account-row button {
+      background-color: #342B22 !important;
+      border-color: #7C6330 !important;
+      color: #F4D58D !important;
+    }
+    body.shared-dark-mode .dashboard-mobile-brand { color: #93C5FD !important; }
+    body.shared-dark-mode header button[aria-label="Change target examination"] {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop,
+    body.shared-dark-mode #dashboard-search-mobile {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop-input,
+    body.shared-dark-mode #dashboard-search-mobile-input {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop svg,
+    body.shared-dark-mode #dashboard-search-mobile svg { color: #91A1B8 !important; }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E2E8F0 !important;
+    }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn:hover { background-color: #1E293B !important; }
+    body.shared-dark-mode input,
+    body.shared-dark-mode select,
+    body.shared-dark-mode textarea {
+      background-color: #0F1B2D !important;
+      color: #E5EDF8 !important;
+      border-color: #34465F !important;
+    }
+    body.shared-dark-mode input::placeholder,
+    body.shared-dark-mode textarea::placeholder { color: #71839B !important; }
+    body.shared-dark-mode .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+  
+    body.shared-dark-mode .shared-app-header,
+    body.shared-dark-mode .shared-app-sidebar,
+    body.shared-dark-mode #shared-shell-profile-dropdown,
+    body.shared-dark-mode .shared-target-modal-panel {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode .shared-app-sidebar nav a:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .shared-app-sidebar nav a[aria-current="page"] { background-color: #172B46 !important; color: #93C5FD !important; }
+    body.shared-dark-mode .shared-app-sidebar hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#0F172A]"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#64748B]"] { color: #91A1B8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="border-[#E2E8F0]"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="bg-brand-bg"] { background-color: #0B1220 !important; }
+    body.shared-dark-mode [class~="bg-brand-surface"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="text-brand-textPrimary"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-brand-textSecondary"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="border-brand-border"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-app-header input {
+      background-color: #0F1B2D !important;
+      border-color: #34465F !important;
+      color: #E5EDF8 !important;
+    }
+
+
+</style>
+<div data-spa-view="chapter-tests" data-body-class="bg-[#F8FAFC] text-[#0F172A] antialiased min-h-screen flex flex-col md:flex-row" data-html-class="">
+<!-- Fixed Top Header (56px) -->
+
+<!-- Persistent Desktop Sidebar (240px) -->
+<div id="app-sidebar-slot"></div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 md:ml-[240px] pb-20 md:pb-10">
+<div id="app-header-slot"></div>
+<main class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6" id="main-content">
+<div class="flex flex-col w-full">
+<!-- Toast Notification Container -->
+<div aria-live="polite" class="fixed bottom-20 md:bottom-6 right-4 sm:right-6 z-50 transform translate-y-16 opacity-0 pointer-events-none transition-all duration-300 max-w-md w-full px-4 py-3 rounded-xl bg-[#0F172A] text-white shadow-xl flex items-center justify-between gap-3" id="status-toast" role="status">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-[20px] text-blue-300 shrink-0" id="toast-icon">info</span>
+<p class="text-xs text-white truncate" id="toast-message">Action updated</p>
+</div>
+<button aria-label="Dismiss toast" class="text-slate-300 hover:text-white p-1 rounded transition-colors shrink-0" id="toast-close" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Breadcrumb & Header Title -->
+<div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-[#475569] text-xs">
+<a class="hover:text-[#1D4ED8] transition-colors" href="#/dashboard">Dashboard</a>
+<span>/</span>
+<span class="text-[#0F172A] font-semibold">Chapter Tests</span>
+</div>
+<h1 class="text-2xl font-bold text-[#0F172A] tracking-tight">Chapter Tests</h1>
+<p class="text-sm text-[#475569] max-w-2xl">Build your preparation topic by topic with curated question sets. Choose a subject and chapter to configure structured practice.</p>
+</div>
+<div class="self-start sm:self-center shrink-0">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-[#475569] text-xs border border-[#E2E8F0] shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-slate-500">verified</span>
+<span>Sample Demonstration Records</span>
+</div>
+</div>
+</div>
+<!-- Subject Tabs / Selector -->
+<div class="mb-6">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs uppercase tracking-wider text-[#475569] font-bold">Subject Catalogue</span>
+<span class="text-xs text-[#1D4ED8] font-medium" id="active-subject-badge">Quantitative Aptitude (18 chapters)</span>
+</div>
+<div aria-label="Subject Selector" class="flex items-center gap-3 overflow-x-auto pb-2 -mx-2 px-2 no-scrollbar" id="subject-nav-list" role="tablist"></div>
+</div>
+<!-- Two Column Layout: Chapter List & Detail Overview -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left Column: Chapter List (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-3">
+<div class="bg-white p-3 rounded-xl border border-[#E2E8F0] shadow-sm flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[20px] text-slate-400 pointer-events-none">search</span>
+<input aria-label="Filter chapters by title" class="w-full pl-10 pr-9 py-2 rounded-lg bg-slate-50 border border-[#E2E8F0] text-[#0F172A] text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1D4ED8] transition-colors placeholder:text-slate-400" id="chapter-search-input" placeholder="Search chapters (e.g. Percentage, Algebra)..." type="search"/>
+<button aria-label="Clear chapter search" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#0F172A] p-1" id="clear-search-btn" type="button">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+</button>
+</div>
+<div class="flex items-center justify-between sm:justify-end gap-2 shrink-0">
+<span class="text-xs text-[#475569]" id="filtered-count-label">18 of 18 Chapters</span>
+<button class="hidden text-[#1D4ED8] text-xs font-medium hover:underline" id="reset-filter-btn" type="button">Reset</button>
+</div>
+</div>
+<!-- Chapter Cards Container -->
+<div class="flex flex-col gap-2.5" id="chapters-list-container" role="list"></div>
+<!-- No Chapters Empty State -->
+<div class="hidden bg-white p-8 rounded-xl border border-[#E2E8F0] shadow-sm text-center flex-col items-center justify-center gap-3" id="no-chapters-state">
+<div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-[24px]">search_off</span>
+</div>
+<div class="space-y-1">
+<h3 class="text-base font-semibold text-[#0F172A]">No chapters found</h3>
+<p class="text-xs text-[#475569] max-w-sm">No chapters match your query in the current subject. Check your spelling or clear search filters.</p>
+</div>
+<button class="mt-2 px-4 py-2 min-h-[44px] rounded-lg bg-[#1D4ED8] text-white text-xs font-semibold shadow-sm hover:opacity-90 transition-opacity" id="empty-clear-btn" type="button">Clear Search Filter</button>
+</div>
+</div>
+<!-- Right Column: Detail Overview Panel (5 cols) -->
+<div class="lg:col-span-5 sticky top-20 flex flex-col gap-4">
+<div class="bg-white rounded-xl p-5 border border-[#E2E8F0] shadow-sm flex flex-col gap-4">
+<div class="space-y-2">
+<div class="flex items-center justify-between gap-2">
+<span class="px-2.5 py-1 rounded bg-slate-100 text-[#1D4ED8] text-xs font-semibold border border-[#E2E8F0] uppercase" id="detail-subject-pill">Quantitative Aptitude</span>
+</div>
+<h2 class="text-xl font-bold text-[#0F172A] leading-tight" id="detail-chapter-title">Percentage</h2>
+<p class="text-xs text-[#475569] leading-relaxed" id="detail-chapter-desc">Fraction to percentage conversions, successive percent changes, population models, and election comparison problems.</p>
+</div>
+<!-- Question Availability Status -->
+<div class="p-3 rounded-lg bg-slate-50 border border-[#E2E8F0] flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 text-[#475569]">
+<span class="material-symbols-outlined text-[18px] text-slate-500">lock_clock</span>
+<span class="text-xs font-medium text-[#0F172A]">Question Availability</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-slate-100 text-[#475569] text-xs font-medium border border-[#E2E8F0]">Questions not available yet</span>
+</div>
+<!-- Practice Scope Selection -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="text-xs font-bold text-[#0F172A] flex items-center gap-1.5">
+<span>Select Practice Scope</span>
+<span class="material-symbols-outlined text-[16px] text-slate-400" title="Practice the whole chapter or focus on a specific sub-topic">help_outline</span>
+</label>
+<span class="text-xs text-[#475569]" id="selected-scope-counter">All Topics</span>
+</div>
+<div class="flex flex-wrap gap-2 max-h-48 overflow-y-auto pr-1" id="topics-chips-container"></div>
+</div>
+<!-- Inert Start Practice Action -->
+<div class="space-y-2 pt-1">
+<button class="w-full min-h-[44px] px-6 py-2.5 rounded-lg bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer border border-[#1D4ED8] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]" id="start-practice-action" type="button">
+<span class="material-symbols-outlined text-[20px]">play_arrow</span>
+<span id="start-btn-label">Open Practice Preview: Percentage</span>
+</button>
+<p class="text-center text-xs text-[#475569]">Opens the CBT demonstration. Chapter-specific question sets are not connected yet.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (Fixed) -->
+<nav aria-label="Mobile Navigation" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-[#E2E8F0] z-40 safe-pb flex items-center justify-around">
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-[#475569] text-xs font-medium hover:text-[#0F172A]" data-nav-name="Dashboard" href="#/dashboard">
+<span class="material-symbols-outlined text-[22px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-[#475569] text-xs font-medium hover:text-[#0F172A]" data-nav-name="Mock Tests" href="#/mock-tests">
+<span class="material-symbols-outlined text-[22px]">quiz</span>
+<span>Mocks</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-[#475569] text-xs font-medium hover:text-[#0F172A]" data-nav-name="PYQs" href="#/pyqs">
+<span class="material-symbols-outlined text-[22px]">history_edu</span>
+<span>PYQs</span>
+</a>
+<a aria-current="page" class="flex flex-col items-center justify-center flex-1 py-1 text-[#1D4ED8] text-xs font-semibold" data-nav-name="Chapter Tests" href="#/chapter-tests">
+<span class="material-symbols-outlined text-[22px]">menu_book</span>
+<span>Chapters</span>
+</a>
+<button aria-controls="more-sheet" aria-expanded="false" aria-haspopup="dialog" class="flex flex-col items-center justify-center flex-1 py-1 text-[#475569] text-xs font-medium hover:text-[#0F172A] focus:outline-none" id="open-more-sheet-btn" type="button">
+<span class="material-symbols-outlined text-[22px]">more_horiz</span>
+<span>More</span>
+</button>
+</nav>
+<!-- Mobile "More" Bottom Sheet Drawer -->
+<div aria-labelledby="more-sheet-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="more-sheet" role="dialog">
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="more-sheet-backdrop"></div>
+<div class="fixed inset-x-0 bottom-0 z-10 safe-pb flex flex-col justify-end pointer-events-none">
+<div class="pointer-events-auto bg-white rounded-t-2xl border-t border-[#E2E8F0] shadow-2xl p-5 transform translate-y-full transition-transform duration-300 max-h-[85vh] overflow-y-auto" id="more-sheet-panel">
+<div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0] mb-3 relative">
+<span class="w-10 h-1 bg-slate-300 rounded-full mx-auto absolute -top-2 left-1/2 -translate-x-1/2"></span>
+<div class="flex items-center gap-2">
+<h3 class="text-base font-bold text-[#0F172A]" id="more-sheet-title">Additional Navigation</h3>
+</div>
+<button aria-label="Close menu" class="w-11 h-11 rounded-lg flex items-center justify-center text-[#475569] hover:bg-slate-100 hover:text-[#0F172A] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" id="close-more-sheet-btn" type="button">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium text-[#475569] hover:bg-slate-100 hover:text-[#0F172A] transition-colors" data-nav-name="My Tests" href="#/my-tests">
+<span class="material-symbols-outlined text-[22px]">assignment</span>
+<span>My Tests</span>
+</a>
+<a class="flex items-center justify-between px-3 py-3 rounded-lg text-sm font-medium text-[#475569] hover:bg-slate-100 hover:text-[#0F172A] transition-colors" data-nav-name="Bookmarks" href="#/bookmarks">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[22px]">bookmark</span>
+<span>Bookmarks</span>
+</div>
+<span class="text-xs bg-slate-100 text-[#475569] px-2 py-0.5 rounded-full font-mono">Saved</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium text-[#475569] hover:bg-slate-100 hover:text-[#0F172A] transition-colors" data-nav-name="Preferences" href="#/preferences">
+<span class="material-symbols-outlined text-[22px]">tune</span>
+<span>Preferences</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium text-[#475569] hover:bg-slate-100 hover:text-[#0F172A] transition-colors" data-nav-name="Profile" href="#/preferences">
+<span class="material-symbols-outlined text-[22px]">account_circle</span>
+<span>Profile</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+<!-- EXACTLY ONE Script Tag for the Entire Document -->
+</div>

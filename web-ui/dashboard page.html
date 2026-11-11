@@ -1568,8 +1568,16 @@
         const recBtn = document.getElementById('recommendation-btn');
         if (recBtn) {
           recBtn.textContent = recommendation.ctaText;
-          recBtn.onclick = function(e) {
-            showPrototypeNotice(`Opening Chapter Drills for ${recommendation.subjectKey || 'Subject'}`, e);
+          recBtn.onclick = function() {
+            try {
+              localStorage.setItem('sscflix-chapter-recommendation', JSON.stringify({
+                subjectKey: recommendation.subjectKey || '',
+                title: recommendation.title || '',
+                examId: currentTargetExamId,
+                source: 'dashboard-recommendation'
+              }));
+            } catch (error) {}
+            window.location.href = './chapter%20test%20page.html';
           };
         }
       } else {
@@ -1638,11 +1646,34 @@
           btn.className = "shrink-0 text-xs font-medium px-2 py-1 text-[#475569] hover:text-[#0F172A] hover:bg-slate-100 rounded transition-colors cursor-pointer";
         }
         btn.textContent = act.action.label;
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function() {
+          const attemptId = String(act.id || act.action.attemptId || 'dashboard-recent-preview');
+          const attemptTitle = String(act.title || titleP.textContent || 'Practice Test');
+
           if (act.action.type === 'resume') {
-            showPrototypeNotice(`Resuming attempt: ${titleP.textContent}`, e);
+            try {
+              localStorage.setItem('sscflix-active-test-preview', JSON.stringify({
+                testId: attemptId,
+                title: attemptTitle + ' — Resume Preview',
+                category: act.category || 'Saved Attempt Preview',
+                examId: currentTargetExamId,
+                mode: 'test',
+                durationMinutes: 60,
+                source: 'dashboard-recent-activity'
+              }));
+            } catch (error) {}
+            window.location.href = './cbt%20interface%20page.html';
           } else if (act.action.type === 'view_result') {
-            showPrototypeNotice(`Opening Results for: ${titleP.textContent}`, e);
+            try {
+              localStorage.setItem('sscflix-selected-attempt', JSON.stringify({
+                id: attemptId,
+                title: attemptTitle,
+                action: 'result',
+                source: 'dashboard-recent-activity',
+                selectedAt: new Date().toISOString()
+              }));
+            } catch (error) {}
+            window.location.href = './test%20resut%20and%20ans%20review.html';
           }
         });
         row.appendChild(btn);
@@ -1652,14 +1683,15 @@
     });
   }
 
-  // Resume active test handler
+  // Keep legacy Resume bindings aligned with the connected CBT preview route.
   function resumeActiveTest(e) {
     if (e) e.preventDefault();
-    if (currentActiveAttemptId) {
-      showPrototypeNotice(`Resuming active test (ID: ${currentActiveAttemptId}) in exam environment`, null);
-    } else {
+    const data = getStudentDashboardData();
+    if (!data || !data.activeAttempt) {
       showPrototypeNotice('No active attempt found to resume.', null);
+      return;
     }
+    openDashboardActiveAttemptPreview();
   }
 
   // Target Exam Dialog Modal

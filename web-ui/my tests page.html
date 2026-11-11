@@ -1404,6 +1404,17 @@
 
     function resumeTest(id, title) {
       saveSelectedAttemptContext(id, title, 'resume');
+      try {
+        localStorage.setItem('sscflix-active-test-preview', JSON.stringify({
+          testId: String(id || 'saved-attempt-preview'),
+          title: String(title || 'Saved Test') + ' — Resume Preview',
+          category: 'Saved Attempt Preview',
+          examId: localStorage.getItem('sscflix-target-exam') || 'cgl',
+          mode: 'test',
+          durationMinutes: 60,
+          source: 'my-tests-resume'
+        }));
+      } catch (error) {}
       showPrototypeToast("Resume Test", "Opening the CBT preview. Restoring saved answers and the previous timer is not connected yet.");
       window.setTimeout(() => { window.location.href = './cbt%20interface%20page.html'; }, 450);
     }

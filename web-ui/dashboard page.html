@@ -164,6 +164,25 @@
     body.dark-mode textarea::placeholder { color: #71839B !important; }
     body.dark-mode .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
   </style>
+<style>
+  body.dark-mode #profile-dropdown {
+    background-color: #111C2E !important;
+    border-color: #2A3A50 !important;
+    color: #E5EDF8 !important;
+  }
+  body.dark-mode #profile-dropdown .border-t,
+  body.dark-mode #profile-dropdown .border-b { border-color: #2A3A50 !important; }
+  body.dark-mode #profile-dropdown [class*="text-[#252B40]"],
+  body.dark-mode #profile-dropdown [class*="text-[#0F172A]"] { color: #E5EDF8 !important; }
+  body.dark-mode #profile-dropdown [class*="text-[#475569]"],
+  body.dark-mode #profile-dropdown [class*="text-[#64748B]"] { color: #B8C5D8 !important; }
+  body.dark-mode #profile-dropdown [class*="hover:bg-[#F8FAFC]"]:hover { background-color: #1E293B !important; }
+  body.dark-mode #profile-dropdown #dashboard-search-mobile-input {
+    background-color: #0F1B2D !important;
+    border-color: #34465F !important;
+    color: #E5EDF8 !important;
+  }
+</style>
 </head>
 <body class="min-h-full flex flex-col md:flex-row antialiased text-[#0F172A] bg-[#F8FAFC]">
 <!-- ========================================================================= -->
@@ -294,7 +313,7 @@
 </div>
 <!-- Mobile Target Selector -->
 <div class="md:hidden">
-<button aria-label="Change target examination" class="inline-flex items-center gap-1.5 min-h-[40px] px-2.5 rounded-lg bg-white border border-[#CBD5E1] hover:border-[#94A3B8] hover:bg-[#F8FAFC] text-xs font-semibold text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] cursor-pointer shrink-0" onclick="openTargetExamModal()" title="Change target examination" type="button">
+<button aria-label="Change target examination" class="inline-flex items-center gap-1.5 min-h-[40px] px-2 rounded-lg bg-transparent border-0 hover:bg-[#F1F5F9] text-xs font-semibold text-[#334155] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] cursor-pointer shrink-0" onclick="openTargetExamModal()" title="Change target examination" type="button">
 <span class="sr-only">Target exam:</span>
 <span class="target-exam-text whitespace-nowrap">SSC CGL</span>
 <svg aria-hidden="true" class="w-3.5 h-3.5 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
@@ -302,7 +321,7 @@
 </div>
 <!-- Desktop Title & Target Exam chip -->
 <div class="hidden md:flex items-center">
-<button aria-label="Change target examination" class="inline-flex items-center gap-2.5 min-h-[40px] px-3.5 rounded-lg bg-white border border-[#CBD5E1] hover:border-[#94A3B8] hover:bg-[#F8FAFC] text-left transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-1 cursor-pointer" onclick="openTargetExamModal()" title="Change target examination" type="button">
+<button aria-label="Change target examination" class="inline-flex items-center gap-2.5 min-h-[40px] px-2.5 rounded-lg bg-transparent border-0 hover:bg-[#F1F5F9] text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] cursor-pointer" onclick="openTargetExamModal()" title="Change target examination" type="button">
 <span class="text-[11px] font-medium text-[#64748B]">Target exam</span>
 <span class="target-exam-text text-sm font-semibold text-[#0F172A]">SSC CGL</span>
 <svg aria-hidden="true" class="w-4 h-4 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
@@ -331,23 +350,47 @@
 <div class="user-avatar-initials w-8 h-8 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center text-xs font-semibold ring-2 ring-blue-100">ST</div>
 </button>
 <!-- Profile Dropdown -->
-<div class="hidden absolute right-0 mt-2 w-72 max-w-[calc(100vw-1.5rem)] bg-white rounded-lg shadow-lg border border-[#E2E8F0] py-2 z-50" id="profile-dropdown" role="menu">
-<div class="px-4 py-2 border-b border-[#E2E8F0]">
-<p class="text-xs text-[#64748B]">Signed in as</p>
-<p class="text-sm font-semibold text-[#0F172A]" id="user-display-name">Student</p>
-<p class="text-xs text-[#64748B] truncate hidden" id="user-display-email"></p>
-<div class="lg:hidden border-b border-[#E2E8F0] p-3">
-  <div class="relative" id="dashboard-search-mobile" role="search">
-    <svg aria-hidden="true" class="absolute left-3.5 top-1/2 -translate-y-1/2 h-[18px] w-[18px] text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-      <circle cx="11" cy="11" r="7"></circle>
-      <path d="m20 20-4-4"></path>
-    </svg>
-    <input aria-label="Search mocks, PYQs and topics" autocomplete="off" class="h-11 w-full rounded-xl border border-[#DDD8EC] bg-[#F4F2FA] pl-10 pr-3 text-sm text-[#37334D] placeholder:text-[#77728F] outline-none transition-colors focus:border-[#A5A0C8] focus:ring-2 focus:ring-[#E9E6F4]" id="dashboard-search-mobile-input" placeholder="Search mocks, PYQs, reasoning..." type="search"/>
+<div class="hidden absolute right-0 mt-2 w-[292px] max-w-[calc(100vw-1.5rem)] bg-white rounded-2xl shadow-[0_16px_40px_rgba(15,23,42,0.14)] border border-[#E2E8F0] py-2 z-50" id="profile-dropdown" role="menu" aria-label="Student profile menu">
+  <div class="flex items-center gap-3 px-4 py-3">
+    <div class="user-avatar-initials flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#C4B5FD] bg-[#EDE9FE] text-base font-medium text-[#51449A]">ST</div>
+    <div class="min-w-0 flex-1">
+      <p class="truncate text-sm font-bold text-[#252B40]" id="user-display-name">Student</p>
+      <p class="truncate text-xs text-[#64748B]" id="user-display-email"></p>
+      <span class="mt-1.5 inline-flex rounded-lg border border-[#E9C46A] bg-[#FFF8E8] px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#98700B]">Student Plan</span>
+    </div>
   </div>
-</div>
-</div>
-<a class="block px-4 py-2 text-sm text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A]" href="#preferences" role="menuitem">Preferences</a>
-<a class="block px-4 py-2 text-sm text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A]" href="#profile" role="menuitem">Account Settings</a>
+
+  <div class="lg:hidden border-t border-[#E2E8F0] px-3 py-3">
+    <div class="relative" id="dashboard-search-mobile" role="search">
+      <svg aria-hidden="true" class="absolute left-3.5 top-1/2 -translate-y-1/2 h-[18px] w-[18px] text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-4-4"></path>
+      </svg>
+      <input aria-label="Search mocks, PYQs and topics" autocomplete="off" class="h-10 w-full rounded-xl border border-[#DDD8EC] bg-[#F4F2FA] pl-10 pr-3 text-sm text-[#37334D] placeholder:text-[#77728F] outline-none transition-colors focus:border-[#A5A0C8] focus:ring-2 focus:ring-[#E9E6F4]" id="dashboard-search-mobile-input" placeholder="Search mocks, PYQs, reasoning..." type="search"/>
+    </div>
+  </div>
+
+  <div class="mx-3 border-t border-[#E2E8F0]"></div>
+  <nav aria-label="Profile actions" class="px-2 py-2">
+    <button class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-[#475569] transition-colors hover:bg-[#F8FAFC] hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]" onclick="showPrototypeNotice('Subscription plan details are not connected in this preview.', event); toggleProfileMenu()" role="menuitem" type="button">
+      <svg aria-hidden="true" class="h-4 w-4 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+        <path d="M3 7h18l-2 13H5L3 7Z"></path><path d="M8 7a4 4 0 0 1 8 0M3 11h18"></path>
+      </svg>
+      <span>Subscription Plan</span>
+    </button>
+    <a class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-[#475569] transition-colors hover:bg-[#F8FAFC] hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]" href="#preferences" onclick="toggleProfileMenu()" role="menuitem">
+      <svg aria-hidden="true" class="h-4 w-4 shrink-0 text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+        <circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.7 2.9-.2-.1a1.7 1.7 0 0 0-1.9.3l-.1.1h-3.4l-.1-.2a1.7 1.7 0 0 0-1.6-1.1 1.7 1.7 0 0 0-.8.2l-.2.1-1.7-2.9.1-.1a1.7 1.7 0 0 0 .3-1.9l-.1-.2-2.9-1.7.1-.2v-3.4l.2-.1a1.7 1.7 0 0 0 1.1-1.6 1.7 1.7 0 0 0-.2-.8l-.1-.2 2.9-1.7.1.1a1.7 1.7 0 0 0 1.9.3l.2-.1h3.4l.1.2a1.7 1.7 0 0 0 1.6 1.1 1.7 1.7 0 0 0 .8-.2l.2-.1 1.7 2.9-.1.1a1.7 1.7 0 0 0-.3 1.9l.1.2 2.9 1.7-.1.2v3.4l-.2.1a1.7 1.7 0 0 0-1.1 1.6"></path>
+      </svg>
+      <span>Preferences</span>
+    </a>
+    <button class="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-[#E11D48] transition-colors hover:bg-rose-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400" onclick="showPrototypeNotice('Sign out is not connected in this preview.', event); toggleProfileMenu()" role="menuitem" type="button">
+      <svg aria-hidden="true" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+        <path d="M10 17l5-5-5-5M15 12H3"></path><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path>
+      </svg>
+      <span>Sign Out</span>
+    </button>
+  </nav>
 </div>
 </div>
 </div>

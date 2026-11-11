@@ -444,7 +444,7 @@
 </div>
 </div>
 <div class="shrink-0 flex items-center gap-2">
-<button class="touch-target inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-sm font-semibold rounded-lg shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-2" id="in-progress-resume-btn">
+<button class="touch-target inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-sm font-semibold rounded-lg shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-2" id="in-progress-resume-btn" onclick="window.location.href='./cbt%20interface%20page.html'" type="button">
 <span class="">Resume Test</span>
 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
 </button>
@@ -464,11 +464,11 @@
             You do not have any active test in progress. Start a new full-length mock or practice focused chapter-level drills.
           </p>
 <div class="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-2.5">
-<button class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer">
+<button onclick="window.location.href='./mock%20test%20page.html'" class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer" type="button">
 <span class="">Start New Mock Test</span>
 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
 </button>
-<button class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-slate-50 text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer">
+<button onclick="window.location.href='./chapter%20test%20page.html'" class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-slate-50 text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer" type="button">
 <span class="">Practice Chapter Tests</span>
 </button>
 </div>
@@ -486,11 +486,11 @@
             Choose a learning activity and begin preparing for your target examination. Take a diagnostic mock or solve previous year questions.
           </p>
 <div class="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-2.5">
-<button class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer">
+<button onclick="window.location.href='./mock%20test%20page.html'" class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer" type="button">
 <span class="">Take Diagnostic Mock Test</span>
 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
 </button>
-<button class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-slate-50 text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer">
+<button onclick="window.location.href='./chapter%20test%20page.html'" class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-slate-50 text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer" type="button">
 <span class="">Practice Chapter Tests</span>
 </button>
 </div>
@@ -585,7 +585,7 @@
 </div>
 <h4 class="text-sm font-bold text-[#0F172A]" id="performance-placeholder-title">Performance Analytics will unlock here</h4>
 <p class="text-xs text-[#64748B] max-w-sm mx-auto mt-1 mb-4" id="performance-placeholder-desc">Complete your first evaluated practice test or chapter drill to generate subject-wise accuracy insights.</p>
-<button class="text-xs font-semibold px-3 py-1.5 bg-[#1D4ED8] text-white rounded-md hover:bg-[#1E3A8A] transition-colors cursor-pointer" id="performance-placeholder-btn">Attempt 1st Test Now</button>
+<button class="text-xs font-semibold px-3 py-1.5 bg-[#1D4ED8] text-white rounded-md hover:bg-[#1E3A8A] transition-colors cursor-pointer" id="performance-placeholder-btn" onclick="window.location.href='./mock%20test%20page.html'" type="button">Attempt 1st Test Now</button>
 </div>
 </div>
 <!-- ======================================================================= -->
@@ -844,7 +844,14 @@
 
   function getInitialTargetExam() {
     const pref = window.SSCFlixState && window.SSCFlixState.studentPreferences && window.SSCFlixState.studentPreferences.targetExam;
-    return normalizeExamId(pref);
+    if (pref) return normalizeExamId(pref);
+    try {
+      const storedExam = localStorage.getItem('sscflix-target-exam');
+      if (storedExam) return normalizeExamId(storedExam);
+    } catch (error) {
+      // Keep the default exam when browser storage is unavailable.
+    }
+    return 'cgl';
   }
 
   let currentTargetExamId = getInitialTargetExam();
@@ -1729,6 +1736,9 @@
       window.SSCFlixState = window.SSCFlixState || {};
       window.SSCFlixState.studentPreferences = window.SSCFlixState.studentPreferences || {};
       window.SSCFlixState.studentPreferences.targetExam = newExamId;
+      try { localStorage.setItem('sscflix-target-exam', newExamId); } catch (error) {
+        // In-memory selection still updates when browser storage is unavailable.
+      }
 
       // 2. Dispatch single canonical event
       window.dispatchEvent(new CustomEvent('sscflix:statechange', {

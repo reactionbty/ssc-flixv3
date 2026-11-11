@@ -48,6 +48,8 @@
 
 (function () {
   'use strict';
+  if (window.__sscFlixSharedShellBehaviorBound) return;
+  window.__sscFlixSharedShellBehaviorBound = true;
 
   const EXAMS = [
     { id: 'cgl', code: 'SSC CGL', name: 'Combined Graduate Level Examination (Tier I & II)' },

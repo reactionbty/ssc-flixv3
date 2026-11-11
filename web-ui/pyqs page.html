@@ -1566,8 +1566,10 @@
       });
 
       // Initial Bootstrap
-      renderExamPills();
-      recalculateCascade('exam');
+      updateYearOptions();
+      updateAssessmentModeUI();
+      updatePyqTypeUI();
+      updateAttemptedFilterUI();
       renderPapersList();
     })();
   </script>

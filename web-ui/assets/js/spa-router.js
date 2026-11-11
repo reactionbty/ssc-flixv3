@@ -114,28 +114,37 @@
     script.remove();
   }
 
-  function scopedPageListeners(controller, callback) {
-    var originalDocumentAdd = document.addEventListener;
-    var originalWindowAdd = window.addEventListener;
+  var routeListenerScopeInstalled = false;
+
+  function installRouteListenerScope() {
+    if (routeListenerScopeInstalled) return;
+    routeListenerScopeInstalled = true;
+    var originalDocumentAdd = document.addEventListener.bind(document);
+    var originalWindowAdd = window.addEventListener.bind(window);
 
     function optionsWithSignal(options) {
-      if (options && typeof options === 'object' && options.signal) return options;
-      if (typeof options === 'boolean') return { capture: options, signal: controller.signal };
-      return Object.assign({}, options || {}, { signal: controller.signal });
+      var owner = activeController;
+      if (!owner || (options && typeof options === 'object' && options.signal)) return options;
+      if (typeof options === 'boolean') return { capture: options, signal: owner.signal };
+      return Object.assign({}, options || {}, { signal: owner.signal });
     }
 
     document.addEventListener = function (type, listener, options) {
-      return originalDocumentAdd.call(document, type, listener, optionsWithSignal(options));
+      return originalDocumentAdd(type, listener, optionsWithSignal(options));
     };
     window.addEventListener = function (type, listener, options) {
-      return originalWindowAdd.call(window, type, listener, optionsWithSignal(options));
+      return originalWindowAdd(type, listener, optionsWithSignal(options));
     };
+  }
 
-    try { callback(); }
-    finally {
-      document.addEventListener = originalDocumentAdd;
-      window.addEventListener = originalWindowAdd;
+  var shellBehaviorReady = null;
+  function ensureShellBehavior() {
+    if (!shellBehaviorReady) {
+      shellBehaviorReady = loadExternalShell().then(function () {
+        installRouteListenerScope();
+      });
     }
+    return shellBehaviorReady;
   }
 
   function convertLegacyHref(href) {
@@ -185,6 +194,7 @@
     currentRoute = route;
 
     try {
+      await ensureShellBehavior();
       var response = await fetch('./views/' + config.view + '.html', { cache: 'no-cache' });
       if (!response.ok) throw new Error('Could not load the ' + route + ' page (' + response.status + ').');
       var markup = await response.text();
@@ -209,7 +219,7 @@
       if (!pageResponse.ok) throw new Error('Could not load page behaviour for ' + route + '.');
       var pageScript = await pageResponse.text();
       if (token !== loadingToken) return;
-      scopedPageListeners(activeController, function () { executePageScript(pageScript); });
+      executePageScript(pageScript);
 
       // Existing pages initialize through DOMContentLoaded. Dispatch it after their markup and scripts are ready.
       document.dispatchEvent(new Event('DOMContentLoaded', { bubbles: true }));

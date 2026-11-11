@@ -1,0 +1,582 @@
+<style data-route-style>
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #0F172A;
+      background-color: #F8FAFC;
+      -webkit-font-smoothing: antialiased;
+    }
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+
+    /* Dashboard light and dark appearance */
+    html.dashboard-dark { background-color: #0B1220 !important; color-scheme: dark; }
+    body.dark-mode {
+      color: #E2E8F0 !important;
+      background-color: #0B1220 !important;
+      color-scheme: dark;
+    }
+    body.dark-mode [class~="bg-white"] { background-color: #111C2E !important; }
+    body.dark-mode [class~="bg-[#F8FAFC]"],
+    body.dark-mode [class~="bg-slate-50"],
+    body.dark-mode [class~="bg-slate-50/50"] { background-color: #0F1B2D !important; }
+    body.dark-mode [class~="bg-[#F1F5F9]"],
+    body.dark-mode [class~="bg-slate-100"] { background-color: #1E293B !important; }
+    body.dark-mode [class~="bg-[#EFF6FF]"],
+    body.dark-mode [class~="bg-blue-50"],
+    body.dark-mode [class~="bg-blue-50/50"],
+    body.dark-mode [class~="bg-blue-50/60"],
+    body.dark-mode [class~="bg-blue-100"] { background-color: #172B46 !important; }
+    body.dark-mode [class~="text-[#0F172A]"],
+    body.dark-mode [class~="text-slate-900"],
+    body.dark-mode [class~="text-slate-800"] { color: #E5EDF8 !important; }
+    body.dark-mode [class~="text-[#475569]"],
+    body.dark-mode [class~="text-slate-700"] { color: #B8C5D8 !important; }
+    body.dark-mode [class~="text-[#64748B]"],
+    body.dark-mode [class~="text-slate-600"],
+    body.dark-mode [class~="text-slate-500"] { color: #91A1B8 !important; }
+    body.dark-mode [class~="text-[#1D4ED8]"],
+    body.dark-mode [class~="text-blue-700"],
+    body.dark-mode [class~="text-blue-800"] { color: #93C5FD !important; }
+    body.dark-mode [class~="border-[#E2E8F0]"],
+    body.dark-mode [class~="border-[#CBD5E1]"],
+    body.dark-mode [class~="border-slate-100"],
+    body.dark-mode [class~="border-slate-200"],
+    body.dark-mode [class~="border-[#E2E8F0]/70"] { border-color: #2A3A50 !important; }
+    body.dark-mode [class~="border-blue-100"],
+    body.dark-mode [class~="border-[#BFDBFE]"] { border-color: #294766 !important; }
+    body.dark-mode hr { border-color: #2A3A50 !important; }
+    body.dark-mode .nav-item:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.dark-mode .nav-item:not([aria-current="page"]):hover {
+      background-color: #1E293B !important;
+      color: #F8FAFC !important;
+    }
+    body.dark-mode .nav-item[aria-current="page"] {
+      background-color: #172B46 !important;
+      color: #93C5FD !important;
+    }
+    body.dark-mode #sidebar-pro-card {
+      background-color: #241F3C !important;
+      border-color: #51427E !important;
+    }
+    body.dark-mode #sidebar-pro-card h3 { color: #F0EAFE !important; }
+    body.dark-mode #sidebar-pro-card p { color: #C4B9E8 !important; }
+    body.dark-mode #sidebar-pro-card button { color: #C4B5FD !important; }
+    body.dark-mode #sidebar-pro-card > div:first-child {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #C4B5FD !important;
+    }
+    body.dark-mode #sidebar-account-row { border-color: #2A3A50 !important; }
+    body.dark-mode #sidebar-account-row #sidebar-user-name { color: #E5EDF8 !important; }
+    body.dark-mode #sidebar-account-row .sidebar-avatar-initials {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #DDD6FE !important;
+    }
+    body.dark-mode #sidebar-account-row button {
+      background-color: #342B22 !important;
+      border-color: #7C6330 !important;
+      color: #F4D58D !important;
+    }
+    body.dark-mode .dashboard-mobile-brand { color: #93C5FD !important; }
+    body.dark-mode header button[aria-label="Change target examination"] {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E5EDF8 !important;
+    }
+    body.dark-mode #dashboard-search-desktop,
+    body.dark-mode #dashboard-search-mobile {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.dark-mode #dashboard-search-desktop-input,
+    body.dark-mode #dashboard-search-mobile-input {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: #E5EDF8 !important;
+    }
+    body.dark-mode #dashboard-search-desktop svg,
+    body.dark-mode #dashboard-search-mobile svg { color: #91A1B8 !important; }
+    body.dark-mode #theme-toggle-btn {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E2E8F0 !important;
+    }
+    body.dark-mode #theme-toggle-btn:hover { background-color: #1E293B !important; }
+    body.dark-mode input,
+    body.dark-mode select,
+    body.dark-mode textarea {
+      background-color: #0F1B2D !important;
+      color: #E5EDF8 !important;
+      border-color: #34465F !important;
+    }
+    body.dark-mode input::placeholder,
+    body.dark-mode textarea::placeholder { color: #71839B !important; }
+    body.dark-mode .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+  
+
+
+  body.dark-mode #profile-dropdown {
+    background-color: #111C2E !important;
+    border-color: #2A3A50 !important;
+    color: #E5EDF8 !important;
+  }
+  body.dark-mode #profile-dropdown .border-t,
+  body.dark-mode #profile-dropdown .border-b { border-color: #2A3A50 !important; }
+  body.dark-mode #profile-dropdown [class*="text-[#252B40]"],
+  body.dark-mode #profile-dropdown [class*="text-[#0F172A]"] { color: #E5EDF8 !important; }
+  body.dark-mode #profile-dropdown [class*="text-[#475569]"],
+  body.dark-mode #profile-dropdown [class*="text-[#64748B]"] { color: #B8C5D8 !important; }
+  body.dark-mode #profile-dropdown [class*="hover:bg-[#F8FAFC]"]:hover { background-color: #1E293B !important; }
+  body.dark-mode #profile-dropdown #dashboard-search-mobile-input {
+    background-color: #0F1B2D !important;
+    border-color: #34465F !important;
+    color: #E5EDF8 !important;
+  }
+
+</style>
+<div data-spa-view="dashboard" data-body-class="min-h-full flex flex-col md:flex-row antialiased text-[#0F172A] bg-[#F8FAFC]" data-html-class="h-full bg-[#F8FAFC]">
+<!-- ========================================================================= -->
+<!-- 1. DESKTOP SIDEBAR (Fixed 240px, Hidden on Mobile/Tablet < 768px)          -->
+<!-- ========================================================================= -->
+<div id="app-sidebar-slot"></div>
+<!-- ========================================================================= -->
+<!-- 2. MAIN WORKSPACE CONTAINER                                               -->
+<!-- ========================================================================= -->
+<div class="flex-1 flex flex-col min-w-0 md:ml-[240px]">
+<!-- Compact 56px Header (Desktop & Mobile) -->
+<div id="app-header-slot"></div>
+<!-- Prototype Interactive Feedback Notice (Dynamic banner) -->
+<!-- Main Content Body -->
+<main class="flex-1 px-4 sm:px-6 md:px-8 py-5 max-w-[1240px] w-full mx-auto pb-24 md:pb-10">
+<!-- ========================================================================= -->
+<!-- 2. COMPACT WELCOME & TARGET HEADER                                        -->
+<!-- ========================================================================= -->
+<div class="mb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-[#E2E8F0]/70">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-xl sm:text-2xl font-bold text-[#0F172A] tracking-tight" id="greeting-title">Welcome, Student</h2>
+</div>
+<p class="text-xs sm:text-sm text-[#475569] mt-0.5" id="greeting-sub">Here is your preparation overview for <span class="font-medium text-[#0F172A] target-exam-text">SSC CGL</span>.</p>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 3. TWO-COLUMN WORKSPACE LAYOUT (65/35 DESKTOP GRID)                       -->
+<!-- ========================================================================= -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+<!-- ======================================================================= -->
+<!-- LEFT COLUMN (65% / lg:col-span-8): Primary Learning Action & Practice   -->
+<!-- ======================================================================= -->
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-5">
+<!-- 3.A HERO CARD: CONTINUE LEARNING (RETURNING STATE - SHOWN ONLY IF ACTIVE ATTEMPT EXISTS) -->
+<div class="hidden relative bg-white border border-[#E2E8F0] rounded-lg p-4 sm:p-5 shadow-xs" id="hero-card-returning">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold bg-[#1D4ED8] text-white">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>In Progress
+            </span>
+<span class="text-xs font-medium text-[#475569] target-exam-text" id="in-progress-exam-tag">SSC CGL</span>
+<span class="text-xs text-[#64748B]" id="in-progress-category"></span>
+</div>
+<span class="text-xs font-medium text-[#64748B]">Saved automatically</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex-1">
+<h3 class="text-base sm:text-lg font-bold text-[#0F172A] leading-snug" id="in-progress-title">Mock Test</h3>
+<p class="text-xs sm:text-sm text-[#475569] mt-0.5" id="in-progress-sub"></p>
+<div class="mt-3 max-w-md">
+<div class="flex justify-between text-xs mb-1 font-medium text-[#475569]">
+<span class="">Progress: <strong class="text-[#0F172A]" id="in-progress-count">0 of 0 Questions Attempted</strong></span>
+<span class="text-[#1D4ED8] font-semibold" id="in-progress-percent">0%</span>
+</div>
+<div class="w-full bg-[#F1F5F9] rounded-full h-2">
+<div class="bg-[#1D4ED8] h-2 rounded-full transition-all duration-300" id="in-progress-bar" style="width: 0%"></div>
+</div>
+</div>
+</div>
+<div class="shrink-0 flex items-center gap-2">
+<button class="touch-target inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-sm font-semibold rounded-lg shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8] focus:ring-offset-2" id="in-progress-resume-btn" onclick="openDashboardActiveAttemptPreview()" type="button">
+<span class="">Resume Test</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</button>
+</div>
+</div>
+</div>
+<!-- 3.A HERO CARD: RETURNING STUDENT WITHOUT ACTIVE ATTEMPT (FOCUSED PREP CARD) -->
+<div class="hidden relative bg-white border border-[#E2E8F0] rounded-lg p-4 sm:p-5 shadow-xs" id="hero-card-returning-inactive">
+<div class="flex items-center gap-2 mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-[#1D4ED8]">
+              Continue Preparation
+            </span>
+<span class="text-xs text-[#475569]">Ready to Practice</span>
+</div>
+<h3 class="text-lg font-bold text-[#0F172A]">Pick up your practice</h3>
+<p class="text-sm text-[#475569] mt-1 max-w-xl">
+            You do not have any active test in progress. Start a new full-length mock or practice focused chapter-level drills.
+          </p>
+<div class="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-2.5">
+<button onclick="window.location.href="#/mock-tests"" class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer" type="button">
+<span class="">Start New Mock Test</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</button>
+<button onclick="window.location.href="#/chapter-tests"" class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-slate-50 text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer" type="button">
+<span class="">Practice Chapter Tests</span>
+</button>
+</div>
+</div>
+<!-- 3.A HERO CARD: NEW STUDENT / START PREP BANNER -->
+<div class="relative overflow-hidden bg-white border border-[#E2E8F0] rounded-lg p-4 sm:p-5 shadow-xs" id="hero-card-new">
+<div class="flex items-center gap-2 mb-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-[#1D4ED8]">
+              Start Your Preparation
+            </span>
+<span class="text-xs text-[#475569]">First Step</span>
+</div>
+<h3 class="text-lg font-bold text-[#0F172A]">Start your preparation</h3>
+<p class="text-sm text-[#475569] mt-1 max-w-xl">
+            Choose a learning activity and begin preparing for your target examination. Take a diagnostic mock or solve previous year questions.
+          </p>
+<div class="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-2.5">
+<button onclick="window.location.href="#/mock-tests"" class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer" type="button">
+<span class="">Take Diagnostic Mock Test</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</button>
+<button onclick="window.location.href="#/chapter-tests"" class="touch-target w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-slate-50 text-xs sm:text-sm font-semibold rounded-lg transition-colors cursor-pointer" type="button">
+<span class="">Practice Chapter Tests</span>
+</button>
+</div>
+</div>
+<!-- 3.B CORE PRACTICE ACTIVITIES (3-COLUMN MICRO-GRID) -->
+<div>
+<div class="flex items-center justify-between mb-2.5">
+<h3 class="text-xs font-bold text-[#0F172A] uppercase tracking-wider text-slate-700">
+              Core Practice Activities
+            </h3>
+<span class="text-xs text-[#64748B]">Practice Modules</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<button onclick="window.location.href="#/mock-tests"" class="group text-left p-3.5 sm:p-4 bg-white border border-[#E2E8F0] hover:border-[#1D4ED8] rounded-lg transition-all shadow-2xs hover:shadow-xs flex flex-col justify-between" type="button">
+<div>
+<div class="w-9 h-9 rounded-lg bg-blue-50 border border-blue-100 text-[#1D4ED8] flex items-center justify-center mb-3 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="m9 14 2 2 4-4"></path></svg>
+</div>
+<h4 class="text-sm font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">Mock Tests</h4>
+<p class="text-xs text-[#475569] mt-1 leading-relaxed">Full-length and sectional test papers configured to official exam pattern.</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#1D4ED8]">
+<span class="">Start Test</span>
+<svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</div>
+</button>
+<button onclick="window.location.href="#/pyqs"" class="group text-left p-3.5 sm:p-4 bg-white border border-[#E2E8F0] hover:border-[#1D4ED8] rounded-lg transition-all shadow-2xs hover:shadow-xs flex flex-col justify-between" type="button">
+<div>
+<div class="w-9 h-9 rounded-lg bg-blue-50 border border-blue-100 text-[#1D4ED8] flex items-center justify-center mb-3 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line></svg>
+</div>
+<h4 class="text-sm font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">PYQs Library</h4>
+<p class="text-xs text-[#475569] mt-1 leading-relaxed">Previous year question papers with detailed step-by-step solutions.</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#1D4ED8]">
+<span class="">Browse PYQs</span>
+<svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</div>
+</button>
+<button onclick="window.location.href="#/chapter-tests"" class="group text-left p-3.5 sm:p-4 bg-white border border-[#E2E8F0] hover:border-[#1D4ED8] rounded-lg transition-all shadow-2xs hover:shadow-xs flex flex-col justify-between" type="button">
+<div>
+<div class="w-9 h-9 rounded-lg bg-blue-50 border border-blue-100 text-[#1D4ED8] flex items-center justify-center mb-3 group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+</div>
+<h4 class="text-sm font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">Chapter Tests</h4>
+<p class="text-xs text-[#475569] mt-1 leading-relaxed">Topic-level practice drills categorized by subject syllabus.</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#1D4ED8]">
+<span class="">Practice Chapters</span>
+<svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</div>
+</button>
+</div>
+</div>
+<!-- 3.C PERFORMANCE SNAPSHOT & SUBJECT ACCURACY (DATA-DRIVEN ONLY) -->
+<div class="hidden bg-white border border-[#E2E8F0] rounded-xl p-4 sm:p-5 shadow-2xs" id="performance-block-returning">
+<div class="flex items-center justify-between mb-3 pb-2 border-b border-[#F1F5F9]">
+<div>
+<h3 class="text-sm font-bold text-[#0F172A]">Subject-wise Accuracy &amp; Strengths</h3>
+<p class="text-xs text-[#64748B]">Subject-wise accuracy based on your evaluated test attempts and chapter drills.</p>
+</div>
+<a class="text-xs font-semibold text-[#1D4ED8] hover:underline" href="#/my-tests">
+              Full Analytics →
+            </a>
+</div>
+<!-- Dynamic Subject Accuracy Container -->
+<div class="space-y-3" id="subject-accuracy-container">
+<!-- Populated safely via DOM APIs only if valid evaluated data exists -->
+</div>
+<!-- Actionable Recommendation Card (Shown ONLY if evidence-based recommendation exists) -->
+<div class="hidden mt-4 pt-3 border-t border-[#F1F5F9]" id="recommendation-card-wrapper">
+<div class="bg-amber-50/70 border border-amber-200/90 rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+<div class="flex items-start gap-2.5">
+<div class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
+                  !
+                </div>
+<div>
+<h4 class="text-xs font-bold text-[#0F172A]" id="recommendation-title">Recommended Next Action</h4>
+<p class="text-xs text-[#475569] mt-0.5" id="recommendation-desc"></p>
+</div>
+</div>
+<button class="shrink-0 text-xs font-semibold px-3 py-1.5 bg-[#1D4ED8] text-white hover:bg-[#1E3A8A] rounded-md transition-colors self-start sm:self-auto cursor-pointer" id="recommendation-btn" onclick="showPrototypeNotice('Opening Chapter Drills', event)">
+                Start Chapter Drill →
+              </button>
+</div>
+</div>
+</div>
+<!-- NEW STUDENT / NO EVALUATED DATA PLACEHOLDER FOR PERFORMANCE -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-6 text-center shadow-2xs" id="performance-block-new">
+<div class="w-10 h-10 rounded-full bg-blue-50 text-[#1D4ED8] mx-auto flex items-center justify-center mb-2.5">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"></path></svg>
+</div>
+<h4 class="text-sm font-bold text-[#0F172A]" id="performance-placeholder-title">Performance Analytics will unlock here</h4>
+<p class="text-xs text-[#64748B] max-w-sm mx-auto mt-1 mb-4" id="performance-placeholder-desc">Complete your first evaluated practice test or chapter drill to generate subject-wise accuracy insights.</p>
+<button class="text-xs font-semibold px-3 py-1.5 bg-[#1D4ED8] text-white rounded-md hover:bg-[#1E3A8A] transition-colors cursor-pointer" id="performance-placeholder-btn" onclick="window.location.href="#/mock-tests"" type="button">Attempt 1st Test Now</button>
+</div>
+</div>
+<!-- ======================================================================= -->
+<!-- RIGHT COLUMN (35% / lg:col-span-4): Study Overview & Activity Stream    -->
+<!-- ======================================================================= -->
+<div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-5">
+<!-- 3.A STUDY OVERVIEW METRICS (DATA-DRIVEN) -->
+<div class="bg-white border border-[#E2E8F0] rounded-lg p-4 shadow-2xs">
+<div class="flex items-center justify-between mb-3 pb-2 border-b border-[#F1F5F9]">
+<h3 class="text-xs font-bold text-[#0F172A] uppercase tracking-wider text-slate-700">Study Overview</h3>
+<span class="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200" id="study-overview-status">New Account</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Tile 1: Tests Attempted / Started -->
+<div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+<span class="text-xs font-medium text-[#64748B]">Tests Attempted</span>
+<div class="text-lg font-bold text-[#0F172A] mt-0.5" id="metric-tests-val">0</div>
+<span class="text-xs text-slate-500 font-medium" id="metric-tests-sub">Started attempts</span>
+</div>
+<!-- Tile 2: Questions Attempted -->
+<div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+<span class="text-xs font-medium text-[#64748B]">Questions Attempted</span>
+<div class="text-lg font-bold text-[#0F172A] mt-0.5" id="metric-questions-val">0</div>
+<span class="text-xs text-slate-500 font-medium" id="metric-questions-sub">Attempted questions</span>
+</div>
+<!-- Tile 3: Average Accuracy -->
+<div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]"><div class="flex items-center justify-between"><span class="text-xs font-medium text-[#64748B]">Average Accuracy</span><span class="hidden text-xs font-semibold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded" id="metric-accuracy-partial">(Partial data)</span></div><div class="text-lg font-bold text-[#1D4ED8] mt-0.5" id="metric-accuracy-val">—</div><span class="text-xs text-slate-500 font-medium" id="metric-accuracy-sub">Across evaluated Qs</span></div>
+<!-- Tile 4: Average Score -->
+<div class="p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+<span class="text-xs font-medium text-[#64748B]">Average Score</span>
+<div class="text-lg font-bold text-slate-800 mt-0.5" id="metric-score-val">—</div>
+<span class="text-xs text-slate-500 font-medium" id="metric-score-sub">Based on evaluated tests</span>
+</div>
+</div>
+</div>
+<!-- 3.B RECENT ACTIVITY FEED (DATA-DRIVEN) -->
+<div class="hidden bg-white border border-[#E2E8F0] rounded-xl p-4 shadow-2xs" id="recent-activity-container">
+<div class="flex items-center justify-between mb-3 pb-2 border-b border-[#F1F5F9]">
+<div>
+<h3 class="text-sm font-bold text-[#0F172A]">Recent Activity</h3>
+<p class="text-xs text-[#64748B]">Your recent tests and practice sessions</p>
+</div>
+<a class="text-xs font-semibold text-[#1D4ED8] hover:underline" href="#/my-tests">
+              View All →
+            </a>
+</div>
+<!-- Dynamic Activity Item List -->
+<div class="divide-y divide-slate-100" id="recent-activity-list">
+<!-- Rendered safely via DOM -->
+</div>
+<div class="mt-3 pt-2 border-t border-slate-100 text-center" id="recent-activity-footer">
+<a class="text-xs font-semibold text-[#1D4ED8] hover:underline" href="#/my-tests">
+              View all in My Tests →
+            </a>
+</div>
+</div>
+<!-- HONEST EMPTY STATE FOR RECENT ACTIVITY -->
+<div class="bg-white border border-[#E2E8F0] rounded-xl p-6 text-center shadow-2xs" id="recent-activity-new">
+<div class="w-10 h-10 rounded-full bg-[#F8FAFC] border border-[#E2E8F0] flex items-center justify-center text-[#64748B] mx-auto mb-2.5">
+<svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+</div>
+<h4 class="text-sm font-semibold text-[#0F172A]">No recent activity yet</h4>
+<p class="text-xs text-[#475569] mt-1 mb-4">
+            Start your first mock test or chapter drill to track your progress here.
+          </p>
+<button class="touch-target inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer" type="button">
+<span class="">Start Test</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M5 12h14M12 5l7 7-7 7"></path>
+</svg>
+</button>
+</div>
+<!-- Target Exam Information Card (Neutral Fact-Based Wording) -->
+<div class="bg-white border border-[#E2E8F0] rounded-lg p-3.5 text-xs text-slate-700 shadow-2xs">
+<div class="flex items-center justify-between font-semibold mb-1 text-[#0F172A]">
+<span class="flex items-center gap-1.5">
+<svg class="w-4 h-4 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+<line x1="16" x2="16" y1="2" y2="6"></line>
+<line x1="8" x2="8" y1="2" y2="6"></line>
+<line x1="3" x2="21" y1="10" y2="10"></line>
+</svg>
+<span class="target-exam-text font-bold">SSC CGL</span>
+</span>
+</div>
+<p class="text-xs text-[#64748B] leading-relaxed mt-1" id="target-exam-card-description">Combined Graduate Level Examination (Tier I &amp; II) preparation workspace. Track your mock test attempts, practice previous year questions, and chapter drills.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Global Academic Footer (Clean, Unobtrusive) -->
+<footer class="mt-auto bg-white border-t border-[#E2E8F0] py-3.5 px-4 sm:px-6 md:px-8 text-xs text-[#64748B] flex flex-col sm:flex-row items-center justify-between gap-2.5">
+<div class="">
+      © 2026 SSC Flix. All rights reserved.
+    </div>
+<div class="flex items-center gap-4">
+<a class="hover:text-[#0F172A] hover:underline" href="#/site-info#privacy">Privacy Policy</a>
+<a class="hover:text-[#0F172A] hover:underline" href="#/site-info#terms">Terms of Service</a>
+<a class="hover:text-[#0F172A] hover:underline" href="#/site-info#help">Help &amp; Support</a>
+</div>
+</footer>
+</div>
+<!-- ========================================================================= -->
+<!-- 7. MOBILE FIXED BOTTOM NAVIGATION (5 Items: Dashboard, Mock, PYQ, Ch, More)-->
+<!-- ========================================================================= -->
+<nav aria-label="Mobile Bottom Navigation" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-[#E2E8F0] z-40 flex items-center justify-around px-1 select-none pb-safe">
+<!-- Item 1: Dashboard (Active) -->
+<a aria-current="page" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#1D4ED8]" href="#/dashboard">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="9" rx="1" width="7" x="3" y="3"></rect>
+<rect height="5" rx="1" width="7" x="14" y="3"></rect>
+<rect height="9" rx="1" width="7" x="14" y="12"></rect>
+<rect height="5" rx="1" width="3" x="3" y="16"></rect>
+</svg>
+<span class="text-xs font-semibold mt-1">Dashboard</span>
+</a>
+<!-- Item 2: Mock Tests -->
+<a class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#/mock-tests">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<rect height="4" rx="1" ry="1" width="8" x="8" y="2"></rect>
+<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+<path d="m9 14 2 2 4-4"></path>
+</svg>
+<span class="text-xs font-medium mt-1">Mock Tests</span>
+</a>
+<!-- Item 3: PYQs -->
+<a class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#/pyqs">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+<line x1="16" x2="8" y1="13" y2="13"></line>
+</svg>
+<span class="text-xs font-medium mt-1">PYQs</span>
+</a>
+<!-- Item 4: Chapter Tests -->
+<a aria-label="Chapter Tests" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" href="#/chapter-tests">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+</svg>
+<span class="text-xs font-medium mt-1">Ch. Tests</span>
+</a>
+<!-- Item 5: More -->
+<button aria-expanded="false" aria-label="Open more options" class="touch-target flex flex-col items-center justify-center flex-1 py-1 text-[#64748B] hover:text-[#0F172A]" id="more-nav-btn" onclick="toggleMobileMoreSheet()" type="button">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="1"></circle>
+<circle cx="19" cy="12" r="1"></circle>
+<circle cx="5" cy="12" r="1"></circle>
+</svg>
+<span class="text-xs font-medium mt-1">More</span>
+</button>
+</nav>
+<!-- ========================================================================= -->
+<!-- 8. MOBILE "MORE" BOTTOM SHEET                                             -->
+<!-- ========================================================================= -->
+<div class="hidden md:hidden fixed inset-0 bg-slate-900/40 z-50 transition-opacity" id="mobile-more-overlay" onclick="toggleMobileMoreSheet()"></div>
+<div class="hidden md:hidden fixed bottom-16 left-0 right-0 bg-white border-t border-[#E2E8F0] rounded-t-xl z-50 shadow-xl transition-transform max-w-lg mx-auto p-4" id="mobile-more-sheet">
+<div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+<h3 class="text-sm font-bold text-[#0F172A]">Additional Navigation</h3>
+<button aria-label="Close menu" class="touch-target p-1 text-[#64748B] hover:text-[#0F172A]" onclick="toggleMobileMoreSheet()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="18" x2="6" y1="6" y2="18"></line>
+<line x1="6" x2="18" y1="6" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2.5 py-4">
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#/my-tests"Opening My Tests', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+<path d="M3 3v5h5"></path>
+<path d="M12 7v5l4 2"></path>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">My Tests</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#/bookmarks"Opening Bookmarks', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#1D4ED8]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Bookmarks</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#/leaderboard" onclick="toggleMobileMoreSheet()">
+<svg class="w-5 h-5 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M8 21h8m-4-4v4m-5-17h10v5a5 5 0 0 1-10 0V4Z"></path>
+<path d="M7 7H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4"></path>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Leaderboard</span>
+</a>
+<a class="touch-target flex items-center gap-3 p-3 rounded-lg border border-[#E2E8F0] hover:bg-[#F8FAFC]" href="#/preferences"Opening Preferences', event); toggleMobileMoreSheet();">
+<svg class="w-5 h-5 text-[#64748B]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<line x1="4" x2="20" y1="21" y2="21"></line>
+<line x1="4" x2="20" y1="14" y2="14"></line>
+<line x1="4" x2="20" y1="7" y2="7"></line>
+<circle cx="14" cy="21" r="2"></circle>
+<circle cx="8" cy="14" r="2"></circle>
+<circle cx="16" cy="7" r="2"></circle>
+</svg>
+<span class="text-xs font-semibold text-[#0F172A]">Preferences</span>
+</a>
+
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 9. TARGET EXAM MODAL / DIALOG                                             -->
+<!-- ========================================================================= -->
+<div class="hidden fixed inset-0 bg-slate-900/50 z-50 flex items-center justify-center p-4" id="target-modal-overlay">
+<div aria-modal="true" class="bg-white rounded-xl max-w-md w-full border border-[#E2E8F0] shadow-xl p-5" onclick="event.stopPropagation()" role="dialog">
+<div class="flex items-center justify-between pb-3 border-b border-[#E2E8F0]">
+<div>
+<h3 class="text-base font-bold text-[#0F172A]">Choose Target Examination</h3>
+<p class="text-xs text-[#64748B]">Personalizes your mock papers, PYQs and syllabus drills</p>
+</div>
+<button aria-label="Close dialog" class="text-[#64748B] hover:text-[#0F172A] p-1 cursor-pointer" onclick="closeTargetExamModal()">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+</button>
+</div>
+<!-- Exam List Options: 6 Official SSC Exams -->
+<div class="py-4 space-y-2" id="exam-options-container">
+<!-- Injected dynamically via DOM to match active state -->
+</div>
+<div class="pt-3 border-t border-[#E2E8F0] flex justify-end gap-2">
+<button class="px-3.5 py-1.5 text-xs font-semibold text-[#475569] hover:bg-slate-100 rounded-lg cursor-pointer" onclick="closeTargetExamModal()">Cancel</button>
+<button class="px-4 py-1.5 text-xs font-semibold bg-[#1D4ED8] text-white rounded-lg hover:bg-[#1E3A8A] cursor-pointer" onclick="applyTargetExamSelection()">Save Target</button>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- 10. JAVASCRIPT LOGIC & STATE HANDLING (100% Data-Driven Adapter)           -->
+<!-- ========================================================================= -->
+</div>

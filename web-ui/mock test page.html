@@ -2062,10 +2062,32 @@
     }
 
     function confirmAndLaunchTest() {
+      const test = state.modalTest;
+      if (!test) return;
+
+      const previewContext = {
+        testId: test.id,
+        code: test.code,
+        title: test.title,
+        category: test.category === 'sectional' ? 'Sectional Practice' : 'Full Mock',
+        examId: state.selectedExam,
+        tierId: state.selectedTier,
+        mode: state.assessmentMode,
+        durationMinutes: Number.parseInt(String(test.duration || '60'), 10) || 60,
+        questions: Number(test.questions) || 100,
+        maxMarks: Number(test.maxMarks) || 200,
+        markingScheme: test.markingScheme || '+2.0, -0.50',
+        source: 'mock-tests'
+      };
+
+      try {
+        localStorage.setItem('sscflix-active-test-preview', JSON.stringify(previewContext));
+      } catch (error) {
+        showPrototypeNotice('Browser storage is unavailable. The default CBT demo will open.', null);
+      }
+
       closeTestModal();
-      const modeLabel = document.getElementById('cbt-notice-mode-label');
-      if (modeLabel) modeLabel.textContent = state.assessmentMode === 'study' ? 'Study Mode' : 'Test Mode';
-      openModalElement('cbt-notice-dialog', lastActiveCardTrigger);
+      window.location.href = './cbt%20interface%20page.html';
     }
 
     function closeCbtDialog() {

@@ -1352,8 +1352,8 @@
       const tabSectional = document.getElementById('tab-sectional');
       if (!tabFull || !tabSectional) return;
 
-      const activeClass = 'test-type-tab min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
-      const inactiveClass = 'test-type-tab min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
+      const activeClass = 'test-type-tab min-h-9 flex-1 sm:flex-none rounded-lg px-3 sm:px-4 text-xs sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
+      const inactiveClass = 'test-type-tab min-h-9 flex-1 sm:flex-none rounded-lg px-3 sm:px-4 text-xs sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
 
       const fullIsActive = state.category === 'full';
       tabFull.className = fullIsActive ? activeClass : inactiveClass;

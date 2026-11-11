@@ -133,7 +133,17 @@
   document.addEventListener('click', function (event) {
     var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
     if (!link || event.defaultPrevented || link.hasAttribute('download') || link.target === '_blank') return;
-    var next = convertLegacyHref(link.getAttribute('href'));
+    var href = link.getAttribute('href') || '';
+    if (href.charAt(0) === '#' && href.indexOf('#/') !== 0) {
+      event.preventDefault();
+      var current = parseHash().route;
+      var anchor = href.slice(1);
+      var anchorHash = '#/' + current + (anchor ? '#' + anchor : '');
+      if (window.location.hash === anchorHash) scrollToAnchor(anchor);
+      else window.location.hash = anchorHash;
+      return;
+    }
+    var next = convertLegacyHref(href);
     if (!next) return;
     event.preventDefault();
     if (window.location.hash === next) loadRoute(next.slice(2).split('#')[0], next.split('#').slice(2).join('#'));
@@ -198,6 +208,7 @@
   }
 
   window.addEventListener('hashchange', function () {
+    if (window.location.hash.indexOf('#/') !== 0) return;
     var state = parseHash();
     loadRoute(state.route, state.anchor);
   });

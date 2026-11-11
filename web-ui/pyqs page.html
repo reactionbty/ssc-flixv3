@@ -182,6 +182,27 @@
     }
 
 </style>
+<style>
+  #pyq-assessment-mode-switch,
+  #pyq-type-switch { background-color: #F1F5F9; border-color: #E2E8F0; }
+  #pyq-assessment-mode-switch .pyq-mode-option[aria-pressed="false"],
+  #pyq-type-switch .pyq-type-tab[aria-selected="false"] { color: #475569; }
+  body.shared-dark-mode #pyq-assessment-mode-switch,
+  body.shared-dark-mode #pyq-type-switch { background-color: #1E293B !important; border-color: #334155 !important; }
+  body.shared-dark-mode #pyq-assessment-mode-switch .pyq-mode-option[aria-pressed="false"],
+  body.shared-dark-mode #pyq-type-switch .pyq-type-tab[aria-selected="false"] { color: #CBD5E1 !important; }
+  body.shared-dark-mode #pyq-assessment-mode-switch .pyq-mode-option[aria-pressed="true"],
+  body.shared-dark-mode #pyq-type-switch .pyq-type-tab[aria-selected="true"] { background-color: #2563EB !important; color: #FFFFFF !important; }
+  body.shared-dark-mode #pyq-attempted-filter-btn[aria-pressed="false"] {
+    background-color: #111C2E !important; border-color: #2A3A50 !important; color: #B8C5D8 !important;
+  }
+  body.shared-dark-mode #pyq-attempted-filter-btn[aria-pressed="true"] {
+    background-color: #172B46 !important; border-color: #3B82F6 !important; color: #93C5FD !important;
+  }
+  body.shared-dark-mode #filter-year {
+    background-color: #0F1B2D !important; border-color: #34465F !important; color: #E5EDF8 !important;
+  }
+</style>
 </head>
 <body class="bg-brand-bg text-brand-textPrimary antialiased min-h-screen flex flex-col md:flex-row">
 <!-- Fixed Top Header (56px) -->
@@ -395,71 +416,52 @@
 <span class="">Sample Demonstration Records</span>
 </div>
 </div>
-<div class="space-y-1">
-<h1 class="text-2xl sm:text-3xl font-bold text-brand-textPrimary tracking-tight">Previous Year Questions</h1>
-<p class="text-sm text-brand-textSecondary max-w-2xl">Browse previous examination paper records and practise when question content is available.</p>
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+  <div class="space-y-1">
+    <h1 class="text-2xl sm:text-3xl font-bold text-brand-textPrimary tracking-tight">Previous Year Questions</h1>
+    <p class="text-sm text-brand-textSecondary max-w-2xl">Browse previous examination papers and practise by full paper or individual section.</p>
+  </div>
+  <div aria-label="Assessment mode" class="inline-flex w-fit items-center gap-0.5 rounded-lg border border-[#E2E8F0] bg-[#F1F5F9] p-1" id="pyq-assessment-mode-switch" role="group">
+    <button aria-pressed="true" class="pyq-mode-option min-h-8 sm:min-h-9 rounded-md px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="pyq-mode-test" type="button">Test Mode</button>
+    <button aria-pressed="false" class="pyq-mode-option min-h-8 sm:min-h-9 rounded-md px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="pyq-mode-study" type="button">Study Mode</button>
+  </div>
 </div>
 </section>
-<!-- Progressive Cascading Filters Section -->
-<section class="bg-brand-surface rounded-xl border border-brand-border p-5 mb-8 shadow-sm">
-<div class="flex flex-col gap-4">
-<!-- Dynamic Exam Selector Pills (Derived strictly from records) -->
-<div class="flex flex-col gap-2">
-<div class="flex items-center justify-between">
-<span class="text-xs font-semibold uppercase tracking-wider text-brand-textSecondary">Select Examination</span>
-</div>
-<div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar" id="exam-pills-container"><button type="button" data-exam="all" class="exam-pill px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-1.5 flex-shrink-0 bg-brand-blue text-white shadow-sm font-semibold"><span class="material-symbols-outlined text-[18px]">apps</span><span class="">All Exams</span></button><button type="button" data-exam="SSC CGL" class="exam-pill px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-1.5 flex-shrink-0 bg-slate-100 text-brand-textPrimary hover:bg-slate-200 font-medium"><span class="">SSC CGL</span></button><button type="button" data-exam="SSC CHSL" class="exam-pill px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-1.5 flex-shrink-0 bg-slate-100 text-brand-textPrimary hover:bg-slate-200 font-medium"><span class="">SSC CHSL</span></button><button type="button" data-exam="SSC CPO" class="exam-pill px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-1.5 flex-shrink-0 bg-slate-100 text-brand-textPrimary hover:bg-slate-200 font-medium"><span class="">SSC CPO</span></button><button type="button" data-exam="SSC MTS" class="exam-pill px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-1.5 flex-shrink-0 bg-slate-100 text-brand-textPrimary hover:bg-slate-200 font-medium"><span class="">SSC MTS</span></button></div>
-</div>
-<!-- Cascading Dropdowns Pipeline -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2">
-<div class="flex flex-col gap-1.5">
-<label class="text-xs font-medium text-brand-textSecondary" for="filter-tier">Tier / Paper</label>
-<div class="relative">
-<select class="w-full bg-slate-50 border border-brand-border text-brand-textPrimary text-sm rounded-lg px-3 py-2.5 appearance-none focus:outline-none focus:ring-2 focus:ring-brand-blue cursor-pointer pr-10" id="filter-tier"><option value="all">All Tiers / Papers</option><option value="Tier-I">Tier-I</option><option value="Tier-II">Tier-II</option><option value="Paper-I">Paper-I</option><option value="Session-I &amp; II">Session-I &amp; II</option></select>
-<span class="material-symbols-outlined text-[18px] text-brand-textSecondary absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
-</div>
-</div>
-<div class="flex flex-col gap-1.5">
-<label class="text-xs font-medium text-brand-textSecondary" for="filter-year">Exam Year</label>
-<div class="relative">
-<select class="w-full bg-slate-50 border border-brand-border text-brand-textPrimary text-sm rounded-lg px-3 py-2.5 appearance-none focus:outline-none focus:ring-2 focus:ring-brand-blue cursor-pointer pr-10" id="filter-year"><option value="all">All Years</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option></select>
-<span class="material-symbols-outlined text-[18px] text-brand-textSecondary absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
-</div>
-</div>
-<div class="flex flex-col gap-1.5">
-<label class="text-xs font-medium text-brand-textSecondary" for="filter-date">Exam Date</label>
-<div class="relative">
-<select class="w-full bg-slate-50 border border-brand-border text-brand-textPrimary text-sm rounded-lg px-3 py-2.5 appearance-none focus:outline-none focus:ring-2 focus:ring-brand-blue cursor-pointer pr-10" id="filter-date"><option value="all">All Dates</option><option value="09 Sep 2024">09 Sep 2024</option><option value="26 Oct 2023">26 Oct 2023</option><option value="02 Aug 2023">02 Aug 2023</option><option value="04 Aug 2023">04 Aug 2023</option><option value="03 Oct 2023">03 Oct 2023</option><option value="05 May 2023">05 May 2023</option><option value="01 Dec 2022">01 Dec 2022</option></select>
-<span class="material-symbols-outlined text-[18px] text-brand-textSecondary absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
-</div>
-</div>
-<div class="flex flex-col gap-1.5">
-<label class="text-xs font-medium text-brand-textSecondary" for="filter-shift">Shift / Slot</label>
-<div class="relative">
-<select class="w-full bg-slate-50 border border-brand-border text-brand-textPrimary text-sm rounded-lg px-3 py-2.5 appearance-none focus:outline-none focus:ring-2 focus:ring-brand-blue cursor-pointer pr-10" id="filter-shift"><option value="all">All Shifts</option><option value="Shift 1">Shift 1</option><option value="Shift 2">Shift 2</option><option value="Shift 3">Shift 3</option></select>
-<span class="material-symbols-outlined text-[18px] text-brand-textSecondary absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
-</div>
-</div>
-<div class="flex flex-col gap-1.5">
-<label class="text-xs font-medium text-brand-textSecondary" for="filter-subject">Focus Subject</label>
-<div class="relative">
-<select class="w-full bg-slate-50 border border-brand-border text-brand-textPrimary text-sm rounded-lg px-3 py-2.5 appearance-none focus:outline-none focus:ring-2 focus:ring-brand-blue cursor-pointer pr-10" id="filter-subject"><option value="all">All Subjects (Full Paper)</option><option value="quantitative_aptitude">Quantitative Aptitude</option><option value="general_intelligence_reasoning">General Intelligence &amp; Reasoning</option><option value="english_comprehension">English Comprehension</option><option value="general_awareness">General Awareness</option><option value="computer_knowledge">Computer Knowledge</option></select>
-<span class="material-symbols-outlined text-[18px] text-brand-textSecondary absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
-</div>
-</div>
-</div>
-<!-- Filter Status & Reset -->
-<div class="flex items-center justify-between pt-2 flex-wrap gap-3 border-t border-brand-border">
-<div class="flex items-center gap-2">
-<span class="text-sm font-semibold text-brand-textPrimary" id="filter-result-count">Showing 8 papers</span>
-<span class="hidden px-2 py-0.5 rounded text-xs bg-blue-100 text-brand-blue font-semibold" id="active-filter-badge">Filtered</span>
-</div>
-<button class="min-h-[44px] px-3.5 py-1.5 rounded-lg text-brand-blue hover:bg-blue-50 text-sm font-semibold flex items-center gap-1.5 transition-colors focus:outline-none" id="reset-filters-btn" type="button">
-<span class="material-symbols-outlined text-[16px]">restart_alt</span>
-<span class="">Reset Filters</span>
-</button>
-</div>
-</div>
+<!-- PYQ Year Filter -->
+<section class="mb-3 sm:mb-4">
+  <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 rounded-xl border border-[#E2E8F0] bg-white px-3 py-2.5 sm:px-4 sm:py-3">
+    <label class="shrink-0 text-xs sm:text-sm font-medium text-[#334155]" for="filter-year">Year:</label>
+    <div class="relative w-full sm:w-[260px]">
+      <select class="w-full h-9 sm:h-10 appearance-none rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] px-3 pr-9 text-sm text-[#0F172A] outline-none transition-colors focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#DBEAFE] cursor-pointer" id="filter-year">
+        <option value="all">All Years</option>
+      </select>
+      <svg aria-hidden="true" class="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748B]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+        <path d="m6 9 6 6 6-6"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PYQ Type & Attempted Filters -->
+<section class="mb-4 sm:mb-6">
+  <div class="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 gap-y-2.5 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
+    <div class="min-w-0 sm:order-1">
+      <div aria-label="PYQ type" class="inline-flex max-w-full items-center gap-0.5 rounded-xl bg-[#F1F5F9] p-1" id="pyq-type-switch" role="tablist">
+        <button aria-selected="true" class="pyq-type-tab min-h-8 sm:min-h-9 rounded-lg px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="pyq-tab-full" type="button" role="tab">Full PYQ</button>
+        <button aria-selected="false" class="pyq-type-tab min-h-8 sm:min-h-9 rounded-lg px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="pyq-tab-sectional" type="button" role="tab">Sectional</button>
+      </div>
+    </div>
+
+    <button aria-pressed="false" class="sm:order-3 sm:ml-auto inline-flex min-h-9 sm:min-h-10 shrink-0 items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl border border-[#CBD5E1] bg-white px-2.5 sm:px-3.5 text-xs sm:text-sm font-semibold text-[#475569] hover:border-[#94A3B8] hover:bg-[#F8FAFC] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="pyq-attempted-filter-btn" type="button">
+      <span class="material-symbols-outlined text-sm sm:text-base">check_circle</span>
+      <span>Attempted</span>
+      <span class="rounded-md bg-[#F1F5F9] px-1.5 py-0.5 text-[10px] sm:text-[11px] font-bold text-[#475569]" id="pyq-attempted-filter-count">0</span>
+    </button>
+  </div>
+  <div class="mt-2 flex items-center gap-2 text-xs text-brand-textSecondary">
+    <span id="filter-result-count">Showing papers</span>
+    <span class="hidden px-2 py-0.5 rounded text-[11px] bg-blue-100 text-brand-blue font-semibold" id="active-filter-badge">Filtered</span>
+  </div>
 </section>
 <!-- Papers Grid List -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10" id="papers-list-container"><div class="bg-brand-surface border border-brand-border rounded-xl p-5 shadow-sm hover:border-slate-300 transition-colors flex flex-col justify-between gap-4"><div class="space-y-3"><div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-1.5 flex-wrap"><span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200">SSC CGL • Tier-I • 2024</span><span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-brand-textSecondary border border-brand-border flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-slate-500">lock_clock</span><span class="">Questions not available yet</span></span></div><span class="text-brand-textSecondary font-mono text-xs">Shift 1 • 09:00 - 10:00</span></div><h3 class="text-base font-bold text-brand-textPrimary leading-snug">SSC CGL 2024 Tier-I (09 Sep 2024 — Shift 1)</h3><div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-brand-textSecondary text-xs bg-slate-50 border border-brand-border p-2.5 rounded-lg"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-blue">help_outline</span><span class="">100 Questions</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-amber-600">schedule</span><span class="">60 Mins</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-blue-600">star_rate</span><span class="">200 Marks</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-destructive">remove_circle_outline</span><span class="">Neg: 0.50</span></div></div><div class="space-y-1.5 pt-1"><span class="text-xs font-semibold uppercase tracking-wider text-brand-textSecondary block">Sample Structure Preview</span><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Quantitative Aptitude: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Intelligence &amp; Reasoning: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">English Comprehension: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Awareness: 25Q</span></div></div></div><div class="pt-3 flex items-center justify-between gap-3 border-t border-brand-border"><span class="text-xs text-brand-textSecondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span><span class=""> 09 Sep 2024</span></span><button type="button" class="min-h-[44px] px-4 py-2 rounded-lg bg-brand-blue hover:bg-brand-navy text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"><span class="">View Paper</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div><div class="bg-brand-surface border border-brand-border rounded-xl p-5 shadow-sm hover:border-slate-300 transition-colors flex flex-col justify-between gap-4"><div class="space-y-3"><div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-1.5 flex-wrap"><span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200">SSC CGL • Tier-I • 2024</span><span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-brand-textSecondary border border-brand-border flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-slate-500">lock_clock</span><span class="">Questions not available yet</span></span></div><span class="text-brand-textSecondary font-mono text-xs">Shift 2 • 12:30 - 13:30</span></div><h3 class="text-base font-bold text-brand-textPrimary leading-snug">SSC CGL 2024 Tier-I (09 Sep 2024 — Shift 2)</h3><div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-brand-textSecondary text-xs bg-slate-50 border border-brand-border p-2.5 rounded-lg"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-blue">help_outline</span><span class="">100 Questions</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-amber-600">schedule</span><span class="">60 Mins</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-blue-600">star_rate</span><span class="">200 Marks</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-destructive">remove_circle_outline</span><span class="">Neg: 0.50</span></div></div><div class="space-y-1.5 pt-1"><span class="text-xs font-semibold uppercase tracking-wider text-brand-textSecondary block">Sample Structure Preview</span><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Quantitative Aptitude: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Intelligence &amp; Reasoning: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">English Comprehension: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Awareness: 25Q</span></div></div></div><div class="pt-3 flex items-center justify-between gap-3 border-t border-brand-border"><span class="text-xs text-brand-textSecondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span><span class=""> 09 Sep 2024</span></span><button type="button" class="min-h-[44px] px-4 py-2 rounded-lg bg-brand-blue hover:bg-brand-navy text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"><span class="">View Paper</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div><div class="bg-brand-surface border border-brand-border rounded-xl p-5 shadow-sm hover:border-slate-300 transition-colors flex flex-col justify-between gap-4"><div class="space-y-3"><div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-1.5 flex-wrap"><span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200">SSC CGL • Tier-II • 2023</span><span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-brand-textSecondary border border-brand-border flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-slate-500">lock_clock</span><span class="">Questions not available yet</span></span></div><span class="text-brand-textSecondary font-mono text-xs">Shift 1 • 09:00 - 11:15</span></div><h3 class="text-base font-bold text-brand-textPrimary leading-snug">SSC CGL 2023 Tier-II (26 Oct 2023 — Shift 1 Mains)</h3><div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-brand-textSecondary text-xs bg-slate-50 border border-brand-border p-2.5 rounded-lg"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-blue">help_outline</span><span class="">150 Questions</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-amber-600">schedule</span><span class="">135 Mins</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-blue-600">star_rate</span><span class="">390 Marks</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-destructive">remove_circle_outline</span><span class="">Neg: 1.00</span></div></div><div class="space-y-1.5 pt-1"><span class="text-xs font-semibold uppercase tracking-wider text-brand-textSecondary block">Sample Structure Preview</span><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Mathematical Abilities: 30Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Reasoning &amp; Intelligence: 30Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">English Language: 45Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Awareness: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Computer Knowledge: 20Q</span></div></div></div><div class="pt-3 flex items-center justify-between gap-3 border-t border-brand-border"><span class="text-xs text-brand-textSecondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span><span class=""> 26 Oct 2023</span></span><button type="button" class="min-h-[44px] px-4 py-2 rounded-lg bg-brand-blue hover:bg-brand-navy text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"><span class="">View Paper</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div><div class="bg-brand-surface border border-brand-border rounded-xl p-5 shadow-sm hover:border-slate-300 transition-colors flex flex-col justify-between gap-4"><div class="space-y-3"><div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-1.5 flex-wrap"><span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200">SSC CHSL • Tier-I • 2023</span><span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-brand-textSecondary border border-brand-border flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-slate-500">lock_clock</span><span class="">Questions not available yet</span></span></div><span class="text-brand-textSecondary font-mono text-xs">Shift 1 • 09:00 - 10:00</span></div><h3 class="text-base font-bold text-brand-textPrimary leading-snug">SSC CHSL 2023 Tier-I (02 Aug 2023 — Shift 1)</h3><div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-brand-textSecondary text-xs bg-slate-50 border border-brand-border p-2.5 rounded-lg"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-blue">help_outline</span><span class="">100 Questions</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-amber-600">schedule</span><span class="">60 Mins</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-blue-600">star_rate</span><span class="">200 Marks</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-destructive">remove_circle_outline</span><span class="">Neg: 0.50</span></div></div><div class="space-y-1.5 pt-1"><span class="text-xs font-semibold uppercase tracking-wider text-brand-textSecondary block">Sample Structure Preview</span><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Quantitative Aptitude: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Intelligence: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">English Language: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Awareness: 25Q</span></div></div></div><div class="pt-3 flex items-center justify-between gap-3 border-t border-brand-border"><span class="text-xs text-brand-textSecondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span><span class=""> 02 Aug 2023</span></span><button type="button" class="min-h-[44px] px-4 py-2 rounded-lg bg-brand-blue hover:bg-brand-navy text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"><span class="">View Paper</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div><div class="bg-brand-surface border border-brand-border rounded-xl p-5 shadow-sm hover:border-slate-300 transition-colors flex flex-col justify-between gap-4"><div class="space-y-3"><div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-1.5 flex-wrap"><span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200">SSC CHSL • Tier-I • 2023</span><span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-brand-textSecondary border border-brand-border flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-slate-500">lock_clock</span><span class="">Questions not available yet</span></span></div><span class="text-brand-textSecondary font-mono text-xs">Shift 3 • 16:00 - 17:00</span></div><h3 class="text-base font-bold text-brand-textPrimary leading-snug">SSC CHSL 2023 Tier-I (04 Aug 2023 — Shift 3)</h3><div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-brand-textSecondary text-xs bg-slate-50 border border-brand-border p-2.5 rounded-lg"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-blue">help_outline</span><span class="">100 Questions</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-amber-600">schedule</span><span class="">60 Mins</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-blue-600">star_rate</span><span class="">200 Marks</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-destructive">remove_circle_outline</span><span class="">Neg: 0.50</span></div></div><div class="space-y-1.5 pt-1"><span class="text-xs font-semibold uppercase tracking-wider text-brand-textSecondary block">Sample Structure Preview</span><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Quantitative Aptitude: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Intelligence: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">English Language: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Awareness: 25Q</span></div></div></div><div class="pt-3 flex items-center justify-between gap-3 border-t border-brand-border"><span class="text-xs text-brand-textSecondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span><span class=""> 04 Aug 2023</span></span><button type="button" class="min-h-[44px] px-4 py-2 rounded-lg bg-brand-blue hover:bg-brand-navy text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"><span class="">View Paper</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div><div class="bg-brand-surface border border-brand-border rounded-xl p-5 shadow-sm hover:border-slate-300 transition-colors flex flex-col justify-between gap-4"><div class="space-y-3"><div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-1.5 flex-wrap"><span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200">SSC CPO • Paper-I • 2023</span><span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-brand-textSecondary border border-brand-border flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-slate-500">lock_clock</span><span class="">Questions not available yet</span></span></div><span class="text-brand-textSecondary font-mono text-xs">Shift 1 • 09:00 - 11:00</span></div><h3 class="text-base font-bold text-brand-textPrimary leading-snug">SSC CPO SI 2023 Paper-I (03 Oct 2023 — Shift 1)</h3><div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-brand-textSecondary text-xs bg-slate-50 border border-brand-border p-2.5 rounded-lg"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-blue">help_outline</span><span class="">200 Questions</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-amber-600">schedule</span><span class="">120 Mins</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-blue-600">star_rate</span><span class="">200 Marks</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-destructive">remove_circle_outline</span><span class="">Neg: 0.25</span></div></div><div class="space-y-1.5 pt-1"><span class="text-xs font-semibold uppercase tracking-wider text-brand-textSecondary block">Sample Structure Preview</span><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Intelligence &amp; Reasoning: 50Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Knowledge &amp; GA: 50Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Quantitative Aptitude: 50Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">English Comprehension: 50Q</span></div></div></div><div class="pt-3 flex items-center justify-between gap-3 border-t border-brand-border"><span class="text-xs text-brand-textSecondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span><span class=""> 03 Oct 2023</span></span><button type="button" class="min-h-[44px] px-4 py-2 rounded-lg bg-brand-blue hover:bg-brand-navy text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"><span class="">View Paper</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div><div class="bg-brand-surface border border-brand-border rounded-xl p-5 shadow-sm hover:border-slate-300 transition-colors flex flex-col justify-between gap-4"><div class="space-y-3"><div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-1.5 flex-wrap"><span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200">SSC MTS • Session-I &amp; II • 2023</span><span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-brand-textSecondary border border-brand-border flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-slate-500">lock_clock</span><span class="">Questions not available yet</span></span></div><span class="text-brand-textSecondary font-mono text-xs">Shift 2 • 12:30 - 14:00</span></div><h3 class="text-base font-bold text-brand-textPrimary leading-snug">SSC MTS 2023 Multi-Tasking Staff (05 May 2023 — Shift 2)</h3><div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-brand-textSecondary text-xs bg-slate-50 border border-brand-border p-2.5 rounded-lg"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-blue">help_outline</span><span class="">90 Questions</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-amber-600">schedule</span><span class="">90 Mins</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-blue-600">star_rate</span><span class="">270 Marks</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-destructive">remove_circle_outline</span><span class="">Neg: 1.00 (Session 2)</span></div></div><div class="space-y-1.5 pt-1"><span class="text-xs font-semibold uppercase tracking-wider text-brand-textSecondary block">Sample Structure Preview</span><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Numerical &amp; Mathematical Ability: 20Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Reasoning Ability &amp; Problem Solving: 20Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Awareness: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">English Language &amp; Comprehension: 25Q</span></div></div></div><div class="pt-3 flex items-center justify-between gap-3 border-t border-brand-border"><span class="text-xs text-brand-textSecondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span><span class=""> 05 May 2023</span></span><button type="button" class="min-h-[44px] px-4 py-2 rounded-lg bg-brand-blue hover:bg-brand-navy text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"><span class="">View Paper</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div><div class="bg-brand-surface border border-brand-border rounded-xl p-5 shadow-sm hover:border-slate-300 transition-colors flex flex-col justify-between gap-4"><div class="space-y-3"><div class="flex items-center justify-between gap-2 flex-wrap"><div class="flex items-center gap-1.5 flex-wrap"><span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-blue-100 text-brand-blue border border-blue-200">SSC CGL • Tier-I • 2022</span><span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-brand-textSecondary border border-brand-border flex items-center gap-1"><span class="material-symbols-outlined text-[14px] text-slate-500">lock_clock</span><span class="">Questions not available yet</span></span></div><span class="text-brand-textSecondary font-mono text-xs">Shift 1 • 09:00 - 10:00</span></div><h3 class="text-base font-bold text-brand-textPrimary leading-snug">SSC CGL 2022 Tier-I (01 Dec 2022 — Shift 1)</h3><div class="flex flex-wrap items-center gap-y-1 gap-x-3 text-brand-textSecondary text-xs bg-slate-50 border border-brand-border p-2.5 rounded-lg"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-blue">help_outline</span><span class="">100 Questions</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-amber-600">schedule</span><span class="">60 Mins</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-blue-600">star_rate</span><span class="">200 Marks</span></div><span class="">•</span><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-brand-destructive">remove_circle_outline</span><span class="">Neg: 0.50</span></div></div><div class="space-y-1.5 pt-1"><span class="text-xs font-semibold uppercase tracking-wider text-brand-textSecondary block">Sample Structure Preview</span><div class="flex flex-wrap gap-1.5"><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">Quantitative Aptitude: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Intelligence &amp; Reasoning: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">English Comprehension: 25Q</span><span class="px-2 py-0.5 rounded text-xs bg-slate-100 text-brand-textPrimary font-medium border border-brand-border">General Awareness: 25Q</span></div></div></div><div class="pt-3 flex items-center justify-between gap-3 border-t border-brand-border"><span class="text-xs text-brand-textSecondary flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span><span class=""> 01 Dec 2022</span></span><button type="button" class="min-h-[44px] px-4 py-2 rounded-lg bg-brand-blue hover:bg-brand-navy text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue"><span class="">View Paper</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button></div></div></div>
@@ -469,8 +471,8 @@
 <span class="material-symbols-outlined text-[32px]">filter_alt_off</span>
 </div>
 <h3 class="text-lg font-bold text-brand-textPrimary mb-1">No Previous Year Papers Match Your Query</h3>
-<p class="text-sm text-brand-textSecondary max-w-md mb-6">No archived shifts match the current combination of examination, tier, year, date, shift, or subject filters. Reset your filters to browse all demonstration records.</p>
-<button class="min-h-[44px] px-6 py-2.5 rounded-lg bg-brand-blue text-white text-sm font-semibold hover:bg-brand-navy transition-colors shadow-sm focus:outline-none" id="empty-state-reset-btn" type="button">Reset All Filters</button>
+<p class="text-sm text-brand-textSecondary max-w-md mb-6">No PYQ records match the selected year and view. Clear the filters to browse the available demonstration records.</p>
+<button class="min-h-[44px] px-6 py-2.5 rounded-lg bg-brand-blue text-white text-sm font-semibold hover:bg-brand-navy transition-colors shadow-sm focus:outline-none" id="empty-state-reset-btn" type="button">Clear Filters</button>
 </div>
 <!-- Paper Details Modal -->
 <div aria-labelledby="modal-paper-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="paper-modal" role="dialog">
@@ -852,13 +854,40 @@
         computer_knowledge: 'Computer Knowledge'
       };
 
-      // Active filter states in pipeline
-      let activeExam = 'all';
-      let activeTier = 'all';
+      // PYQ page state. The target exam comes from the shared app header.
+      const EXAM_LABELS = {
+        cgl: 'SSC CGL',
+        chsl: 'SSC CHSL',
+        cpo: 'SSC CPO',
+        mts: 'SSC MTS',
+        gd: 'SSC GD',
+        steno: 'SSC Steno'
+      };
+
+      function normalizeTargetExam(value) {
+        const raw = String(value || 'cgl').trim();
+        const lower = raw.toLowerCase();
+        if (EXAM_LABELS[lower]) return EXAM_LABELS[lower];
+        const exact = Object.values(EXAM_LABELS).find(label => label.toLowerCase() === lower);
+        return exact || 'SSC CGL';
+      }
+
+      function getInitialTargetExam() {
+        try {
+          return normalizeTargetExam(localStorage.getItem('sscflix-target-exam') || window.SSCFlixState?.studentPreferences?.targetExam || 'cgl');
+        } catch (error) {
+          return normalizeTargetExam(window.SSCFlixState?.studentPreferences?.targetExam || 'cgl');
+        }
+      }
+
+      let activeExam = getInitialTargetExam();
       let activeYear = 'all';
-      let activeDate = 'all';
-      let activeShift = 'all';
-      let activeSubject = 'all';
+      let pyqViewType = 'full';
+      let attemptedOnly = false;
+      let assessmentMode = 'test';
+      try {
+        assessmentMode = localStorage.getItem('sscflix-mock-assessment-mode') === 'study' ? 'study' : 'test';
+      } catch (error) {}
 
       // DOM Elements
       const papersContainer = document.getElementById('papers-list-container');
@@ -866,13 +895,13 @@
       const emptyStateResetBtn = document.getElementById('empty-state-reset-btn');
       const filterResultCount = document.getElementById('filter-result-count');
       const activeFilterBadge = document.getElementById('active-filter-badge');
-      const examPillsContainer = document.getElementById('exam-pills-container');
-      const filterTier = document.getElementById('filter-tier');
       const filterYear = document.getElementById('filter-year');
-      const filterDate = document.getElementById('filter-date');
-      const filterShift = document.getElementById('filter-shift');
-      const filterSubject = document.getElementById('filter-subject');
-      const resetFiltersBtn = document.getElementById('reset-filters-btn');
+      const modeTestBtn = document.getElementById('pyq-mode-test');
+      const modeStudyBtn = document.getElementById('pyq-mode-study');
+      const typeFullBtn = document.getElementById('pyq-tab-full');
+      const typeSectionalBtn = document.getElementById('pyq-tab-sectional');
+      const attemptedFilterBtn = document.getElementById('pyq-attempted-filter-btn');
+      const attemptedFilterCount = document.getElementById('pyq-attempted-filter-count');
 
       // Modal Elements
       const paperModal = document.getElementById('paper-modal');
@@ -994,154 +1023,132 @@
          Pipeline Order: Exam -> Tier -> Year -> Date -> Shift -> Subject
          ============================================================ */
 
-      // 1. Exam selector pills dynamically populated ONLY from dataset
-      function renderExamPills() {
-        examPillsContainer.replaceChildren();
-        const examsInDataset = Array.from(new Set(pyqPapers.map(p => p.exam))).filter(Boolean);
-        const examOptions = [{ id: 'all', label: 'All Exams', icon: 'apps' }].concat(
-          examsInDataset.map(e => ({ id: e, label: e }))
-        );
+      // Year-only filter options.
+      function updateYearOptions() {
+        const years = Array.from(new Set(
+          pyqPapers.filter(paper => paper.exam === activeExam).map(paper => paper.year)
+        )).filter(Boolean).sort((a,b) => Number(b) - Number(a));
 
-        examOptions.forEach(opt => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.setAttribute('data-exam', opt.id);
+        filterYear.replaceChildren();
+        const allOption = document.createElement('option');
+        allOption.value = 'all';
+        allOption.textContent = 'All Years';
+        filterYear.appendChild(allOption);
 
-          const isActive = (activeExam === opt.id);
-          let btnClass = 'exam-pill px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-1.5 flex-shrink-0 ';
-          if (isActive) {
-            btnClass += 'bg-brand-blue text-white shadow-sm font-semibold';
-          } else {
-            btnClass += 'bg-slate-100 text-brand-textPrimary hover:bg-slate-200 font-medium';
-          }
-          btn.className = btnClass;
-
-          if (opt.icon) {
-            const icon = document.createElement('span');
-            icon.className = 'material-symbols-outlined text-[18px]';
-            icon.textContent = opt.icon;
-            btn.appendChild(icon);
-          }
-
-          const span = document.createElement('span');
-          span.textContent = opt.label;
-          btn.appendChild(span);
-
-          btn.addEventListener('click', () => {
-            if (activeExam === opt.id) return;
-            activeExam = opt.id;
-            onFilterPipelineChange('exam');
-          });
-
-          examPillsContainer.appendChild(btn);
-        });
-      }
-
-      function updateSelectOptions(selectElem, values, currentVal, defaultLabel, valueFormatter) {
-        selectElem.replaceChildren();
-        const defaultOpt = document.createElement('option');
-        defaultOpt.value = 'all';
-        defaultOpt.textContent = defaultLabel;
-        selectElem.appendChild(defaultOpt);
-
-        values.forEach(v => {
-          const opt = document.createElement('option');
-          opt.value = v;
-          opt.textContent = valueFormatter ? valueFormatter(v) : v;
-          selectElem.appendChild(opt);
+        years.forEach(year => {
+          const option = document.createElement('option');
+          option.value = year;
+          option.textContent = year;
+          filterYear.appendChild(option);
         });
 
-        if (values.includes(currentVal)) {
-          selectElem.value = currentVal;
-          return currentVal;
+        if (years.includes(activeYear)) {
+          filterYear.value = activeYear;
         } else {
-          selectElem.value = 'all';
-          return 'all';
+          activeYear = 'all';
+          filterYear.value = 'all';
         }
       }
 
-      // Reusable progressive cascade recalculator
-      function recalculateCascade(triggerLevel) {
-        // Step 1: Match by Exam
-        const poolAfterExam = pyqPapers.filter(p => activeExam === 'all' || p.exam === activeExam);
+      function getStoredAttemptedPyqIds() {
+        try {
+          const raw = JSON.parse(localStorage.getItem('sscflix-pyq-attempted') || '[]');
+          return new Set(Array.isArray(raw) ? raw.map(value => String(value)) : []);
+        } catch (error) {
+          return new Set();
+        }
+      }
 
-        // Tier options
-        const validTiers = Array.from(new Set(poolAfterExam.map(p => p.tier))).filter(Boolean);
-        activeTier = updateSelectOptions(filterTier, validTiers, activeTier, 'All Tiers / Papers');
-
-        // Step 2: Match by Exam + Tier
-        const poolAfterTier = poolAfterExam.filter(p => activeTier === 'all' || p.tier === activeTier);
-
-        // Year options
-        const validYears = Array.from(new Set(poolAfterTier.map(p => p.year))).filter(Boolean).sort().reverse();
-        activeYear = updateSelectOptions(filterYear, validYears, activeYear, 'All Years');
-
-        // Step 3: Match by Exam + Tier + Year
-        const poolAfterYear = poolAfterTier.filter(p => activeYear === 'all' || p.year === activeYear);
-
-        // Date options
-        const validDates = Array.from(new Set(poolAfterYear.map(p => p.date))).filter(Boolean);
-        activeDate = updateSelectOptions(filterDate, validDates, activeDate, 'All Dates');
-
-        // Step 4: Match by Exam + Tier + Year + Date
-        const poolAfterDate = poolAfterYear.filter(p => activeDate === 'all' || p.date === activeDate);
-
-        // Shift options
-        const validShifts = Array.from(new Set(poolAfterDate.map(p => p.shift))).filter(Boolean).sort();
-        activeShift = updateSelectOptions(filterShift, validShifts, activeShift, 'All Shifts');
-
-        // Step 5: Match by Exam + Tier + Year + Date + Shift
-        const poolAfterShift = poolAfterDate.filter(p => activeShift === 'all' || p.shift === activeShift);
-
-        // Subject options from sections present in current matching pool
-        const subjectSet = new Set();
-        poolAfterShift.forEach(p => {
-          p.sections.forEach(s => subjectSet.add(s.id));
+      function getYearFilteredPapers() {
+        const attemptedIds = getStoredAttemptedPyqIds();
+        return pyqPapers.filter(paper => {
+          const matchesExam = paper.exam === activeExam;
+          const matchesYear = activeYear === 'all' || paper.year === activeYear;
+          const matchesAttempted = !attemptedOnly || attemptedIds.has(paper.id);
+          return matchesExam && matchesYear && matchesAttempted;
         });
-        const validSubjects = Array.from(subjectSet);
-
-        activeSubject = updateSelectOptions(
-          filterSubject,
-          validSubjects,
-          activeSubject,
-          'All Subjects (Full Paper)',
-          (id) => canonicalSubjectLabels[id] || id
-        );
       }
 
       function getFilteredRecords() {
-        return pyqPapers.filter(p => {
-          const matchExam = (activeExam === 'all' || p.exam === activeExam);
-          const matchTier = (activeTier === 'all' || p.tier === activeTier);
-          const matchYear = (activeYear === 'all' || p.year === activeYear);
-          const matchDate = (activeDate === 'all' || p.date === activeDate);
-          const matchShift = (activeShift === 'all' || p.shift === activeShift);
-          const matchSubject = (activeSubject === 'all' || p.sections.some(s => s.id === activeSubject));
-          return matchExam && matchTier && matchYear && matchDate && matchShift && matchSubject;
-        });
+        const papers = getYearFilteredPapers();
+        if (pyqViewType === 'full') return papers;
+
+        return papers.flatMap(paper => paper.sections.map(section => ({
+          ...paper,
+          id: paper.id + '--' + section.id,
+          parentPaperId: paper.id,
+          sectionId: section.id,
+          title: paper.title + ' — ' + section.name,
+          questionsCount: section.count,
+          maxMarks: section.marks,
+          sections: [section]
+        })));
       }
 
-      function onFilterPipelineChange(changedLevel) {
-        if (changedLevel === 'exam') {
-          renderExamPills();
-        }
-        recalculateCascade(changedLevel);
+      function updateAssessmentModeUI() {
+        const activeClass = 'pyq-mode-option min-h-8 sm:min-h-9 rounded-md px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
+        const inactiveClass = 'pyq-mode-option min-h-8 sm:min-h-9 rounded-md px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
+        const isTestMode = assessmentMode === 'test';
+        modeTestBtn.className = isTestMode ? activeClass : inactiveClass;
+        modeStudyBtn.className = isTestMode ? inactiveClass : activeClass;
+        modeTestBtn.setAttribute('aria-pressed', String(isTestMode));
+        modeStudyBtn.setAttribute('aria-pressed', String(!isTestMode));
+      }
+
+      function setAssessmentMode(mode) {
+        if (mode !== 'test' && mode !== 'study') return;
+        assessmentMode = mode;
+        try { localStorage.setItem('sscflix-mock-assessment-mode', mode); } catch (error) {}
+        updateAssessmentModeUI();
+      }
+
+      function updatePyqTypeUI() {
+        const fullIsActive = pyqViewType === 'full';
+        const activeClass = 'pyq-type-tab min-h-8 sm:min-h-9 rounded-lg px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
+        const inactiveClass = 'pyq-type-tab min-h-8 sm:min-h-9 rounded-lg px-3 sm:px-4 text-[11px] sm:text-sm font-semibold transition-all text-[#475569] hover:bg-white hover:text-[#0F172A] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
+        typeFullBtn.className = fullIsActive ? activeClass : inactiveClass;
+        typeSectionalBtn.className = fullIsActive ? inactiveClass : activeClass;
+        typeFullBtn.setAttribute('aria-selected', String(fullIsActive));
+        typeSectionalBtn.setAttribute('aria-selected', String(!fullIsActive));
+      }
+
+      function setPyqViewType(mode) {
+        if (mode !== 'full' && mode !== 'sectional') return;
+        pyqViewType = mode;
+        updatePyqTypeUI();
         renderPapersList();
       }
 
-      // Render cards list with strict honest demonstration state
+      function updateAttemptedFilterUI() {
+        const attemptedIds = getStoredAttemptedPyqIds();
+        const attemptedPapers = pyqPapers.filter(paper =>
+          paper.exam === activeExam &&
+          (activeYear === 'all' || paper.year === activeYear) &&
+          attemptedIds.has(paper.id)
+        );
+        const count = pyqViewType === 'full'
+          ? attemptedPapers.length
+          : attemptedPapers.reduce((total, paper) => total + paper.sections.length, 0);
+
+        attemptedFilterCount.textContent = String(count);
+        attemptedFilterBtn.setAttribute('aria-pressed', String(attemptedOnly));
+        attemptedFilterBtn.className = attemptedOnly
+          ? 'sm:order-3 sm:ml-auto inline-flex min-h-9 sm:min-h-10 shrink-0 items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl border border-[#1D4ED8] bg-[#EFF6FF] px-2.5 sm:px-3.5 text-xs sm:text-sm font-semibold text-[#1D4ED8] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1'
+          : 'sm:order-3 sm:ml-auto inline-flex min-h-9 sm:min-h-10 shrink-0 items-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl border border-[#CBD5E1] bg-white px-2.5 sm:px-3.5 text-xs sm:text-sm font-semibold text-[#475569] hover:border-[#94A3B8] hover:bg-[#F8FAFC] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
+      }
+
+      function toggleAttemptedFilter() {
+        attemptedOnly = !attemptedOnly;
+        updateAttemptedFilterUI();
+        renderPapersList();
+      }
+
+// Render cards list with strict honest demonstration state
       function renderPapersList() {
         const filtered = getFilteredRecords();
         papersContainer.replaceChildren();
 
-        const isFiltered = (
-          activeExam !== 'all' ||
-          activeTier !== 'all' ||
-          activeYear !== 'all' ||
-          activeDate !== 'all' ||
-          activeShift !== 'all' ||
-          activeSubject !== 'all'
-        );
+        const isFiltered = activeYear !== 'all' || attemptedOnly;
 
         if (isFiltered) {
           activeFilterBadge.classList.remove('hidden');
@@ -1149,11 +1156,19 @@
           activeFilterBadge.classList.add('hidden');
         }
 
-        filterResultCount.textContent = `Showing ${filtered.length} paper${filtered.length === 1 ? '' : 's'}`;
+        const resultUnit = pyqViewType === 'full' ? 'PYQ paper' : 'sectional PYQ';
+        filterResultCount.textContent = `Showing ${filtered.length} ${resultUnit}${filtered.length === 1 ? '' : 's'}`;
+        updateAttemptedFilterUI();
 
         if (filtered.length === 0) {
           papersContainer.classList.add('hidden');
           emptyStateView.classList.remove('hidden');
+          const emptyTitle = emptyStateView.querySelector('h3');
+          const emptyDescription = emptyStateView.querySelector('p');
+          if (emptyTitle) emptyTitle.textContent = attemptedOnly ? 'No Attempted PYQs Yet' : 'No Previous Year Questions Found';
+          if (emptyDescription) emptyDescription.textContent = attemptedOnly
+            ? 'No PYQ records have been marked as attempted for this examination yet.'
+            : 'No records match the selected year and examination.';
           return;
         }
 
@@ -1482,49 +1497,49 @@
       moreSheetBackdrop.addEventListener('click', closeMoreSheet);
 
       /* ============================================================
-         Filter Event Listeners
+         PYQ Filter Events
          ============================================================ */
-      filterTier.addEventListener('change', (e) => {
-        activeTier = e.target.value;
-        onFilterPipelineChange('tier');
-      });
-
-      filterYear.addEventListener('change', (e) => {
-        activeYear = e.target.value;
-        onFilterPipelineChange('year');
-      });
-
-      filterDate.addEventListener('change', (e) => {
-        activeDate = e.target.value;
-        onFilterPipelineChange('date');
-      });
-
-      filterShift.addEventListener('change', (e) => {
-        activeShift = e.target.value;
-        onFilterPipelineChange('shift');
-      });
-
-      filterSubject.addEventListener('change', (e) => {
-        activeSubject = e.target.value;
+      filterYear.addEventListener('change', (event) => {
+        activeYear = event.target.value;
+        updateAttemptedFilterUI();
         renderPapersList();
       });
 
-      function resetAllFilters() {
-        activeExam = 'all';
-        activeTier = 'all';
+      modeTestBtn.addEventListener('click', () => setAssessmentMode('test'));
+      modeStudyBtn.addEventListener('click', () => setAssessmentMode('study'));
+      typeFullBtn.addEventListener('click', () => setPyqViewType('full'));
+      typeSectionalBtn.addEventListener('click', () => setPyqViewType('sectional'));
+      attemptedFilterBtn.addEventListener('click', toggleAttemptedFilter);
+
+      function clearPyqFilters() {
         activeYear = 'all';
-        activeDate = 'all';
-        activeShift = 'all';
-        activeSubject = 'all';
-
-        renderExamPills();
-        recalculateCascade('exam');
+        attemptedOnly = false;
+        filterYear.value = 'all';
+        updateAttemptedFilterUI();
         renderPapersList();
-        showToast('All filters cleanly restored to initial demonstration state.', 'restart_alt');
+        showToast('Year and attempted filters cleared.', 'restart_alt');
       }
 
-      resetFiltersBtn.addEventListener('click', resetAllFilters);
-      emptyStateResetBtn.addEventListener('click', resetAllFilters);
+      emptyStateResetBtn.addEventListener('click', clearPyqFilters);
+
+      // Keep PYQs aligned with the global target-exam selector in the shared header.
+      window.addEventListener('sscflix:statechange', (event) => {
+        const nextExamId = event.detail && event.detail.examId;
+        if (!nextExamId) return;
+        activeExam = normalizeTargetExam(nextExamId);
+        activeYear = 'all';
+        attemptedOnly = false;
+        updateYearOptions();
+        updateAttemptedFilterUI();
+        renderPapersList();
+      });
+
+      // Initialize filters and controls.
+      updateYearOptions();
+      updateAssessmentModeUI();
+      updatePyqTypeUI();
+      updateAttemptedFilterUI();
+      renderPapersList();
 
       /* ============================================================
          Global Prototype Navigation Intercept

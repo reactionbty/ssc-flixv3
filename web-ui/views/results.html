@@ -1,0 +1,539 @@
+<style data-route-style>
+
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: #F8FAFC;
+        color: #0F172A;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body { overscroll-behavior-y: none; }
+    }
+    .scrollbar-none::-webkit-scrollbar { display: none; }
+    .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+  
+
+
+/* Dashboard light and dark appearance */
+    html.dashboard-dark { background-color: #0B1220 !important; color-scheme: dark; }
+    body.shared-dark-mode {
+      color: #E2E8F0 !important;
+      background-color: #0B1220 !important;
+      color-scheme: dark;
+    }
+    body.shared-dark-mode [class~="bg-white"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="bg-[#F8FAFC]"],
+    body.shared-dark-mode [class~="bg-slate-50"],
+    body.shared-dark-mode [class~="bg-slate-50/50"] { background-color: #0F1B2D !important; }
+    body.shared-dark-mode [class~="bg-[#F1F5F9]"],
+    body.shared-dark-mode [class~="bg-slate-100"] { background-color: #1E293B !important; }
+    body.shared-dark-mode [class~="bg-[#EFF6FF]"],
+    body.shared-dark-mode [class~="bg-blue-50"],
+    body.shared-dark-mode [class~="bg-blue-50/50"],
+    body.shared-dark-mode [class~="bg-blue-50/60"],
+    body.shared-dark-mode [class~="bg-blue-100"] { background-color: #172B46 !important; }
+    body.shared-dark-mode [class~="text-[#0F172A]"],
+    body.shared-dark-mode [class~="text-slate-900"],
+    body.shared-dark-mode [class~="text-slate-800"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-[#475569]"],
+    body.shared-dark-mode [class~="text-slate-700"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="text-[#64748B]"],
+    body.shared-dark-mode [class~="text-slate-600"],
+    body.shared-dark-mode [class~="text-slate-500"] { color: #91A1B8 !important; }
+    body.shared-dark-mode [class~="text-[#1D4ED8]"],
+    body.shared-dark-mode [class~="text-blue-700"],
+    body.shared-dark-mode [class~="text-blue-800"] { color: #93C5FD !important; }
+    body.shared-dark-mode [class~="border-[#E2E8F0]"],
+    body.shared-dark-mode [class~="border-[#CBD5E1]"],
+    body.shared-dark-mode [class~="border-slate-100"],
+    body.shared-dark-mode [class~="border-slate-200"],
+    body.shared-dark-mode [class~="border-[#E2E8F0]/70"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="border-blue-100"],
+    body.shared-dark-mode [class~="border-[#BFDBFE]"] { border-color: #294766 !important; }
+    body.shared-dark-mode hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]):hover {
+      background-color: #1E293B !important;
+      color: #F8FAFC !important;
+    }
+    body.shared-dark-mode .nav-item[aria-current="page"] {
+      background-color: #172B46 !important;
+      color: #93C5FD !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card {
+      background-color: #241F3C !important;
+      border-color: #51427E !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card h3 { color: #F0EAFE !important; }
+    body.shared-dark-mode #sidebar-pro-card p { color: #C4B9E8 !important; }
+    body.shared-dark-mode #sidebar-pro-card button { color: #C4B5FD !important; }
+    body.shared-dark-mode #sidebar-pro-card > div:first-child {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #C4B5FD !important;
+    }
+    body.shared-dark-mode #sidebar-account-row { border-color: #2A3A50 !important; }
+    body.shared-dark-mode #sidebar-account-row #sidebar-user-name { color: #E5EDF8 !important; }
+    body.shared-dark-mode #sidebar-account-row .sidebar-avatar-initials {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #DDD6FE !important;
+    }
+    body.shared-dark-mode #sidebar-account-row button {
+      background-color: #342B22 !important;
+      border-color: #7C6330 !important;
+      color: #F4D58D !important;
+    }
+    body.shared-dark-mode .dashboard-mobile-brand { color: #93C5FD !important; }
+    body.shared-dark-mode header button[aria-label="Change target examination"] {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop,
+    body.shared-dark-mode #dashboard-search-mobile {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop-input,
+    body.shared-dark-mode #dashboard-search-mobile-input {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop svg,
+    body.shared-dark-mode #dashboard-search-mobile svg { color: #91A1B8 !important; }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E2E8F0 !important;
+    }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn:hover { background-color: #1E293B !important; }
+    body.shared-dark-mode input,
+    body.shared-dark-mode select,
+    body.shared-dark-mode textarea {
+      background-color: #0F1B2D !important;
+      color: #E5EDF8 !important;
+      border-color: #34465F !important;
+    }
+    body.shared-dark-mode input::placeholder,
+    body.shared-dark-mode textarea::placeholder { color: #71839B !important; }
+    body.shared-dark-mode .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+  
+    body.shared-dark-mode .shared-app-header,
+    body.shared-dark-mode .shared-app-sidebar,
+    body.shared-dark-mode #shared-shell-profile-dropdown,
+    body.shared-dark-mode .shared-target-modal-panel {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode .shared-app-sidebar nav a:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .shared-app-sidebar nav a[aria-current="page"] { background-color: #172B46 !important; color: #93C5FD !important; }
+    body.shared-dark-mode .shared-app-sidebar hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#0F172A]"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#64748B]"] { color: #91A1B8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="border-[#E2E8F0]"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="bg-brand-bg"] { background-color: #0B1220 !important; }
+    body.shared-dark-mode [class~="bg-brand-surface"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="text-brand-textPrimary"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-brand-textSecondary"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="border-brand-border"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-app-header input {
+      background-color: #0F1B2D !important;
+      border-color: #34465F !important;
+      color: #E5EDF8 !important;
+    }
+
+
+</style>
+<div data-spa-view="results" data-body-class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col selection:bg-blue-100 selection:text-blue-900 md:flex-row" data-html-class="">
+<!-- Desktop Sidebar -->
+<div id="app-sidebar-slot"></div>
+<!-- Top App Bar -->
+<div class="flex-1 flex flex-col min-w-0 md:ml-[240px]">
+
+<!-- Main Content Container with safe mobile bottom padding -->
+<div id="app-header-slot"></div>
+<main class="w-full pt-5 pb-28 sm:pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
+<!-- Header Section -->
+<section class="w-full pt-2">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-slate-200">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+<a class="hover:text-blue-700 transition-colors" href="#/mock-tests">Mock Tests</a>
+<span class="material-symbols-outlined text-[14px] text-slate-400">chevron_right</span>
+<span class="text-slate-900 font-semibold" id="header-breadcrumb-title">Test Result</span>
+</div>
+<div class="flex flex-wrap items-center gap-2.5">
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight" id="header-main-title">Test Result</h1>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">check_circle</span>
+                Evaluation Completed
+              </span>
+<span class="text-xs font-medium text-slate-500 flex items-center gap-1" id="header-attempt-label">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+                Demonstration Attempt
+              </span>
+</div>
+<div class="flex flex-wrap items-center gap-2 text-sm text-slate-600" id="header-subtitle-container">
+<span class="font-semibold text-slate-800" id="header-test-title">SSC CGL Full Mock 01</span>
+<span class="text-slate-300">•</span>
+<span id="header-sub-meta">Tier-1 Simulation (100 Questions • 200 Marks • 60 Mins)</span>
+</div>
+</div>
+<!-- Dynamic Marking Scheme pill -->
+<div class="flex sm:flex-col sm:items-end justify-between items-center text-right self-start sm:self-auto bg-slate-100 sm:bg-white border sm:border-slate-200 px-3 py-2 rounded-lg shadow-sm">
+<span class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">Marking Scheme</span>
+<span class="text-xs font-semibold text-slate-700 mt-0.5" id="marking-scheme-text">
+<strong class="text-blue-700">+2.00</strong> correct, <strong class="text-rose-600">-0.50</strong> incorrect
+            </span>
+</div>
+</div>
+<!-- Demonstration Mode Disclaimer -->
+<div class="mt-3 px-3.5 py-2.5 bg-slate-100 border border-slate-200 rounded-lg flex items-center gap-2.5 text-xs text-slate-600">
+<span class="material-symbols-outlined text-[18px] text-blue-700 flex-shrink-0">info</span>
+<span>Demonstration summary • The score cards and question-level answers on this screen use sample records.</span>
+</div>
+<div class="hidden mt-2 px-3.5 py-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-900" id="linked-cbt-summary-notice" role="status">
+  <p class="font-semibold" id="linked-cbt-summary-title">Latest CBT preview</p>
+  <p class="mt-1 leading-relaxed" id="linked-cbt-summary-details"></p>
+  <p class="mt-1 text-blue-800">This handoff carries the test and attempt summary only. It does not transfer actual question answers or calculate a live score.</p>
+</div>
+</section>
+<!-- Overall Metrics Summary Card -->
+<section class="w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+<!-- Primary Total Score Hero -->
+<div class="lg:col-span-4 bg-white border border-slate-200 rounded-lg p-5 flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+<span class="text-xs uppercase font-semibold tracking-wider text-slate-500">Final Aggregated Score</span>
+<span class="text-xs font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">Tier-1 Prototype</span>
+</div>
+<div class="flex items-baseline gap-1.5 mb-2">
+<span class="text-4xl font-extrabold text-blue-700 tracking-tight" id="hero-score-val">139.50</span>
+<span class="text-base text-slate-500 font-medium" id="hero-max-score-val">/ 200.00</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed">
+                Positive: <strong class="text-emerald-700 font-bold" id="hero-pos-val">+148.00</strong> Marks  •  Negative: <strong class="text-rose-600 font-bold" id="hero-neg-val">-8.50</strong> Marks
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-slate-400">schedule</span>
+<span>Time: <strong class="text-slate-800" id="hero-time-val">54m 12s</strong> / <span id="hero-total-time-val">60m 00s</span></span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-slate-400">assignment_turned_in</span>
+<span>Attempt Rate: <strong class="text-slate-800" id="hero-attempt-rate">91.0%</strong></span>
+</div>
+</div>
+</div>
+<!-- Key 4 Quantitative KPIs -->
+<div class="lg:col-span-8 bg-white border border-slate-200 rounded-lg p-5 shadow-sm flex flex-col justify-between">
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<!-- Accuracy -->
+<div class="p-3 bg-slate-50 border border-slate-200 rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between text-slate-500 mb-2">
+<span class="text-xs font-semibold uppercase tracking-wider">Accuracy</span>
+<span class="material-symbols-outlined text-[18px] text-blue-700">target</span>
+</div>
+<div>
+<span class="text-2xl font-bold text-slate-900" id="kpi-accuracy">81.3%</span>
+<span class="block text-xs text-slate-500 mt-0.5" id="kpi-acc-sub">74 / 91 Attempted</span>
+</div>
+</div>
+<!-- Attempted -->
+<div class="p-3 bg-slate-50 border border-slate-200 rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between text-slate-500 mb-2">
+<span class="text-xs font-semibold uppercase tracking-wider">Attempted</span>
+<span class="material-symbols-outlined text-[18px] text-blue-700">edit_note</span>
+</div>
+<div>
+<span class="text-2xl font-bold text-slate-900" id="kpi-attempted">91<span class="text-sm font-normal text-slate-500" id="kpi-attempted-denom">/100</span></span>
+<span class="block text-xs text-slate-500 mt-0.5" id="kpi-attempted-sub">91 Questions</span>
+</div>
+</div>
+<!-- Correct -->
+<div class="p-3 bg-emerald-50/70 border border-emerald-200 rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between text-emerald-700 mb-2">
+<span class="text-xs font-semibold uppercase tracking-wider">Correct</span>
+<span class="material-symbols-outlined text-[18px] text-emerald-600">check_circle</span>
+</div>
+<div>
+<span class="text-2xl font-bold text-emerald-700" id="kpi-correct">74</span>
+<span class="block text-xs text-emerald-600 font-medium mt-0.5" id="kpi-correct-sub">+148.00 Marks</span>
+</div>
+</div>
+<!-- Incorrect -->
+<div class="p-3 bg-rose-50/70 border border-rose-200 rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between text-rose-700 mb-2">
+<span class="text-xs font-semibold uppercase tracking-wider">Incorrect</span>
+<span class="material-symbols-outlined text-[18px] text-rose-600">cancel</span>
+</div>
+<div>
+<span class="text-2xl font-bold text-rose-700" id="kpi-incorrect">17</span>
+<span class="block text-xs text-rose-600 font-medium mt-0.5" id="kpi-incorrect-sub">-8.50 Marks</span>
+</div>
+</div>
+</div>
+<!-- Action Row -->
+<div class="mt-4 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-2 text-xs text-slate-600">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0"></span>
+<span>Unattempted: <strong class="text-slate-900" id="kpi-unattempted">9 Questions</strong> (0.00 Marks)</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 rounded-lg bg-blue-700 text-white font-medium text-xs hover:bg-blue-800 transition-colors flex items-center gap-1.5 shadow-sm min-h-[44px]" id="btn-scroll-review" type="button">
+<span class="material-symbols-outlined text-[16px]">find_in_page</span>
+<span>Jump to Review</span>
+</button>
+<a class="px-4 py-2 rounded-lg bg-slate-100 text-slate-700 font-medium text-xs hover:bg-slate-200 transition-colors flex items-center gap-1.5 min-h-[44px]" href="#/mock-tests">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>All Mock Tests</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section-wise Performance Breakdown -->
+<section class="w-full">
+<div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 pb-3 border-b border-slate-100">
+<div>
+<h2 class="text-base font-bold text-slate-900">Section-wise Performance Breakdown</h2>
+<p class="text-xs text-slate-500" id="sec-breakdown-desc">Evaluation across all configured test modules.</p>
+</div>
+<span class="text-xs text-slate-500 font-medium" id="sec-breakdown-meta">Calculated live</span>
+</div>
+<!-- Desktop Table (Configuration-Driven) -->
+<div class="hidden md:block overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs uppercase tracking-wider font-semibold text-slate-500 bg-slate-50 border-b border-slate-200">
+<th class="py-3 px-4">Section Name</th>
+<th class="py-3 px-4 text-center">Attempted</th>
+<th class="py-3 px-4 text-center text-emerald-700">Correct</th>
+<th class="py-3 px-4 text-center text-rose-700">Incorrect</th>
+<th class="py-3 px-4 text-center text-amber-700">Left</th>
+<th class="py-3 px-4 text-right">Score</th>
+<th class="py-3 px-4 text-right">Accuracy</th>
+<th class="py-3 px-4 text-center">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-xs text-slate-700" id="section-table-body">
+<!-- Dynamically populated from question records -->
+</tbody>
+<tfoot class="bg-slate-50 font-semibold text-xs border-t-2 border-slate-200 text-slate-900" id="section-table-foot">
+<!-- Dynamically populated -->
+</tfoot>
+</table>
+</div>
+<!-- Mobile Stacked Cards (Configuration-Driven) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:hidden" id="section-mobile-cards">
+<!-- Dynamically populated from question records -->
+</div>
+</div>
+</section>
+<!-- Answer Review Workbench Section -->
+<section class="w-full scroll-mt-20" id="answer-review">
+<div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm space-y-4">
+<!-- Header & Filters -->
+<div class="flex flex-col gap-3 pb-4 border-b border-slate-100">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+<div>
+<h2 class="text-base font-bold text-slate-900 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-blue-700 text-[20px]">fact_check</span>
+                  Answer Review Workbench
+                </h2>
+<p class="text-xs text-slate-500">Inspect candidate choices, academic solutions, and rationales.</p>
+</div>
+<!-- Configuration-Driven Section Filters Tabs (min-h-[44px] touch target) -->
+<div aria-label="Section Filters" class="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1.5 rounded-lg" id="section-tabs-container" role="tablist">
+<!-- Injected dynamically -->
+</div>
+</div>
+<!-- Status Filter Pills with Live Derived Counts (min-h-[44px] touch target) -->
+<div aria-label="Status Filters" class="flex flex-wrap items-center gap-2 pt-1" id="status-filters-group" role="group">
+<button aria-pressed="true" class="status-pill px-3.5 py-2 rounded-lg text-xs font-semibold bg-blue-700 text-white min-h-[44px] inline-flex items-center justify-center transition-colors" data-status="all" onclick="window.filterByStatus('all')" type="button">
+                All Questions (<span id="count-pill-all">0</span>)
+              </button>
+<button aria-pressed="false" class="status-pill px-3.5 py-2 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 min-h-[44px] inline-flex items-center justify-center transition-colors gap-1.5" data-status="correct" onclick="window.filterByStatus('correct')" type="button">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                Correct (<span id="count-pill-correct">0</span>)
+              </button>
+<button aria-pressed="false" class="status-pill px-3.5 py-2 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 hover:bg-rose-50 hover:text-rose-800 min-h-[44px] inline-flex items-center justify-center transition-colors gap-1.5" data-status="incorrect" onclick="window.filterByStatus('incorrect')" type="button">
+<span class="w-2 h-2 rounded-full bg-rose-600"></span>
+                Incorrect (<span id="count-pill-incorrect">0</span>)
+              </button>
+<button aria-pressed="false" class="status-pill px-3.5 py-2 rounded-lg text-xs font-medium bg-slate-100 text-slate-700 hover:bg-amber-50 hover:text-amber-800 min-h-[44px] inline-flex items-center justify-center transition-colors gap-1.5" data-status="unattempted" onclick="window.filterByStatus('unattempted')" type="button">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                Unattempted (<span id="count-pill-unattempted">0</span>)
+              </button>
+</div>
+</div>
+<!-- Mobile Horizontal Ribbon with 44px touch targets & scroll preservation -->
+<div class="md:hidden">
+<span class="text-xs font-medium text-slate-500 block mb-1.5">Jump to question in current view:</span>
+<div class="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none" id="mobile-question-ribbon">
+<!-- Dynamically populated with data-question-id -->
+</div>
+</div>
+<!-- 2-Column Inspector Layout -->
+<div class="flex flex-col md:flex-row gap-5 items-start pt-1">
+<!-- Left Column: Desktop Question Palette -->
+<div class="hidden md:flex flex-col w-72 flex-shrink-0 bg-slate-50 border border-slate-200 rounded-lg p-2.5 max-h-[640px]">
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-200 text-xs font-semibold text-slate-700">
+<span>Question Palette</span>
+<span class="text-slate-500 font-mono" id="palette-count-summary">Showing 0 Qs</span>
+</div>
+<div class="flex flex-col gap-1 overflow-y-auto pr-1" id="desktop-palette-list">
+<!-- Dynamically populated -->
+</div>
+</div>
+<!-- Right Column: Question Inspector Detail -->
+<div class="flex-1 w-full bg-white border border-slate-200 rounded-lg p-4 sm:p-5 flex flex-col justify-between min-h-[500px]">
+<div class="space-y-4" id="inspector-content">
+<!-- Meta Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200" id="inspector-section-badge">Section</span>
+<span class="text-sm font-bold text-slate-900" id="inspector-qnum-title">Question 1</span>
+<span class="hidden px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200" id="inspector-placeholder-badge">
+                      Demonstration Placeholder • Sample Content Only
+                    </span>
+</div>
+<div id="inspector-score-badge">
+<!-- Dynamic status badge -->
+</div>
+</div>
+<!-- Statement -->
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-slate-400 block mb-1">Problem Statement</span>
+<div class="text-sm font-medium text-slate-900 leading-relaxed bg-slate-50 p-3.5 rounded-lg border border-slate-200 whitespace-pre-line" id="inspector-statement">
+<!-- Loaded dynamically -->
+</div>
+</div>
+<!-- Options Stack -->
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-slate-400 block mb-1.5">Options &amp; Choice Analysis</span>
+<div class="flex flex-col gap-2" id="inspector-options">
+<!-- Loaded dynamically -->
+</div>
+</div>
+<!-- Academic Solution / Fallback -->
+<div class="p-3.5 bg-slate-50 border border-slate-200 rounded-lg" id="inspector-solution-container">
+<div class="flex items-center gap-1.5 mb-1.5 text-blue-700 font-bold text-xs" id="inspector-solution-title">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+<h4>Detailed Academic Solution</h4>
+</div>
+<div class="text-xs text-slate-600 leading-relaxed whitespace-pre-line" id="inspector-explanation">
+<!-- Loaded dynamically -->
+</div>
+</div>
+</div>
+<!-- Empty state container for no matching filter results -->
+<div class="hidden flex-col items-center justify-center py-16 px-4 text-center space-y-3" id="inspector-empty-state">
+<div class="w-14 h-14 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-[30px]">filter_list_off</span>
+</div>
+<h3 class="text-base font-bold text-slate-900">No questions found matching the selected filters</h3>
+<p class="text-xs text-slate-500 max-w-sm">Try selecting a different status or section filter to view questions.</p>
+</div>
+<!-- Inspector Navigation Footer -->
+<div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+<button class="px-4 py-2 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium hover:bg-slate-200 transition-colors flex items-center gap-1 min-h-[44px]" id="btn-prev-q" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+<span>Previous</span>
+</button>
+<span class="text-xs font-mono font-medium text-slate-600" id="inspector-footer-counter">1 of 100</span>
+<button class="px-4 py-2 rounded-lg bg-blue-700 text-white text-xs font-medium hover:bg-blue-800 transition-colors flex items-center gap-1 min-h-[44px] shadow-sm" id="btn-next-q" type="button">
+<span>Next</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Mobile Bottom Navigation Bar with Safe-Area Inset -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur border-t border-slate-200" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
+<nav class="flex items-center justify-around h-16 px-1">
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 hover:text-slate-900 transition-colors min-h-[48px]" href="#/dashboard">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-[11px] mt-0.5">Dashboard</span>
+</a>
+<a aria-current="page" class="flex flex-col items-center justify-center flex-1 py-1 text-blue-700 font-bold transition-colors min-h-[48px]" href="#/mock-tests">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+<span class="text-[11px] mt-0.5">Mock Tests</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 hover:text-slate-900 transition-colors min-h-[48px]" href="#/pyqs">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+<span class="text-[11px] mt-0.5">PYQs</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 hover:text-slate-900 transition-colors min-h-[48px]" href="#/chapter-tests">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="text-[11px] mt-0.5">Chapter Tests</span>
+</a>
+<button aria-controls="mobileMoreModal" aria-expanded="false" aria-haspopup="dialog" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-500 hover:text-slate-900 transition-colors min-h-[48px]" id="mobileMoreBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+<span class="text-[11px] mt-0.5">More</span>
+</button>
+</nav>
+</div>
+<!-- Mobile More Navigation Bottom Sheet Modal -->
+<div aria-hidden="true" aria-label="Additional Navigation" aria-modal="true" class="fixed inset-0 z-50 flex items-end justify-center hidden" id="mobileMoreModal" role="dialog">
+<!-- Backdrop -->
+<div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity" id="mobileMoreBackdrop"></div>
+<!-- Sheet Container -->
+<div class="relative w-full max-w-lg bg-white rounded-t-2xl shadow-2xl border-t border-slate-200 z-10 flex flex-col overflow-hidden max-h-[85vh] animate-in slide-in-from-bottom duration-200" style="padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));">
+<!-- Header -->
+<div class="h-14 px-5 flex items-center justify-between border-b border-slate-100">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-700 text-[20px]">menu</span>
+<h2 class="text-sm font-bold text-slate-900">More Navigation</h2>
+</div>
+<button aria-label="Close menu" class="w-9 h-9 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" id="closeMobileMoreBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Menu Options -->
+<div class="p-3 overflow-y-auto space-y-1">
+<a class="flex items-center justify-between p-3 rounded-lg text-slate-700 hover:bg-slate-50 font-medium text-sm transition-colors min-h-[48px] focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" href="#/my-tests">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-700 text-[22px]">fact_check</span>
+<span>My Tests</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-lg text-slate-700 hover:bg-slate-50 font-medium text-sm transition-colors min-h-[48px] focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" href="#/bookmarks">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-700 text-[22px]">bookmark</span>
+<span>Bookmarks</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-lg text-slate-700 hover:bg-slate-50 font-medium text-sm transition-colors min-h-[48px] focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" href="#/preferences">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-700 text-[22px]">settings</span>
+<span>Preferences</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-3 rounded-lg text-slate-700 hover:bg-slate-50 font-medium text-sm transition-colors min-h-[48px] focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" href="#/preferences">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-700 text-[22px]">account_circle</span>
+<span>Profile</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[18px]">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Single Authoritative Data Engine & Application Script -->
+</div>

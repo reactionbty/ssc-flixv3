@@ -202,6 +202,23 @@
     color: #E5EDF8 !important;
   }
 </style>
+<style>
+  #assessment-mode-switch { background-color: #EAE8F2; }
+  #assessment-mode-switch .assessment-mode-option[aria-pressed="false"] { color: #38354F; }
+  body.shared-dark-mode #assessment-mode-switch { background-color: #29263A !important; }
+  body.shared-dark-mode #assessment-mode-switch .assessment-mode-option[aria-pressed="false"] { color: #D6D1E8 !important; }
+  body.shared-dark-mode #assessment-mode-switch .assessment-mode-option[aria-pressed="true"] { background-color: #6750E8 !important; color: #FFFFFF !important; }
+  body.shared-dark-mode #attempted-filter-btn[aria-pressed="false"] {
+    background-color: #111C2E !important;
+    border-color: #2A3A50 !important;
+    color: #B8C5D8 !important;
+  }
+  body.shared-dark-mode #attempted-filter-btn[aria-pressed="true"] {
+    background-color: #172B46 !important;
+    border-color: #3B82F6 !important;
+    color: #93C5FD !important;
+  }
+</style>
 </head>
 <body class="min-h-full flex flex-col md:flex-row antialiased text-[#0F172A] bg-[#F8FAFC]">
 <!-- ========================================================================= -->
@@ -410,14 +427,16 @@
 </div>
 <!-- Page Introduction -->
 <section class="mb-6">
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[#E2E8F0]">
-<div>
-<h1 class="text-2xl font-bold text-[#0F172A] tracking-tight">Mock Tests</h1>
-<p class="text-sm text-[#475569] mt-1">
-                Practice with full-length and sectional tests for your selected exam.
-              </p>
-</div>
-</div>
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E2E8F0]">
+    <div>
+      <h1 class="text-2xl font-bold text-[#0F172A] tracking-tight">Mock Tests</h1>
+      <p class="text-sm text-[#475569] mt-1">Practice with full-length and sectional tests for your selected exam.</p>
+    </div>
+    <div aria-label="Assessment mode" class="inline-flex w-fit items-center gap-1 rounded-xl bg-[#EAE8F2] p-1.5" id="assessment-mode-switch" role="group">
+      <button aria-pressed="true" class="assessment-mode-option min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all bg-[#6750E8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]" id="mode-test" onclick="handleAssessmentModeChange('test')" type="button">Test Mode</button>
+      <button aria-pressed="false" class="assessment-mode-option min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all text-[#38354F] hover:bg-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]" id="mode-study" onclick="handleAssessmentModeChange('study')" type="button">Study Mode</button>
+    </div>
+  </div>
 </section>
 <!-- Tier / Paper Filter -->
 <section class="mb-4">
@@ -436,7 +455,8 @@
 
 <!-- Test Type & Subject Filters -->
 <section class="mb-6">
-  <div class="flex flex-wrap items-center gap-2.5">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div class="flex flex-wrap items-center gap-2.5">
     <div aria-label="Test type" class="inline-flex items-center gap-1 rounded-xl bg-[#F1F5F9] p-1" id="test-type-switch" role="tablist">
       <button aria-selected="true" class="test-type-tab min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all bg-[#1D4ED8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="tab-full" onclick="handleCategoryChange('full')" role="tab" type="button">
         Full Mock
@@ -459,6 +479,11 @@
         <path d="m6 9 6 6 6-6"></path>
       </svg>
     </div>
+    <button aria-pressed="false" class="inline-flex min-h-10 items-center gap-2 rounded-xl border border-[#CBD5E1] bg-white px-3.5 text-xs sm:text-sm font-semibold text-[#475569] hover:border-[#94A3B8] hover:bg-[#F8FAFC] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1" id="attempted-filter-btn" onclick="toggleAttemptedFilter()" type="button">
+      <span class="material-symbols-outlined text-base">check_circle</span>
+      <span>Attempted</span>
+      <span class="rounded-md bg-[#F1F5F9] px-1.5 py-0.5 text-[11px] font-bold text-[#475569]" id="attempted-filter-count">0</span>
+    </button>
   </div>
 </section>
 <!-- Tests Listing Feed -->
@@ -703,7 +728,7 @@
 </div>
 <h3 class="text-base font-bold text-[#0F172A]" id="cbt-notice-title">Prototype Preview Notice</h3>
 <p class="text-xs text-[#475569] leading-relaxed">
-          The CBT test interface is not connected in this preview. No test session has started.
+          Selected mode: <strong id="cbt-notice-mode-label" class="font-semibold text-[#0F172A]">Test Mode</strong>. The CBT test interface is not connected in this preview, so no test session has started.
         </p>
 <div class="pt-2">
 <button class="touch-target w-full py-2.5 bg-[#1D4ED8] text-white rounded-lg text-xs font-semibold shadow-sm hover:bg-[#1E3A8A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]" onclick="closeCbtDialog()" type="button">
@@ -1203,6 +1228,10 @@
       selectedTier: 'all',
       category: 'full',
       selectedSubject: 'all',
+      assessmentMode: (function () {
+        try { return localStorage.getItem('sscflix-mock-assessment-mode') === 'study' ? 'study' : 'test'; }
+        catch (error) { return 'test'; }
+      })(),
       get activeCategory() { return this.category; },
       set activeCategory(val) { this.category = val; },
       status: 'all',
@@ -1289,6 +1318,45 @@
       document.querySelectorAll('.target-exam-text').forEach(el => {
         el.textContent = examName;
       });
+    }
+
+    function updateAssessmentModeUI() {
+      const testButton = document.getElementById('mode-test');
+      const studyButton = document.getElementById('mode-study');
+      if (!testButton || !studyButton) return;
+
+      const activeClass = 'assessment-mode-option min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all bg-[#6750E8] text-white shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]';
+      const inactiveClass = 'assessment-mode-option min-h-9 rounded-lg px-4 text-xs sm:text-sm font-semibold transition-all text-[#38354F] hover:bg-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6750E8]';
+      const isTestMode = state.assessmentMode === 'test';
+
+      testButton.className = isTestMode ? activeClass : inactiveClass;
+      studyButton.className = isTestMode ? inactiveClass : activeClass;
+      testButton.setAttribute('aria-pressed', String(isTestMode));
+      studyButton.setAttribute('aria-pressed', String(!isTestMode));
+    }
+
+    function handleAssessmentModeChange(mode) {
+      if (mode !== 'test' && mode !== 'study') return;
+      state.assessmentMode = mode;
+      try { localStorage.setItem('sscflix-mock-assessment-mode', mode); } catch (error) {}
+      updateAssessmentModeUI();
+    }
+
+    function updateAttemptedFilterUI() {
+      const button = document.getElementById('attempted-filter-btn');
+      if (!button) return;
+
+      const isActive = state.activeStatus === 'attempted';
+      button.setAttribute('aria-pressed', String(isActive));
+      button.className = isActive
+        ? 'inline-flex min-h-10 items-center gap-2 rounded-xl border border-[#1D4ED8] bg-[#EFF6FF] px-3.5 text-xs sm:text-sm font-semibold text-[#1D4ED8] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1'
+        : 'inline-flex min-h-10 items-center gap-2 rounded-xl border border-[#CBD5E1] bg-white px-3.5 text-xs sm:text-sm font-semibold text-[#475569] hover:border-[#94A3B8] hover:bg-[#F8FAFC] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8] focus-visible:ring-offset-1';
+    }
+
+    function toggleAttemptedFilter() {
+      state.activeStatus = state.activeStatus === 'attempted' ? 'all' : 'attempted';
+      updateAttemptedFilterUI();
+      renderTestList();
     }
 
     function updateCategoryUI() {
@@ -1381,6 +1449,9 @@
       if (countAvail) countAvail.textContent = availCount;
       if (countAttempt) countAttempt.textContent = attemptCount;
       if (countUpcoming) countUpcoming.textContent = upcomingCount;
+      const attemptedFilterCount = document.getElementById('attempted-filter-count');
+      if (attemptedFilterCount) attemptedFilterCount.textContent = attemptCount;
+      updateAttemptedFilterUI();
     }
 
     /* SAFE DOM CREATION FOR TEST CARD STATUS BADGE */
@@ -1820,6 +1891,7 @@
       updateCategoryUI();
       updateSubjectFilterUI();
       updateStatusChipsUI();
+      updateAttemptedFilterUI();
       updateComputedCounts();
       renderTestList();
     }
@@ -2003,6 +2075,8 @@
 
     function confirmAndLaunchTest() {
       closeTestModal();
+      const modeLabel = document.getElementById('cbt-notice-mode-label');
+      if (modeLabel) modeLabel.textContent = state.assessmentMode === 'study' ? 'Study Mode' : 'Test Mode';
       openModalElement('cbt-notice-dialog', lastActiveCardTrigger);
     }
 
@@ -2127,9 +2201,11 @@
       syncSharedStudentPreference(state.selectedExam);
       renderTierOptions();
       updateHeaderIndicator();
+      updateAssessmentModeUI();
       updateCategoryUI();
       updateSubjectFilterUI();
       updateStatusChipsUI();
+      updateAttemptedFilterUI();
       updateComputedCounts();
       renderTestList();
 
@@ -2163,6 +2239,7 @@
       state.searchQuery = '';
       state.selectedSubject = 'all';
       clearSharedSearchInputs();
+      updateAttemptedFilterUI();
 
       renderTierOptions();
       updateHeaderIndicator();

@@ -1,0 +1,477 @@
+<style data-route-style>
+
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        overscroll-behavior-y: none;
+      }
+    }
+    ::-webkit-scrollbar { display: none; }
+  
+
+
+/* Dashboard light and dark appearance */
+    html.dashboard-dark { background-color: #0B1220 !important; color-scheme: dark; }
+    body.shared-dark-mode {
+      color: #E2E8F0 !important;
+      background-color: #0B1220 !important;
+      color-scheme: dark;
+    }
+    body.shared-dark-mode [class~="bg-white"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="bg-[#F8FAFC]"],
+    body.shared-dark-mode [class~="bg-slate-50"],
+    body.shared-dark-mode [class~="bg-slate-50/50"] { background-color: #0F1B2D !important; }
+    body.shared-dark-mode [class~="bg-[#F1F5F9]"],
+    body.shared-dark-mode [class~="bg-slate-100"] { background-color: #1E293B !important; }
+    body.shared-dark-mode [class~="bg-[#EFF6FF]"],
+    body.shared-dark-mode [class~="bg-blue-50"],
+    body.shared-dark-mode [class~="bg-blue-50/50"],
+    body.shared-dark-mode [class~="bg-blue-50/60"],
+    body.shared-dark-mode [class~="bg-blue-100"] { background-color: #172B46 !important; }
+    body.shared-dark-mode [class~="text-[#0F172A]"],
+    body.shared-dark-mode [class~="text-slate-900"],
+    body.shared-dark-mode [class~="text-slate-800"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-[#475569]"],
+    body.shared-dark-mode [class~="text-slate-700"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="text-[#64748B]"],
+    body.shared-dark-mode [class~="text-slate-600"],
+    body.shared-dark-mode [class~="text-slate-500"] { color: #91A1B8 !important; }
+    body.shared-dark-mode [class~="text-[#1D4ED8]"],
+    body.shared-dark-mode [class~="text-blue-700"],
+    body.shared-dark-mode [class~="text-blue-800"] { color: #93C5FD !important; }
+    body.shared-dark-mode [class~="border-[#E2E8F0]"],
+    body.shared-dark-mode [class~="border-[#CBD5E1]"],
+    body.shared-dark-mode [class~="border-slate-100"],
+    body.shared-dark-mode [class~="border-slate-200"],
+    body.shared-dark-mode [class~="border-[#E2E8F0]/70"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="border-blue-100"],
+    body.shared-dark-mode [class~="border-[#BFDBFE]"] { border-color: #294766 !important; }
+    body.shared-dark-mode hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]):hover {
+      background-color: #1E293B !important;
+      color: #F8FAFC !important;
+    }
+    body.shared-dark-mode .nav-item[aria-current="page"] {
+      background-color: #172B46 !important;
+      color: #93C5FD !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card {
+      background-color: #241F3C !important;
+      border-color: #51427E !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card h3 { color: #F0EAFE !important; }
+    body.shared-dark-mode #sidebar-pro-card p { color: #C4B9E8 !important; }
+    body.shared-dark-mode #sidebar-pro-card button { color: #C4B5FD !important; }
+    body.shared-dark-mode #sidebar-pro-card > div:first-child {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #C4B5FD !important;
+    }
+    body.shared-dark-mode #sidebar-account-row { border-color: #2A3A50 !important; }
+    body.shared-dark-mode #sidebar-account-row #sidebar-user-name { color: #E5EDF8 !important; }
+    body.shared-dark-mode #sidebar-account-row .sidebar-avatar-initials {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #DDD6FE !important;
+    }
+    body.shared-dark-mode #sidebar-account-row button {
+      background-color: #342B22 !important;
+      border-color: #7C6330 !important;
+      color: #F4D58D !important;
+    }
+    body.shared-dark-mode .dashboard-mobile-brand { color: #93C5FD !important; }
+    body.shared-dark-mode header button[aria-label="Change target examination"] {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop,
+    body.shared-dark-mode #dashboard-search-mobile {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop-input,
+    body.shared-dark-mode #dashboard-search-mobile-input {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop svg,
+    body.shared-dark-mode #dashboard-search-mobile svg { color: #91A1B8 !important; }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E2E8F0 !important;
+    }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn:hover { background-color: #1E293B !important; }
+    body.shared-dark-mode input,
+    body.shared-dark-mode select,
+    body.shared-dark-mode textarea {
+      background-color: #0F1B2D !important;
+      color: #E5EDF8 !important;
+      border-color: #34465F !important;
+    }
+    body.shared-dark-mode input::placeholder,
+    body.shared-dark-mode textarea::placeholder { color: #71839B !important; }
+    body.shared-dark-mode .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+  
+    body.shared-dark-mode .shared-app-header,
+    body.shared-dark-mode .shared-app-sidebar,
+    body.shared-dark-mode #shared-shell-profile-dropdown,
+    body.shared-dark-mode .shared-target-modal-panel {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode .shared-app-sidebar nav a:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .shared-app-sidebar nav a[aria-current="page"] { background-color: #172B46 !important; color: #93C5FD !important; }
+    body.shared-dark-mode .shared-app-sidebar hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#0F172A]"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#64748B]"] { color: #91A1B8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="border-[#E2E8F0]"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="bg-brand-bg"] { background-color: #0B1220 !important; }
+    body.shared-dark-mode [class~="bg-brand-surface"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="text-brand-textPrimary"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-brand-textSecondary"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="border-brand-border"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-app-header input {
+      background-color: #0F1B2D !important;
+      border-color: #34465F !important;
+      color: #E5EDF8 !important;
+    }
+
+
+</style>
+<div data-spa-view="preferences" data-body-class="bg-background dark:bg-slate-950 font-body-md text-on-surface dark:text-slate-100 antialiased min-h-screen transition-colors duration-200 flex flex-col md:flex-row" data-html-class="">
+<!-- Top App Bar (56px) -->
+
+<!-- Desktop Fixed Sidebar (240px wide, hidden on mobile) -->
+<div id="app-sidebar-slot"></div>
+<!-- Main Content Wrapper: Zero left padding on mobile, pl-60 on desktop -->
+<div class="flex-1 flex flex-col min-w-0 md:ml-[240px] overflow-x-hidden">
+<div id="app-header-slot"></div>
+<main class="w-full pt-5 pb-24 md:pb-12 bg-background dark:bg-slate-950 min-h-screen transition-colors duration-200">
+<header class="flex flex-col gap-2">
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant dark:text-slate-400">
+<a class="hover:text-primary-container dark:hover:text-blue-400 transition-colors" href="#/dashboard">Dashboard</a>
+<span class="material-symbols-outlined text-[14px] text-outline dark:text-slate-500">chevron_right</span>
+<span class="text-on-surface dark:text-slate-200 font-semibold">Preferences &amp; Account</span>
+</nav>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface dark:text-white font-bold tracking-tight">Preferences &amp; Account</h1>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-slate-300 mt-0.5">Customize your examination study defaults and account profile.</p>
+</div>
+<!-- Small unobtrusive preview banner -->
+<div class="inline-flex items-center gap-1.5 self-start sm:self-auto px-3 py-1 rounded-full bg-surface-container dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 text-xs font-medium border border-surface-container-highest dark:border-slate-700">
+<span class="w-2 h-2 rounded-full bg-primary-container shrink-0"></span>
+<span>Preview mode — preference changes are not saved.</span>
+</div>
+</div>
+</header>
+<!-- Interactive Toast Notifications -->
+<div class="fixed top-16 right-4 z-50 flex flex-col gap-space-xs pointer-events-none transition-all duration-300" id="toast-container"></div>
+<!-- Centered Settings Form Container (Max 840px, safe edge margins) -->
+<div class="w-full max-w-[840px] mx-auto px-4 sm:px-6 md:px-margin-desktop py-6 md:py-8 flex flex-col gap-6 md:gap-space-xl">
+<!-- Header & Breadcrumbs & Preview Badge -->
+
+<!-- SECTION 1: Profile -->
+<section aria-labelledby="profile-heading" class="bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl p-5 md:p-space-lg shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-5 transition-colors">
+<div class="flex items-center gap-4 min-w-0">
+<div class="w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xl shrink-0 shadow-sm" id="display-profile-avatar">
+              SN
+            </div>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold truncate" id="profile-heading">Student Name</h2>
+<span class="px-2 py-0.5 rounded bg-surface-container-high dark:bg-slate-800 text-on-surface-variant dark:text-slate-300 font-label-sm text-label-sm uppercase tracking-wider font-medium">Sample Profile</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400 truncate mt-0.5" id="profile-email">student@example.com</p>
+</div>
+</div>
+<button class="w-full md:w-auto min-h-[44px] px-space-lg py-2 rounded-xl bg-surface-container dark:bg-slate-800 hover:bg-surface-container-high dark:hover:bg-slate-700 text-on-surface dark:text-white font-label-lg text-label-lg flex items-center justify-center gap-space-xs transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container" id="btn-open-edit-profile" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span>Edit Profile</span>
+</button>
+</section>
+<!-- SECTION 2: Study Preferences -->
+<section aria-labelledby="study-heading" class="bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl p-5 md:p-space-lg shadow-sm flex flex-col gap-6 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-surface-container-highest/40 dark:border-slate-800">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold" id="study-heading">Study Preferences</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Configure target exam stream and default question paper language.</p>
+</div>
+<span class="material-symbols-outlined text-outline dark:text-slate-500 text-[24px]">school</span>
+</div>
+<!-- Target Examination -->
+<div class="flex flex-col gap-2">
+<div>
+<label class="font-label-lg text-label-lg text-on-surface dark:text-slate-200 font-semibold block">Choose your target SSC examination.</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Adapts your default mock papers and chapter tests throughout the portal.</p>
+</div>
+<div aria-label="Target SSC Examination" class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1" id="target-exam-grid" role="radiogroup">
+<!-- SSC CGL (Selected by default) -->
+<button aria-checked="true" class="exam-pill active text-left p-3.5 rounded-xl border-2 border-primary-container bg-surface-container-low dark:bg-slate-800/80 text-on-surface dark:text-white transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC CGL" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-primary-container dark:text-blue-400">SSC CGL</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-primary-container dark:text-blue-400" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Combined Graduate Level</span>
+</button>
+<!-- SSC CHSL -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC CHSL" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC CHSL</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Higher Secondary (10+2)</span>
+</button>
+<!-- SSC CPO -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC CPO" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC CPO</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Central Police Org</span>
+</button>
+<!-- SSC MTS -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC MTS" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC MTS</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Multi-Tasking Staff</span>
+</button>
+<!-- SSC GD -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC GD" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC GD</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">General Duty Constables</span>
+</button>
+<!-- SSC Stenographer -->
+<button aria-checked="false" class="exam-pill text-left p-3.5 rounded-xl border border-surface-container-highest dark:border-slate-700 bg-surface-container-lowest dark:bg-slate-900 hover:bg-surface-container-low dark:hover:bg-slate-800/50 transition-all min-h-[64px] flex flex-col justify-between group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-container" data-exam="SSC Stenographer" role="radio" type="button">
+<div class="flex items-center justify-between w-full">
+<span class="font-label-lg text-label-lg font-bold text-on-surface dark:text-slate-200 group-hover:text-primary-container">SSC Steno</span>
+<span class="radio-indicator material-symbols-outlined text-[18px] text-outline dark:text-slate-500">radio_button_unchecked</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 mt-1">Grade C &amp; D Exam</span>
+</button>
+</div>
+</div>
+<!-- Language Preference -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+<div class="flex flex-col">
+<label class="font-label-lg text-label-lg text-on-surface dark:text-slate-200 font-semibold">Choose your preferred language.</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">This is an interface preference; individual mock questions provide dual-language support where available.</p>
+</div>
+<div class="inline-flex p-1 bg-surface-container dark:bg-slate-800 rounded-xl shrink-0 self-start sm:self-auto border border-surface-container-highest dark:border-slate-700" id="language-segmented" role="tablist">
+<button aria-selected="true" class="lang-tab px-space-lg py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-space-xs bg-surface-container-lowest dark:bg-slate-900 text-primary-container dark:text-blue-400 shadow-sm font-bold focus:outline-none" data-lang="en" role="tab" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>English</span>
+</button>
+<button aria-selected="false" class="lang-tab px-space-lg py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-space-xs text-on-surface-variant dark:text-slate-400 hover:text-on-surface dark:hover:text-white focus:outline-none" data-lang="hi" role="tab" type="button">
+<span>हिन्दी (Hindi)</span>
+</button>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Appearance -->
+<section aria-labelledby="appearance-heading" class="bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl p-5 md:p-space-lg shadow-sm flex flex-col gap-4 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-surface-container-highest/40 dark:border-slate-800">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold" id="appearance-heading">Appearance</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Configure visual display style calibrated for sustained study sessions.</p>
+</div>
+<span class="material-symbols-outlined text-outline dark:text-slate-500 text-[24px]">palette</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+<div class="flex flex-col">
+<label class="font-label-lg text-label-lg text-on-surface dark:text-slate-200 font-semibold">Theme Mode</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Select light or dark mode to customize contrast across the application shell.</p>
+</div>
+<div aria-label="Theme Mode" class="inline-flex p-1 bg-surface-container dark:bg-slate-800 rounded-xl shrink-0 self-start sm:self-auto border border-surface-container-highest dark:border-slate-700" id="theme-segmented" role="radiogroup">
+<button aria-checked="true" class="theme-tab px-4 py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-2 bg-surface-container-lowest dark:bg-slate-900 text-primary-container dark:text-blue-400 shadow-sm font-bold focus:outline-none" data-theme="light" role="radio" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+<span>Light</span>
+</button>
+<button aria-checked="false" class="theme-tab px-4 py-2 rounded-lg font-label-lg text-label-lg transition-all min-h-[44px] flex items-center gap-2 text-on-surface-variant dark:text-slate-400 hover:text-on-surface dark:hover:text-white focus:outline-none" data-theme="dark" role="radio" type="button">
+<span class="material-symbols-outlined text-[18px]">dark_mode</span>
+<span>Dark</span>
+</button>
+</div>
+</div>
+</section>
+<!-- SECTION 4: Account Security -->
+<section aria-labelledby="security-heading" class="bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl p-5 md:p-space-lg shadow-sm flex flex-col gap-6 transition-colors">
+<div class="flex items-center justify-between pb-1 border-b border-surface-container-highest/40 dark:border-slate-800">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold" id="security-heading">Account Security</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Manage credentials and authenticated sessions.</p>
+</div>
+<span class="material-symbols-outlined text-outline dark:text-slate-500 text-[24px]">security</span>
+</div>
+<!-- Change Password Row -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface dark:text-slate-200 font-semibold">Account Password</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-400">Manage password authentication credentials for student login.</p>
+</div>
+<button class="min-h-[44px] px-space-lg py-2 rounded-xl bg-surface-container dark:bg-slate-800 hover:bg-surface-container-high dark:hover:bg-slate-700 text-on-surface dark:text-white font-label-lg text-label-lg flex items-center justify-center gap-space-xs transition-colors self-start sm:self-auto focus:outline-none focus:ring-2 focus:ring-primary-container" id="btn-open-password-info" type="button">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Change Password</span>
+</button>
+</div>
+<!-- Destructive Sign Out Area -->
+<div class="pt-2">
+<div class="p-4 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error text-[22px] shrink-0 mt-0.5">logout</span>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-error font-semibold">Session Management</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-300">Sign out of active sessions on this browser.</p>
+</div>
+</div>
+<button class="min-h-[44px] px-space-lg py-2 rounded-xl bg-red-600 text-white hover:bg-red-700 font-label-lg text-label-lg flex items-center justify-center gap-space-xs transition-colors self-start sm:self-auto focus:outline-none focus:ring-2 focus:ring-red-500" id="btn-open-signout-info" type="button">
+<span class="material-symbols-outlined text-[18px]">power_settings_new</span>
+<span>Sign Out</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (Visible only on < md screens, with safe area padding) -->
+<nav aria-label="Mobile Navigation" class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest dark:bg-slate-900 z-40 border-t border-surface-container-highest dark:border-slate-800 px-2 py-1 shadow-lg pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+<div class="flex items-center justify-around">
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-on-surface-variant dark:text-slate-400 hover:text-primary-container transition-colors" href="#/dashboard">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-label-sm text-[12px] mt-0.5">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-on-surface-variant dark:text-slate-400 hover:text-primary-container transition-colors" href="#/mock-tests">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+<span class="font-label-sm text-[12px] mt-0.5">Mocks</span>
+</a>
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-on-surface-variant dark:text-slate-400 hover:text-primary-container transition-colors" href="#/pyqs">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+<span class="font-label-sm text-[12px] mt-0.5">PYQs</span>
+</a>
+<a class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-on-surface-variant dark:text-slate-400 hover:text-primary-container transition-colors" href="#/chapter-tests">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="font-label-sm text-[12px] mt-0.5">Chapters</span>
+</a>
+<button aria-label="Open More options menu" class="flex flex-col items-center justify-center min-h-[48px] py-1 px-2 text-primary-container dark:text-blue-400 font-semibold transition-colors focus:outline-none" id="btn-open-mobile-more" type="button">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+<span class="font-label-sm text-[12px] mt-0.5">More</span>
+</button>
+</div>
+</nav>
+<!-- Mobile "More" Slide-Over Drawer -->
+<div aria-labelledby="mobile-more-title" aria-modal="true" class="fixed inset-0 z-50 hidden md:hidden" id="drawer-mobile-more" role="dialog">
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm transition-opacity" data-close-drawer="drawer-mobile-more"></div>
+<div class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest dark:bg-slate-900 rounded-t-2xl p-5 flex flex-col gap-4 z-10 shadow-2xl max-h-[85vh] overflow-y-auto pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+<div class="w-12 h-1 bg-surface-container-highest dark:bg-slate-700 rounded-full self-center -mt-1"></div>
+<div class="flex items-center justify-between pb-2 border-b border-surface-container-highest dark:border-slate-800">
+<h3 class="font-headline-sm text-headline-sm text-on-surface dark:text-white font-bold" id="mobile-more-title">Workspace &amp; System</h3>
+<button aria-label="Close menu" class="w-8 h-8 rounded-full hover:bg-surface-container dark:hover:bg-slate-800 flex items-center justify-center text-on-surface-variant dark:text-slate-400" data-close-drawer="drawer-mobile-more" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-space-md px-space-md py-3 rounded-xl hover:bg-surface-container dark:hover:bg-slate-800 text-on-surface-variant dark:text-slate-300 transition-colors min-h-[44px]" href="#/my-tests">
+<span class="material-symbols-outlined text-[22px]">fact_check</span>
+<span class="font-label-lg text-label-lg">My Tests</span>
+</a>
+<a class="flex items-center gap-space-md px-space-md py-3 rounded-xl hover:bg-surface-container dark:hover:bg-slate-800 text-on-surface-variant dark:text-slate-300 transition-colors min-h-[44px]" href="#/bookmarks">
+<span class="material-symbols-outlined text-[22px]">bookmark</span>
+<span class="font-label-lg text-label-lg">Bookmarks</span>
+</a>
+<a aria-current="page" class="flex items-center gap-space-md px-space-md py-3 rounded-xl bg-surface-container-low dark:bg-slate-800 text-primary-container dark:text-blue-400 font-bold min-h-[44px]" href="#/preferences">
+<span class="material-symbols-outlined text-[22px]">manage_accounts</span>
+<span class="font-label-lg text-label-lg">Preferences &amp; Account (Current)</span>
+</a>
+</div>
+</div>
+</div>
+<!-- MODAL 1: Edit Profile (Pure local preview update, no false backend sync) -->
+<div aria-labelledby="modal-edit-profile-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="modal-edit-profile" role="dialog">
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm transition-opacity" data-close-modal="modal-edit-profile"></div>
+<div class="fixed inset-0 z-10 overflow-y-auto flex items-center justify-center p-4">
+<div class="relative w-full max-w-lg bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl shadow-xl p-6 flex flex-col gap-5 text-on-surface dark:text-white">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[24px]">account_circle</span>
+<h3 class="font-headline-md text-headline-md font-bold" id="modal-edit-profile-title">Edit Profile</h3>
+</div>
+<button aria-label="Close dialog" class="w-8 h-8 rounded-full hover:bg-surface-container dark:hover:bg-slate-800 flex items-center justify-center text-on-surface-variant dark:text-slate-400" data-close-modal="modal-edit-profile" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="flex flex-col gap-4" id="form-edit-profile" onsubmit="event.preventDefault(); window.saveProfileChanges();">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md font-semibold" for="input-profile-name">Full Name</label>
+<input class="min-h-[44px] px-3.5 rounded-xl bg-surface-container-low dark:bg-slate-800 text-on-surface dark:text-white border border-surface-container-highest dark:border-slate-700 font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container" id="input-profile-name" required="" type="text" value="Student Name"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md font-semibold" for="input-profile-email">Email Address</label>
+<input class="min-h-[44px] px-3.5 rounded-xl bg-surface-container-low dark:bg-slate-800 text-on-surface dark:text-white border border-surface-container-highest dark:border-slate-700 font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container" id="input-profile-email" required="" type="email" value="student@example.com"/>
+</div>
+<div class="flex items-center justify-end gap-3 pt-3">
+<button class="min-h-[44px] px-space-lg py-2 rounded-xl bg-surface-container dark:bg-slate-800 hover:bg-surface-container-high dark:hover:bg-slate-700 font-label-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container" id="btn-cancel-edit-profile" type="button">
+              Cancel
+            </button>
+<button class="min-h-[44px] px-space-lg py-2 rounded-xl bg-primary-container text-on-primary hover:bg-primary font-label-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary" type="submit">
+              Save Changes
+            </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- MODAL 2: Change Password Informative Dialog (Authentication not connected) -->
+<div aria-labelledby="modal-password-info-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="modal-password-info" role="dialog">
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm transition-opacity" data-close-modal="modal-password-info"></div>
+<div class="fixed inset-0 z-10 overflow-y-auto flex items-center justify-center p-4">
+<div class="relative w-full max-w-md bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl shadow-xl p-6 flex flex-col gap-4 text-center items-center">
+<div class="w-12 h-12 rounded-full bg-surface-container dark:bg-slate-800 text-primary-container dark:text-blue-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">lock_reset</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<h3 class="font-headline-md text-headline-md text-on-surface dark:text-white font-bold" id="modal-password-info-title">Password Management sound Unavailable</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-300">Password management is unavailable in this standalone preview because authentication services are not connected.</p>
+</div>
+<div class="w-full pt-2">
+<button class="w-full min-h-[44px] px-space-lg py-2 rounded-xl bg-primary-container text-on-primary hover:bg-primary font-label-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary" data-close-modal="modal-password-info" type="button">
+            Understood
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL 3: Sign Out Informative Dialog (Authentication not connected) -->
+<div aria-labelledby="modal-signout-info-title" aria-modal="true" class="fixed inset-0 z-50 hidden" id="modal-signout-info" role="dialog">
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm transition-opacity" data-close-modal="modal-signout-info"></div>
+<div class="fixed inset-0 z-10 overflow-y-auto flex items-center justify-center p-4">
+<div class="relative w-full max-w-md bg-surface-container-lowest dark:bg-slate-900 border border-surface-container-highest/60 dark:border-slate-800 rounded-xl shadow-xl p-6 flex flex-col gap-4 text-center items-center">
+<div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-950 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">logout</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<h3 class="font-headline-md text-headline-md text-on-surface dark:text-white font-bold" id="modal-signout-info-title">Sign Out Unavailable</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-slate-300">Sign-out requires an active authentication service and is unavailable in preview mode.</p>
+</div>
+<div class="w-full pt-2">
+<button class="w-full min-h-[44px] px-space-lg py-2 rounded-xl bg-surface-container dark:bg-slate-800 hover:bg-surface-container-high dark:hover:bg-slate-700 text-on-surface dark:text-white font-label-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary-container" data-close-modal="modal-signout-info" type="button">
+            Close
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Logic Scripts -->
+</div>

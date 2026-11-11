@@ -1,0 +1,403 @@
+<style data-route-style>
+
+    :root {
+      --app-height: 100vh;
+    }
+    @supports (height: 100dvh) {
+      :root {
+        --app-height: 100dvh;
+      }
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      min-height: 100dvh;
+      height: var(--app-height);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+    /* Touch target guarantee */
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    .safe-bottom-pad {
+      padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  
+</style>
+<div data-spa-view="cbt" data-body-class="flex flex-col bg-slate-50 text-slate-900 overflow-hidden" data-html-class="">
+<!-- Accessible Live Announcement Region for Screen Readers -->
+<div aria-atomic="true" aria-live="polite" class="sr-only" id="sr-announcer"></div>
+<!-- ==================== TOP EXAMINATION HEADER ==================== -->
+<header class="h-14 sm:h-16 bg-white border-b border-slate-200 px-2 sm:px-4 flex items-center justify-between gap-1 sm:gap-3 z-30 shrink-0 select-none w-full">
+<!-- Left: Brand Logo & Test Title -->
+<div class="flex items-center gap-1.5 sm:gap-3 min-w-0 flex-1 overflow-hidden pr-1"><img alt="SSC Flix Logo" class="h-5 sm:h-7 w-auto shrink-0 object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrC-p96gFi19-FF5pihFPJFrQHfs2-t-b-pWnxk6KKAGsVId0f23_kCBNCs2BLAKFt01RAa0hdwJ5P_ZixgaKgYLhnh-dQpS9hJDvzac7aurza1pbN_8PqoiiqKabe774zgaWYynBdqJKdL6B2297u2kLncZScqtvZWg4ViYmEs9n3B6tuGdtNeIsLLk7u1hyc2o0fzuAJV46iQELX8Z4zGLeti8PkERFgVnuEYdde1s"/><div class="h-4 sm:h-5 w-px bg-slate-200 shrink-0 hidden xs:block"></div><div class="min-w-0 flex-1"><h1 class="text-xs sm:text-sm font-semibold text-slate-900 truncate" id="test-header-title">SSC CGL Full Mock 01</h1><p class="text-[10px] sm:text-xs text-slate-500 truncate hidden sm:block" id="test-header-category">Tier-1 Simulation • 200 Marks</p></div></div>
+<!-- Right: Language Selector, Timer, Mobile Palette CTA, Submit CTA -->
+<div class="flex items-center gap-1 sm:gap-2.5 shrink-0"><div class="flex items-center bg-slate-100 rounded border border-slate-200 p-0.5 text-xs font-medium shrink-0"><label class="sr-only" for="lang-select">Question Language</label><span class="text-[10px] sm:text-[11px] text-slate-500 px-1 hidden md:inline">Lang:</span><select class="bg-transparent text-slate-800 text-[11px] sm:text-xs font-medium focus:outline-none focus:ring-1 focus:ring-blue-600 rounded py-0.5 sm:py-1 px-1 sm:px-1.5 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50" id="lang-select"></select></div><div aria-label="Time Remaining" class="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2.5 py-1 sm:py-1.5 rounded-lg border border-slate-200 bg-slate-50 font-mono text-[11px] sm:text-sm font-bold text-slate-700 transition-colors duration-300 shrink-0" id="timer-container"><svg aria-hidden="true" class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span aria-live="off" id="exam-timer">60:00</span></div><button aria-label="Open Question Navigation Palette" class="lg:hidden touch-target flex items-center justify-center p-1.5 sm:p-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:opacity-40 disabled:cursor-not-allowed shrink-0" id="mobile-palette-toggle" type="button"><svg aria-hidden="true" class="w-4 h-4 sm:w-5 sm:h-5 text-slate-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span class="sr-only">Palette</span></button><button aria-label="Submit Test" class="touch-target px-2 sm:px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1 disabled:opacity-40 disabled:cursor-not-allowed shrink-0 whitespace-nowrap" id="header-submit-btn" type="button"><span class="sm:hidden">Submit</span><span class="hidden sm:inline">Submit Test</span></button></div>
+</header>
+<!-- ==================== SUB-HEADER / SECTION SELECTOR ==================== -->
+<div class="bg-white border-b border-slate-200 px-3 sm:px-6 py-2 flex items-center justify-between shrink-0 overflow-x-auto custom-scrollbar z-20 select-none">
+<div aria-label="Examination Sections" class="flex items-center gap-1.5 sm:gap-2 min-w-max" id="sections-tab-container" role="tablist">
+<!-- Injected dynamically based on test config -->
+</div>
+<div class="hidden md:flex items-center gap-2 text-xs text-slate-500 font-medium shrink-0 ml-4">
+<span>Section Progress:</span>
+<span class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded-md font-semibold text-[11px] border border-blue-100" id="section-progress-badge">
+        0 / 25 Answered
+      </span>
+</div>
+</div>
+<!-- ==================== MAIN BODY: 2-COLUMN LAYOUT ==================== -->
+<div class="flex-1 flex flex-row overflow-hidden relative">
+<!-- LEFT / MAIN: QUESTION WORKSPACE -->
+<main aria-label="Question Workspace" class="flex-1 flex flex-col bg-slate-50 overflow-hidden relative" role="region">
+<!-- Question Meta Bar -->
+<div class="bg-white border-b border-slate-200 px-4 sm:px-8 py-2.5 flex items-center justify-between shrink-0 text-xs sm:text-sm select-none">
+<div class="flex items-center gap-2 font-medium text-slate-700">
+<span class="bg-slate-100 text-slate-800 px-2 py-0.5 rounded font-bold" id="q-number-pill">Question 1</span>
+<span class="text-slate-400">of</span>
+<span class="text-slate-600 font-semibold" id="q-total-pill">(1 of 25 in Reasoning)</span>
+</div>
+<div class="flex items-center gap-3 text-xs">
+<span class="text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded font-medium" id="q-marks-pill">
+            +2.0 Marks
+          </span>
+<span class="text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded font-medium" id="q-neg-pill">
+            -0.50 Neg
+          </span>
+</div>
+</div>
+<!-- Question Content Scroll Container -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-4 sm:px-8 py-6 pb-36 sm:pb-28 max-w-4xl w-full mx-auto" id="question-scroll-container">
+<!-- Demonstration Watermark Banner -->
+<div class="mb-4 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-amber-50 border border-amber-200/80 text-amber-800 text-[11px] font-medium select-none">
+<svg aria-hidden="true" class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" fill-rule="evenodd"></path>
+</svg>
+          Demonstration Content • SSC Flix Standard Mock Simulation
+        </div>
+<!-- Question Text Block (Explicitly select-text enabled for copying problem statements) -->
+<div class="bg-white rounded-lg border border-slate-200 p-4 sm:p-6 shadow-sm mb-6 select-text">
+<div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 select-text">Problem Statement</div>
+<p class="text-base sm:text-lg font-medium text-slate-900 leading-relaxed whitespace-pre-line select-text" id="question-text">
+            Select the option that is related to the third term in the same way as the second term is related to the first term:
+          </p>
+</div>
+<!-- Options Container -->
+<fieldset class="space-y-3" id="options-fieldset">
+<legend class="sr-only">Select one option</legend>
+<div class="space-y-3" id="options-container">
+<!-- Dynamic option rows -->
+</div>
+</fieldset>
+</div>
+<!-- Fixed Bottom Action Bar -->
+<div class="absolute bottom-0 inset-x-0 bg-white border-t border-slate-200 px-3 sm:px-8 py-2.5 sm:py-3 z-10 safe-bottom-pad shadow-[0_-2px_10px_rgba(0,0,0,0.03)] select-none">
+<div class="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 max-w-5xl mx-auto w-full">
+<!-- Left Group: Previous & Clear -->
+<div class="flex items-center gap-1.5 sm:gap-2">
+<button class="touch-target px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-lg border border-slate-300 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600 disabled:opacity-40 disabled:cursor-not-allowed" id="btn-prev" type="button">
+              ← Previous
+            </button>
+<button class="touch-target px-2.5 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-lg text-slate-600 hover:text-rose-600 hover:bg-rose-50 transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500 disabled:opacity-40 disabled:cursor-not-allowed" id="btn-clear" type="button">
+              Clear Response
+            </button>
+</div>
+<!-- Right Group: Mark for Review & Save/Next -->
+<div class="flex items-center gap-1.5 sm:gap-2 ml-auto">
+<button class="touch-target px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-lg border border-amber-300 bg-amber-50 hover:bg-amber-100 active:bg-amber-200 text-amber-900 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 disabled:opacity-40 disabled:cursor-not-allowed" id="btn-mark-review" type="button">
+              Mark for Review &amp; Next
+            </button>
+<button class="touch-target px-3.5 sm:px-6 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-blue-700 hover:bg-blue-800 active:bg-blue-900 text-white shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-1 disabled:opacity-40 disabled:cursor-not-allowed" id="btn-save-next" type="button">
+              Save &amp; Next →
+            </button>
+</div>
+</div>
+</div>
+</main>
+<!-- RIGHT: QUESTION NAVIGATION PALETTE (Desktop Side Panel) -->
+<aside aria-label="Question Navigation Palette" class="hidden lg:flex w-80 bg-white border-l border-slate-200 flex-col shrink-0 z-10 select-none" id="palette-aside">
+<!-- Palette Header & Summary -->
+<div class="p-4 border-b border-slate-200 bg-slate-50 shrink-0">
+<h2 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Question Palette</h2>
+<!-- Status Summary Grid (Authoritative 5 states) -->
+<div class="grid grid-cols-2 gap-2 text-xs">
+<!-- Answered -->
+<div class="flex items-center gap-2 p-1.5 bg-white rounded border border-slate-200">
+<span aria-hidden="true" class="w-4 h-4 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">✓</span>
+<span class="text-slate-600 text-[11px] truncate">Answered:</span>
+<span class="font-bold text-slate-900 ml-auto" id="summary-answered">0</span>
+</div>
+<!-- Not Answered -->
+<div class="flex items-center gap-2 p-1.5 bg-white rounded border border-slate-200">
+<span aria-hidden="true" class="w-4 h-4 rounded bg-rose-500 text-white font-bold text-[10px] flex items-center justify-center shrink-0">✕</span>
+<span class="text-slate-600 text-[11px] truncate">Not Ans:</span>
+<span class="font-bold text-slate-900 ml-auto" id="summary-not-answered">0</span>
+</div>
+<!-- Marked for Review -->
+<div class="flex items-center gap-2 p-1.5 bg-white rounded border border-slate-200">
+<span aria-hidden="true" class="w-4 h-4 rounded-full bg-amber-500 text-white font-bold text-[10px] flex items-center justify-center shrink-0">★</span>
+<span class="text-slate-600 text-[11px] truncate">Review:</span>
+<span class="font-bold text-slate-900 ml-auto" id="summary-marked">0</span>
+</div>
+<!-- Ans & Marked -->
+<div class="flex items-center gap-2 p-1.5 bg-white rounded border border-slate-200">
+<span aria-hidden="true" class="w-4 h-4 rounded-full bg-indigo-600 text-white font-bold text-[9px] flex items-center justify-center shrink-0">✓★</span>
+<span class="text-slate-600 text-[11px] truncate">Ans+Rev:</span>
+<span class="font-bold text-slate-900 ml-auto" id="summary-ans-marked">0</span>
+</div>
+<!-- Not Visited -->
+<div class="col-span-2 flex items-center gap-2 p-1.5 bg-white rounded border border-slate-200">
+<span aria-hidden="true" class="w-4 h-4 rounded-full bg-slate-200 text-slate-600 font-bold text-[10px] flex items-center justify-center shrink-0 border border-slate-300">○</span>
+<span class="text-slate-600 text-[11px]">Not Visited:</span>
+<span class="font-bold text-slate-900 ml-auto" id="summary-not-visited">25</span>
+</div>
+</div>
+</div>
+<!-- Palette Question Grid -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-4">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-semibold text-slate-800" id="palette-section-title">Section Questions</span>
+<span class="text-[11px] text-slate-500">Click to jump</span>
+</div>
+<div class="grid grid-cols-5 gap-2.5" id="palette-grid">
+<!-- Dynamic Question Buttons -->
+</div>
+</div>
+<!-- State Legend -->
+<div class="p-3 border-t border-slate-200 bg-slate-50 text-[11px] text-slate-600 shrink-0 space-y-1">
+<div class="font-semibold text-slate-700 text-[10px] uppercase mb-1">State Legend</div>
+<div class="flex items-center gap-1.5">
+<div class="w-3 h-3 rounded-full bg-emerald-600 flex items-center justify-center text-[7px] text-white">✓</div>
+<span>Answered</span>
+<div class="w-3 h-3 rounded bg-rose-500 ml-2 flex items-center justify-center text-[7px] text-white">✕</div>
+<span>Not Answered</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-3 h-3 rounded-full bg-amber-500 flex items-center justify-center text-[7px] text-white">★</div>
+<span>Marked for Review</span>
+<div class="w-3 h-3 rounded-full bg-indigo-600 ml-2 flex items-center justify-center text-[7px] text-white">✓★</div>
+<span>Ans &amp; Marked</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-3 h-3 rounded-full bg-slate-200 border border-slate-300 flex items-center justify-center text-[7px] text-slate-600">○</div>
+<span>Not Visited</span>
+<div class="w-3 h-3 rounded-full ring-2 ring-blue-600 bg-white ml-2"></div>
+<span>Current Active</span>
+</div>
+</div>
+</aside>
+</div>
+<!-- ==================== MOBILE PALETTE BOTTOM SHEET ==================== -->
+<div aria-labelledby="mobile-sheet-title" aria-modal="true" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm lg:hidden transition-opacity select-none" id="mobile-palette-modal" role="dialog">
+<div class="absolute inset-x-0 bottom-0 bg-white rounded-t-2xl max-h-[88vh] flex flex-col shadow-2xl border-t border-slate-200 overflow-hidden" id="mobile-palette-sheet-content">
+<!-- Sheet Header Wrapper -->
+<div class="p-4 border-b border-slate-200 flex items-center justify-between shrink-0 bg-white">
+<div>
+<h2 class="text-sm font-bold text-slate-900" id="mobile-sheet-title">Question Navigation Palette</h2>
+<p class="text-xs text-slate-500" id="mobile-sheet-subtitle">General Intelligence &amp; Reasoning</p>
+</div>
+<button aria-label="Close palette sheet" class="touch-target p-2 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600 shrink-0" id="close-mobile-palette-btn" type="button">
+<svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Sheet Content Container: scrollable with clean spacing rhythm -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-4">
+<!-- 5-State Summary Chips -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-center text-xs">
+<!-- Answered -->
+<div class="p-1.5 bg-emerald-50 text-emerald-800 rounded border border-emerald-200 flex items-center justify-between px-2">
+<span class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded-full bg-emerald-600 text-white text-[9px] flex items-center justify-center">✓</span> Ans</span>
+<strong class="font-bold ml-1" id="m-summary-ans">0</strong>
+</div>
+<!-- Not Answered -->
+<div class="p-1.5 bg-rose-50 text-rose-800 rounded border border-rose-200 flex items-center justify-between px-2">
+<span class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded bg-rose-500 text-white text-[9px] flex items-center justify-center">✕</span> Not Ans</span>
+<strong class="font-bold ml-1" id="m-summary-not-ans">0</strong>
+</div>
+<!-- Marked for Review -->
+<div class="p-1.5 bg-amber-50 text-amber-800 rounded border border-amber-200 flex items-center justify-between px-2">
+<span class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded-full bg-amber-500 text-white text-[9px] flex items-center justify-center">★</span> Review</span>
+<strong class="font-bold ml-1" id="m-summary-review">0</strong>
+</div>
+<!-- Ans & Marked -->
+<div class="p-1.5 bg-indigo-50 text-indigo-800 rounded border border-indigo-200 flex items-center justify-between px-2">
+<span class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded-full bg-indigo-600 text-white text-[8px] flex items-center justify-center">✓★</span> Ans+Rev</span>
+<strong class="font-bold ml-1" id="m-summary-ans-review">0</strong>
+</div>
+<!-- Not Visited -->
+<div class="col-span-2 sm:col-span-1 p-1.5 bg-slate-100 text-slate-800 rounded border border-slate-200 flex items-center justify-between px-2">
+<span class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded-full bg-slate-200 border border-slate-300 text-slate-600 text-[9px] flex items-center justify-center">○</span> Not Visited</span>
+<strong class="font-bold ml-1" id="m-summary-not-visited">25</strong>
+</div>
+</div>
+<!-- Grid of Questions -->
+<div>
+<div class="text-xs font-semibold text-slate-700 mb-2">Tap question to navigate:</div>
+<div class="grid grid-cols-5 sm:grid-cols-6 gap-2" id="mobile-palette-grid">
+<!-- Replicated grid buttons -->
+</div>
+</div>
+</div>
+<!-- Sheet Footer Wrapper with safe-area padding -->
+<div class="p-4 bg-slate-50 border-t border-slate-200 shrink-0" style="padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));">
+<button class="w-full py-2.5 bg-slate-800 hover:bg-slate-900 active:bg-slate-950 text-white text-xs font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-700 touch-target" id="dismiss-mobile-sheet-btn" type="button">
+          Close Palette
+        </button>
+</div>
+</div>
+</div>
+<!-- ==================== SUBMISSION CONFIRMATION MODAL ==================== -->
+<div aria-labelledby="modal-confirm-title" aria-modal="true" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 select-none" id="submit-confirm-modal" role="dialog">
+<div class="bg-white rounded-xl shadow-2xl border border-slate-200 max-w-lg w-full overflow-hidden" id="submit-modal-dialog">
+<!-- Modal Header -->
+<div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold" id="modal-header-icon">
+            ✓
+          </div>
+<h2 class="text-base font-bold text-slate-900" id="modal-confirm-title">
+            Confirm Test Submission
+          </h2>
+</div>
+<button aria-label="Close dialog" class="text-slate-400 hover:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-600 rounded p-1" id="close-confirm-modal-x" type="button">
+<svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-6 space-y-4">
+<p class="text-sm text-slate-600" id="modal-description-text">
+          Please review your attempt summary before final submission. Once confirmed, your responses will be submitted for this test session.
+        </p>
+<!-- Dynamic Overall Summary Breakdown across entire exam -->
+<div class="bg-slate-50 rounded-lg p-4 border border-slate-200 space-y-2 text-xs">
+<div class="flex justify-between font-medium text-slate-700 border-b border-slate-200 pb-1.5">
+<span>Total Questions in Exam:</span>
+<span class="font-bold text-slate-900" id="modal-sum-total">100</span>
+</div>
+<div class="flex justify-between text-emerald-700">
+<span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full bg-emerald-600 text-white text-[8px] flex items-center justify-center font-bold">✓</span> Answered:</span>
+<span class="font-bold" id="modal-sum-ans">0</span>
+</div>
+<div class="flex justify-between text-rose-700">
+<span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-rose-500 text-white text-[8px] flex items-center justify-center font-bold">✕</span> Not Answered:</span>
+<span class="font-bold" id="modal-sum-not-ans">0</span>
+</div>
+<div class="flex justify-between text-amber-700">
+<span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full bg-amber-500 text-white text-[8px] flex items-center justify-center font-bold">★</span> Marked for Review:</span>
+<span class="font-bold" id="modal-sum-review">0</span>
+</div>
+<div class="flex justify-between text-indigo-700">
+<span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full bg-indigo-600 text-white text-[8px] flex items-center justify-center font-bold">✓★</span> Answered &amp; Marked for Review:</span>
+<span class="font-bold" id="modal-sum-ans-review">0</span>
+</div>
+<div class="flex justify-between text-slate-500 border-t border-slate-200 pt-1.5">
+<span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded-full bg-slate-200 border border-slate-300 text-slate-600 text-[8px] flex items-center justify-center font-bold">○</span> Not Visited:</span>
+<span class="font-bold" id="modal-sum-not-visited">100</span>
+</div>
+</div>
+<div class="p-3 bg-amber-50 rounded-lg border border-amber-200 text-xs text-amber-800" id="modal-time-notice">
+<strong>Notice:</strong> Remaining time on timer: <span class="font-mono font-bold" id="modal-time-left">60:00</span>. You can still return and modify any response.
+        </div>
+</div>
+<!-- Modal Actions -->
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-3" id="modal-actions-container">
+<button class="touch-target px-4 py-2 text-xs sm:text-sm font-medium rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-600" id="btn-cancel-submit" type="button">
+          Return to Test
+        </button>
+<button class="touch-target px-5 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" id="btn-final-confirm-submit" type="button">
+          Confirm Submission
+        </button>
+</div>
+</div>
+</div>
+<!-- ==================== FINAL PROTOTYPE SUBMISSION COMPLETE VIEW ==================== -->
+<div aria-labelledby="modal-submitted-title" aria-modal="true" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 select-none" id="submitted-view-modal" role="dialog">
+<div class="bg-white rounded-xl shadow-2xl border border-slate-200 max-w-lg w-full overflow-hidden text-center p-6 sm:p-8 space-y-5" id="submitted-dialog-box">
+<div class="w-16 h-16 bg-blue-50 text-blue-700 rounded-full flex items-center justify-center mx-auto ring-8 ring-blue-50/50">
+<svg aria-hidden="true" class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="space-y-1">
+<h2 class="text-xl font-bold text-slate-900" id="modal-submitted-title">
+          Test Session Concluded
+        </h2>
+<p class="text-xs sm:text-sm text-slate-600">
+          Your demonstration session has ended.
+        </p>
+</div>
+<!-- Demonstration Disclaimer -->
+<div class="p-4 bg-slate-50 rounded-lg border border-slate-200 text-left text-xs text-slate-700 space-y-2">
+<div class="font-semibold text-slate-900 flex items-center gap-1.5">
+<svg aria-hidden="true" class="w-4 h-4 text-blue-600 shrink-0" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" fill-rule="evenodd"></path>
+</svg>
+          Demonstration Notice
+        </div>
+<p class="leading-relaxed">
+          This is a demonstration. Your answers have not been submitted to a real examination server.
+        </p>
+<div class="pt-2 border-t border-slate-200 grid grid-cols-2 gap-2 text-slate-600 text-[11px]">
+<div>Questions Attempted: <strong class="text-slate-900" id="done-attempted">0</strong></div>
+<div>Review Flagged: <strong class="text-slate-900" id="done-reviewed">0</strong></div>
+</div>
+</div>
+<div class="pt-2 flex flex-col sm:flex-row gap-2">
+<button class="w-full touch-target px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-blue-700 hover:bg-blue-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-600" id="btn-restart-demo" type="button">
+          Restart Demo
+        </button>
+<button class="w-full touch-target px-4 py-2.5 text-xs sm:text-sm font-medium rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500" id="btn-back-to-catalog" type="button">
+          View Result &amp; Answer Review
+        </button>
+</div>
+</div>
+</div>
+<!-- ==================== POST-SUBMISSION PREVIEW EXIT LOCKED SCREEN ==================== -->
+<div aria-labelledby="locked-screen-title" aria-modal="true" class="fixed inset-0 z-40 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 select-none" id="preview-exit-locked-screen" role="dialog">
+<div class="bg-white rounded-xl shadow-2xl border border-slate-200 max-w-md w-full p-6 sm:p-8 text-center space-y-4">
+<div class="w-14 h-14 bg-emerald-50 text-emerald-700 rounded-full flex items-center justify-center mx-auto ring-8 ring-emerald-50/50">
+<svg aria-hidden="true" class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<div class="space-y-1"><h2 class="text-lg sm:text-xl font-bold text-slate-900" id="locked-screen-title">Test Preview Concluded</h2><p class="text-xs sm:text-sm text-slate-600 leading-relaxed">This demonstration has ended. No responses were sent to a real examination server, and the mock session is locked.</p></div>
+<div class="p-3.5 bg-blue-50 border border-blue-200 rounded-lg text-left text-xs text-blue-900 space-y-1"><div class="font-semibold flex items-center gap-1.5 text-blue-950"><svg aria-hidden="true" class="w-4 h-4 text-blue-600 shrink-0" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" fill-rule="evenodd"></path></svg>Demonstration Notice</div><p class="leading-relaxed">All question responses were part of this frontend simulation. Use <strong>Restart Demo</strong> below to start a new simulation session.</p></div>
+<div class="pt-2">
+<button class="w-full touch-target px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg bg-blue-700 hover:bg-blue-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-600 shadow-sm" id="btn-restart-demo-from-locked" type="button">
+      Restart Demo
+    </button>
+</div>
+</div>
+</div>
+<!-- ==================== LOGIC & DATA ENGINE ==================== -->
+</div>

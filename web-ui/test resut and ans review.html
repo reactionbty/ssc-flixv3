@@ -981,16 +981,20 @@
       linkedSelectedAttempt = null;
     }
 
-    if (linkedCbtSubmission && typeof linkedCbtSubmission === 'object') {
+    const selectedAttemptTime = linkedSelectedAttempt ? (Date.parse(linkedSelectedAttempt.selectedAt || '') || 0) : 0;
+    const submittedAttemptTime = linkedCbtSubmission ? (Date.parse(linkedCbtSubmission.submittedAt || '') || 0) : 0;
+    const selectedAttemptIsNewer = Boolean(linkedSelectedAttempt && selectedAttemptTime >= submittedAttemptTime);
+
+    if (selectedAttemptIsNewer && linkedSelectedAttempt && typeof linkedSelectedAttempt === 'object') {
+      if (linkedSelectedAttempt.title) resultData.metadata.testTitle = String(linkedSelectedAttempt.title);
+      resultData.metadata.attemptLabel = 'Selected from My Tests • Demo data';
+    } else if (linkedCbtSubmission && typeof linkedCbtSubmission === 'object') {
       if (linkedCbtSubmission.title) resultData.metadata.testTitle = String(linkedCbtSubmission.title);
       if (linkedCbtSubmission.category) resultData.metadata.subTitle = String(linkedCbtSubmission.category);
       if (Number(linkedCbtSubmission.durationMinutes) > 0) {
         resultData.metadata.totalDurationSeconds = Number(linkedCbtSubmission.durationMinutes) * 60;
       }
       resultData.metadata.attemptLabel = 'Latest CBT Preview';
-    } else if (linkedSelectedAttempt && typeof linkedSelectedAttempt === 'object' && linkedSelectedAttempt.title) {
-      resultData.metadata.testTitle = String(linkedSelectedAttempt.title);
-      resultData.metadata.attemptLabel = 'Selected from My Tests • Demo data';
     }
 
     // Helper: evaluate question status directly from object
@@ -1102,15 +1106,15 @@
       const linkedNotice = document.getElementById('linked-cbt-summary-notice');
       const linkedTitle = document.getElementById('linked-cbt-summary-title');
       const linkedDetails = document.getElementById('linked-cbt-summary-details');
-      if (linkedNotice && linkedCbtSubmission) {
+      if (linkedNotice && selectedAttemptIsNewer && linkedSelectedAttempt) {
+        if (linkedTitle) linkedTitle.textContent = linkedSelectedAttempt.title || 'Selected attempt';
+        if (linkedDetails) linkedDetails.textContent = 'Opened from My Tests. Attempt-specific answers and evaluation are not connected in this preview.';
+        linkedNotice.classList.remove('hidden');
+      } else if (linkedNotice && linkedCbtSubmission) {
         if (linkedTitle) linkedTitle.textContent = linkedCbtSubmission.title || 'Latest CBT preview';
         if (linkedDetails) {
           linkedDetails.textContent = `${Number(linkedCbtSubmission.attempted) || 0} of ${Number(linkedCbtSubmission.questions) || 0} questions attempted • ${Number(linkedCbtSubmission.reviewed) || 0} marked for review • ${linkedCbtSubmission.mode === 'study' ? 'Study Mode' : 'Test Mode'}`;
         }
-        linkedNotice.classList.remove('hidden');
-      } else if (linkedNotice && linkedSelectedAttempt) {
-        if (linkedTitle) linkedTitle.textContent = linkedSelectedAttempt.title || 'Selected attempt';
-        if (linkedDetails) linkedDetails.textContent = 'Opened from My Tests. Attempt-specific answers and evaluation are not connected in this preview.';
         linkedNotice.classList.remove('hidden');
       }
       

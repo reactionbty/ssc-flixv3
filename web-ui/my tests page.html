@@ -1387,25 +1387,55 @@
       }
     }
 
-    // Prototype Actions with honest descriptive copy
+    // Route archive actions to the matching preview screens.
+    function saveSelectedAttemptContext(id, title, action) {
+      try {
+        localStorage.setItem('sscflix-selected-attempt', JSON.stringify({
+          id: String(id || ''),
+          title: String(title || 'Mock Test'),
+          action,
+          source: 'my-tests',
+          selectedAt: new Date().toISOString()
+        }));
+      } catch (error) {
+        // Destination screens remain accessible even when storage is unavailable.
+      }
+    }
+
     function resumeTest(id, title) {
-      showPrototypeToast("Resume Test", "Prototype only — session restoration is not connected yet.");
+      saveSelectedAttemptContext(id, title, 'resume');
+      showPrototypeToast("Resume Test", "Opening the CBT preview. Restoring saved answers and the previous timer is not connected yet.");
+      window.setTimeout(() => { window.location.href = './cbt%20interface%20page.html'; }, 450);
     }
 
     function viewResult(id, title) {
-      showPrototypeToast("View Result", "Prototype only — result viewing is not connected yet.");
+      saveSelectedAttemptContext(id, title, 'result');
+      window.location.href = './test%20resut%20and%20ans%20review.html';
     }
 
     function reviewAnswers(id, title) {
-      showPrototypeToast("Review Answers", "Prototype only — answer review is not connected yet.");
+      saveSelectedAttemptContext(id, title, 'review');
+      window.location.href = './test%20resut%20and%20ans%20review.html';
     }
 
     function reattemptTest(id, title) {
-      showPrototypeToast("Reattempt / Retake", "Prototype only — creating a new attempt is not connected yet.");
+      saveSelectedAttemptContext(id, title, 'reattempt');
+      try {
+        localStorage.setItem('sscflix-active-test-preview', JSON.stringify({
+          testId: String(id || 'reattempt-preview'),
+          title: String(title || 'Mock Test') + ' — Reattempt Preview',
+          category: 'Full Mock',
+          mode: 'test',
+          durationMinutes: 60,
+          source: 'my-tests'
+        }));
+      } catch (error) {}
+      window.location.href = './cbt%20interface%20page.html';
     }
 
     function viewExpiredDetails(id, title) {
-      showPrototypeToast("View Details", "Prototype only — attempt details are not connected yet.");
+      saveSelectedAttemptContext(id, title, 'details');
+      window.location.href = './test%20resut%20and%20ans%20review.html';
     }
 
     // Toast notification handler

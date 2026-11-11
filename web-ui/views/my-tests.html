@@ -1,0 +1,338 @@
+<style data-route-style>
+
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  
+
+
+/* Dashboard light and dark appearance */
+    html.dashboard-dark { background-color: #0B1220 !important; color-scheme: dark; }
+    body.shared-dark-mode {
+      color: #E2E8F0 !important;
+      background-color: #0B1220 !important;
+      color-scheme: dark;
+    }
+    body.shared-dark-mode [class~="bg-white"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="bg-[#F8FAFC]"],
+    body.shared-dark-mode [class~="bg-slate-50"],
+    body.shared-dark-mode [class~="bg-slate-50/50"] { background-color: #0F1B2D !important; }
+    body.shared-dark-mode [class~="bg-[#F1F5F9]"],
+    body.shared-dark-mode [class~="bg-slate-100"] { background-color: #1E293B !important; }
+    body.shared-dark-mode [class~="bg-[#EFF6FF]"],
+    body.shared-dark-mode [class~="bg-blue-50"],
+    body.shared-dark-mode [class~="bg-blue-50/50"],
+    body.shared-dark-mode [class~="bg-blue-50/60"],
+    body.shared-dark-mode [class~="bg-blue-100"] { background-color: #172B46 !important; }
+    body.shared-dark-mode [class~="text-[#0F172A]"],
+    body.shared-dark-mode [class~="text-slate-900"],
+    body.shared-dark-mode [class~="text-slate-800"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-[#475569]"],
+    body.shared-dark-mode [class~="text-slate-700"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="text-[#64748B]"],
+    body.shared-dark-mode [class~="text-slate-600"],
+    body.shared-dark-mode [class~="text-slate-500"] { color: #91A1B8 !important; }
+    body.shared-dark-mode [class~="text-[#1D4ED8]"],
+    body.shared-dark-mode [class~="text-blue-700"],
+    body.shared-dark-mode [class~="text-blue-800"] { color: #93C5FD !important; }
+    body.shared-dark-mode [class~="border-[#E2E8F0]"],
+    body.shared-dark-mode [class~="border-[#CBD5E1]"],
+    body.shared-dark-mode [class~="border-slate-100"],
+    body.shared-dark-mode [class~="border-slate-200"],
+    body.shared-dark-mode [class~="border-[#E2E8F0]/70"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="border-blue-100"],
+    body.shared-dark-mode [class~="border-[#BFDBFE]"] { border-color: #294766 !important; }
+    body.shared-dark-mode hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .nav-item:not([aria-current="page"]):hover {
+      background-color: #1E293B !important;
+      color: #F8FAFC !important;
+    }
+    body.shared-dark-mode .nav-item[aria-current="page"] {
+      background-color: #172B46 !important;
+      color: #93C5FD !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card {
+      background-color: #241F3C !important;
+      border-color: #51427E !important;
+    }
+    body.shared-dark-mode #sidebar-pro-card h3 { color: #F0EAFE !important; }
+    body.shared-dark-mode #sidebar-pro-card p { color: #C4B9E8 !important; }
+    body.shared-dark-mode #sidebar-pro-card button { color: #C4B5FD !important; }
+    body.shared-dark-mode #sidebar-pro-card > div:first-child {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #C4B5FD !important;
+    }
+    body.shared-dark-mode #sidebar-account-row { border-color: #2A3A50 !important; }
+    body.shared-dark-mode #sidebar-account-row #sidebar-user-name { color: #E5EDF8 !important; }
+    body.shared-dark-mode #sidebar-account-row .sidebar-avatar-initials {
+      background-color: #342B57 !important;
+      border-color: #6654A3 !important;
+      color: #DDD6FE !important;
+    }
+    body.shared-dark-mode #sidebar-account-row button {
+      background-color: #342B22 !important;
+      border-color: #7C6330 !important;
+      color: #F4D58D !important;
+    }
+    body.shared-dark-mode .dashboard-mobile-brand { color: #93C5FD !important; }
+    body.shared-dark-mode header button[aria-label="Change target examination"] {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop,
+    body.shared-dark-mode #dashboard-search-mobile {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop-input,
+    body.shared-dark-mode #dashboard-search-mobile-input {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: #E5EDF8 !important;
+    }
+    body.shared-dark-mode #dashboard-search-desktop svg,
+    body.shared-dark-mode #dashboard-search-mobile svg { color: #91A1B8 !important; }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+      color: #E2E8F0 !important;
+    }
+    body.shared-dark-mode #shared-shell-theme-toggle-btn:hover { background-color: #1E293B !important; }
+    body.shared-dark-mode input,
+    body.shared-dark-mode select,
+    body.shared-dark-mode textarea {
+      background-color: #0F1B2D !important;
+      color: #E5EDF8 !important;
+      border-color: #34465F !important;
+    }
+    body.shared-dark-mode input::placeholder,
+    body.shared-dark-mode textarea::placeholder { color: #71839B !important; }
+    body.shared-dark-mode .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+  
+    body.shared-dark-mode .shared-app-header,
+    body.shared-dark-mode .shared-app-sidebar,
+    body.shared-dark-mode #shared-shell-profile-dropdown,
+    body.shared-dark-mode .shared-target-modal-panel {
+      background-color: #111C2E !important;
+      border-color: #2A3A50 !important;
+    }
+    body.shared-dark-mode .shared-app-sidebar nav a:not([aria-current="page"]) { color: #B8C5D8 !important; }
+    body.shared-dark-mode .shared-app-sidebar nav a[aria-current="page"] { background-color: #172B46 !important; color: #93C5FD !important; }
+    body.shared-dark-mode .shared-app-sidebar hr { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#0F172A]"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="text-[#64748B]"] { color: #91A1B8 !important; }
+    body.shared-dark-mode .shared-target-modal-panel [class~="border-[#E2E8F0]"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode [class~="bg-brand-bg"] { background-color: #0B1220 !important; }
+    body.shared-dark-mode [class~="bg-brand-surface"] { background-color: #111C2E !important; }
+    body.shared-dark-mode [class~="text-brand-textPrimary"] { color: #E5EDF8 !important; }
+    body.shared-dark-mode [class~="text-brand-textSecondary"] { color: #B8C5D8 !important; }
+    body.shared-dark-mode [class~="border-brand-border"] { border-color: #2A3A50 !important; }
+    body.shared-dark-mode .shared-app-header input {
+      background-color: #0F1B2D !important;
+      border-color: #34465F !important;
+      color: #E5EDF8 !important;
+    }
+
+
+</style>
+<div data-spa-view="my-tests" data-body-class="bg-background font-sans text-on-surface antialiased min-h-screen flex flex-col md:flex-row" data-html-class="">
+<!-- Desktop Sidebar (240px fixed) -->
+<div id="app-sidebar-slot"></div>
+<!-- Main Content Shell -->
+<div class="flex-1 flex flex-col min-w-0 md:ml-[240px]">
+<!-- Top Header Bar (56px) -->
+
+<!-- Main Workspace with explicit header spacing so 56px fixed bar never clips breadcrumbs -->
+<div id="app-header-slot"></div>
+<main class="relative pt-5 pb-24 md:pb-12 px-4 lg:px-8 w-full max-w-7xl mx-auto">
+<div class="flex flex-col w-full">
+<!-- Breadcrumb & Top Header Title -->
+<div class="flex flex-col gap-1 mb-4 mt-1">
+<div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+<a class="hover:text-[#1D4ED8] transition-colors" href="#/dashboard"Dashboard', 'Prototype only — this action is not connected yet.'); return false;">Dashboard</a>
+<span class="material-symbols-outlined text-[14px] text-slate-400">chevron_right</span>
+<span class="text-on-surface font-semibold">My Tests</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mt-1">
+<div>
+<h1 class="text-2xl font-bold text-on-surface tracking-tight">My Tests</h1>
+<p class="text-sm text-on-surface-variant mt-0.5">Manage your test attempts and continue where you left off.</p>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 border border-[#E2E8F0] rounded-lg self-start md:self-auto text-slate-600 text-xs">
+<span class="w-2 h-2 rounded-full bg-[#1D4ED8]"></span>
+<span>Demonstration Records • Non-Production Workspace</span>
+</div>
+</div>
+</div>
+<!-- Status Filter Navigation Pills (min 44px touch targets) -->
+<div aria-label="Filter test attempts by state" class="flex items-center gap-2 overflow-x-auto pb-1 mb-4" role="tablist">
+<button aria-selected="true" class="status-tab flex items-center gap-2 px-4 min-h-[44px] rounded-lg text-sm font-semibold transition-colors whitespace-nowrap bg-[#1D4ED8] text-white shadow-sm" data-filter="all" id="tab-all" role="tab" type="button">
+<span>All Attempts</span>
+<span class="px-2 py-0.5 rounded-full bg-white/20 text-white font-mono text-xs" id="count-all">6</span>
+</button>
+<button aria-selected="false" class="status-tab flex items-center gap-2 px-4 min-h-[44px] rounded-lg text-sm font-medium transition-colors whitespace-nowrap bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-[#E2E8F0]" data-filter="in_progress" id="tab-in_progress" role="tab" type="button">
+<span>In Progress</span>
+<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-mono text-xs" id="count-inprogress">1</span>
+</button>
+<button aria-selected="false" class="status-tab flex items-center gap-2 px-4 min-h-[44px] rounded-lg text-sm font-medium transition-colors whitespace-nowrap bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-[#E2E8F0]" data-filter="completed" id="tab-completed" role="tab" type="button">
+<span>Completed</span>
+<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-mono text-xs" id="count-completed">4</span>
+</button>
+<button aria-selected="false" class="status-tab flex items-center gap-2 px-4 min-h-[44px] rounded-lg text-sm font-medium transition-colors whitespace-nowrap bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-[#E2E8F0]" data-filter="expired" id="tab-expired" role="tab" type="button">
+<span>Expired / Interrupted</span>
+<span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-mono text-xs" id="count-expired">1</span>
+</button>
+</div>
+<!-- Compound Filter & Search Toolbar (min 44px high inputs & buttons) -->
+<div class="bg-white p-3 sm:p-4 rounded-lg border border-[#E2E8F0] shadow-sm mb-4 flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[20px] pointer-events-none">search</span>
+<input class="w-full min-h-[44px] pl-10 pr-4 bg-slate-50 border border-[#E2E8F0] rounded-lg text-on-surface placeholder:text-slate-400 text-sm focus:outline-none focus:bg-white focus:border-[#1D4ED8] transition-colors" id="searchInput" placeholder="Search by test name, tier, or source..." type="text"/>
+</div>
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+<!-- Source Filter Select -->
+<div class="relative w-full sm:w-auto">
+<label class="sr-only" for="sourceFilter">Filter by Source</label>
+<div class="flex items-center gap-1.5 px-3 min-h-[44px] bg-slate-50 border border-[#E2E8F0] rounded-lg text-on-surface text-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-500">category</span>
+<select class="bg-transparent text-sm text-on-surface focus:outline-none cursor-pointer pr-3 min-h-[44px]" id="sourceFilter">
+<option value="all">All Sources</option>
+<option value="Mock Test">Mock Test</option>
+<option value="Sectional Test">Sectional Test</option>
+<option value="PYQ Paper">PYQ Paper</option>
+<option value="Chapter Test">Chapter Test</option>
+</select>
+</div>
+</div>
+<!-- Sort Toggle Select -->
+<div class="relative w-full sm:w-auto">
+<label class="sr-only" for="sortFilter">Sort attempts</label>
+<div class="flex items-center gap-1.5 px-3 min-h-[44px] bg-slate-50 border border-[#E2E8F0] rounded-lg text-on-surface text-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-500">sort</span>
+<select class="bg-transparent text-sm text-on-surface focus:outline-none cursor-pointer pr-3 min-h-[44px]" id="sortFilter">
+<option value="recent">Most Recent</option>
+<option value="oldest">Oldest First</option>
+<option value="score_desc">Score: High to Low</option>
+</select>
+</div>
+</div>
+<!-- Quick Reset Button (min 44px) -->
+<button class="min-h-[44px] px-4 rounded-lg bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 transition-colors flex items-center justify-center text-sm font-medium gap-1.5" id="resetBtn" title="Reset all applied filters" type="button">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+<span class="hidden sm:inline">Reset</span>
+</button>
+</div>
+</div>
+<!-- Live Result Count Label -->
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-baseline gap-2">
+<h2 class="text-base font-bold text-on-surface tracking-tight">Your Attempts</h2>
+<span class="text-xs text-on-surface-variant font-mono" id="result-count-label">Showing 6 attempts</span>
+</div>
+</div>
+<!-- Container for Attempt Cards (Built safely via DOM nodes) -->
+<div class="flex flex-col gap-3" id="attemptsContainer"></div>
+<!-- Contextual Empty State Container -->
+<div class="hidden flex-col items-center justify-center py-16 px-4 text-center bg-white border border-[#E2E8F0] rounded-lg shadow-sm mt-2" id="emptyState">
+<div class="w-14 h-14 rounded-xl bg-slate-100 flex items-center justify-center text-slate-500 mb-3" id="emptyStateIconWrap">
+<span class="material-symbols-outlined text-[32px]" id="emptyStateIcon">quiz</span>
+</div>
+<h3 class="text-base font-bold text-on-surface" id="emptyStateTitle">No matching attempts</h3>
+<p class="text-sm text-on-surface-variant max-w-md mt-1" id="emptyStateDesc">No test attempts match the filters you've applied. Try adjusting your query or resetting.</p>
+<div class="mt-4 flex gap-2" id="emptyStateActionContainer">
+<button class="min-h-[44px] px-5 rounded-lg bg-[#1D4ED8] text-white font-medium text-sm hover:bg-[#1E3A8A] transition-colors" id="emptyStateActionBtn" onclick="resetFilters()" type="button">Clear Filters</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (5 Canonical Destinations, min 44px touch targets) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-[#E2E8F0] z-50 px-1 pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] pt-1 shadow-lg">
+<nav aria-label="Mobile navigation bar" class="h-14 flex items-center justify-around">
+<a class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px]" data-path="dashboard" href="#/dashboard"Dashboard', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[22px]">space_dashboard</span>
+<span class="text-xs font-medium mt-0.5">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px]" data-path="mock-tests" href="#/mock-tests"Mock Tests', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[22px]">quiz</span>
+<span class="text-xs font-medium mt-0.5">Mock Tests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px]" data-path="pyqs" href="#/pyqs"PYQs', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[22px]">history_edu</span>
+<span class="text-xs font-medium mt-0.5">PYQs</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px]" data-path="chapter-tests" href="#/chapter-tests"Chapter Tests', 'Prototype only — this action is not connected yet.'); return false;">
+<span class="material-symbols-outlined text-[22px]">menu_book</span>
+<span class="text-xs font-medium mt-0.5">Chapters</span>
+</a>
+<button aria-controls="more-menu-sheet" aria-expanded="false" aria-label="Open more navigation items" class="flex flex-col items-center justify-center text-slate-600 hover:text-slate-900 transition-colors py-1 flex-1 min-h-[44px] cursor-pointer" id="mobileMoreTrigger" type="button">
+<span class="material-symbols-outlined text-[22px]">apps</span>
+<span class="text-xs font-medium mt-0.5">More</span>
+</button>
+</nav>
+</div>
+<!-- Mobile "More" Bottom Sheet Dialog with Focus Trap -->
+<div aria-hidden="true" aria-label="More navigation menu" aria-modal="true" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 hidden transition-opacity" id="more-menu-sheet" role="dialog">
+<div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl p-4 sm:p-6 shadow-2xl max-h-[85vh] overflow-y-auto" onclick="event.stopPropagation()">
+<div class="w-12 h-1 bg-slate-300 rounded-full mx-auto mb-4"></div>
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-[#E2E8F0]">
+<h3 class="text-base font-bold text-on-surface" id="moreSheetTitle">Aspirant Navigation</h3>
+<button aria-label="Close navigation sheet" class="min-w-[44px] min-h-[44px] rounded-lg flex items-center justify-center text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors" id="closeMoreSheetBtn" type="button">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-2.5 mb-2">
+<!-- Active link: My Tests -->
+<a class="min-h-[48px] p-3 rounded-lg bg-blue-50 border border-blue-200 text-[#1D4ED8] flex flex-col gap-1 shadow-sm" href="#/my-tests">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#1D4ED8]">fact_check</span>
+<span class="text-sm font-bold">My Tests</span>
+</div>
+<span class="text-xs text-[#1D4ED8]">Active Attempt Vault</span>
+</a>
+<a class="min-h-[48px] p-3 rounded-lg bg-slate-50 border border-[#E2E8F0] text-slate-800 hover:bg-slate-100 flex flex-col gap-1 transition-colors" href="#/bookmarks"Bookmarks Vault', 'Prototype only — this action is not connected yet.'); return false;">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#1D4ED8]">bookmark</span>
+<span class="text-sm font-semibold">Bookmarks</span>
+</div>
+<span class="text-xs text-slate-500">Flagged Questions</span>
+</a>
+<a class="min-h-[48px] p-3 rounded-lg bg-slate-50 border border-[#E2E8F0] text-slate-800 hover:bg-slate-100 flex flex-col gap-1 transition-colors" href="#/preferences"Preferences', 'Prototype only — this action is not connected yet.'); return false;">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#1D4ED8]">tune</span>
+<span class="text-sm font-semibold">Preferences</span>
+</div>
+<span class="text-xs text-slate-500">Study Settings</span>
+</a>
+<a class="min-h-[48px] p-3 rounded-lg bg-slate-50 border border-[#E2E8F0] text-slate-800 hover:bg-slate-100 flex flex-col gap-1 transition-colors" href="#/preferences"Candidate Profile', 'Prototype only — this action is not connected yet.'); return false;">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[20px] text-[#1D4ED8]">badge</span>
+<span class="text-sm font-semibold">Profile</span>
+</div>
+<span class="text-xs text-slate-500">Candidate ID &amp; Target</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Prototype Toast Notification -->
+<div aria-live="polite" class="fixed bottom-6 right-6 md:right-10 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none max-w-sm w-full" id="toastNotification">
+<div class="bg-slate-900 text-white px-4 py-3 rounded-lg shadow-xl flex items-start gap-3 border border-slate-700 pointer-events-auto">
+<span class="material-symbols-outlined text-blue-400 mt-0.5 text-[20px]" id="toastIcon">info</span>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white" id="toastTitle">Prototype Action</p>
+<p class="text-xs text-slate-300 mt-0.5" id="toastMessage">Prototype only — this action is not connected yet.</p>
+</div>
+<button aria-label="Dismiss notification" class="pointer-events-auto text-slate-400 hover:text-white p-1 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0" onclick="hideToast()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<!-- Application Logic -->
+</div>

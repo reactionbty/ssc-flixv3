@@ -46,6 +46,25 @@
   var shellSourcePromise = null;
   var loadingToken = 0;
 
+  // Timers created by a page belong to that route and are cleared when it is left.
+  var nativeSetTimeout = window.setTimeout.bind(window);
+  var nativeClearTimeout = window.clearTimeout.bind(window);
+  var nativeSetInterval = window.setInterval.bind(window);
+  var nativeClearInterval = window.clearInterval.bind(window);
+
+  window.setTimeout = function () {
+    var id = nativeSetTimeout.apply(window, arguments);
+    var owner = activeController;
+    if (owner) owner.signal.addEventListener('abort', function () { nativeClearTimeout(id); }, { once: true });
+    return id;
+  };
+  window.setInterval = function () {
+    var id = nativeSetInterval.apply(window, arguments);
+    var owner = activeController;
+    if (owner) owner.signal.addEventListener('abort', function () { nativeClearInterval(id); }, { once: true });
+    return id;
+  };
+
   function decodePath(value) {
     try { return decodeURIComponent(value); } catch (error) { return value; }
   }

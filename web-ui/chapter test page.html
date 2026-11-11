@@ -445,11 +445,11 @@
 </div>
 <!-- Inert Start Practice Action -->
 <div class="space-y-2 pt-1">
-<button aria-disabled="true" class="w-full min-h-[44px] px-6 py-2.5 rounded-lg bg-slate-200 text-slate-500 font-semibold text-sm flex items-center justify-center gap-2 cursor-not-allowed border border-slate-300 transition-colors" disabled="" id="start-practice-action" type="button">
+<button class="w-full min-h-[44px] px-6 py-2.5 rounded-lg bg-[#1D4ED8] hover:bg-[#1E3A8A] text-white font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer border border-[#1D4ED8] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]" id="start-practice-action" type="button">
 <span class="material-symbols-outlined text-[20px]">play_arrow</span>
-<span id="start-btn-label">Start Practice: Percentage (Demo)</span>
+<span id="start-btn-label">Open Practice Preview: Percentage</span>
 </button>
-<p class="text-center text-xs text-[#475569]">Standalone demonstration records. Question bank is not connected in this preview.</p>
+<p class="text-center text-xs text-[#475569]">Opens the CBT demonstration. Chapter-specific question sets are not connected yet.</p>
 </div>
 </div>
 </div>
@@ -651,6 +651,7 @@
       var topicsChipsContainer = document.getElementById('topics-chips-container');
       var selectedScopeCounter = document.getElementById('selected-scope-counter');
       var startBtnLabel = document.getElementById('start-btn-label');
+      var startPracticeAction = document.getElementById('start-practice-action');
 
       var statusToast = document.getElementById('status-toast');
       var toastMessage = document.getElementById('toast-message');
@@ -1027,6 +1028,30 @@
           e.preventDefault();
         }
       });
+
+      // Open a clearly labelled generic CBT demo for the selected chapter.
+      if (startPracticeAction) {
+        startPracticeAction.addEventListener('click', function () {
+          var selectedSubject = subjectsData.find(function (subject) { return subject.id === currentSubjectId; });
+          var selectedChapter = selectedSubject && selectedSubject.chapters.find(function (chapter) { return chapter.id === currentChapterId; });
+          if (!selectedSubject || !selectedChapter) {
+            showToast('Select a chapter before opening the practice preview.', 'info');
+            return;
+          }
+
+          var previewContext = {
+            testId: 'chapter-' + currentChapterId,
+            title: selectedChapter.name + ' — ' + selectedSubject.title,
+            category: 'Chapter Practice Preview',
+            examId: 'cgl',
+            mode: 'study',
+            durationMinutes: 20,
+            source: 'chapter-tests'
+          };
+          try { localStorage.setItem('sscflix-active-test-preview', JSON.stringify(previewContext)); } catch (error) {}
+          window.location.href = './cbt%20interface%20page.html';
+        });
+      }
 
       // Initial Render
       renderSubjects();
